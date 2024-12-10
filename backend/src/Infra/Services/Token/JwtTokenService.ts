@@ -1,5 +1,5 @@
 import jwt, { JwtPayload } from "jsonwebtoken"
-import { ITokenService } from "../../../Domain/Services/ITokenService"
+import { ITokenService } from "../../../domain/services/token.service.interface"
 
 export class JwtTokenService implements ITokenService {
   private secret = process.env.JWT_SECRET || "default_secret"

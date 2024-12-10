@@ -1,38 +1,45 @@
 export type ResultProps = {
   id?: string
+  dailyId?: string
   name: string
-  hour: number
-  minute: number
-  sorted_number_1: number
-  sorted_number_2: number
-  sorted_number_3: number
-  sorted_number_4: number
-  sorted_number_5: number
+  hour: string
+  number_1: number
+  number_2: number
+  number_3: number
+  number_4: number
+  number_5: number
   createdAt?: Date
+}
+export type UpdateNumberInputDTO = {
+  number_1?: number
+  number_2?: number
+  number_3?: number
+  number_4?: number
+  number_5?: number
 }
 
 export class Result {
   public readonly id?: string
+  public readonly dailyId?: string
   public name: string
-  public hour: number
-  public minute: number
-  public sorted_number_1: number
-  public sorted_number_2: number
-  public sorted_number_3: number
-  public sorted_number_4: number
-  public sorted_number_5: number
+  public hour: string
+  public number_1: number
+  public number_2: number
+  public number_3: number
+  public number_4: number
+  public number_5: number
   public createdAt: Date
 
   constructor(props: ResultProps) {
     this.id = props.id
+    this.dailyId = props.dailyId
     this.name = props.name
     this.hour = props.hour
-    this.minute = props.minute
-    this.sorted_number_1 = props.sorted_number_1
-    this.sorted_number_2 = props.sorted_number_2
-    this.sorted_number_3 = props.sorted_number_3
-    this.sorted_number_4 = props.sorted_number_4
-    this.sorted_number_5 = props.sorted_number_5
+    this.number_1 = props.number_1
+    this.number_2 = props.number_2
+    this.number_3 = props.number_3
+    this.number_4 = props.number_4
+    this.number_5 = props.number_5
     this.createdAt = props.createdAt ?? new Date()
   }
 
@@ -40,17 +47,17 @@ export class Result {
     return new Result(props)
   }
 
-  update(data: {
-    sorted_number_1?: number
-    sorted_number_2?: number
-    sorted_number_3?: number
-    sorted_number_4?: number
-    sorted_number_5?: number
-  }): void {
-    if (data.sorted_number_1) this.sorted_number_1 = data.sorted_number_1
-    if (data.sorted_number_2) this.sorted_number_2 = data.sorted_number_2
-    if (data.sorted_number_3) this.sorted_number_3 = data.sorted_number_3
-    if (data.sorted_number_4) this.sorted_number_4 = data.sorted_number_4
-    if (data.sorted_number_5) this.sorted_number_5 = data.sorted_number_5
+  update(
+    number_1?: number,
+    number_2?: number,
+    number_3?: number,
+    number_4?: number,
+    number_5?: number
+  ): void {
+    if (number_1) this.number_1 = number_1
+    if (number_2) this.number_2 = number_2
+    if (number_3) this.number_3 = number_3
+    if (number_4) this.number_4 = number_4
+    if (number_5) this.number_5 = number_5
   }
 }

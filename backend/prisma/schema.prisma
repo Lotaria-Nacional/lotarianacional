@@ -31,17 +31,23 @@ model News {
   createdAt DateTime
 }
 
+model DailyResult {
+  id      String    @id @default(auto()) @map("_id") @db.ObjectId
+  date    DateTime  @unique
+  results Result[]
+}
 model Result {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String @unique
-  hour Int
-  minute Int
-  sorted_number_1 Int
-  sorted_number_2 Int
-  sorted_number_3 Int
-  sorted_number_4 Int
-  sorted_number_5 Int
-  createdAt DateTime
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  startHour  String
+  number_1    Int
+  number_2    Int
+  number_3    Int
+  number_4    Int
+  number_5    Int
+  createdAt  DateTime @default(now())
+  dailyId    String   @db.ObjectId
+  DailyResult DailyResult @relation(fields: [dailyId], references: [id])
 }
 
 model Agencies {
