@@ -83,8 +83,8 @@ const AgencyTable = () => {
               <TableCell>{agency.location_text}</TableCell>
               <TableCell>{agency.phone}</TableCell>
               <TableCell className="flex items-center gap-2">
-                <Button asChild>
-                  <NavLink to={"#"} className="text-white bg-GRAY-200">
+                <Button asChild className="text-white bg-GRAY-200 h-8 px-2">
+                  <NavLink to={"#"}>
                     <img
                       alt="ícone"
                       src={ICON.edit}
@@ -95,7 +95,7 @@ const AgencyTable = () => {
 
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button asChild className="bg-RED-200 cursor-pointer">
+                    <Button asChild className="text-white bg-RED-200 h-8 px-2">
                       <div>
                         <img
                           alt="ícone"
@@ -119,6 +119,7 @@ const AgencyTable = () => {
                       <AlertDialogCancel>Cancelar</AlertDialogCancel>
                       <AlertDialogAction
                         disabled={isRemoving}
+                        className="bg-RED-200"
                         onClick={() => handleDeleteAgency(agency.id)}
                       >
                         {isRemoving ? "Removendo..." : "Remover"}

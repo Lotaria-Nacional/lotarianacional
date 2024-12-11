@@ -1,49 +1,35 @@
-import { createNews } from "@/api/news.api"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { ICON } from "@/constants/assets"
 import { isAxiosError } from "axios"
-import { ChangeEvent, FormEvent, useState } from "react"
 import { toast } from "react-toastify"
+import { ICON } from "@/constants/assets"
+import { getNewsById, updateNews } from "@/api/news.api"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { useParams } from "react-router-dom"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 
-const AddNewsPage = () => {
-  const [isLoading, setIsLoading] = useState(false)
+const EditNewsPage = () => {
+  const { id } = useParams()
+  const [isLoading, setIsLoading] = useState(true)
 
   const [title, setTitle] = useState("")
   const [image, setImage] = useState<any>()
   const [description, setDescription] = useState("")
   const [previewImg, setPreviewImg] = useState<string | null>(null)
 
-  const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
-    const image = e.target.files?.[0]
-    if (image) {
-      const previewImgURL = URL.createObjectURL(image)
-      setPreviewImg(previewImgURL)
-      setImage(image)
-    }
-  }
+  const handleSubmit = async () => {}
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-
-    const formData = new FormData()
-    formData.append("title", title)
-    formData.append("image", image)
-    formData.append("description", description)
-    
-    try {
-      const response = await createNews(formData)
-      console.log(formData)
-      toast.success(response.message)
-    } catch (error) {
-      if (isAxiosError(error)) {
-        toast.error(error.response?.data.message)
-      }
-    } finally {
+  useEffect(() => {
+    const fetch = async () => {
+      const data = await getNewsById(id!)
+      setTitle(data.title)
+      setImage(data.image)
+      setDescription(data.description)
       setIsLoading(false)
     }
-  }
+    fetch()
+  }, [])
+
+  if (isLoading) return <span>Carregando...</span>
 
   return (
     <main className="flex items-center justify-center w-full h-full">
@@ -92,26 +78,25 @@ const AddNewsPage = () => {
             <div className="flex items-center py-2 justify-end gap-2">
               <Button variant={"outline"}>Salvar rascunho</Button>
               <Button type="submit" disabled={isLoading} className="bg-RED-200">
-                {isLoading ? "Publicando..." : "Publicar"}
+                {isLoading ? "Atualizando..." : "Atualizar"}
               </Button>
             </div>
           </div>
 
           <div className="bg-white p-4 rounded-[20px] flex flex-col gap-2 h-full">
             <span className="font-medium">Thumbnail</span>
-            {previewImg && (
-              <img
-                // src={"banner-1.png"}
-                src={previewImg}
-                alt="imagem de pré visualização"
-                className="w-full h-[150px] object-contain rounded-[10px]"
-              />
-            )}
+
+            <img
+              src={previewImg ?? image}
+              alt="imagem de pré visualização"
+              className="w-full h-[150px] object-contain rounded-[10px]"
+            />
+
             <Input
               type="file"
               name="image"
               accept="image/*"
-              onChange={handleImage}
+              // onChange={handleImage}
             />
           </div>
         </section>
@@ -120,4 +105,4 @@ const AddNewsPage = () => {
   )
 }
 
-export default AddNewsPage
+export default EditNewsPage

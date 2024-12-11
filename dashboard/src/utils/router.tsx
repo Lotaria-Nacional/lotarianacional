@@ -12,6 +12,7 @@ import { createBrowserRouter } from "react-router-dom"
 import AddAgencyPage from "../pages/dashboard/add-agency-page"
 import AddNewsPage from "../pages/dashboard/add-news-page"
 import EditResultsPage from "@/pages/dashboard/edit-results-page"
+import EditNewsPage from "@/pages/dashboard/edit-news-page"
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: "agencias", element: <AgenciesPage /> },
       { path: "configuracoes", element: <SettingsPage /> },
       { path: "adicionar-noticia", element: <AddNewsPage /> },
+      { path: "noticia/:id", element: <EditNewsPage /> },
       { path: "adicionar-agencia", element: <AddAgencyPage /> },
       { path: "baixar-ticket", element: <DownloadTicketPage /> },
       { path: "editar-resultados", element: <EditResultsPage /> },
