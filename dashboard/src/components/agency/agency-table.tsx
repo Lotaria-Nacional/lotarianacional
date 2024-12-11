@@ -6,14 +6,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { IAgency } from "@/interfaces"
-import { useEffect, useState } from "react"
-import { getAgencies } from "@/api/agency.api"
-import NothingToShow from "@/components/common/nothing-to-show"
 import { Button } from "../ui/button"
-import { NavLink } from "react-router-dom"
-import {   PlusIcon, Trash2 } from "lucide-react"
+import { IAgency } from "@/interfaces"
+import { PlusIcon } from "lucide-react"
 import { ICON } from "@/constants/assets"
+import { NavLink } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { deleteAgency, getAgencies } from "@/api/agency.api"
+import NothingToShow from "@/components/common/nothing-to-show"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,9 +25,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog"
+import { toast } from "react-toastify"
 
 const AgencyTable = () => {
   const [isLoading, setIsLoading] = useState(true)
+  const [isRemoving, setIsRemoving] = useState(false)
   const [agencies, setAgencies] = useState<IAgency[]>([])
 
   useEffect(() => {
@@ -41,6 +43,19 @@ const AgencyTable = () => {
 
   if (isLoading) return <span>Carregando...</span>
   if (agencies.length === 0) return <NothingToShow />
+
+  const handleDeleteAgency = async (id: string) => {
+    setIsRemoving(true)
+    try {
+      const response = await deleteAgency(id)
+      toast.success(response.message)
+    } catch (error: any) {
+      toast.error(error.message)
+    } finally {
+      setIsRemoving(false)
+      window.location.reload()
+    }
+  }
 
   return (
     <div className="bg-white p-4 rounded-[20px] w-[1128px] flex flex-col gap-4">
@@ -66,8 +81,7 @@ const AgencyTable = () => {
             <TableRow key={agency.id}>
               <TableCell>{agency.name}</TableCell>
               <TableCell>{agency.location_text}</TableCell>
-              {/* <TableCell>{agency.phone}</TableCell> */}
-              <TableCell>+123456789</TableCell>
+              <TableCell>{agency.phone}</TableCell>
               <TableCell className="flex items-center gap-2">
                 <Button asChild>
                   <NavLink to={"#"} className="text-white bg-GRAY-200">
@@ -81,7 +95,7 @@ const AgencyTable = () => {
 
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button asChild className="bg-RED-200">
+                    <Button asChild className="bg-RED-200 cursor-pointer">
                       <div>
                         <img
                           alt="ícone"
@@ -103,7 +117,12 @@ const AgencyTable = () => {
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                      <AlertDialogAction>Remover</AlertDialogAction>
+                      <AlertDialogAction
+                        disabled={isRemoving}
+                        onClick={() => handleDeleteAgency(agency.id)}
+                      >
+                        {isRemoving ? "Removendo..." : "Remover"}
+                      </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>

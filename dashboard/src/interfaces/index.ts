@@ -27,7 +27,7 @@ export interface INews {
 export interface IAgency {
   id: string
   name: string
-  // phone: number
+  phone: number
   latitude: number
   longitude: number
   location_text: string

@@ -25,6 +25,6 @@ export const updateResults = async (
     number_4: data.number_4,
     number_5: data.number_5,
   })
-  const { message } = response.data
-  return message
+
+  return response.data
 }

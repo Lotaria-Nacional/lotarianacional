@@ -1,8 +1,14 @@
 import { updateResults } from "@/api/results.api"
 import { Button } from "../ui/button"
 import { ChangeEvent, FormEvent, useState } from "react"
+import { toast } from "react-toastify"
 
-export type KeyProps = "number_1" | "number_2" | "number_3" | "number_4" | "number_5"
+export type KeyProps =
+  | "number_1"
+  | "number_2"
+  | "number_3"
+  | "number_4"
+  | "number_5"
 
 type Props = {
   result: {
@@ -46,13 +52,14 @@ const ResultCardInput = ({ result }: Props) => {
     e.preventDefault()
     setIsLoading(true)
     try {
-      // const newData = parseInt(data)
       const response = await updateResults(result.id, data)
-      alert(response)
-      console.log(response)
+
+      toast.success(response.message, { autoClose: 2000, position:"bottom-right" })
+      console.log(response.message)
     } catch (error: any) {
       alert(error.message)
       console.log(error.message)
+      toast.success(error.message)
     } finally {
       setIsLoading(false)
     }

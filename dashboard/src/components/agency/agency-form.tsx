@@ -1,41 +1,43 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { toast } from "react-toastify"
 import { Label } from "@/components/ui/label"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { Input } from "@/components/ui/input"
+import { createAgency } from "@/api/agency.api"
+import { Button } from "@/components/ui/button"
+import { FormEvent, useState } from "react"
+import { CHAR_REGEX, COORD_REGEX, NUMBER_REGEX } from "@/constants/regex"
+import { IAgency } from "@/interfaces"
 
-type KeyProps = "name" | "phone" | "latitude" | "longitude" | "location_text"
-
-type CreateAgencyDTO = {
-  name: string
-  phone: number
-  latitude: number
-  longitude: number
-  location_text: string
-}
+type CreateAgencyDTO = Omit<IAgency, "id" | "createdAt">
 
 const AgencyForm = () => {
-  const [data, setData] = useState<CreateAgencyDTO>({
-    name: "",
-    phone: 0,
-    latitude: 0,
-    longitude: 0,
-    location_text: "",
-  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [coordinates, setCoordinates] = useState("")
+  const [locationText, setLocationText] = useState("")
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    key: KeyProps
-  ) => {
-    const value = e.target.value
-    setData({
-      ...data,
-      [key]: value,
-    })
-  }
-
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    console.log(data)
+    setIsLoading(true)
+    const [latitude, longitude] = coordinates.split(",")
+
+    const data: CreateAgencyDTO = {
+      name,
+      phone: parseInt(phone),
+      location_text: locationText,
+      latitude: parseInt(latitude),
+      longitude: parseInt(longitude),
+    }
+    try {
+      const response = await createAgency(data)
+
+      console.log(response.message)
+      toast.success(response.message)
+    } catch (error: any) {
+      toast.error(error.message)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -45,37 +47,62 @@ const AgencyForm = () => {
           <Label htmlFor="">Nome da agência</Label>
           <Input
             type="text"
+            value={name}
             placeholder="Kinaxixi"
-            onChange={(e) => handleInputChange(e, "name")}
+            onChange={(e) => {
+              const value = e.target.value
+              if (CHAR_REGEX.test(value)) {
+                setName(value)
+              }
+            }}
           />
         </div>
         <div className="flex flex-col gap-2">
           <Label htmlFor="">Telefone</Label>
           <Input
             type="text"
+            value={phone}
+            inputMode="numeric"
             placeholder="(+244) 999 999 999"
-            onChange={(e) => handleInputChange(e, "phone")}
+            onChange={(e) => {
+              const value = e.target.value
+              if (NUMBER_REGEX.test(value)) {
+                setPhone(value)
+              }
+            }}
           />
         </div>
         <div className="flex flex-col gap-2">
           <Label htmlFor="">Localização</Label>
           <Input
             type="text"
+            value={locationText}
             placeholder="Cruzeiro, rua do Timor"
-            onChange={(e) => handleInputChange(e, "location_text")}
+            onChange={(e) => {
+              const value = e.target.value
+              if (CHAR_REGEX.test(value)) {
+              }
+              setLocationText(value)
+            }}
           />
         </div>
         <div className="flex flex-col gap-2">
           <Label htmlFor="">Coordenadas</Label>
           <Input
             type="text"
-            placeholder="-8.83833 - 13.2344 8° "
-            onChange={(e) => handleInputChange(e, "latitude")}
+            value={coordinates}
+            placeholder="-8.83833 - 13.2344 8°"
+            onChange={(e) => {
+              const value = e.target.value
+              if (COORD_REGEX.test(value)) {
+                setCoordinates(e.target.value)
+              }
+            }}
           />
         </div>
       </div>
-      <Button className="w-full bg-RED-200" type="submit">
-        Salvar
+      <Button disabled={isLoading} className="w-full bg-RED-200" type="submit">
+        {isLoading ? "Salvando..." : "Salvar"}
       </Button>
     </form>
   )

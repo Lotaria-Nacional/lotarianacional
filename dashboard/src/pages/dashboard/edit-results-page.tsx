@@ -1,8 +1,8 @@
+import { IResult } from "@/interfaces"
+import { useEffect, useState } from "react"
 import { getResults } from "@/api/results.api"
 import NothingToShow from "@/components/common/nothing-to-show"
 import ResultCardInput from "@/components/result/result-card-input"
-import { IResult } from "@/interfaces"
-import { useEffect, useState } from "react"
 
 const EditResultsPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
