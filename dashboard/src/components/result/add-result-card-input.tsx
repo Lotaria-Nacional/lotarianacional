@@ -1,6 +1,10 @@
+import { isAxiosError } from "axios"
 import { Button } from "../ui/button"
 import { KeyProps } from "./result-card-input"
 import { ChangeEvent, FormEvent, useState } from "react"
+import { toast } from "react-toastify"
+import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
+import { CreateDailyResult, createResult } from "@/api/results.api"
 
 type Props = {
   name: "fezada" | "aqueceu" | "kazola" | "eskebra"
@@ -33,13 +37,31 @@ const AddResultCardInput = ({ hour, name }: Props) => {
     }
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    const resultData: CreateDailyResult = {
+      hour,
+      name,
+      number_1: parseInt(data.number_1),
+      number_2: parseInt(data.number_2),
+      number_3: parseInt(data.number_3),
+      number_4: parseInt(data.number_4),
+      number_5: parseInt(data.number_5),
+    }
     try {
+      const response = await createResult(resultData)
       console.log({ name, hour, data })
-    } catch (error: any) {
-      console.log(error.message)
+
+      toast.success(response.message)
+    } catch (error) {
+      if (isAxiosError(error)) {
+        return toast.error(error.response?.data.message)
+      }
+      if (isAxiosError(error) && !error.response) {
+        return toast.error(TRY_LATER_ERROR)
+      }
+      return toast.error(SERVER_CONNECTION_ERROR)
     } finally {
       setIsLoading(false)
     }

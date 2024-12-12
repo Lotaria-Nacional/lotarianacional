@@ -1,28 +1,73 @@
 import { isAxiosError } from "axios"
 import { toast } from "react-toastify"
 import { ICON } from "@/constants/assets"
-import { getNewsById, updateNews } from "@/api/news.api"
+import { useParams } from "react-router-dom"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useParams } from "react-router-dom"
+import { getNewsById, updateNews } from "@/api/news.api"
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
 const EditNewsPage = () => {
   const { id } = useParams()
   const [isLoading, setIsLoading] = useState(true)
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const [title, setTitle] = useState("")
   const [image, setImage] = useState<any>()
+  const [currentImage, setCurrentImage] = useState("")
   const [description, setDescription] = useState("")
   const [previewImg, setPreviewImg] = useState<string | null>(null)
 
-  const handleSubmit = async () => {}
+  const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files
+    if (file) {
+      const previewImgURL = URL.createObjectURL(file[0])
+      if (!previewImgURL) {
+        URL.revokeObjectURL(previewImgURL)
+      }
+      setPreviewImg(previewImgURL)
+      setImage(file[0])
+    }
+  }
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setIsUpdating(true)
+    try {
+      let formData = new FormData()
+      formData.append("title", title)
+      formData.append("image", image)
+      formData.append("description", description)
+
+      const response = await updateNews(id!, formData)
+      toast.success(response.message)
+    } catch (error) {
+      if (isAxiosError(error) && error.response) {
+        return toast.error(error.response?.data.message)
+      }
+      if (isAxiosError(error) && !error.response) {
+        return toast.error(TRY_LATER_ERROR)
+      }
+      return toast.error(SERVER_CONNECTION_ERROR)
+    } finally {
+      setIsUpdating(false)
+    }
+  }
+
+  const handleResetImage = () => {
+    if (previewImg) {
+      URL.revokeObjectURL(previewImg)
+    }
+    setPreviewImg(null)
+    setImage(currentImage)
+  }
 
   useEffect(() => {
     const fetch = async () => {
       const data = await getNewsById(id!)
       setTitle(data.title)
       setImage(data.image)
+      setCurrentImage(data.image)
       setDescription(data.description)
       setIsLoading(false)
     }
@@ -77,14 +122,25 @@ const EditNewsPage = () => {
             </ul>
             <div className="flex items-center py-2 justify-end gap-2">
               <Button variant={"outline"}>Salvar rascunho</Button>
-              <Button type="submit" disabled={isLoading} className="bg-RED-200">
-                {isLoading ? "Atualizando..." : "Atualizar"}
+              <Button
+                type="submit"
+                disabled={isUpdating}
+                className="bg-RED-200"
+              >
+                {isUpdating ? "Atualizando..." : "Atualizar"}
               </Button>
             </div>
           </div>
 
           <div className="bg-white p-4 rounded-[20px] flex flex-col gap-2 h-full">
-            <span className="font-medium">Thumbnail</span>
+            <div className="w-full flex justify-between items-center">
+              <span className="font-medium">Thumbnail</span>
+              {previewImg && (
+                <Button variant={"ghost"} onClick={handleResetImage}>
+                  Remover
+                </Button>
+              )}
+            </div>
 
             <img
               src={previewImg ?? image}
@@ -96,7 +152,7 @@ const EditNewsPage = () => {
               type="file"
               name="image"
               accept="image/*"
-              // onChange={handleImage}
+              onChange={handleImage}
             />
           </div>
         </section>

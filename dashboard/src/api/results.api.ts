@@ -9,6 +9,22 @@ type UpdateNumbersDTO = {
   number_5: number
 }
 
+export type CreateDailyResult = {
+  name: string
+  hour: string
+  number_1: number
+  number_2: number
+  number_3: number
+  number_4: number
+  number_5: number
+}
+
+export const createResult = async (
+  data: CreateDailyResult
+): Promise<{ message: string }> => {
+  const response = await axios.post("/result", data)
+  return response.data
+}
 export const getResults = async (): Promise<IDailyResult[]> => {
   const response = await axios.get("/results")
   return response.data

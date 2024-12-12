@@ -1,52 +1,71 @@
-import { isAxiosError } from "axios"
-import { IAgency } from "@/interfaces"
-import { toast } from "react-toastify"
-import { FormEvent, useState } from "react"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { createAgency } from "@/api/agency.api"
 import { Button } from "@/components/ui/button"
+import { FormEvent, useEffect, useState } from "react"
+import { updateAgency, getAgencyById } from "@/api/agency.api"
 import { CHAR_REGEX, COORD_REGEX, NUMBER_REGEX } from "@/constants/regex"
+
+import { useParams } from "react-router-dom"
+import { isAxiosError } from "axios"
+import { toast } from "react-toastify"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
-type CreateAgencyDTO = Omit<IAgency, "id" | "createdAt">
-
-const AgencyForm = () => {
+const EditAgencyForm = () => {
+  const { id } = useParams()
   const [isLoading, setIsLoading] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(false)
+
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [coordinates, setCoordinates] = useState("")
   const [locationText, setLocationText] = useState("")
 
+  if (!id) {
+    window.history.back()
+    return
+  }
+  useEffect(() => {
+    const fetch = async () => {
+      setIsLoading(true)
+      const data = await getAgencyById(id!)
+      setName(data.name)
+      setPhone(data.phone.toString())
+      const coords = `${data.latitude},${data.latitude}`
+      setCoordinates(coords)
+      setLocationText(data.location_text)
+      setIsLoading(false)
+    }
+    fetch()
+  }, [id])
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-    const [latitude, longitude] = coordinates.split(",")
+    setIsUpdating(true)
 
-    const data: CreateAgencyDTO = {
-      name,
-      phone: parseInt(phone),
-      location_text: locationText,
-      latitude: parseInt(latitude),
-      longitude: parseInt(longitude),
-    }
     try {
-      const response = await createAgency(data)
-      console.log(response.message)
+      const [latitude, longitude] = coordinates.split(",")
+
+      const data = {
+        name,
+        phone: parseInt(phone),
+        location_text: locationText,
+        latitude: parseInt(latitude),
+        longitude: parseInt(longitude),
+      }
+      console.log(data)
+      const response = await updateAgency(id!, data)
       toast.success(response.message)
     } catch (error) {
       if (isAxiosError(error)) {
-        return toast.error(error.response?.data.message)
+        toast.error(error.response?.data.message)
       }
-      if (isAxiosError(error) && !error.response) {
-        return toast.error(TRY_LATER_ERROR)
+      if (isAxiosError(error) && error.response) {
+        toast.error(TRY_LATER_ERROR)
       }
-      return toast.error(SERVER_CONNECTION_ERROR)
+      toast.error(SERVER_CONNECTION_ERROR)
     } finally {
-      setIsLoading(false)
+      setIsUpdating(false)
     }
   }
-
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-10">
       <div className="grid grid-cols-2 gap-4">
@@ -56,12 +75,7 @@ const AgencyForm = () => {
             type="text"
             value={name}
             placeholder="Kinaxixi"
-            onChange={(e) => {
-              const value = e.target.value
-              if (CHAR_REGEX.test(value)) {
-                setName(value)
-              }
-            }}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -108,11 +122,11 @@ const AgencyForm = () => {
           />
         </div>
       </div>
-      <Button disabled={isLoading} className="w-full bg-RED-200" type="submit">
-        {isLoading ? "Salvando..." : "Salvar"}
+      <Button disabled={isUpdating} className="w-full bg-RED-200" type="submit">
+        {isUpdating ? "Atualizando..." : "Atualizar"}
       </Button>
     </form>
   )
 }
 
-export default AgencyForm
+export default EditAgencyForm

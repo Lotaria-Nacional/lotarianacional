@@ -6,14 +6,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Button } from "../ui/button"
-import { IAgency } from "@/interfaces"
-import { PlusIcon } from "lucide-react"
-import { ICON } from "@/constants/assets"
-import { NavLink } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { deleteAgency, getAgencies } from "@/api/agency.api"
-import NothingToShow from "@/components/common/nothing-to-show"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,7 +17,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog"
+import { Button } from "../ui/button"
 import { toast } from "react-toastify"
+import { IAgency } from "@/interfaces"
+import { PlusIcon } from "lucide-react"
+import { ICON } from "@/constants/assets"
+import { NavLink } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { deleteAgency, getAgencies } from "@/api/agency.api"
+import NothingToShow from "@/components/common/nothing-to-show"
+import { isAxiosError } from "axios"
+import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
 const AgencyTable = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -49,8 +51,14 @@ const AgencyTable = () => {
     try {
       const response = await deleteAgency(id)
       toast.success(response.message)
-    } catch (error: any) {
-      toast.error(error.message)
+    } catch (error) {
+      if (isAxiosError(error)) {
+        return toast.error(error.response?.data.message)
+      }
+      if (isAxiosError(error) && !error.response) {
+        return toast.error(TRY_LATER_ERROR)
+      }
+      return toast.error(SERVER_CONNECTION_ERROR)
     } finally {
       setIsRemoving(false)
       window.location.reload()
@@ -83,8 +91,8 @@ const AgencyTable = () => {
               <TableCell>{agency.location_text}</TableCell>
               <TableCell>{agency.phone}</TableCell>
               <TableCell className="flex items-center gap-2">
-                <Button asChild className="text-white bg-GRAY-200 h-8 px-2">
-                  <NavLink to={"#"}>
+                <Button asChild className="text-white cursor-pointer bg-GRAY-200 h-8 px-2">
+                  <NavLink to={`/agencia/${agency.id}`}>
                     <img
                       alt="ícone"
                       src={ICON.edit}
@@ -95,7 +103,7 @@ const AgencyTable = () => {
 
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button asChild className="text-white bg-RED-200 h-8 px-2">
+                    <Button asChild className="text-white cursor-pointer bg-RED-200 h-8 px-2">
                       <div>
                         <img
                           alt="ícone"

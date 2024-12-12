@@ -2,6 +2,7 @@ import { createNews } from "@/api/news.api"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ICON } from "@/constants/assets"
+import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 import { isAxiosError } from "axios"
 import { ChangeEvent, FormEvent, useState } from "react"
 import { toast } from "react-toastify"
@@ -31,15 +32,19 @@ const AddNewsPage = () => {
     formData.append("title", title)
     formData.append("image", image)
     formData.append("description", description)
-    
+
     try {
       const response = await createNews(formData)
       console.log(formData)
       toast.success(response.message)
     } catch (error) {
       if (isAxiosError(error)) {
-        toast.error(error.response?.data.message)
+        return toast.error(error.response?.data.message)
       }
+      if (isAxiosError(error) && !error.response) {
+        return toast.error(TRY_LATER_ERROR)
+      }
+      return toast.error(SERVER_CONNECTION_ERROR)
     } finally {
       setIsLoading(false)
     }

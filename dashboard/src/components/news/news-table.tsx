@@ -26,6 +26,7 @@ import { ICON } from "@/constants/assets"
 import { NavLink } from "react-router-dom"
 import { deleteNews } from "@/api/news.api"
 import { INews } from "@/interfaces"
+import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
 type Props = {
   news: INews[]
@@ -45,11 +46,9 @@ const NewsTable = ({ news }: Props) => {
         return toast.error(error.response?.data.message)
       }
       if (isAxiosError(error) && !error.response) {
-        return toast.error(
-          "Não foi possível conectar ao servidor. Verifique a sua conexão."
-        )
+        return toast.error(SERVER_CONNECTION_ERROR)
       }
-      return toast.error("Algo deu errado, tente novamente mais tarde.")
+      return toast.error(TRY_LATER_ERROR)
     } finally {
       setIsDeleting(false)
     }
