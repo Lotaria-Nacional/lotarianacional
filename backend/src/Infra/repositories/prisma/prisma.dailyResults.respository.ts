@@ -1,8 +1,8 @@
-import { prisma } from "../../database/prisma"
-import { Result } from "../../../domain/entities/result/result"
+import { prisma } from "../../Database/prisma"
+import { Result } from "../../../Domain/Entities/Result/Result"
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { DailyResult } from "../../../domain/entities/dailyResults/dailyResult"
-import { IDailyResultRespository } from "../../../domain/entities/dailyResults/dailyResult.repository"
+import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
+import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository"
 
 export class PrismaDailyResultsRespository implements IDailyResultRespository {
   async getAll(): Promise<DailyResult[]> {

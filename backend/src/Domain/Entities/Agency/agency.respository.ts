@@ -1,4 +1,4 @@
-import { Agency } from "./agency"
+import { Agency } from "./Agency"
 
 export interface IAgencyRespository {
   save(agency: Agency): Promise<void>

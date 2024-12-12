@@ -1,8 +1,8 @@
-import { IHashService } from "../../../domain/services/hash.service.interface"
+import { IHashService } from "../../../Domain/services/hash.service.interface"
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { ITokenService } from "../../../domain/services/token.service.interface"
+import { ITokenService } from "../../../Domain/services/token.service.interface"
 
-import { IUserRepository } from "../../../domain/entities/user/user.repository"
+import { IUserRepository } from "../../../Domain/Entities/User/user.repository"
 import { InvalidPassword } from "../../../shared/errors/invalid.password.error"
 
 export class AuthenticateUserUseCase {

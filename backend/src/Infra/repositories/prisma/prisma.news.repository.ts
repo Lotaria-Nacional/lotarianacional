@@ -1,6 +1,6 @@
-import { prisma } from "../../database/prisma"
-import { News } from "../../../domain/entities/news/news"
-import { INewsRespository } from "../../../domain/entities/news/news.repository"
+import { prisma } from "../../Database/prisma"
+import { News } from "../../../Domain/Entities/News/News"
+import { INewsRespository } from "../../../Domain/Entities/News/news.repository"
 
 export class PrismaNewsRespository implements INewsRespository {
   async delete(id: string): Promise<void> {

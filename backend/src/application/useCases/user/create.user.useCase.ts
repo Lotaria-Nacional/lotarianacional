@@ -1,7 +1,7 @@
-import { User } from "../../../domain/entities/user/user"
-import { IFileUpload } from "../../../domain/services/fileUpload.service.interface"
-import { IHashService } from "../../../domain/services/hash.service.interface"
-import { IUserRepository } from "../../../domain/entities/user/user.repository"
+import { User } from "../../../Domain/Entities/User/User"
+import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
+import { IHashService } from "../../../Domain/services/hash.service.interface"
+import { IUserRepository } from "../../../Domain/Entities/User/user.repository"
 
 export type CreateUserInputDTO = {
   email: string

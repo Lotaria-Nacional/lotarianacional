@@ -1,5 +1,5 @@
-import { DailyResult } from "../../../domain/entities/dailyResults/dailyResult"
-import { IDailyResultRespository } from "../../../domain/entities/dailyResults/dailyResult.repository"
+import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
+import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository"
 // import { Result } from "../../../domain/entities/result/result"
 // import { IResultRepository } from "../../../domain/entities/result/result.respository"
 

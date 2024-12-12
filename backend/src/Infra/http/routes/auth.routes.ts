@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express"
-import { JwtTokenService } from "../../services/token/jwtTokenService"
-import { BcryptHashService } from "../../services/hash/bcryptHashService"
+import { JwtTokenService } from "../../Services/Token/JwtTokenService"
+import { BcryptHashService } from "../../Services/Hash/BcryptHashService"
 import { PrismaUserRespository } from "../../repositories/prisma/prisma.user.repository"
 import { AuthenticateUserController } from "../controllers/authController/authenticate.user.controller"
 import { AuthenticateUserUseCase } from "../../../application/useCases/user/authenticate.user.useCase"

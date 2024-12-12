@@ -1,4 +1,4 @@
-import { News } from "./news"
+import { News } from "./News"
 
 export interface INewsRespository {
   save(news: News): Promise<void>

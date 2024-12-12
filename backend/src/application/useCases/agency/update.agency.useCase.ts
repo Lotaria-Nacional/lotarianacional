@@ -1,6 +1,6 @@
-import { Agency } from "../../../domain/entities/agency/agency"
+import { Agency } from "../../../Domain/Entities/Agency/Agency"
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { IAgencyRespository } from "../../../domain/entities/agency/agency.respository"
+import { IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository"
 
 type UpdateAgencyInputDTO = {
   name?: string
@@ -16,7 +16,7 @@ export class UpdateAgencyUseCase {
   async execute(id: string, data: UpdateAgencyInputDTO): Promise<Agency> {
     const existingAgency = await this.agencyRepository.getById(id)
     if (!existingAgency) new NotFoundError("Agência não encontrada.")
-  
+
     const agency = await this.agencyRepository.update(id, data)
     return agency
   }

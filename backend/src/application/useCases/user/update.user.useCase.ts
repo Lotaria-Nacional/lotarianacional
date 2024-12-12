@@ -1,6 +1,6 @@
-import { IFileUpload } from "../../../domain/services/fileUpload.service.interface"
+import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
 import { getCloudinaryPublicId } from "../../../utils/get.cloudinaryPublicId"
-import { IUserRepository } from "../../../domain/entities/user/user.repository"
+import { IUserRepository } from "../../../Domain/Entities/User/user.repository"
 
 export type UpdateUserInputDTO = {
   email?: string

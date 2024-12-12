@@ -1,16 +1,16 @@
 import { Request, Response, Router } from "express"
 
-import { PrismaAgencyRepository } from "../../repositories/prisma/prisma.agency.repository"
-import { GetAgenciesUseCase } from "../../../application/useCases/agency/get.agencies.useCase"
-import { GetAgenciesController } from "../controllers/agencyControllers/get.agencies.controller"
+import { DeleteAgencyUseCase } from "../../../application/useCases/agency/delete.agency.useCase"
 import { CreateAgencyUseCase } from "../../../application/useCases/agency/create.agency.useCase"
-import { CreateAgencyController } from "../controllers/agencyControllers/create.agency.controller"
+import { GetAgenciesUseCase } from "../../../application/useCases/agency/get.agencies.useCase"
 import { GetAgencyByIdUseCase } from "../../../application/useCases/agency/get.agencyById.useCase"
+import { UpdateAgencyUseCase } from "../../../application/useCases/agency/update.agency.useCase"
+import { PrismaAgencyRepository } from "../../repositories/prisma/prisma.agency.repository"
+import { CreateAgencyController } from "../controllers/agencyControllers/create.agency.controller"
+import { DeleteAgencyController } from "../controllers/agencyControllers/delete.agency.controller"
+import { GetAgenciesController } from "../controllers/agencyControllers/get.agencies.controller"
 import { GetAgencyByIdController } from "../controllers/agencyControllers/get.agenctById.controller"
 import { UpdateAgencyController } from "../controllers/agencyControllers/update.agency.controller"
-import { UpdateAgencyUseCase } from "../../../application/useCases/agency/update.agency.useCase"
-import { DeleteAgencyController } from "../controllers/agencyControllers/delete.agency.controller"
-import { DeleteAgencyUseCase } from "../../../application/useCases/agency/delete.agency.useCase"
 
 const router = Router()
 const prismaAgencyRepository = new PrismaAgencyRepository()

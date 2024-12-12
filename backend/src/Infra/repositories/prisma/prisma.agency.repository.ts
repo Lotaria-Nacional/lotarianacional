@@ -1,6 +1,6 @@
-import { prisma } from "../../database/prisma"
-import { Agency } from "../../../domain/entities/agency/agency"
-import { IAgencyRespository } from "../../../domain/entities/agency/agency.respository"
+import { prisma } from "../../Database/prisma"
+import { Agency } from "../../../Domain/Entities/Agency/Agency"
+import { IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository"
 
 export class PrismaAgencyRepository implements IAgencyRespository {
   async save(agency: Agency): Promise<void> {

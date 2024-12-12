@@ -1,4 +1,4 @@
-import { IResultRepository } from "../../../domain/entities/result/result.respository"
+import { IResultRepository } from "../../../Domain/Entities/Result/result.respository"
 
 export class GetResultsByDateUseCase {
   constructor(private resultRespository: IResultRepository) {}

@@ -1,6 +1,6 @@
-import { News } from "../../../domain/entities/news/news"
-import { INewsRespository } from "../../../domain/entities/news/news.repository"
-import { IFileUpload } from "../../../domain/services/fileUpload.service.interface"
+import { News } from "../../../Domain/Entities/News/News"
+import { INewsRespository } from "../../../Domain/Entities/News/news.repository"
+import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
 
 type CreateNewsInputDTO = {
   title: string

@@ -1,6 +1,6 @@
-import { Result } from "../../../domain/entities/result/result"
+import { Result } from "../../../Domain/Entities/Result/Result"
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { IResultRepository } from "../../../domain/entities/result/result.respository"
+import { IResultRepository } from "../../../Domain/Entities/Result/result.respository"
 
 type UpdateResultInputDTO = {
   id: string

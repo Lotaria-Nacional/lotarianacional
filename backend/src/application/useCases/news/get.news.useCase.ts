@@ -1,5 +1,5 @@
-import { News } from "../../../domain/entities/news/news"
-import { INewsRespository } from "../../../domain/entities/news/news.repository"
+import { News } from "../../../Domain/Entities/News/News"
+import { INewsRespository } from "../../../Domain/Entities/News/news.repository"
 
 export class GetNewsUseCase {
   constructor(private newsRepository: INewsRespository) {}

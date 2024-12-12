@@ -4,11 +4,11 @@ import express from "express"
 
 dotenv.config()
 
-import authRoutes from "./infra/http/routes/auth.routes"
-import userRoutes from "./infra/http/routes/user.routes"
-import newsRoutes from "./infra/http/routes/news.routes"
-import agencyRoutes from "./infra/http/routes/agency.routes"
-import resultRoutes from "./infra/http/routes/result.routes"
+import authRoutes from "./Infra/http/routes/auth.routes"
+import userRoutes from "./Infra/http/routes/user.routes"
+import newsRoutes from "./Infra/http/routes/news.routes"
+import agencyRoutes from "./Infra/http/routes/agency.routes"
+import resultRoutes from "./Infra/http/routes/result.routes"
 
 const app = express()
 

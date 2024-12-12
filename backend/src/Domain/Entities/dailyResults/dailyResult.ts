@@ -1,4 +1,4 @@
-import { Result } from "../result/result"
+import { Result } from "../Result/Result"
 
 export type DailyResultProps = {
   id?: string

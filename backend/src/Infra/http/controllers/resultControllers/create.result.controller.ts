@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { Request, Response } from "express"
 import { CreateResultUseCase } from "../../../../application/useCases/result/create.result.useCase"
-import { ResultLimitException } from "../../../../domain/exceptions/resultLimitExceeded.exception"
+import { ResultLimitException } from "../../../../Domain/exceptions/resultLimitExceeded.exception"
 
 export class CreateResultController {
   constructor(private createResultUseCase: CreateResultUseCase) {}

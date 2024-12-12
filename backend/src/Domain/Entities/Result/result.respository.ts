@@ -1,4 +1,4 @@
-import { Result, UpdateNumberInputDTO } from "./result"
+import { Result, UpdateNumberInputDTO } from "./Result"
 
 export type UpdateResult = {
   id: string

@@ -1,7 +1,7 @@
 import {
   EmailProps,
   IEmailService,
-} from "../../../domain/services/email.service.interface"
+} from "../../../Domain/services/email.service.interface"
 
 type SendEmailInputDTO = {
   firstName: string

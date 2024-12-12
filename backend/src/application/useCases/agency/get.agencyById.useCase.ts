@@ -1,6 +1,6 @@
-import { Agency } from "../../../domain/entities/agency/agency"
+import { Agency } from "../../../Domain/Entities/Agency/Agency"
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { IAgencyRespository } from "../../../domain/entities/agency/agency.respository"
+import { IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository"
 
 export class GetAgencyByIdUseCase {
   constructor(private agencyRepository: IAgencyRespository) {}

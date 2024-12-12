@@ -1,7 +1,7 @@
-import { Result } from "../../../domain/entities/result/result"
-import { DailyResult } from "../../../domain/entities/dailyResults/dailyResult"
-import { ResultLimitException } from "../../../domain/exceptions/resultLimitExceeded.exception"
-import { IDailyResultRespository } from "../../../domain/entities/dailyResults/dailyResult.repository"
+import { Result } from "../../../Domain/Entities/Result/Result"
+import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
+import { ResultLimitException } from "../../../Domain/exceptions/resultLimitExceeded.exception"
+import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository"
 
 export type CreateResultInputDTO = {
   name: string

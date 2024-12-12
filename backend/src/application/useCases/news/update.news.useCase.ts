@@ -1,8 +1,8 @@
-import { News } from "../../../domain/entities/news/news"
-import { IFileUpload } from "../../../domain/services/fileUpload.service.interface"
+import { News } from "../../../Domain/Entities/News/News"
+import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
 import { NotFoundError } from "../../../shared/errors/notFound.error"
 import { getCloudinaryPublicId } from "../../../utils/get.cloudinaryPublicId"
-import { INewsRespository } from "../../../domain/entities/news/news.repository"
+import { INewsRespository } from "../../../Domain/Entities/News/news.repository"
 
 type UpdateNewsInputDTO = {
   title?: string

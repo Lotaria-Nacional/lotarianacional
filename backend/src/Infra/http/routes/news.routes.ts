@@ -1,21 +1,19 @@
 import { Request, Response, Router } from "express"
 
-import { PrismaNewsRespository } from "../../repositories/prisma/prisma.news.repository"
-
 import { CreateNewsUseCase } from "../../../application/useCases/news/create.news.useCase"
 import { GetNewsUseCase } from "../../../application/useCases/news/get.news.useCase"
 import { GetNewsByIdUseCase } from "../../../application/useCases/news/get.newsById.useCase"
 import { UpdateNewsUseCase } from "../../../application/useCases/news/update.news.useCase"
 import { DeleteNewsUseCase } from "../../../application/useCases/news/delete.news.useCase"
 
+import { CloudinaryUploadService } from "../../Services/ImageUpload/CloudinaryUploadService"
+import { upload } from "../middlewares/multer.middleware"
+import { PrismaNewsRespository } from "../../repositories/prisma/prisma.news.repository"
 import { CreateNewsController } from "../controllers/newsControllers/create.news.controller"
+import { DeleteNewsController } from "../controllers/newsControllers/delete.news.controller"
 import { GetNewsController } from "../controllers/newsControllers/get.news.controller"
 import { GetNewsByIdController } from "../controllers/newsControllers/get.newsById.controller"
 import { UpdateNewsController } from "../controllers/newsControllers/update.news.controller"
-import { DeleteNewsController } from "../controllers/newsControllers/delete.news.controller"
-
-import { CloudinaryUploadService } from "../../services/imageUpload/cloudinaryUploadService"
-import { upload } from "../middlewares/multer.middleware"
 
 const router = Router()
 

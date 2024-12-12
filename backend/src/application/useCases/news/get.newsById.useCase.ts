@@ -1,6 +1,6 @@
-import { News } from "../../../domain/entities/news/news"
+import { News } from "../../../Domain/Entities/News/News"
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { INewsRespository } from "../../../domain/entities/news/news.repository"
+import { INewsRespository } from "../../../Domain/Entities/News/news.repository"
 
 export class GetNewsByIdUseCase {
   constructor(private newsRepository: INewsRespository) {}

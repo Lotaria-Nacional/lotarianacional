@@ -1,6 +1,6 @@
-import { Banner } from "../../../domain/entities/banner/banner"
-import { IBannerRespository } from "../../../domain/entities/banner/banner.repository"
-import { IFileUpload } from "../../../domain/services/fileUpload.service.interface"
+import { Banner } from "../../../Domain/Entities/banner/banner"
+import { IBannerRespository } from "../../../Domain/Entities/banner/banner.repository"
+import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
 
 type CreateBannerInputDTO = {
   desktop_banner_1?: any

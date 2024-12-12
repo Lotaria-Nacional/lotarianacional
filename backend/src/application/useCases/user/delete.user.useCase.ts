@@ -1,6 +1,6 @@
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { IUserRepository } from "../../../domain/entities/user/user.repository"
-import { IFileUpload } from "../../../domain/services/fileUpload.service.interface"
+import { IUserRepository } from "../../../Domain/Entities/User/user.repository"
+import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
 import { getCloudinaryPublicId } from "../../../utils/get.cloudinaryPublicId"
 
 export class DeleteUserUseCase {

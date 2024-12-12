@@ -1,5 +1,5 @@
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { IAgencyRespository } from "../../../domain/entities/agency/agency.respository"
+import { IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository"
 
 export class DeleteAgencyUseCase {
   constructor(private agencyRepository: IAgencyRespository) {}

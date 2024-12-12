@@ -1,5 +1,5 @@
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { IResultRepository } from "../../../domain/entities/result/result.respository"
+import { IResultRepository } from "../../../Domain/Entities/Result/result.respository"
 
 export class DeleteResultUseCase {
   constructor(private resultRepository: IResultRepository) {}

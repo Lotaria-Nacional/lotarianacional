@@ -1,5 +1,5 @@
-import { cloudinary } from "../../config/cloudinary"
-import { IFileUpload } from "../../../domain/services/fileUpload.service.interface"
+import { cloudinary } from "../../Config/cloudinary"
+import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
 
 export class CloudinaryUploadService implements IFileUpload {
   async upload(file: string, folder: string): Promise<string> {

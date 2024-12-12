@@ -1,5 +1,5 @@
-import { Agency } from "../../../domain/entities/agency/agency"
-import { IAgencyRespository } from "../../../domain/entities/agency/agency.respository"
+import { Agency } from "../../../Domain/Entities/Agency/Agency"
+import { IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository"
 
 export class GetAgenciesUseCase {
   constructor(private agencyRespository: IAgencyRespository) {}

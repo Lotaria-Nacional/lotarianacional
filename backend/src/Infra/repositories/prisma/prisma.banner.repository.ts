@@ -1,7 +1,7 @@
-import { prisma } from "../../database/prisma"
-import { Banner } from "../../../domain/entities/banner/banner"
+import { prisma } from "../../Database/prisma"
+import { Banner } from "../../../Domain/Entities/banner/banner"
 import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { IBannerRespository } from "../../../domain/entities/banner/banner.repository"
+import { IBannerRespository } from "../../../Domain/Entities/banner/banner.repository"
 
 export class PrismaBannerRepository implements IBannerRespository {
   async save(banner: Banner): Promise<void> {
