@@ -20,6 +20,7 @@ const prismaDailyResultRepository = new PrismaDailyResultsRespository()
 const getResultsController = new GetResultsController(
   new GetResultsUseCase(prismaDailyResultRepository)
 )
+
 const createResultController = new CreateResultController(
   new CreateResultUseCase(prismaDailyResultRepository)
 )
@@ -36,6 +37,7 @@ router.post("/result", (req: Request, res: Response) => {
 router.get("/results", (req: Request, res: Response) => {
   getResultsController.handle(req, res)
 })
+
 router.put("/result/:id", (req: Request<{ id: string }>, res: Response) => {
   updateResultController.handle(req, res)
 })

@@ -10,18 +10,24 @@ export class PrismaAgencyRepository implements IAgencyRespository {
         location_text: agency.location_text,
         latitude: agency.latitude,
         longitude: agency.longitude,
+        phone: agency.phone,
         createdAt: agency.createdAt ?? new Date(),
       },
     })
   }
 
   async getAll(): Promise<Agency[]> {
-    const agencies = await prisma.agencies.findMany()
+    const agencies = await prisma.agencies.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    })
     if (agencies.length === 0) return []
     return agencies.map((agency) =>
       Agency.create({
         id: agency.id,
         name: agency.name,
+        phone: agency.phone,
         latitude: agency.latitude,
         longitude: agency.longitude,
         location_text: agency.location_text,
@@ -36,6 +42,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
     return Agency.create({
       id: agency.id,
       name: agency.name,
+      phone: agency.phone,
       latitude: agency.latitude,
       longitude: agency.longitude,
       createdAt: agency.createdAt,
@@ -48,6 +55,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
       where: { id },
       data: {
         name: data.name,
+        phone: data.phone,
         latitude: data.latitude,
         longitude: data.longitude,
         location_text: data.location_text,
@@ -57,6 +65,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
     return Agency.create({
       id: agency.id,
       name: agency.name,
+      phone: agency.phone,
       latitude: agency.latitude,
       longitude: agency.longitude,
       location_text: agency.location_text,

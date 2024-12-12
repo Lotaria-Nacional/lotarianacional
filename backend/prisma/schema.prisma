@@ -53,8 +53,19 @@ model Result {
 model Agencies {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
-  location_text String
+  phone Int
   latitude Int
   longitude Int
   createdAt DateTime
+  location_text String
+}
+
+model Banners {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  desktop_banner_1 String
+  desktop_banner_2 String
+  desktop_banner_3 String
+  mobile_banner_1 String
+  mobile_banner_2 String
+  mobile_banner_3 String
 }

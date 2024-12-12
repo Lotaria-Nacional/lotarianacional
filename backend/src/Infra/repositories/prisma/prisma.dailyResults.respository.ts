@@ -9,7 +9,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
     const dailyResults = await prisma.dailyResult.findMany({
       include: { results: true },
       orderBy: {
-        date: "desc",
+        date: "asc",
       },
     })
 

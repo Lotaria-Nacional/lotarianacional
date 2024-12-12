@@ -1,0 +1,52 @@
+export type CreateResultInputDTO = {
+  name: string;
+  hour: string;
+  number_1: number;
+  number_2: number;
+  number_3: number;
+  number_4: number;
+  number_5: number;
+};
+
+export class CreateResultUseCase {
+  constructor(private dailyResultRespository: IDailyResultRespository) {}
+
+  async execute(data: CreateResultInputDTO) {
+    const today = new Date().toISOString().split("T")[0];
+
+    // Try to find existing DailyResult for today
+    let dailyResult: DailyResult | null = await this.dailyResultRespository.getByDate(today);
+
+    // Create a new DailyResult if none exists
+    if (!dailyResult) {
+      dailyResult = DailyResult.create({ date: today, results: [] });
+    }
+
+    // Handle result limit for the current day
+    if (dailyResult.results.length >= 4) {
+      // Daily limit reached, create a new DailyResult for subsequent attempts
+      const newDailyResult = DailyResult.create({ date: today, results: [] });
+      newDailyResult.results.push(Result.create(data));
+      await this.dailyResultRespository.save(newDailyResult);
+      return; // Exit the function after creating a new DailyResult
+    }
+
+    const newResult: Result = Result.create({
+      name: data.name,
+      hour: data.hour,
+      number_1: data.number_1,
+      number_2: data.number_2,
+      number_3: data.number_3,
+      number_4: data.number_4,
+      number_5: data.number_5,
+    });
+
+    dailyResult.results.push(newResult);
+
+    if (dailyResult.id) {
+      await this.dailyResultRespository.update(dailyResult);
+    } else {
+      await this.dailyResultRespository.save(dailyResult);
+    }
+  }
+}

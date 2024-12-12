@@ -3,6 +3,7 @@ import { IAgencyRespository } from "../../../domain/entities/agency/agency.respo
 
 type CreateAgencyInputDTO = {
   name: string
+  phone: number
   latitude: number
   longitude: number
   location_text: string
@@ -17,9 +18,8 @@ export class CreateAgencyUseCase {
       latitude: data.latitude,
       longitude: data.longitude,
       location_text: data.location_text,
+      phone: data.phone,
     })
-
-    // console.log("CreateAgencyUseCase ~ execute ~ agency", agency)
 
     await this.agencyRepository.save(agency)
   }

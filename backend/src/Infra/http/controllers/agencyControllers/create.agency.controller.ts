@@ -8,6 +8,7 @@ export class CreateAgencyController {
   async handle(req: Request, res: Response) {
     const createAgencySchema = z.object({
       name: z.string().min(1, "O nome da agência é obrigatório."),
+      phone: z.number().int(),
       location_text: z
         .string()
         .min(1, "A localização da agência é obrigatória."),

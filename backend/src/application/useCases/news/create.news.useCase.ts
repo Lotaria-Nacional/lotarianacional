@@ -1,6 +1,6 @@
 import { News } from "../../../domain/entities/news/news"
-import { IFileUpload } from "../../../domain/services/fileUpload.service.interface"
 import { INewsRespository } from "../../../domain/entities/news/news.repository"
+import { IFileUpload } from "../../../domain/services/fileUpload.service.interface"
 
 type CreateNewsInputDTO = {
   title: string

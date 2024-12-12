@@ -9,12 +9,14 @@ export class CreateNewsController {
     const fileImage = req.file?.buffer
 
     const createNewsSchema = z.object({
+      image: z.any(),
       title: z.string().min(1, "O título é obrigatório."),
-      image: z.string().min(1, "A imagem é obrigatória."),
       description: z.string().min(1, "A descrição é obrigatória."),
     })
     try {
       const newsData = createNewsSchema.parse(req.body)
+      console.log(newsData)
+
       await this.createNewsUseCase.execute({ ...newsData, image: fileImage! })
 
       return res.status(201).json({ message: "Criado com sucesso!" })

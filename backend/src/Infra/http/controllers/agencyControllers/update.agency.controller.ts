@@ -10,9 +10,10 @@ export class UpdateAgencyController {
     const { id } = req.params
     const updateAgencySchema = z.object({
       name: z.string().optional(),
+      phone: z.number().optional(),
+      location_text: z.string().optional(),
       latitude: z.number().int().optional(),
       longitude: z.number().int().optional(),
-      location_text: z.string().optional(),
     })
 
     try {

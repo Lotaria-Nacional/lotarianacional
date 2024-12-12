@@ -11,12 +11,13 @@ export class UpdateNewsController {
     const fileImage = req.file?.buffer
 
     const updateNewsSchema = z.object({
+      image: z.any().optional(),
       title: z.string().optional(),
-      image: z.string().optional(),
       description: z.string().optional(),
     })
     try {
       const newsData = updateNewsSchema.parse(req.body)
+      console.log(newsData)
       const updatedNews = await this.updateNewsUseCase.execute(id, {
         ...newsData,
         image: fileImage,
