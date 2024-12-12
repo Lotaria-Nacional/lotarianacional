@@ -10,7 +10,7 @@ import "swiper/css/autoplay"
 const HeroSlider = () => {
   return (
     <Swiper className="h-full" modules={[Autoplay]} autoplay={{ delay: 2000 }}>
-      <SwiperSlide className="relative">
+      <SwiperSlide className="relative ">
         <img
           src={IMAGES.banner1}
           alt="lotaria banner 1"
@@ -21,6 +21,13 @@ const HeroSlider = () => {
         <img
           src={IMAGES.banner2}
           alt="lotaria banner 2"
+          className="absolute inset-0 object-cover w-full h-full"
+        />
+      </SwiperSlide>
+      <SwiperSlide className="relative">
+        <img
+          src={IMAGES.banner3}
+          alt="lotaria banner 3"
           className="absolute inset-0 object-cover w-full h-full"
         />
       </SwiperSlide>

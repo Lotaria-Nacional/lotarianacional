@@ -1,8 +1,8 @@
-import { IMAGES } from "../constants/assets"
+import { INews } from "../interfaces"
+import { useEffect, useState } from "react"
 import Container from "../components/container"
 import { NavLink, useParams } from "react-router-dom"
-import NOTICIAS from "../features/noticias/db/noticias.json"
-
+import { getNews, getNewsById } from "../api/noticias.api"
 import { SiX, SiFacebook, SiWhatsapp, SiLinkedin } from "react-icons/si"
 
 const SOCIAL_MEDIA = [
@@ -26,8 +26,17 @@ const SOCIAL_MEDIA = [
 
 const NoticiaSinglePage = () => {
   const { id } = useParams()
-  const CURRENT_NOTICIA = NOTICIAS.filter((data) => String(data.id) === id)[0]
-  const OTHER_NOTICIAS = NOTICIAS.filter((data) => String(data.id) !== id)
+  const [news, setNews] = useState<INews | undefined>()
+  const [otherNews, setOtherNews] = useState<INews[]>([])
+
+  useEffect(() => {
+    const fetch = async () => {
+      const [data1, data2] = await Promise.all([getNewsById(id!), getNews()])
+      setNews(data1)
+      setOtherNews(data2)
+    }
+    fetch()
+  }, [id])
 
   return (
     <Container className="py-12 items-start min-h-screen">
@@ -37,19 +46,19 @@ const NoticiaSinglePage = () => {
           <div className="flex flex-col gap-4">
             <div className="relative w-full h-[200px] md:h-[400px]">
               <img
-                src={IMAGES.noticia}
-                alt={CURRENT_NOTICIA.title}
+                src={news?.image}
+                alt={news?.title}
                 className="absolute inset-0 w-full h-full object-cover rounded-xl"
               />
             </div>
             <header className="flex flex-col gap-3">
-              <span className="text-lg">{CURRENT_NOTICIA.date}</span>
-              <h1 className="font-bold text-2xl">{CURRENT_NOTICIA.title}</h1>
+              <span className="text-lg">{news?.createdAt.split("T")[0]}</span>
+              <h1 className="font-bold text-2xl">{news?.title}</h1>
             </header>
           </div>
 
           <hr className="my-8" />
-          <p className="text-lg">{CURRENT_NOTICIA.description}</p>
+          <p className="text-lg">{news?.description}</p>
         </div>
 
         {/** RIGHT SIDE */}
@@ -72,21 +81,23 @@ const NoticiaSinglePage = () => {
           <div className="flex flex-col gap-4">
             <h1 className="font-bold text-xl">Outras notícias</h1>
             <ul className="flex flex-col gap-8">
-              {OTHER_NOTICIAS.map((data, index) => (
-                <li key={index} className="flex items-center gap-4 w-full">
+              {otherNews.map((data) => (
+                <li key={data.id} className="flex items-center gap-4 w-full">
                   <div className="relative h-[100px] md:h-[150px] w-[600px]">
                     <img
                       alt={data.title}
-                      src={IMAGES.noticia}
+                      src={data.image}
                       className="absolute object-cover w-full h-full inset-0 rounded-lg"
                     />
                   </div>
 
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col w-full gap-2">
                     <span className="text-lg line-clamp-3 font-bold">
                       {data.title}
                     </span>
-                    <span className="text-sm text-zinc-400">{data.date}</span>
+                    <span className="text-sm text-zinc-400">
+                      {data.createdAt.split("T")[0]}
+                    </span>
 
                     <NavLink
                       reloadDocument

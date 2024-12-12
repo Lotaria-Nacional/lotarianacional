@@ -19,7 +19,7 @@ const AgencyFilter = ({ setFilter, selectedLetter }: Props) => {
   }
 
   return (
-    <div className="flex justify-between lg:justify-normal items-center w-full gap-3 text-lg uppercase mb-6">
+    <div className="lg:flex hidden justify-between lg:justify-normal items-center w-full gap-3 text-lg uppercase mb-6">
       <span
         onClick={() => handleSelect("")}
         className="text-LT_RED-200 cursor-pointer rounded-lg border border-LT_RED-200 px-2 py-1 capitalize"

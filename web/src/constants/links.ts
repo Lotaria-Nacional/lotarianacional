@@ -41,7 +41,7 @@ export const NAVIGATION_LINKS = [
 export const LINK_CARDS = [
   {
     id: 1,
-    link: "#",
+    link: "/resultados",
     icon: ICONS.calculadora,
     text: ["últimos", "resultados"],
   },
@@ -53,7 +53,7 @@ export const LINK_CARDS = [
   },
   {
     id: 3,
-    link: "#",
+    link: "/estatisticas",
     icon: ICONS.estatisticas,
     text: ["estatísticas dos", "últimos jogos"],
   },

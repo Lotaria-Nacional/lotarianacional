@@ -1,5 +1,6 @@
 import { IMAGES } from "../constants/assets"
 import Container from "../components/container"
+import Ui from "../components/ui"
 
 const RecrutamentoPage = () => {
   return (
@@ -106,6 +107,9 @@ const RecrutamentoPage = () => {
             defaultValue={"AO06"}
           />
         </div>
+        <Ui.Button btn="red" className="w-full justify-center">
+          Submeter candidatura
+        </Ui.Button>
       </form>
 
       <section className="w-full hidden lg:block lg:h-full relative">

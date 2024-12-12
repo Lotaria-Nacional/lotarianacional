@@ -4,14 +4,13 @@ import { Link, NavLink } from "react-router-dom"
 import { NAVIGATION_LINKS } from "../constants/links"
 import MobileMenu from "./mobile/menu/mobile-menu"
 
-import UI from "../components/ui/button/index"
 import Logo from "./logo"
 
 const Header = () => {
   return (
-    <header className="radialGradient w-full sticky z-[10000] top-0 flex items-center">
+    <header className="radialGradient w-full sticky text-base z-[10000] top-0 flex items-center">
       <Container className="flex-row py-4 lg:py0 lg:h-[120px] text-white justify-between">
-        <Link to={"/"}>
+        <Link reloadDocument to={"/"}>
           <Logo />
         </Link>
 
@@ -20,6 +19,7 @@ const Header = () => {
             {NAVIGATION_LINKS.map((link) => (
               <li key={link.id}>
                 <NavLink
+                  reloadDocument
                   to={link.link}
                   className={({ isActive }) =>
                     `${
@@ -35,11 +35,6 @@ const Header = () => {
             ))}
           </ul>
         </nav>
-
-        <UI.Button className="lg:block hidden text-LT_RED-200 hover:scale-[1.1] transition-scale duration-300 ease-in-out hover:bg-yellow-500">
-          jogar
-        </UI.Button>
-
         <MobileMenu />
       </Container>
     </header>

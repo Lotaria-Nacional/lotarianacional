@@ -11,8 +11,8 @@ const SobreNosPage = () => {
           className="absolute h-full w-full inset-0 object-cover"
         />
         <Container className="flex flex-col items-start text-white gap-4 z-10">
-          <h1 className="text-3xl font-bold">QUEM SOMOS</h1>
-          <p className="">
+          <h1 className="text-[24px] lg:text-[34px] font-bold">Quem somos</h1>
+          <p className="text-[20px]">
             A Lotaria Nacional é a entidade oficial encarregada de gerir e
             organizar os jogos de lotaria em Angola, oferecendo aos seus
             participantes a oportunidade de transformar os seus sonhos em
@@ -24,13 +24,15 @@ const SobreNosPage = () => {
         </Container>
       </section>
 
-      <Container className="grid grid-cols-1 lg:grid-cols-2 text-black py-8 gap-4">
+      <Container className="grid grid-cols-1 lg:grid-cols-2 text-black py-12 gap-4">
         {/* MISSÃO */}
-        <div className="shadow-md shadow-neutral-300 rounded-xl items-center w-full bg-white flex p-8">
+        <div className="shadow-[0px_0px_6px_2px_#d9d9d9] rounded-xl items-center w-full bg-white flex p-8">
           <div className="flex w-full flex-col md:flex-row items-center lg:items-start gap-4">
             <img src={ICONS.target} className="size-10" alt="icone" />
             <div className="flex flex-col gap-2 md:items-start items-center">
-              <h1 className="capitalize font-bold text-2xl">missão</h1>
+              <h1 className="capitalize font-bold text-[24px] lg:text-[28px]">
+                missão
+              </h1>
               <p>
                 Oferecer os melhores produtos de lotaria no ambiente mais seguro
                 possível para todos.
@@ -40,11 +42,13 @@ const SobreNosPage = () => {
         </div>
 
         {/* ÉTICA */}
-        <div className="shadow-md shadow-neutral-300 rounded-xl lg:row-span-2 items-center lg:items-start w-full bg-white flex p-8">
+        <div className="shadow-[0px_0px_6px_2px_#d9d9d9] rounded-xl lg:row-span-2 items-center lg:items-start w-full bg-white flex p-8">
           <div className="flex w-full flex-col md:flex-row items-center md:items-start gap-4">
             <img src={ICONS.target} className="size-10" alt="icone" />
             <div className="flex flex-col gap-2 items-center md:items-start ">
-              <h1 className="capitalize font-bold text-2xl">ética</h1>
+              <h1 className="capitalize font-bold text-[24px] lg:text-[28px]">
+                ética
+              </h1>
               <p>
                 Estamos comprometidos com princípios de transparência,
                 responsabilidade social e protecção dos participantes.
@@ -90,11 +94,13 @@ const SobreNosPage = () => {
         </div>
 
         {/* VISÃO */}
-        <div className="shadow-md shadow-neutral-300  rounded-xl items-center w-full bg-white flex p-8">
+        <div className="shadow-[0px_0px_6px_2px_#d9d9d9] rounded-xl items-center w-full bg-white flex p-8">
           <div className="flex flex-col md:flex-row w-full items-center md:items-start gap-4">
             <img src={ICONS.valores} className="size-10" alt="icone" />
             <div className="flex flex-col gap-2 md:items-start items-center">
-              <h1 className="capitalize font-bold text-2xl">visão</h1>
+              <h1 className="capitalize font-bold text-[24px] lg:text-[28px]">
+                visão
+              </h1>
               <ul className="flex flex-col gap-4">
                 <li className="flex flex-col">
                   <h4 className="text-lg font-bold">Integridade</h4>

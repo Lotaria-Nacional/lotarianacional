@@ -1,16 +1,23 @@
+import { useEffect, useState } from "react"
+
+import { formatDate } from "../utils/date"
+import { IDailyResult } from "../interfaces"
+import { getResults } from "../api/result.api"
 import Container from "../components/container"
-import { DAYS_OF_WEEK } from "../constants/days-of-week"
 import ResultadoCard from "../features/resultados/components/resultado-card"
 
-import RESULTADOS from "../features/resultados/db/resultados.json"
-
 const DailyResults = () => {
-  const currentDay = new Date().getDay()
-  const today = DAYS_OF_WEEK[currentDay]
+  const [results, setResults] = useState<IDailyResult>()
 
-  const DAILY_RESULTS = RESULTADOS.filter(
-    (resultado) => resultado.dayOfWeek === today
-  )
+  useEffect(() => {
+    const fetch = async () => {
+      const data = await getResults()
+      setResults(data[data.length - 1])
+    }
+    fetch()
+  }, [])
+
+  if (!results) return <span>Não há nada para mostrar.</span>
 
   return (
     <Container className="absolute hidden lg:flex h-full px-0 justify-end inset-0 w-full z-10">
@@ -19,10 +26,10 @@ const DailyResults = () => {
           <h1 className="text-LT_WHITE font-bold text-base uppercase">
             resultados diários
           </h1>
-          <h2 className="text-lg">{DAILY_RESULTS[0].date}</h2>
+          <h2 className="text-lg">{formatDate(results.date.toString())}</h2>
         </header>
 
-        {DAILY_RESULTS[0].result.map((result, index) => (
+        {results.results.map((result, index) => (
           <ResultadoCard result={result} key={index} />
         ))}
       </div>

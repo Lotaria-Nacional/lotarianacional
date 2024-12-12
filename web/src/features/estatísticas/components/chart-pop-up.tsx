@@ -1,5 +1,5 @@
 import BarChart from "./bar-chart"
-import { HiXCircle } from "react-icons/hi"
+import { IoCloseOutline } from "react-icons/io5"
 
 type Props = {
   closePopUp: () => void
@@ -7,10 +7,16 @@ type Props = {
 
 const ChartPopUp = ({ closePopUp }: Props) => {
   return (
-    <div className="z-[2000000] w-full h-full p-5 fixed inset-0 bg-LT_BLACK/70 transition-all ease-in-out duration-200 flex items-center justify-center">
-      <div className="w-full xl:w-3/4 h-60 xl:h-[650px] flex flex-col gap-2 bg-white rounded-xl p-4">
-        <div className="w-full flex justify-end">
-          <HiXCircle
+    <div
+      onClick={closePopUp}
+      className="z-[10000] w-full h-full p-5 fixed inset-0 bg-LT_BLACK/70 transition-all ease-in-out duration-200 flex items-center justify-center"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full xl:w-3/4 h-auto xl:h-[650px] flex flex-col gap-2 bg-white rounded-xl p-4"
+      >
+        <div className="w-full flex justify-end text-LT_GRAY-200">
+          <IoCloseOutline
             size={32}
             onClick={closePopUp}
             className="cursor-pointer"

@@ -1,33 +1,49 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { IMAGES } from "../constants/assets"
 import Container from "../components/container"
+import { FaFileDownload } from "react-icons/fa"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Swiper as SwiperType } from "swiper/types"
 import { HOW_TO_PLAY } from "../constants/how-to-play"
-import { HiChevronLeft, HiChevronRight, HiDownload } from "react-icons/hi"
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
+import { PiPlayCircleThin } from "react-icons/pi"
+import UI from "../components/ui/index"
 
 //@ts-ignore
 import "swiper/css"
-//@ts-ignore
 
 const ComoJogarPage = () => {
   const swiperRef = useRef<SwiperType | null>(null)
   const [activeSlide, setActiveSlide] = useState(0)
+  const [isLightBoxOpen, setIsLightBoxOpen] = useState(false)
+
+  const handleOpenLightBox = () => setIsLightBoxOpen(true)
+  const handleCloseLightBox = () => setIsLightBoxOpen(false)
+
+  useEffect(() => {
+    if (isLightBoxOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+  }, [isLightBoxOpen])
 
   return (
-    <main className="py-12">
-      <Container className="flex-col gap-4">
+    <main className="py-6 lg:py-12 ">
+      <Container className="h-full flex-col gap-4">
         {/** COMO JOGAR TEXT */}
         <section className="w-full flex border-b pb-6 items-center justify-between">
-          <h1 className="font-bold text-2xl capitalize">Como jogar</h1>
-          <button className="px-4 py-2 flex items-center gap-3 rounded-xl text-white bg-LT_RED-200">
-            <HiDownload/>
+          <h1 className="font-bold text-[18px] lg:text-[34px] capitalize">
+            Como jogar
+          </h1>
+          <UI.Button btn="red">
+            <FaFileDownload />
             Baixar manual
-            </button>
+          </UI.Button>
         </section>
 
         {/** SLIDER */}
-        <section className="grid grid-cols-2 w-full h-[350px] gap-4">
+        <section className="grid grid-cols-1 lg:grid-cols-2 w-full min-h-[350px] gap-4">
           <div className="flex flex-col h-full p-8 w-full bg-white border border-neutral-200 rounded-xl ">
             <Swiper
               spaceBetween={50}
@@ -79,15 +95,34 @@ const ComoJogarPage = () => {
             </div>
           </div>
 
-          <div className="relative w-full h-full pointer-events-none">
+          <div className="relative w-full h-[200px] lg:h-full">
             <img
               alt="video thumbnail"
               src={IMAGES.videoThumbnail}
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[10px]"
             />
+            <button
+              onClick={handleOpenLightBox}
+              className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-40"
+            >
+              <PiPlayCircleThin size={120} color="#ccc" />
+            </button>
           </div>
         </section>
       </Container>
+      {isLightBoxOpen && (
+        <div
+          className="fixed top-0 w-full h-full bg-black/70 z-[40000] flex items-center justify-center"
+          onClick={handleCloseLightBox}
+        >
+          <iframe
+            onClick={(e) => e.stopPropagation()}
+            className="w-2/5 h-2/3"
+            src="https://www.youtube.com/embed/_KLBC0b40Q4"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        </div>
+      )}
     </main>
   )
 }

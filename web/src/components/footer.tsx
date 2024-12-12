@@ -8,9 +8,7 @@ const Footer = () => {
   return (
     <footer className="w-full flex flex-col">
       {/** GOOGLE MAP */}
-      <div className="relative w-full h-[350px]">
-        <GoogleMap />
-      </div>
+      <GoogleMap />
       {/** TOP FOOTER */}
       <section className="w-full py-8 lg:py-0 lg:h-[300px] flex items-center bg-LT_GRAY-200 text-LT_WHITE">
         <Container className="items-start gap-10 flex flex-wrap lg:grid grid-cols-3 lg:gap-4 place-items-center">

@@ -15,7 +15,16 @@ const Menu = () => {
     >
       <Container className="flex-col items-start space-y-4">
         {NAVIGATION_LINKS.map((link) => (
-          <NavLink key={link.id} to={link.link} className="uppercase text-base">
+          <NavLink
+            reloadDocument
+            key={link.id}
+            to={link.link}
+            className={({ isActive }) =>
+              isActive
+                ? "uppercase text-base text-yellow-500"
+                : "uppercase text-base text-white"
+            }
+          >
             {link.label}
           </NavLink>
         ))}

@@ -1,34 +1,28 @@
-import { NavLink } from "react-router-dom"
-import { IMAGES } from "../../../constants/assets"
+import UI from "../../../components/ui"
+import { INews } from "../../../interfaces"
 
 type Prop = {
-  noticia: {
-    id: number
-    date: string
-    title: string
-    image?: string
-    description: string
-  }
+  noticia: INews
 }
 
-const NoticiaCard = ({ noticia: { date, title, id } }: Prop) => {
+const NoticiaCard = ({ noticia: { createdAt, image, title, id } }: Prop) => {
   return (
     <div className="w-full h-full flex flex-col gap-4">
       <img
-        src={IMAGES.noticia}
+        src={image}
         alt="thumbnail de notícia"
         className="aspect-[12/6] rounded-xl object-cover"
       />
-      <span>{date}</span>
+      <span className="text-base">{createdAt}</span>
 
-      <h1 className="font-bold text-xl line-clamp-3">{title}</h1>
+      <h1 className="font-bold text-[20px] line-clamp-3">{title}</h1>
 
-      <NavLink
-        to={`/noticia/${id}`}
-        className="border border-LT_RED-100 text-LT_RED-100 flex items-center justify-center rounded-lg w-fit h-[35px] px-4"
+      <UI.LinkButton
+        link={`/noticia/${id}`}
+        className="py-1 px-4 h-fit hover:scale-[0.9] w-fit duration-200 transition-all ease-in-out"
       >
         Ler mais
-      </NavLink>
+      </UI.LinkButton>
     </div>
   )
 }

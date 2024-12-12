@@ -13,7 +13,7 @@ const Emissoes = () => {
       <Swiper
         navigation
         modules={[Navigation]}
-        className="w-full h-[200] lg:h-[450px]"
+        className="w-full h-[200] lg:h-[511px]"
       >
         {Array.from({ length: 3 }).map((_, index) => (
           <SwiperSlide key={index} className="relative w-full">
@@ -30,7 +30,7 @@ const Emissoes = () => {
         {Array.from({ length: 4 }).map((_, index) => (
           <div
             key={index}
-            className="relative h-[200px] w-full flex items-center justify-center"
+            className="relative h-[187px] w-full flex items-center justify-center"
           >
             <img
               src={IMAGES.videoThumbnail}
