@@ -2,8 +2,11 @@ import { z } from "zod"
 import { Request, Response } from "express"
 import { CreateResultUseCase } from "../../../../application/useCases/result/create.result.useCase"
 import { ResultLimitException } from "../../../../Domain/exceptions/resultLimitExceeded.exception"
+import { NotFoundError } from "../../../../shared/errors/notFound.error"
+// import { CreateDailyResultUseCase } from "../../../../application/useCases/dailyResult/create.dailyResult.useCase"
 
 export class CreateResultController {
+  // constructor(private createDailyResultUseCase: CreateDailyResultUseCase) {}
   constructor(private createResultUseCase: CreateResultUseCase) {}
 
   async handle(req: Request, res: Response) {
@@ -28,7 +31,12 @@ export class CreateResultController {
       if (error instanceof ResultLimitException) {
         return res.status(400).json({ message: error.message })
       }
-      return res.status(500).json({ message: "Erro interno do servidor..." })
+      if (error instanceof NotFoundError) {
+        return res.status(404).json({ message: error.message })
+      }
+      return res
+        .status(500)
+        .json({ message: "Erro interno do servidor...", error: error })
     }
   }
 }

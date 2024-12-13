@@ -9,6 +9,7 @@ import userRoutes from "./Infra/http/routes/user.routes"
 import newsRoutes from "./Infra/http/routes/news.routes"
 import agencyRoutes from "./Infra/http/routes/agency.routes"
 import resultRoutes from "./Infra/http/routes/result.routes"
+import dailyResults from "./Infra/http/routes/dailyResults.routes"
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use("/api", newsRoutes)
 app.use("/api", resultRoutes)
 app.use("/api", agencyRoutes)
 app.use("/api", authRoutes)
+app.use("/api", dailyResults)
 
 const PORT = 8080
 app.listen(PORT, () => {

@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express"
 
-import { CreateResultUseCase } from "../../../application/useCases/result/create.result.useCase"
+// import { CreateResultUseCase } from "../../../application/useCases/result/create.result.useCase"
 import { GetResultsUseCase } from "../../../application/useCases/result/get.results.useCase"
 import { UpdateResultUseCase } from "../../../application/useCases/result/update.result.useCase"
 import { DeleteResultUseCase } from "../../../application/useCases/result/delete.result.useCase"
@@ -10,6 +10,8 @@ import { CreateResultController } from "../controllers/resultControllers/create.
 import { DeleteResultController } from "../controllers/resultControllers/delete.result.controller"
 import { GetResultsController } from "../controllers/resultControllers/get.results.controller"
 import { UpdateResultController } from "../controllers/resultControllers/update.result.controller"
+import { CreateDailyResultUseCase } from "../../../application/useCases/dailyResult/create.dailyResult.useCase"
+import { CreateResultUseCase } from "../../../application/useCases/result/create.result.useCase"
 
 const router = Router()
 
@@ -20,6 +22,9 @@ const getResultsController = new GetResultsController(
   new GetResultsUseCase(prismaDailyResultRepository)
 )
 
+// const createResultController = new CreateResultController(
+//   new CreateDailyResultUseCase(prismaDailyResultRepository)
+// )
 const createResultController = new CreateResultController(
   new CreateResultUseCase(prismaDailyResultRepository)
 )

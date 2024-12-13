@@ -5,6 +5,38 @@ import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
 import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository"
 
 export class PrismaDailyResultsRespository implements IDailyResultRespository {
+  async getLast(): Promise<DailyResult | null> {
+    const lastDailyResult = await prisma.dailyResult.findFirst({
+      orderBy: {
+        id: "asc", // Ordena pela data mais recente
+      },
+      include: {
+        results: true, // Inclui os resultados associados ao dailyResult
+      },
+    })
+
+    if (!lastDailyResult) return null
+
+    return DailyResult.create({
+      id: lastDailyResult.id,
+      date: lastDailyResult.date,
+      formatedDate: lastDailyResult.formatedDate,
+      results: lastDailyResult.results.map((result) =>
+        Result.create({
+          id: result.id,
+          name: result.name,
+          hour: result.startHour,
+          number_1: result.number_1,
+          number_2: result.number_2,
+          number_3: result.number_3,
+          number_4: result.number_4,
+          number_5: result.number_5,
+          createdAt: result.createdAt,
+        })
+      ),
+    })
+  }
+
   async getAll(): Promise<DailyResult[]> {
     const dailyResults = await prisma.dailyResult.findMany({
       include: { results: true },
@@ -16,7 +48,8 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
     return dailyResults.map((dailyResult) =>
       DailyResult.create({
         id: dailyResult.id,
-        date: dailyResult.date.toString(),
+        date: dailyResult.date,
+        formatedDate: dailyResult.formatedDate,
         results: dailyResult.results.map((result) =>
           Result.create({
             id: result.id,
@@ -36,7 +69,8 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
   async save(dailyResult: DailyResult): Promise<void> {
     await prisma.dailyResult.create({
       data: {
-        date: new Date(dailyResult.date),
+        date: dailyResult.date!,
+        formatedDate: dailyResult.formatedDate,
         results: {
           create: dailyResult.results.map((result) => ({
             id: result.id,
@@ -55,7 +89,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
   }
   async update(dailyResult: DailyResult): Promise<void> {
     const exisitingDailyResult = await prisma.dailyResult.findUnique({
-      where: { date: new Date(dailyResult.date) },
+      where: { date: dailyResult.date },
       include: { results: true },
     })
     if (!exisitingDailyResult)
@@ -98,7 +132,8 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
 
     return DailyResult.create({
       id: data.id,
-      date: data.date.toString(),
+      date: data.date,
+      formatedDate: data.formatedDate,
       results: data.results.map((result) =>
         Result.create({
           id: result.id,
@@ -109,6 +144,44 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           number_3: result.number_3,
           number_4: result.number_4,
           number_5: result.number_5,
+        })
+      ),
+    })
+  }
+  async delete(id: string): Promise<void> {
+    await prisma.result.deleteMany({
+      where: { dailyId: id }, // Filtra pelo ID do DailyResult
+    })
+
+    // Exclui o dailyResult
+    await prisma.dailyResult.delete({
+      where: { id },
+    })
+  }
+
+  async getById(id: string): Promise<DailyResult | null> {
+    const dailyResult = await prisma.dailyResult.findUnique({
+      where: { id },
+      include: { results: true },
+    })
+    if (!dailyResult) return null
+
+    return DailyResult.create({
+      id: dailyResult.id,
+      date: dailyResult.date,
+      formatedDate: dailyResult.formatedDate,
+      results: dailyResult.results.map((result) =>
+        Result.create({
+          id: result.id,
+          name: result.name,
+          hour: result.startHour,
+          dailyId: dailyResult.id,
+          number_1: result.number_1,
+          number_2: result.number_2,
+          number_3: result.number_3,
+          number_4: result.number_4,
+          number_5: result.number_5,
+          createdAt: result.createdAt,
         })
       ),
     })

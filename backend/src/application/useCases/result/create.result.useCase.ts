@@ -1,3 +1,4 @@
+import { formatDate } from "../../../utils/date"
 import { Result } from "../../../Domain/Entities/Result/Result"
 import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
 import { ResultLimitException } from "../../../Domain/exceptions/resultLimitExceeded.exception"
@@ -24,8 +25,9 @@ export class CreateResultUseCase {
 
     if (!dailyResult) {
       dailyResult = {
-        date: today,
         results: [],
+        date: new Date(today),
+        formatedDate: formatDate(new Date(today)),
       }
     }
 

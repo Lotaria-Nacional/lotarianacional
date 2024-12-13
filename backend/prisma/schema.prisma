@@ -33,8 +33,10 @@ model News {
 
 model DailyResult {
   id      String    @id @default(auto()) @map("_id") @db.ObjectId
-  date    DateTime  @unique
-  results Result[]
+  date    DateTime @unique
+  formatedDate String
+  createdAt DateTime @default(now())
+  results Result[]   
 }
 model Result {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
