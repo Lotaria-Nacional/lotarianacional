@@ -1,7 +1,6 @@
 import Toolbar from "./toolbar"
 import StarterKit from "@tiptap/starter-kit"
 import { EditorContent, useEditor } from "@tiptap/react"
-import { Blockquote } from "@tiptap/extension-blockquote"
 import { BulletList } from "@tiptap/extension-bullet-list"
 import { OrderedList } from "@tiptap/extension-ordered-list"
 import { ListItem } from "@tiptap/extension-list-item"

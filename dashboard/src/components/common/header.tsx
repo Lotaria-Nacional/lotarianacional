@@ -1,5 +1,6 @@
 import Container from "./container"
-import { ICON, LOGOS } from "../../constants/assets"
+import { LOGOS } from "../../constants/assets"
+import NotificationButton from "./notification-button"
 
 const Header = () => {
   return (
@@ -12,11 +13,7 @@ const Header = () => {
           className="object-contain aspect-square hidden lg:block"
         />
         <div className="flex items-center gap-2">
-          <img
-            src={ICON.bell}
-            alt="sino ícone"
-            className="object-contain aspect-square"
-          />
+          <NotificationButton />
           <div className="size-6 rounded-full bg-zinc-300" />
           <span className="font-semibold text-sm">Sebastião António</span>
         </div>

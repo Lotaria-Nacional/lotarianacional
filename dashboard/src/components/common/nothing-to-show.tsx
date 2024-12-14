@@ -4,7 +4,7 @@ const NothingToShow = ({ className }: { className?: string }) => {
   return (
     <div
       className={twMerge(
-        "w-full h-full flex items-center justify-center",
+        "w-full flex items-center justify-center",
         className
       )}
     >

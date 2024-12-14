@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"
 import { Editor } from "@tiptap/react"
 
 const Toolbar = ({ editor }: { editor: Editor | null }) => {

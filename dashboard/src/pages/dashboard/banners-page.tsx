@@ -1,6 +1,5 @@
 import DesktopBanner from "@/components/banner/desktop-banner"
 import MobileBanner from "@/components/banner/mobile-banner"
-import { Button } from "@/components/ui/button"
 
 const BannersPage = () => {
   return (

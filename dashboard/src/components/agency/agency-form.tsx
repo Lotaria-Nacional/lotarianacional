@@ -56,12 +56,7 @@ const AgencyForm = () => {
             type="text"
             value={name}
             placeholder="Kinaxixi"
-            onChange={(e) => {
-              const value = e.target.value
-              if (CHAR_REGEX.test(value)) {
-                setName(value)
-              }
-            }}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2">

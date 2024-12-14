@@ -1,6 +1,5 @@
 import axios from "axios"
 
 export default axios.create({
-  // baseURL: "http://localhost:8080/api",
-  baseURL: "https://lotarianacional.onrender.com/api",
+  baseURL: import.meta.env.VITE_APP_API_URL,
 })

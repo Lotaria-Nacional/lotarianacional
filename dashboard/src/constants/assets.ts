@@ -2,6 +2,7 @@ import eye from "../assets/icons/eye.png"
 import dots from "../assets/icons/dots.png"
 import bell from "../assets/icons/bell.png"
 import edit from "../assets/icons/edit.png"
+import users from "../assets/icons/users.png"
 import file from "../assets/icons/file.png"
 import trash from "../assets/icons/trash.png"
 import window from "../assets/icons/window.png"
@@ -24,6 +25,7 @@ export const ICON = {
   bell,
   edit,
   file,
+  users,
   trash,
   window,
   ticket,

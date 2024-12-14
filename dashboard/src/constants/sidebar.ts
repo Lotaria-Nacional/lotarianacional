@@ -37,6 +37,12 @@ export const SIDEBAR_MENU_LINKS = [
     label: "Notícias",
     link: "noticias",
   },
+  {
+    id: 7,
+    icon: ICON.users,
+    label: "Usuários",
+    link: "usuarios",
+  },
 ] as const
 
 export const SIDEBAR_BOTTOM_LINKS = [

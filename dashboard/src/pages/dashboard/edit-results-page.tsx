@@ -1,6 +1,7 @@
 import { IResult } from "@/interfaces"
 import { useEffect, useState } from "react"
 import { getResults } from "@/api/results.api"
+import { Skeleton } from "@/components/ui/skeleton"
 import NothingToShow from "@/components/common/nothing-to-show"
 import ResultCardInput from "@/components/result/result-card-input"
 
@@ -10,10 +11,15 @@ const EditResultsPage = () => {
 
   useEffect(() => {
     const fech = async () => {
-      setIsLoading(true)
-      const data = await getResults()
-      setResults(data[0].results)
-      setIsLoading(false)
+      try {
+        setIsLoading(true)
+        const data = await getResults()
+        setResults(data[data.length - 1].results)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setIsLoading(false)
+      }
     }
 
     fech()
@@ -21,8 +27,13 @@ const EditResultsPage = () => {
 
   if (isLoading)
     return (
-      <div className="w-full flex items-center justify-center">
-        Carregando...
+      <div className="w-full flex flex-col items-center justify-center gap-4">
+        <div className="w-[588px] grid grid-cols-2 gap-[20px]">
+          <Skeleton className="h-[220px]" />
+          <Skeleton className="h-[220px]" />
+          <Skeleton className="h-[220px]" />
+          <Skeleton className="h-[220px]" />
+        </div>
       </div>
     )
 

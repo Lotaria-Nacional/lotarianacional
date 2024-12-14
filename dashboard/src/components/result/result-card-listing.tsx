@@ -4,27 +4,38 @@ import ResultCard from "./result-card"
 import { IResult } from "../../interfaces"
 import { getResults } from "../../api/results.api"
 import NothingToShow from "../common/nothing-to-show"
+import ResultCardSkeleton from "../skeletons/result-card-skeleton"
 
 const ResultCardListing = () => {
   const [isLoading, setIsLoading] = useState(true)
-
   const [dailyResults, setdailyResults] = useState<IResult[] | []>([])
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getResults()
-
-      setdailyResults(data[0].results)
-      setIsLoading(false)
+      try {
+        const data = await getResults()
+        setdailyResults(data[data.length - 1].results)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setIsLoading(false)
+      }
     }
     fetch()
   }, [])
 
-  if (isLoading) return <span>Carregando...</span>
+  if (isLoading) return <ResultCardSkeleton />
+
+  if (dailyResults.length === 0)
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <span>Não há resultados ainda.</span>
+      </div>
+    )
 
   return (
     <>
-      {dailyResults ? (
+      {dailyResults && dailyResults.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
           {dailyResults?.map((result) => (
             <ResultCard key={result.id} result={result} />

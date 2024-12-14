@@ -66,6 +66,9 @@ const EditAgencyForm = () => {
       setIsUpdating(false)
     }
   }
+
+  if (isLoading) return <span>Carregando...</span>
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-10">
       <div className="grid grid-cols-2 gap-4">
