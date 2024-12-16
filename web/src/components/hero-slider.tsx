@@ -1,4 +1,4 @@
-import { Autoplay } from "swiper/modules"
+import { Autoplay, Pagination } from "swiper/modules"
 import { IMAGES } from "../constants/assets"
 import { Swiper, SwiperSlide } from "swiper/react"
 
@@ -6,10 +6,19 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 //@ts-ignore
 import "swiper/css/autoplay"
+//@ts-ignore
+import "swiper/css/pagination"
+import "./hero-slider.css"
 
 const HeroSlider = () => {
   return (
-    <Swiper className="h-full" modules={[Autoplay]} autoplay={{ delay: 2000 }}>
+    <Swiper
+      loop={true}
+      className="h-full"
+      autoplay={{ delay: 2000 }}
+      modules={[Autoplay, Pagination]}
+      pagination
+    >
       <SwiperSlide className="relative ">
         <img
           src={IMAGES.banner1}

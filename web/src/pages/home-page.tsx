@@ -6,18 +6,15 @@ import { LINK_CARDS } from "../constants/links"
 import HeroSlider from "../components/hero-slider"
 import DailyResults from "../components/daily-results"
 import { PERGUNTAS_FREQUENTES } from "../constants/faq"
-import NoticiaCard from "../features/noticias/components/noticia-card"
 import MobileDailyResults from "../components/mobile/mobile-daily-results"
 
 import CountDownCard from "../components/count-down-card"
-import NOTICIAS from "../features/noticias/db/noticias.json"
 import ListingNoticias from "../features/noticias/components/listing-noticias"
+import GoogleMap from "../components/google-map"
 
 const HomePage = () => {
-  const NOTICIAS_SLICED = NOTICIAS.slice(0, 3)
-
   return (
-    <main className="flex gap-20 flex-col">
+    <main className="flex gap-8 lg:gap-20 flex-col">
       {/** HERO SECTION */}
       <section className="relative lg:h-[calc(100vh-165px)] h-[25vh]">
         <HeroSlider />
@@ -28,7 +25,7 @@ const HomePage = () => {
       <MobileDailyResults />
 
       {/** LINK CARDS SECTION */}
-      <Container className=" grid grid-cols-1 md:grid-cols-3 gap-8">
+      <Container className=" grid grid-cols-1 mb-8 lg:mb-0 md:grid-cols-3 gap-8">
         <LinkCard item={LINK_CARDS[0]} />
         <CountDownCard />
         <LinkCard item={LINK_CARDS[2]} />
@@ -101,6 +98,7 @@ const HomePage = () => {
           </div>
         </Container>
       </section>
+      <GoogleMap />
     </main>
   )
 }

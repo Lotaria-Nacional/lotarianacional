@@ -4,6 +4,7 @@ import Container from "../components/container"
 import { NavLink, useParams } from "react-router-dom"
 import { getNews, getNewsById } from "../api/noticias.api"
 import { SiX, SiFacebook, SiWhatsapp, SiLinkedin } from "react-icons/si"
+import { dateFormat } from "../utils/date"
 
 const SOCIAL_MEDIA = [
   {
@@ -52,7 +53,9 @@ const NoticiaSinglePage = () => {
               />
             </div>
             <header className="flex flex-col gap-3">
-              <span className="text-lg">{news?.createdAt.split("T")[0]}</span>
+              <span className="text-lg">
+                {news?.createdAt ? dateFormat(news.createdAt) : news?.createdAt}
+              </span>
               <h1 className="font-bold text-2xl">{news?.title}</h1>
             </header>
           </div>
@@ -82,8 +85,8 @@ const NoticiaSinglePage = () => {
             <h1 className="font-bold text-xl">Outras notícias</h1>
             <ul className="flex flex-col gap-8">
               {otherNews.map((data) => (
-                <li key={data.id} className="flex items-center gap-4 w-full">
-                  <div className="relative h-[100px] md:h-[150px] w-[600px]">
+                <li key={data.id} className="flex lg:flex-row flex-col items-center gap-4 w-full">
+                  <div className="relative h-[180px] md:h-[150px] w-[350px] lg:w-[600px]">
                     <img
                       alt={data.title}
                       src={data.image}
@@ -96,7 +99,7 @@ const NoticiaSinglePage = () => {
                       {data.title}
                     </span>
                     <span className="text-sm text-zinc-400">
-                      {data.createdAt.split("T")[0]}
+                      {dateFormat(data.createdAt)}
                     </span>
 
                     <NavLink

@@ -19,11 +19,17 @@ const NoticiasPage = () => {
 
   return (
     <Container className="py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {noticias.map((data, index) => (
-          <NoticiaCard key={index} noticia={data} />
-        ))}
-      </div>
+      {noticias.length === 0 ? (
+        <div className="w-full flex items-center justify-center min-h-[110px]">
+          <span>Não há nada ainda.</span>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {noticias.map((data, index) => (
+            <NoticiaCard key={index} noticia={data} />
+          ))}
+        </div>
+      )}
     </Container>
   )
 }

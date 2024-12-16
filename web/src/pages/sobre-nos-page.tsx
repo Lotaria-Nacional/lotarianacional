@@ -4,7 +4,7 @@ import { ICONS, IMAGES } from "../constants/assets"
 const SobreNosPage = () => {
   return (
     <main>
-      <section className="relative flex items-center justify-center w-full h-auto py-8 lg:h-[200px]">
+      <section className="relative flex items-center justify-center w-full h-auto py-8 lg:h-[280px]">
         <img
           src={IMAGES.trevoBg}
           alt="background-vermelho"

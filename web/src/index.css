@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h4 {
+  line-height: 1.9rem;
+}
+
 body {
   @apply font-Inter;
 }
@@ -41,5 +51,5 @@ details[open] summary::after {
 }
 
 .swiper-pagination-bullet {
-  background: #951913 !important;
+  background: #951913;
 }

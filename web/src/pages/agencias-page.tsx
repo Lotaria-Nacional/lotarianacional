@@ -5,6 +5,7 @@ import { getAgencies } from "../api/agencias.api"
 import { useSearchParams } from "react-router-dom"
 import AgencyCard from "../features/agencias/components/agency-card"
 import AgencyFilter from "../features/agencias/components/agency-filter"
+import GoogleMap from "../components/google-map"
 
 const AgenciasPage = () => {
   const [filterValue, setFilterValue] = useSearchParams({ agencia: "" })
@@ -28,18 +29,25 @@ const AgenciasPage = () => {
   }, [])
 
   return (
-    <Container className="lg:py-12 flex-col gap-4 min-h-screen">
-      <AgencyFilter
-        setFilter={setFilterValue}
-        selectedLetter={selectedLetter}
-      />
+    <>
+      <Container className="lg:py-12 flex-col gap-4 min-h-screen">
+        <AgencyFilter
+          setFilter={setFilterValue}
+          selectedLetter={selectedLetter}
+        />
 
-      <section className="lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full hidden">
-        {filteredAgencies.map((agency, i) => (
-          <AgencyCard key={i} agency={agency} />
-        ))}
-      </section>
-    </Container>
+        {filteredAgencies.length > 0 ? (
+          <section className="lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full hidden">
+            {filteredAgencies.map((agency, i) => (
+              <AgencyCard key={i} agency={agency} />
+            ))}
+          </section>
+        ) : (
+          <span>Não há nada ainda.</span>
+        )}
+      </Container>
+      <GoogleMap />
+    </>
   )
 }
 

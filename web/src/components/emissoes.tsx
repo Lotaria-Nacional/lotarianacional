@@ -7,26 +7,27 @@ import "swiper/css"
 //@ts-ignore
 import "swiper/css/navigation"
 
+import "./emissoes-slider-nav.css"
+
 const Emissoes = () => {
   return (
     <>
       <Swiper
         navigation
         modules={[Navigation]}
-        className="w-full h-[200] lg:h-[511px]"
+        className="w-full h-[250px] lg:h-[511px]"
       >
         {Array.from({ length: 3 }).map((_, index) => (
           <SwiperSlide key={index} className="relative w-full">
-            <img
-              src={IMAGES.videoThumbnail}
-              alt="Lotaria video thumbnail"
+            <iframe
+              src="https://www.youtube.com/embed/4OGRJetsPts"
               className="abolute inset-0 object-cover w-full h-full rounded-xl"
             />
           </SwiperSlide>
         ))}
       </Swiper>
 
-      <div className="hidden lg:flex flex-row w-full gap-2">
+      <div className="hidden flex-row w-full gap-2">
         {Array.from({ length: 4 }).map((_, index) => (
           <div
             key={index}

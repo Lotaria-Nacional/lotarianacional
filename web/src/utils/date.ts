@@ -21,3 +21,28 @@ export const formatDate = (value: string) => {
 
   return dataFormatada
 }
+
+export const dateFormat = (date: string) => {
+  const months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ]
+
+  const currDate = new Date(date)
+
+  const day = currDate.getUTCDate()
+  const month = months[currDate.getUTCMonth()]
+  const year = currDate.getUTCFullYear()
+
+  return `${day} ${month} ${year}`
+}

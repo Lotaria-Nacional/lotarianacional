@@ -1,9 +1,9 @@
 export const DAYS_OF_WEEK = [
-  "domingo",
-  "segunda-feira",
-  "terça-feira",
-  "quarta-feira",
+  "Domingo",
+  "Segunda-feira",
+  "Terça-feira",
+  "Quarta-feira",
   "quinta-feira",
-  "sexta-feira",
-  "sábado",
+  "Sexta-feira",
+  "Sábado",
 ] as const

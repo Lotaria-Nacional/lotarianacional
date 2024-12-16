@@ -13,11 +13,10 @@ export type ResultProps = {
 export type ResultCardProps = {
   result: IResult
   className?: string
+  isTheSameDay?: boolean
 }
 
 const ResultadoCard = ({ result, className }: ResultCardProps) => {
-  const [hoverOnCard, setHoverOnCard] = useState(false)
-  const [openLightBox, setOpenLightBox] = useState(false)
   const sortedNumbers = [
     result.number_1,
     result.number_2,
@@ -25,6 +24,8 @@ const ResultadoCard = ({ result, className }: ResultCardProps) => {
     result.number_4,
     result.number_5,
   ]
+  const [hoverOnCard, setHoverOnCard] = useState(false)
+  const [openLightBox, setOpenLightBox] = useState(false)
   const handleOpenVideoLightBox = () => setOpenLightBox(true)
   const handleCloseVideoLightBox = () => setOpenLightBox(false)
 
@@ -42,10 +43,13 @@ const ResultadoCard = ({ result, className }: ResultCardProps) => {
         onMouseOver={() => setHoverOnCard(true)}
         onMouseLeave={() => setHoverOnCard(false)}
         className={twMerge(
-          "bg-[url('/banner/card-loto.webp')] w-[180px] h-[115px] bg-center bg-cover bg-no-repeat flex flex-col gap-4 p-2 rounded-2xl text-LT_WHITE uppercase text-sm font-bold hover:transition-transform duration-200 ease-in-out transform",
+          "relative bg-[url('/banner/card-loto.webp')] w-[180px] h-[115px] bg-center bg-cover bg-no-repeat flex flex-col gap-4 p-2 rounded-2xl text-LT_WHITE uppercase text-sm font-bold hover:transition-transform duration-200 ease-in-out transform",
           className
         )}
       >
+        {/* {!isTheSameDay && (
+          <div className="absolute inset-0 pointer-events-none z-30 w-full rounded-2xl h-full bg-zinc-600/90" />
+        )} */}
         {!hoverOnCard ? (
           <>
             <header className="flex flex-col text-[15px] gap-2">

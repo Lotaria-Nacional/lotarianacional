@@ -36,10 +36,12 @@ const ComoJogarPage = () => {
           <h1 className="font-bold text-[18px] lg:text-[34px] capitalize">
             Como jogar
           </h1>
-          <UI.Button btn="red">
-            <FaFileDownload />
-            Baixar manual
-          </UI.Button>
+          <a href="/public/pdf/doc.pdf" target="_blank" download={true}>
+            <UI.Button btn="red">
+              <FaFileDownload />
+              Baixar manual
+            </UI.Button>
+          </a>
         </section>
 
         {/** SLIDER */}
@@ -117,8 +119,8 @@ const ComoJogarPage = () => {
         >
           <iframe
             onClick={(e) => e.stopPropagation()}
-            className="w-2/5 h-2/3"
-            src="https://www.youtube.com/embed/_KLBC0b40Q4"
+            className="w-2/3 h-2/3"
+            src="https://www.youtube.com/embed/4OGRJetsPts"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           ></iframe>
         </div>

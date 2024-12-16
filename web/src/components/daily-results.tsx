@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react"
 
-import { formatDate } from "../utils/date"
 import { IDailyResult } from "../interfaces"
-import { getResults } from "../api/result.api"
 import Container from "../components/container"
+import { getLastDailyResult } from "../api/result.api"
 import ResultadoCard from "../features/resultados/components/resultado-card"
 
 const DailyResults = () => {
-  const [results, setResults] = useState<IDailyResult>()
+  const [results, setResults] = useState<IDailyResult | null>(null)
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getResults()
-      setResults(data[data.length - 1])
+      const data = await getLastDailyResult()
+      setResults(data)
     }
     fetch()
   }, [])
 
-  if (!results) return <span>Não há nada para mostrar.</span>
+  if (!results || results.results.length === 0) return
 
   return (
     <Container className="absolute hidden lg:flex h-full px-0 justify-end inset-0 w-full z-10">
@@ -26,7 +25,7 @@ const DailyResults = () => {
           <h1 className="text-LT_WHITE font-bold text-base uppercase">
             resultados diários
           </h1>
-          <h2 className="text-lg">{formatDate(results.date.toString())}</h2>
+          <h2 className="text-lg">{results.formatedDate}</h2>
         </header>
 
         {results.results.map((result, index) => (

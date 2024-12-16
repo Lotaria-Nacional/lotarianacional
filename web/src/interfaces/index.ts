@@ -1,6 +1,7 @@
 export interface IDailyResult {
   id: string
   date: Date
+  formatedDate: string
   results: IResult[]
 }
 
