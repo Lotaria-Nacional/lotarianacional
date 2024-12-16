@@ -1,43 +1,23 @@
-import { formatDate } from "../../../utils/date"
 import { Result } from "../../../Domain/Entities/Result/Result"
-import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
-import { ResultLimitException } from "../../../Domain/exceptions/resultLimitExceeded.exception"
-import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository"
+import { IResultRepository } from "../../../Domain/Entities/Result/result.respository"
 
 export type CreateResultInputDTO = {
   name: string
   hour: string
+  dailyId: string
   number_1: number
   number_2: number
   number_3: number
   number_4: number
   number_5: number
 }
-
 export class CreateResultUseCase {
-  constructor(private dailyResultRespository: IDailyResultRespository) {}
+  constructor(private resultRepository: IResultRepository) {}
 
-  async execute(data: CreateResultInputDTO) {
-    const today = new Date().toISOString().split("T")[0]
-
-    let dailyResult: DailyResult | null =
-      await this.dailyResultRespository.getByDate(today)
-
-    if (!dailyResult) {
-      dailyResult = {
-        results: [],
-        date: new Date(today),
-        formatedDate: formatDate(new Date(today)),
-      }
-    }
-
-    if (dailyResult.results.length >= 4) {
-      throw new ResultLimitException()
-    }
-
-    const newResult: Result = Result.create({
-      name: data.name,
+  async execute(data: CreateResultInputDTO): Promise<void> {
+    const result = Result.create({
       hour: data.hour,
+      name: data.name,
       number_1: data.number_1,
       number_2: data.number_2,
       number_3: data.number_3,
@@ -45,12 +25,6 @@ export class CreateResultUseCase {
       number_5: data.number_5,
     })
 
-    dailyResult.results.push(newResult)
-
-    if (dailyResult.id) {
-      await this.dailyResultRespository.update(dailyResult)
-    } else {
-      await this.dailyResultRespository.save(dailyResult)
-    }
+    await this.resultRepository.save(result)
   }
 }

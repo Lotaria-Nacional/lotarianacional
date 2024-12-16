@@ -15,6 +15,7 @@ import { CreateUserController } from "../controllers/userControllers/create.user
 import { DeleteUserController } from "../controllers/userControllers/delete.user.controller"
 import { GetUserByIdController } from "../controllers/userControllers/get.userById.controller"
 import { BcryptHashService } from "../../Services/Hash/BcryptHashService"
+import { authenticateMiddleware } from "../middlewares/authenticate.middleware"
 
 const router = Router()
 

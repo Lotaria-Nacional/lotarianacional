@@ -6,6 +6,7 @@ export type UpdateUserInputDTO = {
   email?: string
   password?: string
   lastName?: string
+  role?: string
   firstName?: string
   profilePic?: string | Buffer
 }

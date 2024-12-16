@@ -8,11 +8,9 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
   async getLast(): Promise<DailyResult | null> {
     const lastDailyResult = await prisma.dailyResult.findFirst({
       orderBy: {
-        id: "asc", // Ordena pela data mais recente
+        createdAt: "desc",
       },
-      include: {
-        results: true, // Inclui os resultados associados ao dailyResult
-      },
+      include: { results: true },
     })
 
     if (!lastDailyResult) return null
@@ -26,6 +24,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           id: result.id,
           name: result.name,
           hour: result.startHour,
+          dailyId: result.dailyId,
           number_1: result.number_1,
           number_2: result.number_2,
           number_3: result.number_3,
@@ -41,7 +40,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
     const dailyResults = await prisma.dailyResult.findMany({
       include: { results: true },
       orderBy: {
-        date: "asc",
+        createdAt: "desc",
       },
     })
 

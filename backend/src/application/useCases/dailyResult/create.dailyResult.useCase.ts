@@ -1,57 +1,50 @@
+import { formatDate } from "../../../utils/date"
+import { Result } from "../../../Domain/Entities/Result/Result"
+import { CreateResultInputDTO } from "../result/create.result.useCase"
 import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
 import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository"
-import { Result } from "../../../Domain/Entities/Result/Result"
-import { formatDate } from "../../../utils/date"
-import { CreateResultInputDTO } from "../result/create.result.useCase"
 
 export class CreateDailyResultUseCase {
   constructor(private dailyResultRespository: IDailyResultRespository) {}
 
-  async execute(data: CreateResultInputDTO) {
-    const today = new Date().toISOString().split("T")[0]
+  async execute(data: CreateResultInputDTO): Promise<void> {
+    const today = new Date()
 
-    // Obtém o dailyResult do dia atual
-    let dailyResult: DailyResult | null =
-      await this.dailyResultRespository.getLast()
+    try {
+      let dailyResult = await this.dailyResultRespository.getLast()
 
-    // Se não houver dailyResult para o dia, cria um novo
-    if (!dailyResult) {
-      dailyResult = {
-        date: new Date(today),
-        formatedDate: formatDate(new Date(today)),
-        results: [],
-      }
-    }
-
-    // Se o número de resultados atingir 4, cria um novo dailyResult
-    if (dailyResult.results.length >= 4) {
-      // Cria um novo dailyResult
-      const newDailyResult = DailyResult.create({
-        date: new Date(today),
-        results: [this.createNewResult(data)], // O novo resultado é o primeiro do novo dailyResult
-        formatedDate: formatDate(new Date(today)),
-      })
-
-      // Salva o novo dailyResult
-      await this.dailyResultRespository.save(newDailyResult)
-    } else {
-      // Caso contrário, adiciona o resultado no dailyResult existente
-      dailyResult.results.push(this.createNewResult(data))
-
-      // Atualiza o dailyResult
-      if (dailyResult.id) {
-        await this.dailyResultRespository.update(dailyResult)
-      } else {
+      if (!dailyResult || this.isNewDailyResultRequired(dailyResult)) {
+        dailyResult = this.createNewDailyResult(today, [
+          this.createNewResult(data),
+        ])
         await this.dailyResultRespository.save(dailyResult)
+      } else {
+        dailyResult.results.push(this.createNewResult(data))
+        await this.dailyResultRespository.update(dailyResult)
       }
+    } catch (error) {
+      console.error("Erro ao criar o resultado do dia:", error)
+      throw new Error("Não foi possível atualizar o resultado do dia.")
     }
   }
 
-  // Método para criar um novo resultado
+  private createNewDailyResult(date: Date, results: Result[]): DailyResult {
+    return DailyResult.create({
+      date,
+      results,
+      formatedDate: formatDate(date),
+    })
+  }
+
+  private isNewDailyResultRequired(dailyResult: DailyResult): boolean {
+    return dailyResult.results.length >= 4
+  }
+
   private createNewResult(data: CreateResultInputDTO): Result {
     return Result.create({
       name: data.name,
       hour: data.hour,
+      dailyId: data.dailyId,
       number_1: data.number_1,
       number_2: data.number_2,
       number_3: data.number_3,

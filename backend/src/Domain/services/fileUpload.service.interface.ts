@@ -1,4 +1,4 @@
-type CloudinaryFolder =
+export type CloudinaryFolder =
   | "lotaria_nacional/users"
   | "lotaria_nacional/news"
   | "lotaria_nacional/banners"

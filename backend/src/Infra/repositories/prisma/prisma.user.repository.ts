@@ -6,6 +6,7 @@ export class PrismaUserRespository implements IUserRepository {
   async save(user: User): Promise<void> {
     await prisma.users.create({
       data: {
+        role: user.role,
         email: user.email,
         lastName: user.lastName,
         password: user.password,
@@ -17,12 +18,17 @@ export class PrismaUserRespository implements IUserRepository {
   }
 
   async getAll(): Promise<User[]> {
-    const users = await prisma.users.findMany()
+    const users = await prisma.users.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    })
 
     return users.map((user) =>
       User.create({
         id: user.id,
         email: user.email,
+        role: user.role,
         lastName: user.lastName,
         password: user.password,
         firstName: user.firstName,
@@ -37,6 +43,7 @@ export class PrismaUserRespository implements IUserRepository {
       data: {
         email: user.email,
         firstName: user.firstName,
+        role: user.role,
         lastName: user.lastName,
         password: user.password,
         profilePic: (user.profilePic as string) || undefined,
@@ -44,6 +51,7 @@ export class PrismaUserRespository implements IUserRepository {
     })
     return User.create({
       email: updatedUser.email,
+      role: updatedUser.role,
       firstName: updatedUser.firstName,
       lastName: updatedUser.lastName,
       password: updatedUser.password,
@@ -59,6 +67,7 @@ export class PrismaUserRespository implements IUserRepository {
     return User.create({
       id: user.id,
       email: user.email,
+      role: user.role,
       lastName: user.lastName,
       password: user.password,
       firstName: user.firstName,
@@ -77,6 +86,7 @@ export class PrismaUserRespository implements IUserRepository {
       id: user.id,
       email: user.email,
       password: user.password,
+      role: user.role,
       firstName: user.firstName,
       lastName: user.lastName,
       createdAt: user.createdAt,

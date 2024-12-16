@@ -9,12 +9,11 @@ export class CreateUserController {
     const profileImage = req.file?.buffer
     try {
       const createUserSchema = z.object({
-        firstName: z.string(),
-        lastName: z.string(),
-        email: z.string().email(),
-        password: z
-          .string()
-          .min(6, "A palavra-passe deve conter pelo menos 6 caractéres."),
+        firstName: z.string().min(1, "O nome é obrigatório."),
+        lastName: z.string().min(1, "O sobrenome é obrigatório."),
+        email: z.string().email().min(1, "O email é obrigatório."),
+        role: z.string().min(1, "A função do usuário é obrigatória."),
+        password: z.string().min(6, "A palavra-passe deve conter pelo menos 6 caractéres."),
         profilePic: z.string().optional(),
       })
 

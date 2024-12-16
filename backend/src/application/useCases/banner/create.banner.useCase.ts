@@ -1,14 +1,14 @@
-import { Banner } from "../../../Domain/Entities/banner/banner"
-import { IBannerRespository } from "../../../Domain/Entities/banner/banner.repository"
+import { Banner, BannerProps } from "../../../Domain/Entities/banner/banner"
 import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
+import { IBannerRespository } from "../../../Domain/Entities/banner/banner.repository"
 
 type CreateBannerInputDTO = {
-  desktop_banner_1?: any
-  desktop_banner_2?: any
-  desktop_banner_3?: any
-  mobile_banner_1?: any
-  mobile_banner_2?: any
-  mobile_banner_3?: any
+  desk_banner_1?: string | Buffer
+  desk_banner_2?: string | Buffer
+  desk_banner_3?: string | Buffer
+  mob_banner_1?: string | Buffer
+  mob_banner_2?: string | Buffer
+  mob_banner_3?: string | Buffer
 }
 
 export class CreateBannerUseCase {
@@ -18,40 +18,31 @@ export class CreateBannerUseCase {
   ) {}
 
   async execute(data: CreateBannerInputDTO) {
-    const dBanner1 = await this.fileUploadService.upload(
-      data.desktop_banner_1,
-      "lotaria_nacional/banners"
-    )
-    const dBanner2 = await this.fileUploadService.upload(
-      data.desktop_banner_2,
-      "lotaria_nacional/banners"
-    )
-    const dBanner3 = await this.fileUploadService.upload(
-      data.desktop_banner_3,
-      "lotaria_nacional/banners"
-    )
-    const mBanner1 = await this.fileUploadService.upload(
-      data.mobile_banner_1,
-      "lotaria_nacional/banners"
-    )
-    const mBanner2 = await this.fileUploadService.upload(
-      data.mobile_banner_2,
-      "lotaria_nacional/banners"
-    )
-    const mBanner3 = await this.fileUploadService.upload(
-      data.mobile_banner_3,
-      "lotaria_nacional/banners"
-    )
+    const {desk_banner_1,desk_banner_2,desk_banner_3,mob_banner_1,mob_banner_2,mob_banner_3 } = data
+
+    const dBan1 = await this.uploadFileHelper(desk_banner_1)
+    const dBan2 = await this.uploadFileHelper(desk_banner_2)
+    const dBan3 = await this.uploadFileHelper(desk_banner_3)
+
+    const mBan1 = await this.uploadFileHelper(mob_banner_1)
+    const mBan2 = await this.uploadFileHelper(mob_banner_2)
+    const mBan3 = await this.uploadFileHelper(mob_banner_3)
 
     const banner = Banner.create({
-      desktop_banner_1: dBanner1,
-      desktop_banner_2: dBanner2,
-      desktop_banner_3: dBanner3,
-      mobile_banner_1: mBanner1,
-      mobile_banner_2: mBanner2,
-      mobile_banner_3: mBanner3,
+      desk_banner_1: dBan1,
+      desk_banner_2: dBan2,
+      desk_banner_3: dBan3,
+      mob_banner_1: mBan1,
+      mob_banner_2: mBan2,
+      mob_banner_3: mBan3,
     })
 
     await this.bannerRepository.save(banner)
+  }
+
+  async uploadFileHelper(file?: string | Buffer) {
+    return file
+      ? await this.fileUploadService.upload(file, "lotaria_nacional/banners")
+      : ""
   }
 }

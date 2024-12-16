@@ -20,7 +20,6 @@ export class DailyResult {
     this.results = props.results
     this.date = props.date ?? new Date()
     this.formatedDate = props.formatedDate
-    this.createdAt = props.createdAt ?? new Date()
   }
 
   static create(props: DailyResultProps) {

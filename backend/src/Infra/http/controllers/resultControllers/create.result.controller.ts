@@ -1,12 +1,10 @@
 import { z } from "zod"
 import { Request, Response } from "express"
-import { CreateResultUseCase } from "../../../../application/useCases/result/create.result.useCase"
-import { ResultLimitException } from "../../../../Domain/exceptions/resultLimitExceeded.exception"
 import { NotFoundError } from "../../../../shared/errors/notFound.error"
-// import { CreateDailyResultUseCase } from "../../../../application/useCases/dailyResult/create.dailyResult.useCase"
+import { ResultLimitException } from "../../../../Domain/exceptions/resultLimitExceeded.exception"
+import { CreateResultUseCase } from "../../../../application/useCases/result/create.result.useCase"
 
 export class CreateResultController {
-  // constructor(private createDailyResultUseCase: CreateDailyResultUseCase) {}
   constructor(private createResultUseCase: CreateResultUseCase) {}
 
   async handle(req: Request, res: Response) {
@@ -23,6 +21,7 @@ export class CreateResultController {
       const resultData = createResultSchema.parse(req.body)
 
       await this.createResultUseCase.execute(resultData)
+
       return res.status(201).json({ message: "Criado com sucesso." })
     } catch (error) {
       if (error instanceof z.ZodError) {

@@ -1,49 +1,55 @@
-type BannerProps = {
+export type BannerProps = {
   id?: string
-  desktop_banner_1: string | any
-  desktop_banner_2: string | any
-  desktop_banner_3: string | any
-  mobile_banner_1: string | any
-  mobile_banner_2: string | any
-  mobile_banner_3: string | any
-}
-export type UpdateBanners = {
-  desktop_banner_1?: string | any
-  desktop_banner_2?: string | any
-  desktop_banner_3?: string | any
-  mobile_banner_1?: string | any
-  mobile_banner_2?: string | any
-  mobile_banner_3?: string | any
+  desk_banner_1: string | Buffer
+  desk_banner_2: string | Buffer
+  desk_banner_3: string | Buffer
+  mob_banner_1: string | Buffer
+  mob_banner_2: string | Buffer
+  mob_banner_3: string | Buffer
 }
 
 export class Banner {
-  public id?: string
-  public desktop_banner_1: string | any
-  public desktop_banner_2: string | any
-  public desktop_banner_3: string | any
-  public mobile_banner_1: string | any
-  public mobile_banner_2: string | any
-  public mobile_banner_3: string | any
+  public readonly id?: string
+  public desk_banner_1: string | Buffer
+  public desk_banner_2: string | Buffer
+  public desk_banner_3: string | Buffer
+  public mob_banner_1: string | Buffer
+  public mob_banner_2: string | Buffer
+  public mob_banner_3: string | Buffer
 
   constructor(props: BannerProps) {
-    this.desktop_banner_1 = props.desktop_banner_1
-    this.desktop_banner_2 = props.desktop_banner_2
-    this.desktop_banner_3 = props.desktop_banner_3
-    this.mobile_banner_1 = props.mobile_banner_1
-    this.mobile_banner_2 = props.mobile_banner_2
-    this.mobile_banner_3 = props.mobile_banner_3
+    this.id = props.id
+    this.desk_banner_1 = props.desk_banner_1
+    this.desk_banner_2 = props.desk_banner_2
+    this.desk_banner_3 = props.desk_banner_3
+    this.mob_banner_1 = props.mob_banner_1
+    this.mob_banner_2 = props.mob_banner_2
+    this.mob_banner_3 = props.mob_banner_3
   }
 
-  static create(props: BannerProps) {
+  static create(props: BannerProps): Banner {
+    // this.validateProps(props)
     return new Banner(props)
   }
 
-  update(data: UpdateBanners) {
-    if (data.desktop_banner_1) this.desktop_banner_1 = data.desktop_banner_1
-    if (data.desktop_banner_2) this.desktop_banner_2 = data.desktop_banner_2
-    if (data.desktop_banner_3) this.desktop_banner_3 = data.desktop_banner_3
-    if (data.mobile_banner_1) this.mobile_banner_1 = data.mobile_banner_1
-    if (data.mobile_banner_2) this.mobile_banner_2 = data.mobile_banner_2
-    if (data.mobile_banner_3) this.mobile_banner_3 = data.mobile_banner_3
+  update(data: Partial<Banner>): void {
+    if (data.desk_banner_1) this.desk_banner_1 = data.desk_banner_1
+    if (data.desk_banner_2) this.desk_banner_2 = data.desk_banner_2
+    if (data.desk_banner_3) this.desk_banner_3 = data.desk_banner_3
+    if (data.mob_banner_1) this.mob_banner_1 = data.mob_banner_1
+    if (data.mob_banner_2) this.mob_banner_2 = data.mob_banner_2
+    if (data.mob_banner_3) this.mob_banner_3 = data.mob_banner_3
+  }
+
+  private static validateProps(props: BannerProps) {
+    if (
+      !props.desk_banner_1 ||
+      !props.desk_banner_2 ||
+      !props.desk_banner_3 ||
+      !props.mob_banner_1 ||
+      !props.mob_banner_2 ||
+      !props.mob_banner_3
+    )
+      throw new Error("Todos os banners são obrigatórios.")
   }
 }

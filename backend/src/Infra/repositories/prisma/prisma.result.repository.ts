@@ -6,6 +6,40 @@ import { prisma } from "../../Database/prisma"
 import { Result } from "../../../Domain/Entities/Result/Result"
 
 export class PrismaResultRespository implements IResultRepository {
+  async save(result: Result): Promise<void> {
+    await prisma.result.create({
+      data: {
+        name: result.name,
+        startHour: result.hour,
+        dailyId: result.dailyId!,
+        number_1: result.number_1,
+        number_2: result.number_2,
+        number_3: result.number_3,
+        number_4: result.number_4,
+        number_5: result.number_5,
+      },
+    })
+  }
+  async getAll(): Promise<Result[]> {
+    const results = await prisma.result.findMany({
+      orderBy: { createdAt: "desc" },
+    })
+
+    return results.map((result) =>
+      Result.create({
+        id: result.id,
+        name: result.name,
+        hour: result.startHour,
+        dailyId: result.dailyId,
+        number_1: result.number_1,
+        number_2: result.number_2,
+        number_3: result.number_3,
+        number_4: result.number_4,
+        number_5: result.number_5,
+      })
+    )
+  }
+
   async update(data: UpdateResult): Promise<Result | null> {
     const updatedResult = await prisma.result.update({
       where: { id: data.id },

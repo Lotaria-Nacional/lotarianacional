@@ -19,4 +19,8 @@ export class CloudinaryUploadService implements IFileUpload {
       console.log(error)
     }
   }
+
+  // async deleteMany(){
+
+  // }
 }

@@ -7,8 +7,8 @@ export class GetResultsController {
   async handle(req: Request, res: Response) {
     try {
       const results = await this.getResultsUseCase.execute()
-
-      return res.status(200).json(results)
+      const total = results.length
+      return res.status(200).json({ results, total: total })
     } catch (error: any) {
       return res.status(500).json({ message: error.message })
     }

@@ -4,8 +4,8 @@ import { IFileUpload } from "../../../Domain/services/fileUpload.service.interfa
 
 type CreateNewsInputDTO = {
   title: string
-  image: string | Buffer
   description: string
+  image: string | Buffer
 }
 
 export class CreateNewsUseCase {

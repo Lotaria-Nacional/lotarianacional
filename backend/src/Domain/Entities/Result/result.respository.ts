@@ -10,9 +10,9 @@ export type UpdateResult = {
 }
 
 export interface IResultRepository {
-  // getAll(): Promise<Result[]>
+  getAll(): Promise<Result[]>
   delete(id: string): Promise<void>
-  // save(result: Result): Promise<void>
+  save(result: Result): Promise<void>
   getById(id: string): Promise<Result | null>
   update(data: UpdateResult): Promise<Result | null>
 }

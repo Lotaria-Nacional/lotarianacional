@@ -7,6 +7,7 @@ export type CreateUserInputDTO = {
   email: string
   lastName: string
   password: string
+  role: string
   firstName: string
   profilePic?: string | Buffer
 }
