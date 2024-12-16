@@ -4,7 +4,7 @@ import { IResultRepository } from "../../../Domain/Entities/Result/result.respos
 export type CreateResultInputDTO = {
   name: string
   hour: string
-  dailyId: string
+  dailyId?: string
   number_1: number
   number_2: number
   number_3: number
