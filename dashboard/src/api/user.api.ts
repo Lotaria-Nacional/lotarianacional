@@ -6,6 +6,7 @@ type CreateUserDTO = {
   firstName: string
   lastName: string
   password: string
+  role: string
 }
 type UpdateUserDTO = Partial<CreateUserDTO> & { id: string }
 

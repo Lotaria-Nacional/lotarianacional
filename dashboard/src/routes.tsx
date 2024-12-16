@@ -17,6 +17,7 @@ import DownloadTicketPage from "./pages/dashboard/download-ticket-page"
 import { createBrowserRouter } from "react-router-dom"
 import LoginPage from "./pages/auth/login-page"
 import UsersPage from "./pages/dashboard/users-page"
+import NotFoundPage from "./pages/error/404-not-found-page"
 
 export const router = createBrowserRouter([
   {
@@ -43,5 +44,9 @@ export const router = createBrowserRouter([
   {
     path: "login",
     element: <LoginPage />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ])

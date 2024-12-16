@@ -1,11 +1,9 @@
-import { NavLink } from "react-router-dom"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
-import { FormEvent, useState } from "react"
-import { isAxiosError } from "axios"
-import { toast } from "react-toastify"
-import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 import { Button } from "../ui/button"
+import { NavLink } from "react-router-dom"
+import { FormEvent, useState } from "react"
+import { useAuth } from "@/context/authContext"
 
 type Credentials = {
   email: string
@@ -13,25 +11,15 @@ type Credentials = {
 }
 
 const LoginForm = () => {
+  const { login, isLoading } = useAuth()
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
     password: "",
   })
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    try {
-      console.log(credentials)
-      toast.success("Logado com sucesso...")
-    } catch (error) {
-      if (isAxiosError(error)) {
-        if (!error.response) {
-          return toast.error(TRY_LATER_ERROR)
-        }
-        return toast.error(error.message)
-      }
-      return toast.error(SERVER_CONNECTION_ERROR)
-    }
+    await login(credentials.email, credentials.password)
   }
 
   return (
@@ -85,8 +73,12 @@ const LoginForm = () => {
             Esqueceu a sua palavra-passe?
           </NavLink>
         </div>
-        <Button type="submit" className="bg-RED-200 mt-8 w-full">
-          Entrar
+        <Button
+          type="submit"
+          disabled={isLoading}
+          className="bg-RED-200 mt-8 w-full"
+        >
+          {isLoading ? "Entrando..." : "Entrar"}
         </Button>
       </section>
     </form>

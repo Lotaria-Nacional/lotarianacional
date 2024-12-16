@@ -12,9 +12,10 @@ import { createUser } from "@/api/user.api"
 
 type UserProps = {
   email: string
-  firstName: string
+  role: string
   lastName: string
   password: string
+  firstName: string
 }
 
 const AddUserForm = () => {
@@ -23,6 +24,7 @@ const AddUserForm = () => {
     firstName: "",
     lastName: "",
     email: "",
+    role: "",
     password: "",
   })
 
@@ -31,7 +33,6 @@ const AddUserForm = () => {
     setIsLoading(true)
     try {
       const response = await createUser(user)
-      console.log(user)
       toast.success(response.message)
     } catch (error) {
       if (isAxiosError(error)) {
@@ -99,7 +100,9 @@ const AddUserForm = () => {
           </Label>
           <Label className="flex flex-col gap-2">
             Função
-            <Select>
+            <Select
+              onValueChange={(value) => setUser({ ...user, role: value })}
+            >
               <SelectTrigger>Escolher</SelectTrigger>
               <SelectContent>
                 <SelectItem value="admin">Admin</SelectItem>

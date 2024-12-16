@@ -39,10 +39,10 @@ const AddNewsPage = () => {
       toast.success(response.message)
     } catch (error) {
       if (isAxiosError(error)) {
+        if (!error.response) {
+          return toast.error(TRY_LATER_ERROR)
+        }
         return toast.error(error.response?.data.message)
-      }
-      if (isAxiosError(error) && !error.response) {
-        return toast.error(TRY_LATER_ERROR)
       }
       return toast.error(SERVER_CONNECTION_ERROR)
     } finally {

@@ -19,14 +19,25 @@ export type CreateDailyResult = {
   number_5: number
 }
 
-export const createResult = async (
+export const createDailyResult = async (
   data: CreateDailyResult
 ): Promise<{ message: string }> => {
-  const response = await axios.post("/result", data)
+  const response = await axios.post("/daily-result", data)
   return response.data
 }
-export const getResults = async (): Promise<IDailyResult[]> => {
+
+export const getDailyResults = async (): Promise<IDailyResult[]> => {
+  const response = await axios.get("/daily-results")
+  return response.data
+}
+
+export const getResults = async (): Promise<{total:number}> => {
   const response = await axios.get("/results")
+  return response.data
+}
+
+export const getLastDailyResult = async (): Promise<IDailyResult> => {
+  const response = await axios.get("/last-daily-result")
   return response.data
 }
 

@@ -1,19 +1,22 @@
-import { getAgencies } from "@/api/agency.api"
 import { useEffect, useState } from "react"
+import { getAgencies } from "@/api/agency.api"
+import TotalResultsAndAgenciesSkeleton from "../skeletons/total-results-and-agencies-skeleton"
 
 const TotalAgenciesAdded = () => {
-  // const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [totalAgencies, setTotalAgencies] = useState<number | null>(null)
 
   useEffect(() => {
     const fetch = async () => {
       const data = await getAgencies()
       setTotalAgencies(data.length)
-      // setIsLoading(false)
+      setIsLoading(false)
     }
 
     fetch()
   }, [])
+
+  if (isLoading) return <TotalResultsAndAgenciesSkeleton />
 
   return (
     <div className="w-[252px] flex flex-col bg-white rounded-[20px] p-4">

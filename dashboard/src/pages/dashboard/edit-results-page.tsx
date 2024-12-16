@@ -1,20 +1,21 @@
 import { IResult } from "@/interfaces"
 import { useEffect, useState } from "react"
-import { getResults } from "@/api/results.api"
+import { getLastDailyResult } from "@/api/results.api"
 import { Skeleton } from "@/components/ui/skeleton"
 import NothingToShow from "@/components/common/nothing-to-show"
 import ResultCardInput from "@/components/result/result-card-input"
 
 const EditResultsPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [results, setResults] = useState<IResult[] | []>([])
+  const [results, setResults] = useState<IResult[]>()
 
   useEffect(() => {
     const fech = async () => {
       try {
         setIsLoading(true)
-        const data = await getResults()
-        setResults(data[data.length - 1].results)
+        const data = await getLastDailyResult()
+        console.log(data)
+        setResults(data.results)
       } catch (error) {
         console.log(error)
       } finally {
@@ -37,12 +38,12 @@ const EditResultsPage = () => {
       </div>
     )
 
-  if (results.length === 0) return <NothingToShow />
+  if (results?.length === 0) return <NothingToShow />
 
   return (
     <div className="w-full flex flex-col items-center justify-center gap-4">
       <div className="w-[588px] grid grid-cols-2 gap-[20px]">
-        {results.map((result) => (
+        {results?.map((result) => (
           <div
             key={result.id}
             className="bg-white rounded-[20px] h-[270px] shadow-sm shadow-white/20 p-2 w-full flex flex-col justify-around"

@@ -6,10 +6,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { ICON } from "@/constants/assets"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
   AlertDialogTitle,
@@ -23,32 +19,21 @@ import {
 import { IUser } from "@/interfaces"
 import { isAxiosError } from "axios"
 import { toast } from "react-toastify"
+import { ICON } from "@/constants/assets"
+import { useEffect, useState } from "react"
 import { UserCircle2Icon } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { deleteUser, getUsers } from "@/api/user.api"
-import { FormEvent, useEffect, useState } from "react"
 import AddUserForm from "@/components/user/add-user-form"
+import EditUserForm from "@/components/user/edit-user-form"
 import { AlertDialogAction } from "@radix-ui/react-alert-dialog"
 import UserTableSkeleton from "@/components/skeletons/user-table-skeleton"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
-type UserData = {
-  firstName: string
-  lastName: string
-  email: string
-  password: string
-}
-
 const UsersPage = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [users, setUsers] = useState<IUser[] | []>([])
-
-  const [userData, setUserData] = useState<UserData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  })
 
   useEffect(() => {
     const fetch = async () => {
@@ -69,22 +54,6 @@ const UsersPage = () => {
     }
     fetch()
   }, [])
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    try {
-      console.log(userData)
-      toast.success("Atualizado com sucesso.")
-    } catch (error) {
-      if (isAxiosError(error)) {
-        if (!error?.response) {
-          return toast.error(TRY_LATER_ERROR)
-        }
-        return toast.error(error.message)
-      }
-      return toast.error(SERVER_CONNECTION_ERROR)
-    }
-  }
 
   const handleDeleteUser = async (id: string) => {
     try {
@@ -129,7 +98,8 @@ const UsersPage = () => {
                   <TableCell>{user.firstName}</TableCell>
                   <TableCell>{user.lastName}</TableCell>
                   <TableCell>{user.email}</TableCell>
-                  <TableCell>admin</TableCell>
+                  <TableCell>{user.role}</TableCell>
+
                   <TableCell className="flex flex-row gap-2 items-center">
                     <Dialog>
                       <DialogTrigger
@@ -142,62 +112,7 @@ const UsersPage = () => {
                         />
                       </DialogTrigger>
                       <DialogContent>
-                        <form
-                          onSubmit={handleSubmit}
-                          className="flex flex-col gap-4"
-                        >
-                          <Label className="flex flex-col gap-3" htmlFor="name">
-                            Nome
-                            <Input
-                              id="name"
-                              type="text"
-                              value={userData.firstName}
-                              onChange={(e) =>
-                                setUserData({
-                                  ...userData,
-                                  firstName: e.target.value,
-                                })
-                              }
-                            />
-                          </Label>
-                          <Label
-                            className="flex flex-col gap-3"
-                            htmlFor="lastName"
-                          >
-                            Sobrenome
-                            <Input
-                              id="lastName"
-                              type="text"
-                              value={userData.lastName}
-                              onChange={(e) =>
-                                setUserData({
-                                  ...userData,
-                                  lastName: e.target.value,
-                                })
-                              }
-                            />
-                          </Label>
-                          <Label
-                            className="flex flex-col gap-3"
-                            htmlFor="email"
-                          >
-                            Email
-                            <Input
-                              id="email"
-                              type="email"
-                              value={userData.email}
-                              onChange={(e) =>
-                                setUserData({
-                                  ...userData,
-                                  email: e.target.value,
-                                })
-                              }
-                            />
-                          </Label>
-                          <Button className="bg-RED-200" type="submit">
-                            Salvar alterações
-                          </Button>
-                        </form>
+                        <EditUserForm user={user} />
                       </DialogContent>
                     </Dialog>
                     <AlertDialog>

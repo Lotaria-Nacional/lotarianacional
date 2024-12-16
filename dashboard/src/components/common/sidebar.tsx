@@ -4,7 +4,7 @@ import {
 } from "../../constants/sidebar"
 import { NavLink } from "react-router-dom"
 import { LOGOS } from "../../constants/assets"
-import { Button } from "../ui/button"
+import LogoutButton from "../auth/logout-button"
 
 const Sidebar = () => {
   return (
@@ -63,9 +63,7 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      <Button className="text-RED-200 bg-white w-full hidden lg:block">
-        Sair
-      </Button>
+      <LogoutButton />
     </aside>
   )
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 import ResultCard from "./result-card"
 import { IResult } from "../../interfaces"
-import { getResults } from "../../api/results.api"
+import { getLastDailyResult } from "../../api/results.api"
 import NothingToShow from "../common/nothing-to-show"
 import ResultCardSkeleton from "../skeletons/result-card-skeleton"
 
@@ -13,8 +13,8 @@ const ResultCardListing = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await getResults()
-        setdailyResults(data[data.length - 1].results)
+        const data = await getLastDailyResult()
+        setdailyResults(data.results)
       } catch (error) {
         console.log(error)
       } finally {

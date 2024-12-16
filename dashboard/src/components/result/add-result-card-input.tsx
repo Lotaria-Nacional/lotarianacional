@@ -4,7 +4,7 @@ import { KeyProps } from "./result-card-input"
 import { ChangeEvent, FormEvent, useState } from "react"
 import { toast } from "react-toastify"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
-import { CreateDailyResult, createResult } from "@/api/results.api"
+import { CreateDailyResult, createDailyResult } from "@/api/results.api"
 
 type Props = {
   name: "fezada" | "aqueceu" | "kazola" | "eskebra"
@@ -50,7 +50,7 @@ const AddResultCardInput = ({ hour, name }: Props) => {
       number_5: parseInt(data.number_5),
     }
     try {
-      const response = await createResult(resultData)
+      const response = await createDailyResult(resultData)
       console.log({ name, hour, data })
 
       toast.success(response.message)

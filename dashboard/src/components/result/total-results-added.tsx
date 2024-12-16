@@ -1,23 +1,22 @@
-import { getResults } from "@/api/results.api"
 import { useEffect, useState } from "react"
+import { getResults } from "@/api/results.api"
+import TotalResultsAndAgenciesSkeleton from "../skeletons/total-results-and-agencies-skeleton"
 
 const TotalResultsAdded = () => {
-  // const [isLoading, setIsLoading] = useState(true)
-  const [totalResults, setTotalResults] = useState<number | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [totalResults, setTotalResults] = useState<number>(0)
 
   useEffect(() => {
     const fetch = async () => {
       const data = await getResults()
-      const total = data
-        .map((result) => result.results.length)
-        .reduce((total, result) => total + result, 0)
-
-      setTotalResults(total)
-      // setIsLoading(false)
+      setTotalResults(data.total)
+      setIsLoading(false)
     }
 
     fetch()
   }, [])
+
+  if (isLoading) return <TotalResultsAndAgenciesSkeleton />
 
   return (
     <div className="w-[252px] flex items-center justify-start flex-col bg-white rounded-[20px] p-4">
