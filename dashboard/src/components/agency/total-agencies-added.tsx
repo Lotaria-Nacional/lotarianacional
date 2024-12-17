@@ -19,7 +19,7 @@ const TotalAgenciesAdded = () => {
   if (isLoading) return <TotalResultsAndAgenciesSkeleton />
 
   return (
-    <div className="w-[252px] flex flex-col bg-white rounded-[20px] p-4">
+    <div className="w-full lg:w-[252px] mt-6 lg:mt-0 flex flex-col bg-white rounded-[20px] p-4">
       <span className="font-medium text-[14px]">Total de agências</span>
       {!totalAgencies ? (
         <span className="w-full h-full flex items-center justify-center">

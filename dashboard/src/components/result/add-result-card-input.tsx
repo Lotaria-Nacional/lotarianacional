@@ -1,14 +1,27 @@
+import {
+  Dialog,
+  DialogClose,
+  DialogTitle,
+  DialogFooter,
+  DialogHeader,
+  DialogTrigger,
+  DialogContent,
+  DialogDescription,
+} from "../ui/dialog"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
+import { Video } from "lucide-react"
 import { isAxiosError } from "axios"
 import { Button } from "../ui/button"
+import { toast } from "react-toastify"
 import { KeyProps } from "./result-card-input"
 import { ChangeEvent, FormEvent, useState } from "react"
-import { toast } from "react-toastify"
-import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 import { CreateDailyResult, createDailyResult } from "@/api/results.api"
+import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
 type Props = {
   name: "fezada" | "aqueceu" | "kazola" | "eskebra"
-  hour: "10h30" | "13h30" | "16h30" | "19h30"
+  hour: "10h00" | "13h00" | "16h00" | "19h00"
 }
 
 const AddResultCardInput = ({ hour, name }: Props) => {
@@ -20,6 +33,7 @@ const AddResultCardInput = ({ hour, name }: Props) => {
     number_3: "",
     number_4: "",
     number_5: "",
+    videoURL: "",
   })
 
   const handleInputChange = (
@@ -48,6 +62,7 @@ const AddResultCardInput = ({ hour, name }: Props) => {
       number_3: parseInt(data.number_3),
       number_4: parseInt(data.number_4),
       number_5: parseInt(data.number_5),
+      videoURL: data.videoURL,
     }
     try {
       const response = await createDailyResult(resultData)
@@ -68,9 +83,51 @@ const AddResultCardInput = ({ hour, name }: Props) => {
   }
   return (
     <div className="bg-white rounded-[20px] h-[270px] shadow-sm shadow-white/20 p-2 w-full flex flex-col justify-around">
-      <span className="bg-yellow-500 text-black px-3 py-1 font-medium rounded-[10px] w-fit  uppercase">
-        {name}
-      </span>
+      <div className="w-full flex items-center justify-between">
+        <span className="bg-yellow-500 text-black px-3 py-1 font-medium rounded-[10px] w-fit  uppercase">
+          {name}
+        </span>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="w-fit" variant={"outline"}>
+              <Video />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Adicionar Vídeo ao Resultado</DialogTitle>
+              <DialogDescription>
+                Insira o URL do vídeo do YouTube que deseja associar a este
+                resultado.
+              </DialogDescription>
+            </DialogHeader>
+            <Label className="flex gap-2 flex-col">
+              <span>URL do video</span>
+              <Input
+                type="text"
+                value={data.videoURL}
+                placeholder="ex:https://youtube.com/watch?v=ffHiqRK1aBY"
+                onChange={(e) => {
+                  const youtubeEmbedURL = e.target.value.replace(
+                    "watch?v=",
+                    "embed/"
+                  )
+                  console.log(youtubeEmbedURL)
+                  setData({ ...data, videoURL: youtubeEmbedURL })
+                }}
+              />
+            </Label>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button className="bg-RED-200">Cancelar</Button>
+              </DialogClose>
+              <DialogClose asChild>
+                <Button variant={"outline"}>Adicionar</Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
       <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
         <div className="loto-bg h-[119px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-4">
           <div className="flex flex-col text-[15px] text-white">

@@ -2,6 +2,7 @@ import axios from "../config/axios"
 import { IDailyResult } from "../interfaces"
 
 type UpdateNumbersDTO = {
+  videoURL: string
   number_1: number
   number_2: number
   number_3: number
@@ -12,6 +13,7 @@ type UpdateNumbersDTO = {
 export type CreateDailyResult = {
   name: string
   hour: string
+  videoURL: string
   number_1: number
   number_2: number
   number_3: number
@@ -31,7 +33,7 @@ export const getDailyResults = async (): Promise<IDailyResult[]> => {
   return response.data
 }
 
-export const getResults = async (): Promise<{total:number}> => {
+export const getResults = async (): Promise<{ total: number }> => {
   const response = await axios.get("/results")
   return response.data
 }
@@ -53,5 +55,12 @@ export const updateResults = async (
     number_5: data.number_5,
   })
 
+  return response.data
+}
+
+export const deleteDailyResult = async (
+  id: string
+): Promise<{ message: string }> => {
+  const response = await axios.delete(`/daily-result/${id}`)
   return response.data
 }

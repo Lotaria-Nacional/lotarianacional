@@ -19,7 +19,7 @@ const TotalResultsAdded = () => {
   if (isLoading) return <TotalResultsAndAgenciesSkeleton />
 
   return (
-    <div className="w-[252px] flex items-center justify-start flex-col bg-white rounded-[20px] p-4">
+    <div className="w-full lg:w-[252px] flex items-center justify-start flex-col bg-white rounded-[20px] p-4">
       <span className="font-medium text-[14px]">
         Total de resultados Registados
       </span>

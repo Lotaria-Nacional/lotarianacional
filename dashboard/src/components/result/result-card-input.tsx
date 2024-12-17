@@ -17,6 +17,7 @@ type Props = {
     hour: string
     number_1: number
     number_2: number
+    videoURL: string
     number_3: number
     number_4: number
     number_5: number
@@ -31,6 +32,7 @@ const ResultCardInput = ({ result }: Props) => {
     number_3: result.number_3,
     number_4: result.number_4,
     number_5: result.number_5,
+    videoURL: result.videoURL,
   })
 
   const handleInputChange = (
@@ -54,7 +56,10 @@ const ResultCardInput = ({ result }: Props) => {
     try {
       const response = await updateResults(result.id, data)
 
-      toast.success(response.message, { autoClose: 2000, position:"bottom-right" })
+      toast.success(response.message, {
+        autoClose: 2000,
+        position: "bottom-right",
+      })
       console.log(response.message)
     } catch (error: any) {
       alert(error.message)
