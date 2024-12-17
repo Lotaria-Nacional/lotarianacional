@@ -44,6 +44,7 @@ export class CreateDailyResultUseCase {
     return Result.create({
       name: data.name,
       hour: data.hour,
+      videoURL: data.videoURL,
       dailyId: data.dailyId,
       number_1: data.number_1,
       number_2: data.number_2,

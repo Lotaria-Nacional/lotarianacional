@@ -48,8 +48,9 @@ model Result {
   number_3    Int
   number_4    Int
   number_5    Int
-  createdAt  DateTime @default(now())
-  dailyId    String   @db.ObjectId
+  videoURL    String
+  createdAt   DateTime @default(now())
+  dailyId     String   @db.ObjectId
   DailyResult DailyResult @relation(fields: [dailyId], references: [id])
 }
 

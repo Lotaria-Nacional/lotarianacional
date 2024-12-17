@@ -18,6 +18,7 @@ export class GetDailyResultsUseCase {
           Result.create({
             hour: res.hour,
             name: res.name,
+            videoURL: res.videoURL,
             number_1: res.number_1,
             number_2: res.number_2,
             number_3: res.number_3,

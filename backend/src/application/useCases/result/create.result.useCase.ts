@@ -5,6 +5,7 @@ export type CreateResultInputDTO = {
   name: string
   hour: string
   dailyId?: string
+  videoURL: string
   number_1: number
   number_2: number
   number_3: number
@@ -18,6 +19,7 @@ export class CreateResultUseCase {
     const result = Result.create({
       hour: data.hour,
       name: data.name,
+      videoURL: data.videoURL,
       number_1: data.number_1,
       number_2: data.number_2,
       number_3: data.number_3,

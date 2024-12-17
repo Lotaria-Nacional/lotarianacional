@@ -24,6 +24,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           id: result.id,
           name: result.name,
           hour: result.startHour,
+          videoURL: result.videoURL,
           dailyId: result.dailyId,
           number_1: result.number_1,
           number_2: result.number_2,
@@ -40,7 +41,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
     const dailyResults = await prisma.dailyResult.findMany({
       include: { results: true },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
     })
 
@@ -54,6 +55,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
             id: result.id,
             name: result.name,
             hour: result.startHour,
+            videoURL: result.videoURL,
             number_1: result.number_1,
             number_2: result.number_2,
             number_3: result.number_3,
@@ -74,6 +76,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           create: dailyResult.results.map((result) => ({
             id: result.id,
             name: result.name,
+            videoURL: result.videoURL,
             startHour: result.hour,
             number_1: result.number_1,
             number_2: result.number_2,
@@ -99,6 +102,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
       data: {
         dailyId: exisitingDailyResult.id,
         name: lastResultAdded.name,
+        videoURL: lastResultAdded.videoURL,
         startHour: lastResultAdded.hour,
         number_1: lastResultAdded.number_1,
         number_2: lastResultAdded.number_2,
@@ -143,6 +147,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           number_3: result.number_3,
           number_4: result.number_4,
           number_5: result.number_5,
+          videoURL: result.videoURL,
         })
       ),
     })
@@ -175,6 +180,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           name: result.name,
           hour: result.startHour,
           dailyId: dailyResult.id,
+          videoURL: result.videoURL,
           number_1: result.number_1,
           number_2: result.number_2,
           number_3: result.number_3,
