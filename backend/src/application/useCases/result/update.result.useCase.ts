@@ -9,6 +9,7 @@ type UpdateResultInputDTO = {
   number_3?: number
   number_4?: number
   number_5?: number
+  videoURL?: string
 }
 
 export class UpdateResultUseCase {
@@ -19,6 +20,7 @@ export class UpdateResultUseCase {
     if (!result) throw new NotFoundError("Resultado não encontrado.")
 
     result.update(
+      data.videoURL,
       data.number_1,
       data.number_2,
       data.number_3,

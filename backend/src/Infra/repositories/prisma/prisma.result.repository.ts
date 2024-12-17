@@ -10,6 +10,7 @@ export class PrismaResultRespository implements IResultRepository {
     await prisma.result.create({
       data: {
         name: result.name,
+        videoURL: result.videoURL,
         startHour: result.hour,
         dailyId: result.dailyId!,
         number_1: result.number_1,
@@ -30,6 +31,7 @@ export class PrismaResultRespository implements IResultRepository {
         id: result.id,
         name: result.name,
         hour: result.startHour,
+        videoURL: result.videoURL,
         dailyId: result.dailyId,
         number_1: result.number_1,
         number_2: result.number_2,
@@ -56,6 +58,7 @@ export class PrismaResultRespository implements IResultRepository {
       id: updatedResult.id,
       name: updatedResult.name,
       hour: updatedResult.startHour,
+      videoURL: updatedResult.videoURL,
       number_1: updatedResult.number_1,
       number_2: updatedResult.number_2,
       number_3: updatedResult.number_3,
@@ -71,6 +74,7 @@ export class PrismaResultRespository implements IResultRepository {
     return Result.create({
       id: result.id,
       name: result?.name,
+      videoURL: result.videoURL,
       hour: result?.startHour,
       number_1: result.number_1,
       number_2: result.number_2,

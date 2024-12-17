@@ -11,6 +11,7 @@ export class CreateResultController {
     const createResultSchema = z.object({
       name: z.string(),
       hour: z.string(),
+      videoURL: z.string(),
       number_1: z.number(),
       number_2: z.number(),
       number_3: z.number(),

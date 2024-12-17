@@ -12,6 +12,7 @@ export class GetResultsUseCase {
         id: result.id,
         hour: result.hour,
         name: result.name,
+        videoURL: result.videoURL,
         number_1: result.number_1,
         number_2: result.number_2,
         number_3: result.number_3,

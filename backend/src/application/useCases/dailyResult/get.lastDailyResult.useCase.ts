@@ -28,6 +28,7 @@ export class GetLastDailyResultUseCase {
           name: result.name,
           dailyId: result.dailyId,
           number_1: result.number_1,
+          videoURL: result.videoURL,
           number_2: result.number_2,
           number_3: result.number_3,
           number_4: result.number_4,
