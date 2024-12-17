@@ -2,9 +2,10 @@ import { IoCloseOutline } from "react-icons/io5"
 
 type Props = {
   handleClose: () => void
+  videoURL: string
 }
 
-const VideoLightBox = ({ handleClose }: Props) => {
+const VideoLightBox = ({ handleClose,videoURL }: Props) => {
   return (
     <div
       onClick={handleClose}
@@ -24,7 +25,8 @@ const VideoLightBox = ({ handleClose }: Props) => {
           allowFullScreen
           onClick={(e) => e.stopPropagation()}
           className="rounded-lg w-full h-full"
-          src="https://www.youtube.com/embed/YPmQ1zglaGg"
+          // src="https://www.youtube.com/embed/YPmQ1zglaGg"
+          src={videoURL}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
       </div>

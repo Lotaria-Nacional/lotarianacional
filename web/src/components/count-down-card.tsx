@@ -1,63 +1,34 @@
 import { useEffect, useState } from "react"
 
 const CountDownCard = () => {
-  const [hours, setHours] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const [seconds, setSeconds] = useState(0)
+  const [hours, setHours] = useState(3) // Inicia com 3 horas
+  const [minutes, setMinutes] = useState(0) // Inicia com 0 minutos
+  const [seconds, setSeconds] = useState(0) // Inicia com 0 segundos
 
   useEffect(() => {
-    const calculateNextInterval = () => {
-      const now = new Date()
-      const currentHour = now.getHours()
-
-      // Adiciona 2 horas ao tempo atual
-      now.setHours(now.getHours() + 2)
-
-      if (currentHour >= 19 || currentHour < 10) {
-        // Se for entre 19h e 10h, define o próximo intervalo para 10h do dia seguinte
-        let nextDay = new Date()
-        if (currentHour >= 19) {
-          nextDay.setDate(now.getDate() + 1) // Avança para o próximo dia
-        }
-        nextDay.setHours(10, 0, 0, 0) // Define para 10h do próximo dia
-        return nextDay.getTime() - now.getTime() // Retorna o tempo restante em milissegundos
-      } else {
-        // Caso contrário, calcula o próximo intervalo de 3h
-        const nextHour = Math.ceil(now.getHours() / 3) * 3 // Próxima hora múltipla de 3
-        const nextInterval = new Date()
-        nextInterval.setHours(nextHour, 0, 0, 0)
-        return nextInterval.getTime() - now.getTime() // Retorna o tempo restante em milissegundos
-      }
-    }
-
-    const updateCountdown = () => {
-      const interval = calculateNextInterval()
-      const intervalInSeconds = Math.floor(interval / 1000)
-
-      setHours(Math.floor(intervalInSeconds / 3600)) // Horas restantes
-      setMinutes(Math.floor((intervalInSeconds % 3600) / 60)) // Minutos restantes
-      setSeconds(intervalInSeconds % 60) // Segundos restantes
-    }
-
     const timer = setInterval(() => {
-      if (hours > 0 || minutes > 0 || seconds > 0) {
-        setSeconds((prevSeconds) => (prevSeconds > 0 ? prevSeconds - 1 : 59))
-        if (seconds === 0) {
-          setMinutes((prevMinutes) => (prevMinutes > 0 ? prevMinutes - 1 : 59))
-          if (minutes === 0) {
-            setHours((prevHours) => (prevHours > 0 ? prevHours - 1 : 0))
-          }
-        }
-      } else {
-        updateCountdown() // Recalcula o próximo intervalo
-      }
+      setSeconds((prevSeconds) => {
+        if (prevSeconds > 0) return prevSeconds - 1
+
+        setMinutes((prevMinutes) => {
+          if (prevMinutes > 0) return prevMinutes - 1
+
+          setHours((prevHours) => {
+            if (prevHours > 0) return prevHours - 1
+
+            clearInterval(timer) // Para o countdown ao chegar em 0
+            return 0
+          })
+
+          return 59
+        })
+
+        return 59
+      })
     }, 1000)
 
-    updateCountdown() // Inicializa o tempo ao montar o componente
-
-    return () => clearInterval(timer) // Limpa o intervalo ao desmontar o componente
-  }, [hours, minutes, seconds])
-
+    return () => clearInterval(timer) // Limpa o timer ao desmontar
+  }, [])
   return (
     <div className="flex w-full h-full flex-col gap-2 items-center">
       <div className="radialGradient w-full h-[180px] lg:h-[230px] rounded-3xl flex items-center justify-center">

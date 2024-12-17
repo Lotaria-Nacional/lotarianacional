@@ -7,6 +7,6 @@ export const getDailyResults = async (): Promise<IDailyResult[]> => {
 }
 
 export const getLastDailyResult = async (): Promise<IDailyResult> => {
-  const response = await axios.get("/last-daily-results")
+  const response = await axios.get("/last-daily-result")
   return response.data
 }

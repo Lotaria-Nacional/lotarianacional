@@ -25,7 +25,13 @@ const DailyResults = () => {
           <h1 className="text-LT_WHITE font-bold text-base uppercase">
             resultados diários
           </h1>
-          <h2 className="text-lg">{results.formatedDate}</h2>
+          <h2 className="text-lg">
+            {results.formatedDate
+              .split(",")[1]
+              .split(" ")
+              .join("")
+              .replace(/de/g, "/")}
+          </h2>
         </header>
 
         {results.results.map((result, index) => (

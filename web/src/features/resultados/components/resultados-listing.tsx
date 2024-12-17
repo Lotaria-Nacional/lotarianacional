@@ -1,6 +1,10 @@
 import ResultadoCard from "./resultado-card"
 import { IDailyResult } from "../../../interfaces"
 import { DAYS_OF_WEEK } from "../../../constants/days-of-week"
+import fezada from "../../../../public/placeholders/fezada.png"
+import aqueceu from "../../../../public/placeholders/aqueceu.png"
+import kazola from "../../../../public/placeholders/kazola.png"
+import eskebra from "../../../../public/placeholders/eskebra.png"
 
 type ResultadosListingProps = {
   resultsListing: IDailyResult[]
@@ -9,10 +13,14 @@ type ResultadosListingProps = {
 const ResultadosListing = ({ resultsListing }: ResultadosListingProps) => {
   const currentDay = new Date().getDay()
   const isToday = DAYS_OF_WEEK[currentDay]
+  const PLACE_HOLDERS_IMG = [fezada, aqueceu, kazola, eskebra]
+  const TOTAL_RESULTS = 4
 
   return (
     <div className="w-full flex lg:items-center gap-2 lg:justify-start">
       {resultsListing.map((data, index) => {
+        const totalResults = data.results.length
+        const placeHoldersCount = TOTAL_RESULTS - totalResults
         return (
           <div
             key={index}
@@ -36,7 +44,18 @@ const ResultadosListing = ({ resultsListing }: ResultadosListingProps) => {
 
             <div className="flex flex-col gap-4">
               {data.results.map((res, index) => (
-                <ResultadoCard key={index} result={res} isTheSameDay={false} />
+                <ResultadoCard key={index} result={res} />
+              ))}
+              {Array.from({ length: placeHoldersCount }).map((_, index) => (
+                <div
+                  key={index}
+                  className="relative w-[180px] h-[115px] p-2 rounded-[13px]"
+                >
+                  <img
+                    src={PLACE_HOLDERS_IMG[index + totalResults]}
+                    className="absolute inset-0 w-full h-full object-contain"
+                  />
+                </div>
               ))}
             </div>
           </div>

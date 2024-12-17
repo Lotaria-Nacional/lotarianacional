@@ -14,6 +14,7 @@ export interface IResult {
   number_3: number
   number_4: number
   number_5: number
+  videoURL: string
   createdAt: Date
 }
 

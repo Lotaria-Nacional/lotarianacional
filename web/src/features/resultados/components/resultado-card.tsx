@@ -1,8 +1,8 @@
 import { twMerge } from "tailwind-merge"
 import { useEffect, useState } from "react"
+import { IResult } from "../../../interfaces"
 import { MdPlayCircleOutline } from "react-icons/md"
 import VideoLightBox from "../../../components/video-light-box"
-import { IResult } from "../../../interfaces"
 
 export type ResultProps = {
   name: string
@@ -13,7 +13,6 @@ export type ResultProps = {
 export type ResultCardProps = {
   result: IResult
   className?: string
-  isTheSameDay?: boolean
 }
 
 const ResultadoCard = ({ result, className }: ResultCardProps) => {
@@ -37,6 +36,11 @@ const ResultadoCard = ({ result, className }: ResultCardProps) => {
     }
   }, [openLightBox])
 
+  const currentDate = new Date().toISOString().split("T")[0]
+  const resultDate = result.createdAt.toString().split("T")[0]
+
+  const shouldBeGray = currentDate !== resultDate
+
   return (
     <>
       <div
@@ -47,9 +51,10 @@ const ResultadoCard = ({ result, className }: ResultCardProps) => {
           className
         )}
       >
-        {/* {!isTheSameDay && (
+        {shouldBeGray && (
           <div className="absolute inset-0 pointer-events-none z-30 w-full rounded-2xl h-full bg-zinc-600/90" />
-        )} */}
+        )}
+
         {!hoverOnCard ? (
           <>
             <header className="flex flex-col text-[15px] gap-2">
@@ -77,7 +82,12 @@ const ResultadoCard = ({ result, className }: ResultCardProps) => {
           </div>
         )}
       </div>
-      {openLightBox && <VideoLightBox handleClose={handleCloseVideoLightBox} />}
+      {openLightBox && (
+        <VideoLightBox
+          videoURL={result.videoURL}
+          handleClose={handleCloseVideoLightBox}
+        />
+      )}
     </>
   )
 }

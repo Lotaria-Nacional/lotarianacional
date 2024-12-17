@@ -1,21 +1,29 @@
-import { IDailyResult } from "../interfaces"
-import { getDailyResults } from "../api/result.api"
-import Container from "../components/container"
 import { useEffect, useState } from "react"
-import ResultadosListing from "../features/resultados/components/resultados-listing"
+import { IDailyResult } from "../interfaces"
+import Container from "../components/container"
+import { getDailyResults } from "../api/result.api"
 import FilterResultPerDate from "../components/filter-result-per-date"
+import ResultadosListing from "../features/resultados/components/resultados-listing"
 
 const ResultadosPage = () => {
+  const [isLoading, setIsLoading] = useState(true)
   const [results, setResults] = useState<IDailyResult[]>([])
 
   useEffect(() => {
     const fetch = async () => {
       const data = await getDailyResults()
       setResults(data)
+      setIsLoading(false)
     }
     fetch()
   }, [])
 
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center w-full h-[400px]">
+        <span>Carregando...</span>
+      </div>
+    )
   if (results.length === 0) {
     return (
       <div className="flex items-center justify-center w-full h-[400px]">
