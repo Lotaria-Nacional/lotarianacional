@@ -58,8 +58,8 @@ model Agencies {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   phone Int
-  latitude Int
-  longitude Int
+  latitude Float
+  longitude Float
   createdAt DateTime
   location_text String
 }
