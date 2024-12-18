@@ -69,6 +69,7 @@ model Banners {
   desktop_banner_1 String
   desktop_banner_2 String
   desktop_banner_3 String
+  
   mobile_banner_1 String
   mobile_banner_2 String
   mobile_banner_3 String

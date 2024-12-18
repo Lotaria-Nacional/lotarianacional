@@ -1,4 +1,5 @@
 import { prisma } from "../../Database/prisma"
+import { startOfWeek, addDays } from "date-fns"
 import { Result } from "../../../Domain/Entities/Result/Result"
 import { NotFoundError } from "../../../shared/errors/notFound.error"
 import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
@@ -37,8 +38,24 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
     })
   }
 
-  async getAll(): Promise<DailyResult[]> {
+  async getAll(date?: string): Promise<DailyResult[]> {
+    let whereClause = {}
+
+    if (date) {
+      const targetDate = new Date(date)
+      const startOfTargetWeek = startOfWeek(targetDate, { weekStartsOn: 1 })
+      const endOfTargetWeek = addDays(startOfTargetWeek, 5)
+
+      whereClause = {
+        createdAt: {
+          gte: startOfTargetWeek,
+          lt: endOfTargetWeek,
+        },
+      }
+    }
+
     const dailyResults = await prisma.dailyResult.findMany({
+      where: whereClause,
       include: { results: true },
       orderBy: {
         createdAt: "asc",

@@ -5,7 +5,7 @@ export interface IDailyResultRespository {
   update(dailyResult: DailyResult): Promise<void>
   getByDate(date: string): Promise<DailyResult | null>
   getById(id: string): Promise<DailyResult | null>
-  getAll(): Promise<DailyResult[]>
+  getAll(date?: string): Promise<DailyResult[]>
   delete(id: string): Promise<void>
   getLast(): Promise<DailyResult | null>
 }

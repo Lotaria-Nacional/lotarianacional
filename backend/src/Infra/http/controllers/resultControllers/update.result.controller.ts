@@ -14,6 +14,7 @@ export class UpdateResultController {
       number_3: z.number().int().optional(),
       number_4: z.number().int().optional(),
       number_5: z.number().int().optional(),
+      videoURL: z.string().optional(),
     })
 
     try {
@@ -27,6 +28,7 @@ export class UpdateResultController {
         number_3: data.number_3,
         number_4: data.number_4,
         number_5: data.number_5,
+        videoURL: data.videoURL,
       }
 
       const result = await this.updateResultUseCase.execute(updated)

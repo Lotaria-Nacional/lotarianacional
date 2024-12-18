@@ -5,8 +5,8 @@ import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/d
 export class GetDailyResultsUseCase {
   constructor(private dailyResultRepository: IDailyResultRespository) {}
 
-  async execute() {
-    const dailyResults = await this.dailyResultRepository.getAll()
+  async execute(date?: string) {
+    const dailyResults = await this.dailyResultRepository.getAll(date)
 
     return dailyResults.map((dailyRes) =>
       DailyResult.create({

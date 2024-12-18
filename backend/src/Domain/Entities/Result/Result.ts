@@ -17,6 +17,7 @@ export type UpdateNumberInputDTO = {
   number_3?: number
   number_4?: number
   number_5?: number
+  videoURL?: string
 }
 
 export class Result {
