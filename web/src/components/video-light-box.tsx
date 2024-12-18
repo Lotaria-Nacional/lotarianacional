@@ -5,11 +5,11 @@ type Props = {
   videoURL: string
 }
 
-const VideoLightBox = ({ handleClose,videoURL }: Props) => {
+const VideoLightBox = ({ handleClose, videoURL }: Props) => {
   return (
     <div
       onClick={handleClose}
-      className="fixed bg-black/70 w-full h-full inset-0 flex items-center justify-center z-[5000000]"
+      className="fixed bg-black/70 w-full h-full inset-0 flex items-center justify-center z-[2000]"
     >
       <div className="flex flex-col w-full p-3 lg:p-0 lg:w-3/5 h-[350px] md:h-[450px] lg:h-2/3 gap-2">
         <div className="w-full flex justify-end ">

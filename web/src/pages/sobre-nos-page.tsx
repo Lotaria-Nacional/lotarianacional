@@ -1,4 +1,4 @@
-import Container from "../components/container"
+import Container from "../components/common/container"
 import { ICONS, IMAGES } from "../constants/assets"
 
 const SobreNosPage = () => {

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { IMAGES } from "../constants/assets"
-import Container from "../components/container"
+import Container from "../components/common/container"
 import { FaFileDownload } from "react-icons/fa"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Swiper as SwiperType } from "swiper/types"

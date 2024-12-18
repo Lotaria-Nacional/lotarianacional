@@ -20,7 +20,7 @@ const Emissoes = () => {
         {Array.from({ length: 3 }).map((_, index) => (
           <SwiperSlide key={index} className="relative w-full">
             <iframe
-              src="https://www.youtube.com/embed/4OGRJetsPts"
+              src="https://www.youtube.com/embed/LMlCN6_vUvs"
               className="abolute inset-0 object-cover w-full h-full rounded-xl"
             />
           </SwiperSlide>

@@ -1,7 +1,7 @@
 import Ui from "../components/ui"
 import { IMAGES } from "../constants/assets"
 import { ChangeEvent, useState } from "react"
-import Container from "../components/container"
+import Container from "../components/common/container"
 
 const RecrutamentoPage = () => {
   const [value, setValue] = useState("")

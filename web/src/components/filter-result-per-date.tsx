@@ -1,41 +1,47 @@
-import { ChangeEvent, useRef } from "react"
-import { useSearchParams } from "react-router-dom"
+import { useDebounce } from "../hooks/useDebounce"
+import { SetURLSearchParams } from "react-router-dom"
+import { ChangeEvent, useEffect, useRef, useState } from "react"
 
-const FilterResultPerDate = () => {
+type Props = {
+  setDate: SetURLSearchParams
+  date: URLSearchParams
+}
+
+const FilterResultPerDate = ({ date, setDate }: Props) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const [date, setDate] = useSearchParams({ date: "" })
+  const [tempDate, setTempDate] = useState<string>(date.get("date") || "")
+  const debouncedDate = useDebounce(tempDate, 400)
 
-  const dateValue = date.get("date")
-
-  const handleClickInput = () => {
-    if (inputRef.current) {
-      inputRef.current.showPicker()
-    }
-  }
+  useEffect(() => {
+    setDate((prev) => {
+      if (debouncedDate) {
+        prev.set("date", debouncedDate)
+      } else {
+        prev.delete("date")
+      }
+      return prev
+    })
+  }, [debouncedDate, setDate])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    if (value) {
-      setDate((prev) => {
-        prev.set("date", value)
-        if (!value) {
-          prev.delete("date")
-        }
-        return prev
-      })
-    }
+    setTempDate(e.target.value)
   }
+
+  const handleClickInput = () => {
+    inputRef.current?.showPicker()
+  }
+
   return (
     <div className="relative border py-1 px-2 h-10 flex items-center justify-center rounded-lg gap-2">
-      <label className="cursor-pointer" htmlFor="date">
+      <label htmlFor="date" className="cursor-pointer">
         <span>Filtrar por data</span>
         <input
-          type="date"
           id="date"
+          type="date"
           ref={inputRef}
+          value={tempDate}
           onChange={handleChange}
           onClick={handleClickInput}
-          value={dateValue?.toString()}
           className="absolute opacity-0 w-full h-full top-0 left-0 cursor-pointer"
         />
       </label>

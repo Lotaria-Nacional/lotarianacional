@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
-import Header from "./components/header"
-import Footer from "./components/footer"
-import TopHeader from "./components/top-header"
+import Header from "./components/common/header"
+import Footer from "./components/common/footer"
+import TopHeader from "./components/common/top-header"
 
 const App = () => {
   return (

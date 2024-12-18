@@ -1,9 +1,9 @@
+import Ui from "../components/ui"
 import { useEffect, useState } from "react"
 import { ICONS } from "../constants/assets"
-import Container from "../components/container"
-import ESTATISTICAS from "../features/estatísticas/db/estatísticas.json"
-import ChartPopUp from "../features/estatísticas/components/chart-pop-up"
-import Ui from "../components/ui"
+import Container from "../components/common/container"
+import ESTATISTICAS from "../constants/db/estatísticas.json"
+import ChartPopUp from "../components/estatisticas/chart-pop-up"
 
 const EstatisticasPage = () => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false)

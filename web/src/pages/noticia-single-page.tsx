@@ -1,6 +1,6 @@
 import { INews } from "../interfaces"
 import { useEffect, useState } from "react"
-import Container from "../components/container"
+import Container from "../components/common/container"
 import { NavLink, useParams } from "react-router-dom"
 import { getNews, getNewsById } from "../api/noticias.api"
 import { SiX, SiFacebook, SiWhatsapp, SiLinkedin } from "react-icons/si"
@@ -85,7 +85,10 @@ const NoticiaSinglePage = () => {
             <h1 className="font-bold text-xl">Outras notícias</h1>
             <ul className="flex flex-col gap-8">
               {otherNews.map((data) => (
-                <li key={data.id} className="flex lg:flex-row flex-col items-center gap-4 w-full">
+                <li
+                  key={data.id}
+                  className="flex lg:flex-row flex-col items-center gap-4 w-full"
+                >
                   <div className="relative h-[180px] md:h-[150px] w-[350px] lg:w-[600px]">
                     <img
                       alt={data.title}

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import Container from "../../container"
+import Container from "../../common/container"
 import { NavLink } from "react-router-dom"
 import { NAVIGATION_LINKS } from "../../../constants/links"
 
