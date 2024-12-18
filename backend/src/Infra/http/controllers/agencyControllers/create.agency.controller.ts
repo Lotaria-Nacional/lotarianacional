@@ -12,8 +12,8 @@ export class CreateAgencyController {
       location_text: z
         .string()
         .min(1, "A localização da agência é obrigatória."),
-      latitude: z.number().int(),
-      longitude: z.number().int(),
+      latitude: z.number(),
+      longitude: z.number(),
     })
     try {
       const agencyData = createAgencySchema.parse(req.body)

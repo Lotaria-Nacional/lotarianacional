@@ -12,8 +12,8 @@ export class UpdateAgencyController {
       name: z.string().optional(),
       phone: z.number().optional(),
       location_text: z.string().optional(),
-      latitude: z.number().int().optional(),
-      longitude: z.number().int().optional(),
+      latitude: z.number().optional(),
+      longitude: z.number().optional(),
     })
 
     try {
