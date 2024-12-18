@@ -112,17 +112,14 @@ const AddResultCardInput = ({ hour, name }: Props) => {
                     "watch?v=",
                     "embed/"
                   )
-                  console.log(youtubeEmbedURL)
+                  
                   setData({ ...data, videoURL: youtubeEmbedURL })
                 }}
               />
             </Label>
             <DialogFooter>
               <DialogClose asChild>
-                <Button className="bg-RED-200">Cancelar</Button>
-              </DialogClose>
-              <DialogClose asChild>
-                <Button variant={"outline"}>Adicionar</Button>
+                <Button className="bg-RED-200">Confirmar</Button>
               </DialogClose>
             </DialogFooter>
           </DialogContent>

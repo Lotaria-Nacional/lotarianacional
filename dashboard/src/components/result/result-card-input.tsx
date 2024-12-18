@@ -1,7 +1,21 @@
-import { updateResults } from "@/api/results.api"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
+import { Video } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
 import { Button } from "../ui/button"
-import { ChangeEvent, FormEvent, useState } from "react"
 import { toast } from "react-toastify"
+import { updateResults } from "@/api/results.api"
+import { ChangeEvent, FormEvent, useState } from "react"
 
 export type KeyProps =
   | "number_1"
@@ -72,6 +86,43 @@ const ResultCardInput = ({ result }: Props) => {
 
   return (
     <form onSubmit={handleUpdate} className="w-full flex flex-col gap-4">
+      <Dialog>
+        <DialogTrigger asChild className="absolute top-3 right-2">
+          <Button variant={"outline"}>
+            <Video />
+          </Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              Atualize a url do video para este resultado.
+            </DialogTitle>
+          </DialogHeader>
+
+          <Label htmlFor="video" className="flex flex-col gap-2 mt-4">
+            <span>Youtube videoURL</span>
+            <Input
+              id="video"
+              name="video"
+              value={data.videoURL}
+              onChange={(e) => {
+                const youtubeEmbedURL = e.target.value.replace(
+                  "watch?v=",
+                  "embed/"
+                )
+
+                setData({ ...data, videoURL: youtubeEmbedURL })
+              }}
+            />
+          </Label>
+
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button className="bg-RED-200">Confirmar</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       <div className="loto-bg h-[119px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-4">
         <div className="flex flex-col text-[15px] text-white">
           <span className="uppercase">{result.name}</span>

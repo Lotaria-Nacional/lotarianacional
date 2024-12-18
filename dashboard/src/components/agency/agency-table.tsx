@@ -17,43 +17,22 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog"
+import { useState } from "react"
+import { isAxiosError } from "axios"
 import { Button } from "../ui/button"
 import { toast } from "react-toastify"
-import { IAgency } from "@/interfaces"
 import { PlusIcon } from "lucide-react"
 import { ICON } from "@/constants/assets"
 import { NavLink } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { deleteAgency, getAgencies } from "@/api/agency.api"
+import { deleteAgency } from "@/api/agency.api"
+import { useAgencies } from "@/hooks/useAgencies"
 import NothingToShow from "@/components/common/nothing-to-show"
-import { isAxiosError } from "axios"
-import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 import AgencyTableSkeleton from "../skeletons/agency-table-skeleton"
+import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
 const AgencyTable = () => {
-  const [isLoading, setIsLoading] = useState(true)
+  const { agencies, isLoading } = useAgencies()
   const [isRemoving, setIsRemoving] = useState(false)
-  const [agencies, setAgencies] = useState<IAgency[]>([])
-
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const data = await getAgencies()
-        setAgencies(data)
-      } catch (error) {
-        if (isAxiosError(error)) {
-          if (error.response) {
-            return toast.error(TRY_LATER_ERROR)
-          }
-          toast.error(error.message)
-        }
-        return toast.error(SERVER_CONNECTION_ERROR)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetch()
-  }, [])
 
   if (isLoading) {
     return <AgencyTableSkeleton />

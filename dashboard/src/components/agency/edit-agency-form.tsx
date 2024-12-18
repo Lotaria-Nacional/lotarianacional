@@ -1,49 +1,47 @@
+import { isAxiosError } from "axios"
+import { toast } from "react-toastify"
+import { useParams } from "react-router-dom"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { updateAgency } from "@/api/agency.api"
+import { useAgencyById } from "@/hooks/useAgencyById"
 import { FormEvent, useEffect, useState } from "react"
-import { updateAgency, getAgencyById } from "@/api/agency.api"
-import { CHAR_REGEX, COORD_REGEX, NUMBER_REGEX } from "@/constants/regex"
-
-import { useParams } from "react-router-dom"
-import { isAxiosError } from "axios"
-import { toast } from "react-toastify"
+import { CHAR_REGEX, NUMBER_REGEX } from "@/constants/regex"
+import EditAgencyFormSkeleton from "../skeletons/edit-agency-form-skeleton"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
 const EditAgencyForm = () => {
   const { id } = useParams()
-  const [isLoading, setIsLoading] = useState(false)
+  const { agency, isLoading } = useAgencyById(id!)
   const [isUpdating, setIsUpdating] = useState(false)
-
-  const [name, setName] = useState("")
-  const [phone, setPhone] = useState("")
-  const [coordinates, setCoordinates] = useState("")
-  const [locationText, setLocationText] = useState("")
 
   if (!id) {
     window.history.back()
     return
   }
+
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [latitude, setLatitude] = useState("")
+  const [longitude, setLongitude] = useState("")
+  const [locationText, setLocationText] = useState("")
+
   useEffect(() => {
-    const fetch = async () => {
-      setIsLoading(true)
-      const data = await getAgencyById(id!)
-      setName(data.name)
-      setPhone(data.phone.toString())
-      const coords = `${data.latitude},${data.latitude}`
-      setCoordinates(coords)
-      setLocationText(data.location_text)
-      setIsLoading(false)
+    if (agency) {
+      setName(agency.name || "")
+      setPhone(agency.phone ? agency.phone.toString() : "")
+      setLocationText(agency.location_text || "")
+      setLatitude(agency.latitude ? agency.latitude.toString() : "")
+      setLongitude(agency.longitude ? agency.longitude.toString() : "")
     }
-    fetch()
-  }, [id])
+  }, [agency])
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setIsUpdating(true)
 
     try {
-      const [latitude, longitude] = coordinates.split(",")
-
       const data = {
         name,
         phone: parseInt(phone),
@@ -67,7 +65,7 @@ const EditAgencyForm = () => {
     }
   }
 
-  if (isLoading) return <span>Carregando...</span>
+  if (isLoading) return <EditAgencyFormSkeleton />
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-10">
@@ -96,7 +94,7 @@ const EditAgencyForm = () => {
             }}
           />
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 col-span-2">
           <Label htmlFor="">Localização</Label>
           <Input
             type="text"
@@ -110,19 +108,25 @@ const EditAgencyForm = () => {
             }}
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="">Coordenadas</Label>
-          <Input
-            type="text"
-            value={coordinates}
-            placeholder="-8.83833 - 13.2344 8°"
-            onChange={(e) => {
-              const value = e.target.value
-              if (COORD_REGEX.test(value)) {
-                setCoordinates(e.target.value)
-              }
-            }}
-          />
+        <div className="flex items-center gap-2 col-span-2">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="">Latitude</Label>
+            <Input
+              type="text"
+              value={latitude}
+              placeholder="8.83833"
+              onChange={(e) => setLatitude(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="">Longitude</Label>
+            <Input
+              type="text"
+              value={longitude}
+              placeholder="-13.83833"
+              onChange={(e) => setLongitude(e.target.value)}
+            />
+          </div>
         </div>
       </div>
       <Button disabled={isUpdating} className="w-full bg-RED-200" type="submit">

@@ -106,7 +106,6 @@ const AddNewsPage = () => {
             <span className="font-medium">Thumbnail</span>
             {previewImg && (
               <img
-                // src={"banner-1.png"}
                 src={previewImg}
                 alt="imagem de pré visualização"
                 className="w-full h-[150px] object-contain rounded-[10px]"

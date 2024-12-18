@@ -6,22 +6,23 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { createAgency } from "@/api/agency.api"
 import { Button } from "@/components/ui/button"
-import { CHAR_REGEX, COORD_REGEX, NUMBER_REGEX } from "@/constants/regex"
+import { CHAR_REGEX, NUMBER_REGEX } from "@/constants/regex"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
 type CreateAgencyDTO = Omit<IAgency, "id" | "createdAt">
 
 const AgencyForm = () => {
-  const [isLoading, setIsLoading] = useState(false)
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
-  const [coordinates, setCoordinates] = useState("")
+  const [latitude, setLatitude] = useState("")
+  const [longitude, setLongitude] = useState("")
   const [locationText, setLocationText] = useState("")
+
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    const [latitude, longitude] = coordinates.split(",")
 
     const data: CreateAgencyDTO = {
       name,
@@ -50,6 +51,7 @@ const AgencyForm = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-10">
       <div className="grid grid-cols-2 gap-4">
+        {/** Name */}
         <div className="flex flex-col gap-2">
           <Label htmlFor="">Nome da agência</Label>
           <Input
@@ -59,6 +61,7 @@ const AgencyForm = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
+        {/** Telefone */}
         <div className="flex flex-col gap-2">
           <Label htmlFor="">Telefone</Label>
           <Input
@@ -74,7 +77,8 @@ const AgencyForm = () => {
             }}
           />
         </div>
-        <div className="flex flex-col gap-2">
+        {/** Localização */}
+        <div className="flex flex-col gap-2 col-span-2">
           <Label htmlFor="">Localização</Label>
           <Input
             type="text"
@@ -88,19 +92,26 @@ const AgencyForm = () => {
             }}
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="">Coordenadas</Label>
-          <Input
-            type="text"
-            value={coordinates}
-            placeholder="-8.83833 - 13.2344 8°"
-            onChange={(e) => {
-              const value = e.target.value
-              if (COORD_REGEX.test(value)) {
-                setCoordinates(e.target.value)
-              }
-            }}
-          />
+        {/** Latitude & Longitude */}
+        <div className="flex items-center gap-2 col-span-2">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="">Latitude</Label>
+            <Input
+              type="text"
+              value={latitude}
+              placeholder="8.83833"
+              onChange={(e) => setLatitude(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="">Longitude</Label>
+            <Input
+              type="text"
+              value={longitude}
+              placeholder="13.2344 8"
+              onChange={(e) => setLongitude(e.target.value)}
+            />
+          </div>
         </div>
       </div>
       <Button disabled={isLoading} className="w-full bg-RED-200" type="submit">

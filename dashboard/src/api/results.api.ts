@@ -53,6 +53,7 @@ export const updateResults = async (
     number_3: data.number_3,
     number_4: data.number_4,
     number_5: data.number_5,
+    videoURL: data.videoURL,
   })
 
   return response.data
