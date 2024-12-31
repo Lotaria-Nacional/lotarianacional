@@ -19,15 +19,13 @@ export class RecruitCandidateController {
       const missingFields = this.validateFiles(files)
 
       if (missingFields.length > 0) {
-        const message = `Os seguintes campos são obrigatórios: ${missingFields.join(
-          ", "
-        )}`
+        const message = `Os seguintes campos são obrigatórios: ${missingFields.join(", ")}`
         return res.status(400).json(message)
       }
 
       const candidate = this.createCandidate(candidateData, files)
-
       await this.recruitCandidateUseCase.execute(candidate)
+      
       return res
         .status(200)
         .json({ message: "A sua candidatura foi enviada com sucesso!" })

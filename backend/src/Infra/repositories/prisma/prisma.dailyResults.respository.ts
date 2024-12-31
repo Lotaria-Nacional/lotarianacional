@@ -62,7 +62,12 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
       },
     })
 
-    return dailyResults.map((dailyResult) =>
+    const blockSize = 6
+    const totalResults = dailyResults.length
+    const startIndex = totalResults - (totalResults % blockSize || blockSize)
+    let limitedResults = dailyResults.slice(startIndex, startIndex + blockSize)
+
+    return limitedResults.map((dailyResult) =>
       DailyResult.create({
         id: dailyResult.id,
         date: dailyResult.date,
