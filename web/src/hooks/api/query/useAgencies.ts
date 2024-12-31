@@ -1,6 +1,6 @@
-import { IAgency } from "../interfaces"
+import { IAgency } from "../../../interfaces"
 import { useEffect, useState } from "react"
-import { getAgencies } from "../api/agencias.api"
+import { getAgencies } from "../../../api/agencias.api"
 
 export function useAgencies() {
   const [isLoading, setIsLoading] = useState(true)

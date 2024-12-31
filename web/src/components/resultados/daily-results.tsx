@@ -1,7 +1,7 @@
 import Container from "../common/container"
 import ResultadoCard from "./resultado-card"
 import DailyResultSkeleton from "./daily-result-skeleton"
-import { useLastDailyResult } from "@/hooks/useLastDailyResult"
+import { useLastDailyResult } from "@/hooks/api/query/useLastDailyResult"
 
 import fezada from "/placeholders/fezada.svg"
 import kazola from "/placeholders/kazola.svg"

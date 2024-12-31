@@ -1,4 +1,4 @@
-import { useNews } from "@/hooks/useNews"
+import { useNews } from "@/hooks/api/query/useNews"
 import Container from "../components/common/container"
 import EmptyState from "@/components/common/empty-state"
 import NoticiaCard from "../components/noticias/noticia-card"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { IDailyResult } from "../interfaces"
-import { getDailyResults } from "../api/result.api"
+import { IDailyResult } from "../../../interfaces"
+import { getDailyResults } from "../../../api/result.api"
 
 type UseDailyResultResponse = {
   isLoading: boolean

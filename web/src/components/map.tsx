@@ -1,13 +1,15 @@
+import "leaflet/dist/leaflet.css"
+
 import L from "leaflet"
 import pin from "/icons/pin.svg"
-import "leaflet/dist/leaflet.css"
 import { HiPhone } from "react-icons/hi"
 import { useLocation } from "react-router-dom"
-import agencias from "../constants/db/agencias.json"
+import { useAgencies } from "@/hooks/api/query/useAgencies"
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
 
 const LeafletMap = () => {
   const { pathname } = useLocation()
+  const { agencies } = useAgencies()
   if (pathname === "/agencias" && window.innerWidth < 767) {
     return
   }
@@ -32,11 +34,11 @@ const LeafletMap = () => {
       />
 
       {/* Add a marker */}
-      {agencias.map((item, i) => (
+      {agencies.map((item) => (
         <Marker
-          key={i}
-          position={[item.latitude, item.longitude]}
+          key={item.id}
           icon={mapIcon}
+          position={[item.latitude, item.longitude]}
         >
           <Popup>
             <div className="w-[320px] lg:w-[305px] h-[181px] p-2 rounded-xl flex flex-col items-start justify-between">

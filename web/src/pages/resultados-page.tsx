@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 import Container from "../components/common/container"
 import EmptyState from "../components/common/empty-state"
-import { useDailyResults } from "../hooks/useDailyResults"
+import { useDailyResults } from "../hooks/api/query/useDailyResults"
 import FilterResultPerDate from "../components/filter-result-per-date"
 import ResultsSkeleton from "@/components/resultados/results-skeleton"
 import ResultadosListing from "../components/resultados/resultados-listing"

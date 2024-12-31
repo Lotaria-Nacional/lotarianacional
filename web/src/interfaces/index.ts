@@ -44,3 +44,15 @@ export interface IUser {
   profilePic?: string | Buffer
   createdAt: Date
 }
+
+export interface IRecruitment {
+  firstName: string
+  lastName: string
+  IBAN: string
+  phone: string
+  gender: string
+  BI: File | null | undefined
+  photo: File | null | undefined
+  curriculum: File | null | undefined
+  residenceProof: File | null | undefined
+}

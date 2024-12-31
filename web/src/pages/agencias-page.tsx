@@ -1,5 +1,5 @@
 import LeafletMap from "../components/map"
-import { useAgencies } from "../hooks/useAgencies"
+import { useAgencies } from "../hooks/api/query/useAgencies"
 import { useSearchParams } from "react-router-dom"
 import Container from "../components/common/container"
 import EmptyState from "../components/common/empty-state"

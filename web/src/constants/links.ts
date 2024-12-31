@@ -1,3 +1,4 @@
+import { SiFacebook, SiX, SiLinkedin, SiWhatsapp } from "react-icons/si"
 import { ICONS } from "../constants/assets"
 
 export const NAVIGATION_LINKS = [
@@ -58,3 +59,22 @@ export const LINK_CARDS = [
     text: ["estatísticas dos", "últimos jogos"],
   },
 ]
+
+export const SOCIAL_MEDIA = [
+  {
+    icon: SiFacebook,
+    link: "#",
+  },
+  {
+    icon: SiX,
+    link: "#",
+  },
+  {
+    icon: SiLinkedin,
+    link: "#",
+  },
+  {
+    icon: SiWhatsapp,
+    link: "#",
+  },
+] as const

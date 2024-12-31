@@ -1,34 +1,57 @@
 import Ui from "../components/ui"
+import { isAxiosError } from "axios"
+import { toast } from "react-toastify"
+import { FormEvent, useState } from "react"
+import { IRecruitment } from "@/interfaces"
 import { IMAGES } from "../constants/assets"
-import { ChangeEvent, useState } from "react"
 import Container from "../components/common/container"
+import { useRecruitmentSubmit } from "@/hooks/api/index"
+import { regexIBAN, regexPhoneNumber } from "@/utils/regex"
 
 const RecrutamentoPage = () => {
-  const [value, setValue] = useState("")
-  const [phone, setPhone] = useState("")
+  const { submit, isLoading } = useRecruitmentSubmit()
+  const [recruitment, setRecruitment] = useState<IRecruitment>({
+    firstName: "",
+    lastName: "",
+    IBAN: "",
+    phone: "",
+    gender: "",
+    BI: null,
+    photo: null,
+    curriculum: null,
+    residenceProof: null,
+  })
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value.replace(/\D/g, "") // Remove qualquer caractere não numérico
-    const formattedValue =
-      input
-        .slice(0, 21) // Limita a entrada a 21 caracteres
-        .match(/.{1,4}/g) // Divide os números em grupos de até 4
-        ?.join(".") || "" // Adiciona os pontos entre os grupos
-
-    setValue(formattedValue)
+  const resetInputFields = () => {
+    setRecruitment({
+      firstName: "",
+      lastName: "",
+      IBAN: "",
+      phone: "",
+      gender: "",
+      BI: null,
+      photo: null,
+      curriculum: null,
+      residenceProof: null,
+    })
   }
 
-  const handlePhoneNumber = (value: ChangeEvent<HTMLInputElement>) => {
-    // Remove tudo que não for número
-    const onlyNumbers = value.target.value.replace(/\D/g, "")
-    // Limita o input a 9 dígitos
-    const limitedNumbers = onlyNumbers.slice(0, 9)
-    // Aplica o formato de separar por "-"
-    const newPhone = limitedNumbers.replace(
-      /(\d{1,3})(?=(\d{3})+(?!\d))/g,
-      "$1-"
-    )
-    setPhone(newPhone)
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    try {
+      const response = await submit(recruitment, e)
+      toast.success(response.message)
+    } catch (error) {
+      if (isAxiosError(error)) {
+        if (!error.response) {
+          return toast.error("Erro ao submeter candidatura.Tente mais tarde.")
+        }
+        return toast.error(error.response.data)
+      }
+      return toast.error("Erro interno no servidor.")
+    } finally {
+      resetInputFields()
+    }
   }
 
   return (
@@ -36,35 +59,38 @@ const RecrutamentoPage = () => {
       <h1 className="text-start block lg:hidden text-[26px] font-bold">
         Recrutamento de parceiros
       </h1>
-      <form className="w-full bg-zinc-100 rounded-xl space-y-6 p-7 h-full">
+
+      <form
+        onSubmit={handleSubmit}
+        className="w-full bg-zinc-100 rounded-xl space-y-6 p-7 h-full"
+      >
         <div className="flex items-center flex-wrap lg:flex-nowrap gap-4 w-full">
-          <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="" className="font-semibold">
-              Nome*
-            </label>
+          <Ui.InputContainer labelName="Nome">
             <input
-              className="p-2 rounded-lg border outline-none"
               type="text"
               placeholder="Nome"
-            />
-          </div>
-
-          <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="" className="font-semibold">
-              Sobrenome*
-            </label>
-            <input
+              value={recruitment.firstName}
+              onChange={(e) =>
+                setRecruitment({ ...recruitment, firstName: e.target.value })
+              }
               className="p-2 rounded-lg border outline-none"
+            />
+          </Ui.InputContainer>
+
+          <Ui.InputContainer labelName="Sobrenome">
+            <input
               type="text"
               placeholder="Sobrenome"
+              value={recruitment.lastName}
+              onChange={(e) =>
+                setRecruitment({ ...recruitment, lastName: e.target.value })
+              }
+              className="p-2 rounded-lg border outline-none"
             />
-          </div>
+          </Ui.InputContainer>
         </div>
 
-        <div className="flex flex-col gap-2 w-full">
-          <label htmlFor="" className="font-semibold">
-            Telefone*
-          </label>
+        <Ui.InputContainer labelName="Telefone">
           <div className=" w-full rounded-lg border flex items-center gap-1 bg-white">
             <div className="flex px-2 gap-1 h-[40px] items-center justify-center bg-LT_GRAY-100/40">
               <img
@@ -74,104 +100,128 @@ const RecrutamentoPage = () => {
               />
               <span>+244</span>
             </div>
+
             <input
               type="text"
-              value={phone}
-              onChange={handlePhoneNumber}
-              className="p-2 outline-none w-full"
+              value={recruitment.phone}
               placeholder="Número de Telefone"
+              className="p-2 outline-none w-full"
+              onChange={(e) =>
+                setRecruitment({
+                  ...recruitment,
+                  phone: regexPhoneNumber(e.target.value),
+                })
+              }
             />
           </div>
-        </div>
+        </Ui.InputContainer>
 
-        <div className="flex flex-col gap-2 w-full">
-          <label htmlFor="" className="font-semibold">
-            Gênero*
-          </label>
-
-          <div className="flex items-center gap-3">
-            <label htmlFor="" className="flex items-center gap-1">
+        <Ui.InputContainer labelName="Gênero">
+          <fieldset className="flex items-center gap-3">
+            <label className="flex items-center gap-1">
               <input
-                className="p-2 rounded-lg border outline-none"
-                name="gender"
                 type="radio"
+                name="gender"
+                value="Masculino"
+                className="p-2 rounded-lg border outline-none"
+                onChange={(e) =>
+                  setRecruitment({ ...recruitment, gender: e.target.value })
+                }
               />
               <span>Masculino</span>
             </label>
 
-            <label htmlFor="" className="flex items-center gap-1">
+            <label className="flex items-center gap-1">
               <input
-                className="p-2 rounded-lg border outline-none"
-                name="gender"
                 type="radio"
+                name="gender"
+                value="Feminino"
+                className="p-2 rounded-lg border outline-none"
+                onChange={(e) =>
+                  setRecruitment({ ...recruitment, gender: e.target.value })
+                }
               />
               <span>Feminino</span>
             </label>
-          </div>
-        </div>
+          </fieldset>
+        </Ui.InputContainer>
 
-        <div className="flex flex-col w-full gap-2">
-          <label htmlFor="" className="font-semibold">
-            Cópia do B.I
-          </label>
+        <Ui.InputContainer labelName="Cópia do B.I">
           <input
-            className="p-2 rounded-lg border outline-none"
             type="file"
-            accept=".pdf"
+            accept="image/*"
+            className="p-2 rounded-lg border outline-none"
+            onChange={(e) =>
+              setRecruitment({ ...recruitment, BI: e.target.files?.item(0) })
+            }
           />
-        </div>
+          <span className="text-xs text-zinc-400">(Tamanho máx. 4MB)</span>
+        </Ui.InputContainer>
 
-        <div className="flex flex-col w-full gap-2">
-          <label htmlFor="" className="font-semibold">
-            Fotos tipo passe
-          </label>
+        <Ui.InputContainer labelName="Fotos tipo passe">
           <input
-            className="p-2 rounded-lg border outline-none"
             type="file"
-            accept=".pdf"
+            accept="image/*"
+            className="p-2 rounded-lg border outline-none"
+            onChange={(e) =>
+              setRecruitment({ ...recruitment, photo: e.target.files?.item(0) })
+            }
           />
-        </div>
+          <span className="text-xs text-zinc-400">(Tamanho máx. 4MB)</span>
+        </Ui.InputContainer>
 
-        <div className="flex flex-col w-full gap-2">
-          <label htmlFor="" className="font-semibold">
-            Curriculum vitae
-          </label>
+        <Ui.InputContainer labelName="Curriculum vitae">
           <input
-            className="p-2 rounded-lg border outline-none"
             type="file"
-            accept=".pdf"
+            className="p-2 rounded-lg border outline-none"
+            onChange={(e) =>
+              setRecruitment({
+                ...recruitment,
+                curriculum: e.target.files?.item(0),
+              })
+            }
           />
-        </div>
+          <span className="text-xs text-zinc-400">(Tamanho máx. 4MB)</span>
+        </Ui.InputContainer>
 
-        <div className="flex flex-col w-full gap-2">
-          <label htmlFor="" className="font-semibold">
-            Comprovativo de residência
-          </label>
+        <Ui.InputContainer labelName="Comprovativo de residência">
           <input
-            className="p-2 rounded-lg border outline-none"
             type="file"
-            accept=".pdf"
+            className="p-2 rounded-lg border outline-none"
+            onChange={(e) =>
+              setRecruitment({
+                ...recruitment,
+                residenceProof: e.target.files?.item(0),
+              })
+            }
           />
-        </div>
+          <span className="text-xs text-zinc-400">(Tamanho máx. 4MB)</span>
+        </Ui.InputContainer>
 
-        <div className="flex flex-col w-full gap-2">
-          <label htmlFor="" className="font-semibold">
-            IBAN
-          </label>
+        <Ui.InputContainer labelName="IBAN">
           <div className="flex p-2 rounded-lg border items-center gap-1 bg-white w-full">
             AO06
             <input
               type="text"
-              value={value}
               inputMode="numeric"
-              onChange={handleChange}
-              className=" outline-none w-full"
+              value={recruitment.IBAN}
+              className="outline-none w-full"
+              onChange={(e) =>
+                setRecruitment({
+                  ...recruitment,
+                  IBAN: regexIBAN(e.target.value),
+                })
+              }
             />
           </div>
-        </div>
+        </Ui.InputContainer>
 
-        <Ui.Button btn="red" className="w-full justify-center">
-          Submeter candidatura
+        <Ui.Button
+          btn="red"
+          disabled={isLoading}
+          className="w-full justify-center"
+        >
+          {isLoading ? "Submetendo..." : "Submeter candidatura"}
         </Ui.Button>
       </form>
 

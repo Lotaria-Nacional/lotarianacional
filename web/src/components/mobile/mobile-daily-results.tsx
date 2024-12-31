@@ -1,7 +1,7 @@
 import Container from "../common/container"
 import { formatDate } from "../../utils/date"
 import ResultadoCard from "../resultados/resultado-card"
-import { useLastDailyResult } from "@/hooks/useLastDailyResult"
+import { useLastDailyResult } from "@/hooks/api/query/useLastDailyResult"
 
 import fezada from "/placeholders/fezada.svg"
 import kazola from "/placeholders/kazola.svg"
