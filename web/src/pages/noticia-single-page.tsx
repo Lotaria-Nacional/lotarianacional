@@ -1,12 +1,12 @@
-import { useNews } from "@/hooks/api/query/useNews"
 import { dateFormat } from "../utils/date"
-import { SOCIAL_MEDIA } from "@/constants/links"
-import { useNewsById } from "@/hooks/api/query/useNewsById"
+import { useNews } from "@/hooks/api/query/useNews"
 import { NavLink, useParams } from "react-router-dom"
 import Container from "../components/common/container"
 import EmptyState from "@/components/common/empty-state"
+import { useNewsById } from "@/hooks/api/query/useNewsById"
 import OtherNewsSkeleton from "@/components/noticias/other-news-skeleton"
 import SingleNewsSkeleton from "@/components/noticias/single-news-skeleton"
+import SocialMediaShareButtons from "@/components/noticias/social-media-share-buttons"
 
 const NoticiaSinglePage = () => {
   const { id } = useParams()
@@ -49,17 +49,7 @@ const NoticiaSinglePage = () => {
         <div className="flex flex-col w-full h-full">
           <div className="flex items-center justify-start gap-2">
             <span>Compartilhar: </span>
-            <div className="flex items-center gap-2">
-              {SOCIAL_MEDIA.map((item, index) => (
-                <a
-                  href={item.link}
-                  key={index}
-                  className="size-7 flex items-center text-white bg-neutral-700 justify-center text-sm rounded-full"
-                >
-                  <item.icon />
-                </a>
-              ))}
-            </div>
+            <SocialMediaShareButtons />
           </div>
 
           <hr className="my-4" />

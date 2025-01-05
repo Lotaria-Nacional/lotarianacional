@@ -56,3 +56,15 @@ export interface IRecruitment {
   curriculum: File | null | undefined
   residenceProof: File | null | undefined
 }
+
+export interface IStats {
+  sortedNumber: number
+  sortedTimes: number
+}
+
+export interface IStatistic {
+  id: string
+  file: string
+  statsData: IStats[]
+  createdAt: Date
+}

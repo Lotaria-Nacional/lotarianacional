@@ -9,10 +9,15 @@ import {
 } from "chart.js"
 import { useMemo } from "react"
 import { Bar } from "react-chartjs-2"
-import ESTATISTICAS from "../../constants/db/estatísticas.json"
+import { IStats } from "@/interfaces"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
-const BarChart = () => {
+
+type Props = {
+  stats?: IStats[]
+}
+
+const BarChart = ({ stats }: Props) => {
   const options = {
     indexAxis: "x" as const,
     elements: {
@@ -31,16 +36,13 @@ const BarChart = () => {
       },
     },
   }
-  const labels = useMemo(
-    () => ESTATISTICAS.map((item) => item.sortedNumber),
-    []
-  )
+  const labels = useMemo(() => stats?.map((item) => item.sortedNumber), [])
   const data = useMemo(
     () => ({
       labels,
       datasets: [
         {
-          data: ESTATISTICAS.map((item) => item.sortedTimes),
+          data: stats?.map((item) => item.sortedTimes),
           borderColor: "#bd1717",
           backgroundColor: "#bd1717",
         },

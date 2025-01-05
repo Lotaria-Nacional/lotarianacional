@@ -18,7 +18,7 @@ const ResultadosListing = ({ resultsListing }: ResultadosListingProps) => {
   const TOTAL_RESULTS = 4
 
   return (
-    <div className="w-full flex lg:items-center gap-2 lg:justify-start">
+    <div className="w-full flex lg:items-center gap-8 lg:justify-start">
       {resultsListing.map((data, index) => {
         const totalResults = data.results.length
         const placeHoldersCount = TOTAL_RESULTS - totalResults
@@ -43,7 +43,7 @@ const ResultadosListing = ({ resultsListing }: ResultadosListingProps) => {
               </span>
             </header>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex w-full flex-col gap-4">
               {data.results.map((res, index) => (
                 <ResultadoCard key={index} result={res} />
               ))}

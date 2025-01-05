@@ -18,7 +18,7 @@ const AgenciasPage = () => {
 
   return (
     <>
-      <Container className="lg:py-12 hidden lg:flex flex-col gap-4 min-h-screen">
+      <Container className="lg:py-12 hidden lg:flex flex-col gap-4">
         <AgencyFilter
           setFilter={setSearchParams}
           selectedLetter={paramsValue}

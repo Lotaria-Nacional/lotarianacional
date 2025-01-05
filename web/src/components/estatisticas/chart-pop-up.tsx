@@ -1,11 +1,13 @@
 import BarChart from "./bar-chart"
+import { IStats } from "@/interfaces"
 import { IoCloseOutline } from "react-icons/io5"
 
 type Props = {
   closePopUp: () => void
+  statsData?: IStats[]
 }
 
-const ChartPopUp = ({ closePopUp }: Props) => {
+const ChartPopUp = ({ statsData, closePopUp }: Props) => {
   return (
     <div
       onClick={closePopUp}
@@ -24,7 +26,7 @@ const ChartPopUp = ({ closePopUp }: Props) => {
         </div>
 
         <div className="flex-1">
-          <BarChart />
+          <BarChart stats={statsData} />
         </div>
       </div>
     </div>
