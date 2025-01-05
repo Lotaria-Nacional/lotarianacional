@@ -1,20 +1,52 @@
-import { prisma } from "../../Database/prisma"
-import { startOfWeek, addDays } from "date-fns"
-import { Result } from "../../../Domain/Entities/Result/Result"
-import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
-import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository"
+import { prisma } from "../../Database/prisma";
+import { startOfWeek, addDays } from "date-fns";
+import { Result } from "../../../Domain/Entities/Result/Result";
+import { NotFoundError } from "../../../shared/errors/notFound.error";
+import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult";
+import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository";
 
 export class PrismaDailyResultsRespository implements IDailyResultRespository {
+  async getAll(): Promise<DailyResult[]> {
+    const dailyResults = await prisma.dailyResult.findMany({
+      orderBy: {
+        createdAt: "asc",
+      },
+      include: { results: true },
+    });
+
+    return dailyResults.map((dailyResult) =>
+      DailyResult.create({
+        id: dailyResult.id,
+        date: dailyResult.date,
+        createdAt: dailyResult.createdAt,
+        formatedDate: dailyResult.formatedDate,
+        results: dailyResult.results.map((result) =>
+          Result.create({
+            id: result.id,
+            name: result.name,
+            hour: result.startHour,
+            videoURL: result.videoURL,
+            dailyId: result.dailyId,
+            number_1: result.number_1,
+            number_2: result.number_2,
+            number_3: result.number_3,
+            number_4: result.number_4,
+            number_5: result.number_5,
+            createdAt: result.createdAt,
+          })
+        ),
+      })
+    );
+  }
   async getLast(): Promise<DailyResult | null> {
     const lastDailyResult = await prisma.dailyResult.findFirst({
       orderBy: {
         createdAt: "desc",
       },
       include: { results: true },
-    })
+    });
 
-    if (!lastDailyResult) return null
+    if (!lastDailyResult) return null;
 
     return DailyResult.create({
       id: lastDailyResult.id,
@@ -35,23 +67,23 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           createdAt: result.createdAt,
         })
       ),
-    })
+    });
   }
 
-  async getAll(date?: string): Promise<DailyResult[]> {
-    let whereClause = {}
+  async getAllWithFilter(date?: string): Promise<DailyResult[]> {
+    let whereClause = {};
 
     if (date) {
-      const targetDate = new Date(date)
-      const startOfTargetWeek = startOfWeek(targetDate, { weekStartsOn: 1 })
-      const endOfTargetWeek = addDays(startOfTargetWeek, 5)
+      const targetDate = new Date(date);
+      const startOfTargetWeek = startOfWeek(targetDate, { weekStartsOn: 1 });
+      const endOfTargetWeek = addDays(startOfTargetWeek, 5);
 
       whereClause = {
         createdAt: {
-          gte: startOfTargetWeek,
-          lt: endOfTargetWeek,
+          $gte: startOfTargetWeek,
+          $lte: endOfTargetWeek,
         },
-      }
+      };
     }
 
     const dailyResults = await prisma.dailyResult.findMany({
@@ -60,12 +92,12 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
       orderBy: {
         createdAt: "asc",
       },
-    })
+    });
 
-    const blockSize = 6
-    const totalResults = dailyResults.length
-    const startIndex = totalResults - (totalResults % blockSize || blockSize)
-    let limitedResults = dailyResults.slice(startIndex, startIndex + blockSize)
+    const blockSize = 6;
+    const totalResults = dailyResults.length;
+    const startIndex = totalResults - (totalResults % blockSize || blockSize);
+    let limitedResults = dailyResults.slice(startIndex, startIndex + blockSize);
 
     return limitedResults.map((dailyResult) =>
       DailyResult.create({
@@ -87,7 +119,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           })
         ),
       })
-    )
+    );
   }
   async save(dailyResult: DailyResult): Promise<void> {
     await prisma.dailyResult.create({
@@ -109,17 +141,16 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           })),
         },
       },
-    })
+    });
   }
   async update(dailyResult: DailyResult): Promise<void> {
     const exisitingDailyResult = await prisma.dailyResult.findUnique({
       where: { date: dailyResult.date },
       include: { results: true },
-    })
-    if (!exisitingDailyResult)
-      throw new NotFoundError("Resultado diário não encontrado.")
+    });
+    if (!exisitingDailyResult) throw new NotFoundError("Resultado diário não encontrado.");
 
-    const lastResultAdded = dailyResult.results[dailyResult.results.length - 1]
+    const lastResultAdded = dailyResult.results[dailyResult.results.length - 1];
     const newResult = await prisma.result.create({
       data: {
         dailyId: exisitingDailyResult.id,
@@ -133,9 +164,9 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
         number_5: lastResultAdded.number_5,
         createdAt: lastResultAdded.createdAt,
       },
-    })
+    });
 
-    exisitingDailyResult.results.push(newResult)
+    exisitingDailyResult.results.push(newResult);
 
     await prisma.dailyResult.update({
       where: { id: exisitingDailyResult.id },
@@ -144,16 +175,16 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           connect: { id: newResult.id },
         },
       },
-    })
+    });
   }
 
   async getByDate(date: string): Promise<DailyResult | null> {
     const data = await prisma.dailyResult.findUnique({
       where: { date: new Date(date) },
       include: { results: true },
-    })
+    });
 
-    if (!data) return null
+    if (!data) return null;
 
     return DailyResult.create({
       id: data.id,
@@ -172,25 +203,25 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           videoURL: result.videoURL,
         })
       ),
-    })
+    });
   }
   async delete(id: string): Promise<void> {
     await prisma.result.deleteMany({
       where: { dailyId: id }, // Filtra pelo ID do DailyResult
-    })
+    });
 
     // Exclui o dailyResult
     await prisma.dailyResult.delete({
       where: { id },
-    })
+    });
   }
 
   async getById(id: string): Promise<DailyResult | null> {
     const dailyResult = await prisma.dailyResult.findUnique({
       where: { id },
       include: { results: true },
-    })
-    if (!dailyResult) return null
+    });
+    if (!dailyResult) return null;
 
     return DailyResult.create({
       id: dailyResult.id,
@@ -211,6 +242,6 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
           createdAt: result.createdAt,
         })
       ),
-    })
+    });
   }
 }

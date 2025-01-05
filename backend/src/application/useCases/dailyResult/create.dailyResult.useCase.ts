@@ -2,10 +2,14 @@ import { formatDate } from "../../../utils/date"
 import { Result } from "../../../Domain/Entities/Result/Result"
 import { CreateResultInputDTO } from "../result/create.result.useCase"
 import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult"
+import { IExcelService } from "../../../Domain/services/xlsx.service.interface"
 import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository"
 
 export class CreateDailyResultUseCase {
-  constructor(private dailyResultRespository: IDailyResultRespository) {}
+  constructor(
+    private dailyResultRespository: IDailyResultRespository,
+    private excelService: IExcelService
+  ) {}
 
   async execute(data: CreateResultInputDTO): Promise<void> {
     const today = new Date()
@@ -22,9 +26,11 @@ export class CreateDailyResultUseCase {
         dailyResult.results.push(this.createNewResult(data))
         await this.dailyResultRespository.update(dailyResult)
       }
+
+      await this.excelService.generateAndSaveExcel()
     } catch (error) {
       console.error("Erro ao criar o resultado do dia:", error)
-      throw new Error("Não foi possível atualizar o resultado do dia.")
+      throw error
     }
   }
 

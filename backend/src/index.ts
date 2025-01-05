@@ -13,6 +13,7 @@ import agencyRoutes from "./Infra/http/routes/agency.routes"
 import resultRoutes from "./Infra/http/routes/result.routes"
 import bannerResults from "./Infra/http/routes/banner.routes"
 import dailyResults from "./Infra/http/routes/dailyResults.routes"
+import statisticRoutes from "./Infra/http/routes/statistics.routes"
 import recruitmentRoutes from "./Infra/http/routes/recruitment.routes"
 
 const app = express()
@@ -21,8 +22,6 @@ console.log(process.env.NODE_ENV, " -> ", process.env.DATABASE_URL)
 
 app.set("views", path.join(__dirname, "Infra/http/views"))
 app.set("view engine", "ejs")
-
-console.log(path.join(__dirname, "Infra/http/views"))
 
 app.use(express.static(path.join(__dirname, "../public")))
 app.use(cors())
@@ -38,6 +37,7 @@ app.use("/api", agencyRoutes)
 app.use("/api", dailyResults)
 app.use("/api", bannerResults)
 app.use("/api", recruitmentRoutes)
+app.use("/api", statisticRoutes)
 
 const PORT = 8080
 

@@ -6,7 +6,7 @@ export class GetDailyResultsUseCase {
   constructor(private dailyResultRepository: IDailyResultRespository) {}
 
   async execute(date?: string) {
-    const dailyResults = await this.dailyResultRepository.getAll(date)
+    const dailyResults = await this.dailyResultRepository.getAllWithFilter(date)
 
     return dailyResults.map((dailyRes) =>
       DailyResult.create({
