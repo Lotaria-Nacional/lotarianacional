@@ -2,12 +2,14 @@ import axios from "../config/axios"
 import { IDailyResult } from "../interfaces"
 
 type UpdateNumbersDTO = {
-  videoURL: string
+  name: string
+  hour: string
   number_1: number
   number_2: number
   number_3: number
   number_4: number
   number_5: number
+  videoURL: string
 }
 
 export type CreateDailyResult = {
@@ -48,6 +50,8 @@ export const updateResults = async (
   data: UpdateNumbersDTO
 ): Promise<{ message: string }> => {
   const response = await axios.put(`/result/${id}`, {
+    name: data.name,
+    hour: data.hour,
     number_1: data.number_1,
     number_2: data.number_2,
     number_3: data.number_3,

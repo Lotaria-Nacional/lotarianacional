@@ -46,10 +46,12 @@ const EditAgencyForm = () => {
         name,
         phone: parseInt(phone),
         location_text: locationText,
-        latitude: parseInt(latitude),
-        longitude: parseInt(longitude),
+        latitude: Number(latitude),
+        longitude: Number(longitude),
       }
+
       console.log(data)
+
       const response = await updateAgency(id!, data)
       toast.success(response.message)
     } catch (error) {

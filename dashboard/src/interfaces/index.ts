@@ -55,3 +55,15 @@ export interface IBanner {
   mob_banner_2?: string
   mob_banner_3?: string
 }
+
+export interface IStats {
+  sortedNumber: number
+  sortedTimes: number
+}
+
+export interface IStatistic {
+  id: string
+  file: string
+  statsData: IStats[]
+  createdAt: Date
+}

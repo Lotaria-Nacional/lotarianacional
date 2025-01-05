@@ -1,8 +1,8 @@
-import TotalAgenciesAdded from "@/components/agency/total-agencies-added"
-import BarChart from "@/components/common/chart"
 import DotsButton from "@/components/dots-button"
+import StatisticSection from "@/components/statistic-section"
 import ResultCardListing from "@/components/result/result-card-listing"
 import TotalResultsAdded from "@/components/result/total-results-added"
+import TotalAgenciesAdded from "@/components/agency/total-agencies-added"
 
 const DashboardPage = () => {
   return (
@@ -15,10 +15,7 @@ const DashboardPage = () => {
           </div>
           <ResultCardListing />
         </div>
-
-        <div className="w-full lg:w-[576px] flex items-center justify-center p-3 bg-white rounded-[20px]">
-          <BarChart />
-        </div>
+        <StatisticSection />
       </div>
 
       <div className="w-full lg:w-[1128px] h-[263px] gap-[20px] flex flex-col lg:flex-row p-4 mx-auto">

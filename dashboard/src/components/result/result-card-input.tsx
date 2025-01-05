@@ -41,6 +41,8 @@ type Props = {
 const ResultCardInput = ({ result }: Props) => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState({
+    name: result.name,
+    hour: result.hour,
     number_1: result.number_1,
     number_2: result.number_2,
     number_3: result.number_3,
@@ -69,6 +71,8 @@ const ResultCardInput = ({ result }: Props) => {
     setIsLoading(true)
     try {
       const response = await updateResults(result.id, data)
+
+      console.log(data)
 
       toast.success(response.message, {
         autoClose: 2000,
@@ -125,9 +129,20 @@ const ResultCardInput = ({ result }: Props) => {
       </Dialog>
       <div className="loto-bg h-[119px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-4">
         <div className="flex flex-col text-[15px] text-white">
-          <span className="uppercase">{result.name}</span>
-          <span>{result.hour}</span>
+          <input
+            type="text"
+            value={data.name}
+            className="bg-transparent uppercase outline-none border-none"
+            onChange={(e) => setData({ ...data, name: e.target.value.trim() })}
+          />
+          <input
+            type="text"
+            value={data.hour}
+            className="bg-transparent uppercase outline-none border-none"
+            onChange={(e) => setData({ ...data, hour: e.target.value.trim() })}
+          />
         </div>
+
         <div className="w-full mx-auto flex items-center gap-3">
           <input
             type="text"
