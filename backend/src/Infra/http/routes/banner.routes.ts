@@ -12,9 +12,9 @@ import { CreateDesktopBannerController } from "../controllers/bannerControllers/
 import { CreateMobileBannerController } from "../controllers/bannerControllers/create.mobile.banner.controller";
 
 import { uploadDeskFiles, uploadMobFiles } from "../middlewares/multer.middleware";
-import { UpdateBannerUseCase } from "../../../application/useCases/banner/update.banner.useCase";
+// import { UpdateBannerUseCase } from "../../../application/useCases/banner/update.banner.useCase";
+// import { UpdateMobileBannersController } from "../controllers/bannerControllers/update.mobile.controller";
 import { UpdateDesktopBannersController } from "../controllers/bannerControllers/update.desktop.controller";
-import { UpdateMobileBannersController } from "../controllers/bannerControllers/update.mobile.controller";
 import { DeleteBannerController } from "../controllers/bannerControllers/delete.banner.controller";
 import { DeleteBannerUseCase } from "../../../application/useCases/banner/delete.banner.useCase";
 import { CreateMobileBannerUseCase } from "../../../application/useCases/banner/create.mobileBanner.useCase";
@@ -27,13 +27,13 @@ const cloudinaryService = new CloudinaryUploadService();
 const createDesktopBannerUseCase = new CreateDesktopBannerUseCase(bannerRepository, cloudinaryService);
 const createMobileBannerUseCase = new CreateMobileBannerUseCase(bannerRepository, cloudinaryService);
 
-const updateBannerUseCase = new UpdateBannerUseCase(bannerRepository, cloudinaryService);
+// const updateBannerUseCase = new UpdateBannerUseCase(bannerRepository, cloudinaryService);
 const createDesktopBannerController = new CreateDesktopBannerController(createDesktopBannerUseCase);
 const createMobileBannerController = new CreateMobileBannerController(createMobileBannerUseCase);
 
 //PUT
-const updateDesktopBannerController = new UpdateDesktopBannersController(updateBannerUseCase);
-const updateMobileBannerController = new UpdateMobileBannersController(updateBannerUseCase);
+// const updateDesktopBannerController = new UpdateDesktopBannersController(updateBannerUseCase);
+// const updateMobileBannerController = new UpdateMobileBannersController(updateBannerUseCase);
 
 //GET
 const getBannerUseCase = new GetBannersUseCase(bannerRepository);
@@ -48,12 +48,12 @@ router.post("/banner/desktop", uploadDeskFiles, (req: Request, res: Response) =>
 router.post("/banner/mobile", uploadMobFiles, (req: Request, res: Response) => {
   createMobileBannerController.handle(req, res);
 });
-router.put("/banner/desktop/:id", uploadDeskFiles, (req: Request, res: Response) => {
-  updateDesktopBannerController.handle(req, res);
-});
-router.put("/banner/mobile/:id", uploadMobFiles, (req: Request, res: Response) => {
-  updateMobileBannerController.handle(req, res);
-});
+// router.put("/banner/desktop/:id", uploadDeskFiles, (req: Request, res: Response) => {
+//   updateDesktopBannerController.handle(req, res);
+// });
+// router.put("/banner/mobile/:id", uploadMobFiles, (req: Request, res: Response) => {
+//   updateMobileBannerController.handle(req, res);
+// });
 router.get("/banners", (req: Request, res: Response) => {
   getBannersController.handle(req, res);
 });
