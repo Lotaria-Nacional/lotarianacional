@@ -24,7 +24,7 @@ app.set("views", path.join(__dirname, "Infra/http/views"));
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "../public")));
-app.use(cors({ origin: "https://lotaria-nacional-v2.netlify.app" }));
+app.use(cors({ origin: "*" }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
