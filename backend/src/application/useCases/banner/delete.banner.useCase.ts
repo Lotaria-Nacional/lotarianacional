@@ -12,12 +12,12 @@ export class DeleteBannerUseCase {
     const existingBanner = await this.bannerRepository.getById(id)
     if (!existingBanner) throw new NotFoundError("Não encontrado.")
 
-    await this.deleteFiles(existingBanner?.desk_banner_1 as string)
-    await this.deleteFiles(existingBanner?.desk_banner_2 as string)
-    await this.deleteFiles(existingBanner?.desk_banner_3 as string)
-    await this.deleteFiles(existingBanner?.mob_banner_1 as string)
-    await this.deleteFiles(existingBanner?.mob_banner_2 as string)
-    await this.deleteFiles(existingBanner?.mob_banner_3 as string)
+    await this.deleteFiles(existingBanner?.props.desk_banner_1 as string)
+    await this.deleteFiles(existingBanner?.props.desk_banner_2 as string)
+    await this.deleteFiles(existingBanner?.props.desk_banner_3 as string)
+    await this.deleteFiles(existingBanner?.props.mob_banner_1 as string)
+    await this.deleteFiles(existingBanner?.props.mob_banner_2 as string)
+    await this.deleteFiles(existingBanner?.props.mob_banner_3 as string)
 
     await this.bannerRepository.delete(id)
   }

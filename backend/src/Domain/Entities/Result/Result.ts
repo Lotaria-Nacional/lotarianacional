@@ -8,7 +8,7 @@ export type ResultProps = {
   number_4: number;
   number_5: number;
   dailyId?: string;
-  videoURL: string;
+  videoURL: string | null;
   createdAt?: Date;
 };
 export type UpdateNumberInputDTO = {
@@ -27,7 +27,7 @@ export class Result {
   public readonly dailyId?: string;
   public name: string;
   public hour: string;
-  public videoURL: string;
+  public videoURL: string | null;
   public number_1: number;
   public number_2: number;
   public number_3: number;
@@ -40,7 +40,7 @@ export class Result {
     this.dailyId = props.dailyId;
     this.name = props.name;
     this.hour = props.hour;
-    this.videoURL = props.videoURL;
+    this.videoURL = props.videoURL ?? "";
     this.number_1 = props.number_1;
     this.number_2 = props.number_2;
     this.number_3 = props.number_3;

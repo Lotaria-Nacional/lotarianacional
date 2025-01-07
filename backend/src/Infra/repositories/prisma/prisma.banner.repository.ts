@@ -1,24 +1,42 @@
-import { prisma } from "../../Database/prisma"
-import { Banner } from "../../../Domain/Entities/banner/banner"
-import { NotFoundError } from "../../../shared/errors/notFound.error"
-import { IBannerRespository } from "../../../Domain/Entities/banner/banner.repository"
+import { prisma } from "../../Database/prisma";
+import { Banner } from "../../../Domain/Entities/banner/banner";
+import { NotFoundError } from "../../../shared/errors/notFound.error";
+import { IBannerRespository } from "../../../Domain/Entities/banner/banner.repository";
 
 export class PrismaBannerRepository implements IBannerRespository {
-  async save(banner: Banner): Promise<void> {
+  async saveDesktop(banner: Banner): Promise<void> {
+    const existing = await prisma.banners.findFirst();
     await prisma.banners.create({
       data: {
-        desktop_banner_1: banner.desk_banner_1 as string,
-        desktop_banner_2: banner.desk_banner_2 as string,
-        desktop_banner_3: banner.desk_banner_3 as string,
-        mobile_banner_1: banner.mob_banner_1 as string,
-        mobile_banner_2: banner.mob_banner_2 as string,
-        mobile_banner_3: banner.mob_banner_3 as string,
+        desktop_banner_1: banner.props.desk_banner_1 ?? "",
+        desktop_banner_2: banner.props.desk_banner_2 ?? "",
+        desktop_banner_3: banner.props.desk_banner_3 ?? "",
+        mobile_banner_1: existing?.mobile_banner_1 ?? "",
+        mobile_banner_2: existing?.mobile_banner_2 ?? "",
+        mobile_banner_3: existing?.mobile_banner_3 ?? "",
       },
-    })
+    });
+  }
+
+  async saveMobile(banner: Banner): Promise<void> {
+    const existing = await prisma.banners.findFirst();
+    if (existing) {
+      await prisma.banners.create({
+        data: {
+          desktop_banner_1: existing?.desktop_banner_1 ?? "",
+          desktop_banner_2: existing?.desktop_banner_2 ?? "",
+          desktop_banner_3: existing?.desktop_banner_3 ?? "",
+          mobile_banner_1: banner.props.mob_banner_1 ?? "",
+          mobile_banner_2: banner.props.mob_banner_2 ?? "",
+          mobile_banner_3: banner.props.mob_banner_3 ?? "",
+        },
+      });
+    } else {
+    }
   }
 
   async getAll(): Promise<Banner[]> {
-    const banners = await prisma.banners.findMany()
+    const banners = await prisma.banners.findMany();
     return banners.map((banner) =>
       Banner.create({
         id: banner.id,
@@ -29,12 +47,12 @@ export class PrismaBannerRepository implements IBannerRespository {
         mob_banner_2: banner.mobile_banner_2,
         mob_banner_3: banner.mobile_banner_3,
       })
-    )
+    );
   }
 
   async getById(id: string): Promise<Banner | null> {
-    const existingBanner = await prisma.banners.findUnique({ where: { id } })
-    if (!existingBanner) return null
+    const existingBanner = await prisma.banners.findUnique({ where: { id } });
+    if (!existingBanner) return null;
 
     return Banner.create({
       id: existingBanner.id,
@@ -44,36 +62,30 @@ export class PrismaBannerRepository implements IBannerRespository {
       mob_banner_1: existingBanner.mobile_banner_1,
       mob_banner_2: existingBanner.mobile_banner_2,
       mob_banner_3: existingBanner.mobile_banner_3,
-    })
+    });
   }
 
   async update(id: string, data: Partial<Banner>): Promise<void> {
-    const existingBanner = await prisma.banners.findUnique({ where: { id } })
-    if (!existingBanner) throw new NotFoundError("Banner não encontrado.")
+    const existingBanner = await prisma.banners.findUnique({ where: { id } });
+    if (!existingBanner) throw new NotFoundError("Banner não encontrado.");
 
     await prisma.banners.update({
       where: { id },
       data: {
-        desktop_banner_1:
-          (data.desk_banner_1 as string) ?? existingBanner.desktop_banner_1,
-        desktop_banner_2:
-          (data.desk_banner_2 as string) ?? existingBanner.desktop_banner_2,
-        desktop_banner_3:
-          (data.desk_banner_3 as string) ?? existingBanner.desktop_banner_3,
-        mobile_banner_1:
-          (data.mob_banner_1 as string) ?? existingBanner.mobile_banner_1,
-        mobile_banner_2:
-          (data.mob_banner_2 as string) ?? existingBanner.mobile_banner_2,
-        mobile_banner_3:
-          (data.mob_banner_3 as string) ?? existingBanner.mobile_banner_3,
+        desktop_banner_1: data.props?.desk_banner_1 ?? existingBanner.desktop_banner_1,
+        desktop_banner_2: data.props?.desk_banner_2 ?? existingBanner.desktop_banner_2,
+        desktop_banner_3: data.props?.desk_banner_3 ?? existingBanner.desktop_banner_3,
+        mobile_banner_1: data.props?.mob_banner_1 ?? existingBanner.mobile_banner_1,
+        mobile_banner_2: data.props?.mob_banner_2 ?? existingBanner.mobile_banner_2,
+        mobile_banner_3: data.props?.mob_banner_3 ?? existingBanner.mobile_banner_3,
       },
-    })
+    });
   }
 
   async delete(id: string): Promise<void> {
-    const existingBanner = await prisma.banners.findUnique({ where: { id } })
-    if (!existingBanner) throw new NotFoundError("Banner não encontrado.")
+    const existingBanner = await prisma.banners.findUnique({ where: { id } });
+    if (!existingBanner) throw new NotFoundError("Banner não encontrado.");
 
-    await prisma.banners.delete({ where: { id } })
+    await prisma.banners.delete({ where: { id } });
   }
 }

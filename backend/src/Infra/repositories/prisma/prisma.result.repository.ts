@@ -1,6 +1,6 @@
-import { UpdateResult, IResultRepository } from "../../../Domain/Entities/Result/result.respository";
 import { prisma } from "../../Database/prisma";
 import { Result } from "../../../Domain/Entities/Result/Result";
+import { UpdateResult, IResultRepository } from "../../../Domain/Entities/Result/result.respository";
 
 export class PrismaResultRespository implements IResultRepository {
   async save(result: Result): Promise<void> {

@@ -6,7 +6,7 @@ import { z } from "zod"
 import { Request, Response } from "express"
 import { RecruitCandidateUseCase } from "../../../../application/useCases/candidate/recruitCandidate.useCase"
 
-type ExpressFileType = { [fieldname: string]: Express.Multer.File[] }
+export type ExpressFileType = { [fieldname: string]: Express.Multer.File[] }
 
 export class RecruitCandidateController {
   constructor(private recruitCandidateUseCase: RecruitCandidateUseCase) {}
