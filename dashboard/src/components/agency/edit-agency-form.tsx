@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { updateAgency } from "@/api/agency.api"
 import { useAgencyById } from "@/hooks/useAgencyById"
-import { FormEvent, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { CHAR_REGEX, NUMBER_REGEX } from "@/constants/regex"
 import EditAgencyFormSkeleton from "../skeletons/edit-agency-form-skeleton"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
@@ -24,6 +24,7 @@ const EditAgencyForm = () => {
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [latitude, setLatitude] = useState("")
+  const [latLong, setLatLong] = useState("")
   const [longitude, setLongitude] = useState("")
   const [locationText, setLocationText] = useState("")
 
@@ -34,6 +35,11 @@ const EditAgencyForm = () => {
       setLocationText(agency.location_text || "")
       setLatitude(agency.latitude ? agency.latitude.toString() : "")
       setLongitude(agency.longitude ? agency.longitude.toString() : "")
+
+      const lat = agency.latitude ? agency.latitude.toString() : ""
+      const long = agency.longitude ? agency.longitude.toString() : ""
+
+      setLatLong(`${lat}, ${long}`)
     }
   }, [agency])
 
@@ -64,6 +70,16 @@ const EditAgencyForm = () => {
       toast.error(SERVER_CONNECTION_ERROR)
     } finally {
       setIsUpdating(false)
+    }
+  }
+
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    if (value) {
+      const [lat, long] = value.split(",")
+      setLatLong(value)
+      setLatitude(lat)
+      setLongitude(long)
     }
   }
 
@@ -110,24 +126,25 @@ const EditAgencyForm = () => {
             }}
           />
         </div>
+
+        <div className="flex flex-col col-span-2 gap-2">
+          <Label htmlFor="">Latitude e Longitude</Label>
+          <Input
+            type="text"
+            value={latLong}
+            onChange={handleOnChange}
+            placeholder="-8.83833787877, 9.42827486226"
+          />
+        </div>
+
         <div className="flex items-center gap-2 col-span-2">
           <div className="flex flex-col gap-2">
             <Label htmlFor="">Latitude</Label>
-            <Input
-              type="text"
-              value={latitude}
-              placeholder="8.83833"
-              onChange={(e) => setLatitude(e.target.value)}
-            />
+            <Input type="text" disabled value={latitude} />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="">Longitude</Label>
-            <Input
-              type="text"
-              value={longitude}
-              placeholder="-13.83833"
-              onChange={(e) => setLongitude(e.target.value)}
-            />
+            <Input type="text" disabled value={longitude} />
           </div>
         </div>
       </div>

@@ -7,7 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table"
-
 import {
   AlertDialogTitle,
   AlertDialog,
@@ -20,12 +19,12 @@ import {
   AlertDialogDescription,
 } from "../ui/alert-dialog"
 import { isAxiosError } from "axios"
-import { Button } from "../ui/button"
 import { toast } from "react-toastify"
 import { ICON } from "@/constants/assets"
 import { NavLink } from "react-router-dom"
 import { deleteNews } from "@/api/news.api"
 import { INews } from "@/interfaces"
+import { Button } from "../ui/button"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
 type Props = {

@@ -21,7 +21,7 @@ const NewsPage = () => {
 
         {isLoading ? (
           <NewsTableSkeleton />
-        ) : news.length > 0 ? (
+        ) : news && news.length > 0 ? (
           <NewsTable news={news} />
         ) : (
           <NothingToShow />

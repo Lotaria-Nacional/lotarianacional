@@ -2,37 +2,23 @@ import axios from "@/config/axios"
 import { IBanner } from "@/interfaces"
 
 export const getBanners = async (): Promise<IBanner> => {
-  const response = await axios.get("/banners")
+  const response = await axios.get("/banner")
 
   return response.data[0]
 }
 
-export const addDesktopBanner = async (
+export const addBanner = async (
   data: FormData
 ): Promise<{ message: string }> => {
-  const response = await axios.post("/banner/desktop", data)
-  return response.data
-}
-export const addMobileBanner = async (
-  data: FormData
-): Promise<{ message: string }> => {
-  const response = await axios.post("/banner/mobile", data)
+  const response = await axios.post("/banner", data)
   return response.data
 }
 
-export const updateDesktopBanner = async (
+export const updateBanner = async (
   id: string,
   data: FormData
 ): Promise<{ message: string }> => {
-  const response = await axios.put(`/banner/desktop/${id}`, data)
-  return response.data
-}
-
-export const updateMobileBanner = async (
-  id: string,
-  data: FormData
-): Promise<{ message: string }> => {
-  const response = await axios.put(`/banner/mobile/${id}`, data)
+  const response = await axios.put(`/banner/${id}`, data)
   return response.data
 }
 

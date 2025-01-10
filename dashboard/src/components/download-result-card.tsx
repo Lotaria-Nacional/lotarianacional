@@ -41,8 +41,11 @@ const DownloadResultCard = ({ result }: Props) => {
           {result.name}
         </span>
       </div>
-      <div ref={divRef} className="w-full flex flex-col gap-4">
-        <div className="loto-bg h-[119px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-4">
+      <div className="w-full flex flex-col gap-4">
+        <div
+          ref={divRef}
+          className="loto-bg h-[119px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-4"
+        >
           <div className="flex flex-col text-[15px] text-white">
             <span className="uppercase">{result.name}</span>
             <span>{result.hour}</span>

@@ -1,11 +1,11 @@
 import { isAxiosError } from "axios"
 import { IAgency } from "@/interfaces"
 import { toast } from "react-toastify"
-import { FormEvent, useState } from "react"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { createAgency } from "@/api/agency.api"
 import { Button } from "@/components/ui/button"
+import { ChangeEvent, FormEvent, useState } from "react"
 import { CHAR_REGEX, NUMBER_REGEX } from "@/constants/regex"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 
@@ -16,9 +16,18 @@ const AgencyForm = () => {
   const [phone, setPhone] = useState("")
   const [latitude, setLatitude] = useState("")
   const [longitude, setLongitude] = useState("")
+  const [latAndLong, setLatAndLong] = useState("")
   const [locationText, setLocationText] = useState("")
 
   const [isLoading, setIsLoading] = useState(false)
+
+  const handleLatAndLong = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    const [lat, long] = value.split(",")
+    setLatitude(lat)
+    setLongitude(long)
+    setLatAndLong(value)
+  }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -93,25 +102,16 @@ const AgencyForm = () => {
           />
         </div>
         {/** Latitude & Longitude */}
-        <div className="flex items-center gap-2 col-span-2">
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="">Latitude</Label>
-            <Input
-              type="text"
-              value={latitude}
-              placeholder="8.83833"
-              onChange={(e) => setLatitude(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="">Longitude</Label>
-            <Input
-              type="text"
-              value={longitude}
-              placeholder="13.2344 8"
-              onChange={(e) => setLongitude(e.target.value)}
-            />
-          </div>
+
+        <div className="flex flex-col col-span-2 gap-2">
+          <Label htmlFor="">Latitude e Longitude</Label>
+          <Input
+            type="text"
+            className="w-full"
+            value={latAndLong}
+            placeholder="Cole aqui as coordenadas"
+            onChange={handleLatAndLong}
+          />
         </div>
       </div>
       <Button disabled={isLoading} className="w-full bg-RED-200" type="submit">

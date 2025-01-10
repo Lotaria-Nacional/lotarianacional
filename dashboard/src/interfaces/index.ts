@@ -17,6 +17,12 @@ export interface IResult {
   videoURL: string
   createdAt: Date
 }
+export interface INewsDetailed {
+  news: INews[]
+  total: number
+  pages: number
+  pageSize: number
+}
 
 export interface INews {
   id: string

@@ -1,37 +1,62 @@
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "../ui/accordion"
-import { LOGOS } from "@/constants/assets"
-import { Button } from "../ui/button"
+import { toast } from "react-toastify"
+import { Accordion } from "../ui/accordion"
+import { useBanners } from "@/hooks/useBanners"
+import BannerAccordion from "./banner-accordion"
+import { useAddBanner } from "@/hooks/useAddBanner"
+
+export type DeviceType =
+  | "desk_1"
+  | "desk_2"
+  | "desk_3"
+  | "mob_1"
+  | "mob_2"
+  | "mob_3"
+export type AddBannerType = {
+  device: DeviceType
+  file: File
+}
 
 const DesktopBanner = () => {
+  const { handleAddBanner, isLoading: isAddingBanner } = useAddBanner()
+  const { banner, isLoading: isLoadingBanner } = useBanners()
+
+  const handleSave = async (data: AddBannerType) => {
+    try {
+      const formData = new FormData()
+      formData.append(data.device, data.file)
+      const result = await handleAddBanner(formData)
+      toast.success(result.message)
+      window.location.reload()
+    } catch (error: any) {
+      toast.error(error)
+    }
+  }
+
+  if (isLoadingBanner) return <span>Carregando...</span>
+
   return (
     <Accordion type="single">
-      {Array.from({ length: 3 }).map((_, index) => (
-        <AccordionItem
-          className="bg-GRAY-100 my-2 rounded-[13px] px-4"
-          value={`banner-${index}`}
-        >
-          <AccordionTrigger>Banner {index + 1}</AccordionTrigger>
-          <AccordionContent className="grid grid-cols-2 gap-2 h-[250px] items-center justify-center">
-            <div className="relative w-full h-full">
-              <img
-                src={LOGOS.red_logo}
-                className="absolute inset-0 w-full h-full object-contain"
-                alt=""
-              />
-            </div>
-
-            <div className="h-full flex flex-col items-center gap-2 justify-center">
-              <Button className="bg-GRAY-300">Alterar</Button>
-              <Button className="bg-RED-200">Eliminar</Button>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      ))}
+      <BannerAccordion
+        value="1"
+        name="desk_1"
+        save={handleSave}
+        isLoading={isAddingBanner}
+        bannerImg={banner?.desk_banner_1}
+      />
+      <BannerAccordion
+        value="2"
+        name="desk_2"
+        save={handleSave}
+        isLoading={isAddingBanner}
+        bannerImg={banner?.desk_banner_2}
+      />
+      <BannerAccordion
+        value="3"
+        name="desk_3"
+        save={handleSave}
+        isLoading={isAddingBanner}
+        bannerImg={banner?.desk_banner_3}
+      />
     </Accordion>
   )
 }
