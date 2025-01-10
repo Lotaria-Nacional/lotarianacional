@@ -94,7 +94,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
       },
     });
 
-    const blockSize = 6;
+    const blockSize = 7;
     const totalResults = dailyResults.length;
     const startIndex = totalResults - (totalResults % blockSize || blockSize);
     let limitedResults = dailyResults.slice(startIndex, startIndex + blockSize);

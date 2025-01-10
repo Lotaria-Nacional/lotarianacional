@@ -1,27 +1,24 @@
 import { Request, Response } from "express";
 import { ExpressFileType } from "../recruitmentControllers/recruitCandidate.controller";
-import { CreateDesktopBannerInputDTO, CreateDesktopBannerUseCase } from "../../../../application/useCases/banner/create.desktopBanner.useCase";
+import { ICreateBannerInputDTO, CreateBannerUseCase } from "../../../../application/useCases/banner/create.banner.useCase";
 
-export class CreateDesktopBannerController {
-  constructor(private createDesktopBannerUseCase: CreateDesktopBannerUseCase) {}
+export class CreateBannerController {
+  constructor(private createBannerUseCase: CreateBannerUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {
       const files = req.files as ExpressFileType;
-      const missingFields = this.validate(files);
 
-      if (missingFields.length > 0) {
-        const message = `Os seguintes campos são obrigatórios: ${missingFields.join(", ")}`;
-        return res.status(400).json(message);
-      }
-
-      const desktopBanners: CreateDesktopBannerInputDTO = {
-        desk_banner_1: files["desk_1"][0].buffer,
-        desk_banner_2: files["desk_2"][0].buffer,
-        desk_banner_3: files["desk_3"][0].buffer,
+      const banners: ICreateBannerInputDTO = {
+        desk_banner_1: files["desk_1"]?.[0]?.buffer || undefined,
+        desk_banner_2: files["desk_2"]?.[0]?.buffer || undefined,
+        desk_banner_3: files["desk_3"]?.[0]?.buffer || undefined,
+        mob_banner_1: files["mob_1"]?.[0]?.buffer || undefined,
+        mob_banner_2: files["mob_2"]?.[0]?.buffer || undefined,
+        mob_banner_3: files["mob_3"]?.[0]?.buffer || undefined,
       };
 
-      await this.createDesktopBannerUseCase.execute(desktopBanners);
+      await this.createBannerUseCase.execute(banners);
 
       return res.status(201).json({ message: "Adicionado com sucesso." });
     } catch (error) {
@@ -33,7 +30,7 @@ export class CreateDesktopBannerController {
   }
 
   private validate(files: ExpressFileType): string[] {
-    const requiredFields = ["desk_1", "desk_2", "desk_3"];
+    const requiredFields = ["desk_1", "desk_2", "desk_3", "mob_1", "mob_2", "mob_3"];
     const missingFields = requiredFields.filter((field) => !files[field]);
     return missingFields;
   }

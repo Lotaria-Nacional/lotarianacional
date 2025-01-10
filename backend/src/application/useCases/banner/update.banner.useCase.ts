@@ -1,82 +1,49 @@
-// import { Banner } from "../../../Domain/Entities/banner/banner";
-// import { NotFoundError } from "../../../shared/errors/notFound.error";
-// import { getCloudinaryPublicId } from "../../../utils/get.cloudinaryPublicId";
-// import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface";
-// import { IBannerRespository } from "../../../Domain/Entities/banner/banner.repository";
+import { NotFoundError } from "../../../shared/errors/notFound.error";
+import { getCloudinaryPublicId } from "../../../utils/get.cloudinaryPublicId";
+import { IFileUpload } from "../../../Domain/services/fileUpload.service.interface";
+import { IBannerRespository } from "../../../Domain/Entities/banner/banner.repository";
 
-// type UpdateBannerInputDTO = {
-//   id: string;
-//   desk_banner_1?: string | Buffer;
-//   desk_banner_2?: string | Buffer;
-//   desk_banner_3?: string | Buffer;
-//   mob_banner_1?: string | Buffer;
-//   mob_banner_2?: string | Buffer;
-//   mob_banner_3?: string | Buffer;
-// };
+export type IUpdateBannerInputDTO = {
+  desk_banner_1: string | Buffer | undefined;
+  desk_banner_2: string | Buffer | undefined;
+  desk_banner_3: string | Buffer | undefined;
+  mob_banner_1: string | Buffer | undefined;
+  mob_banner_2: string | Buffer | undefined;
+  mob_banner_3: string | Buffer | undefined;
+};
+export class UpdateBannerUseCase {
+  constructor(private bannerRepository: IBannerRespository, private fileUploadService: IFileUpload) {}
 
-// export class UpdateBannerUseCase {
-//   constructor(private bannerRepository: IBannerRespository, private uploadFileService: IFileUpload) {}
+  async execute(data: IUpdateBannerInputDTO) {
+    const { desk_banner_1, desk_banner_2, desk_banner_3, mob_banner_1, mob_banner_2, mob_banner_3 } = data;
+    try {
+      const existingBanners = await this.bannerRepository.getFirst();
+      if (!existingBanners) throw new NotFoundError("Não há nenhum banner ainda.");
 
-//   async execute(data: UpdateBannerInputDTO) {
-//     // Verifica se o banner existe
-//     const existingBanner = await this.bannerRepository.getById(data.id);
-//     if (!existingBanner) throw new NotFoundError("Banner não encontrado.");
+      existingBanners.update({
+        desk_banner_1: await this.handleFileUpload(desk_banner_1, existingBanners.props.desk_banner_1),
+        desk_banner_2: await this.handleFileUpload(desk_banner_2, existingBanners.props.desk_banner_2),
+        desk_banner_3: await this.handleFileUpload(desk_banner_3, existingBanners.props.desk_banner_3),
+        mob_banner_1: await this.handleFileUpload(mob_banner_1, existingBanners.props.mob_banner_1),
+        mob_banner_2: await this.handleFileUpload(mob_banner_2, existingBanners.props.mob_banner_2),
+        mob_banner_3: await this.handleFileUpload(mob_banner_3, existingBanners.props.mob_banner_3),
+      });
 
-//     // Atualiza as imagens, se necessário
-//     // const desk_banner_1 = await this.updateImage(
-//     //   data.desk_banner_1,
-//     //   existingBanner.desk_banner_1 as string
-//     // )
-//     // const desk_banner_2 = await this.updateImage(
-//     //   data.desk_banner_2,
-//     //   existingBanner.desk_banner_2 as string
-//     // )
-//     // const desk_banner_3 = await this.updateImage(
-//     //   data.desk_banner_3,
-//     //   existingBanner.desk_banner_3 as string
-//     // )
-//     // const mob_banner_1 = await this.updateImage(
-//     //   data.mob_banner_1,
-//     //   existingBanner.mob_banner_1 as string
-//     // )
-//     // const mob_banner_2 = await this.updateImage(
-//     //   data.mob_banner_2,
-//     //   existingBanner.mob_banner_2 as string
-//     // )
-//     // const mob_banner_3 = await this.updateImage(
-//     //   data.mob_banner_3,
-//     //   existingBanner.mob_banner_3 as string
-//     // )
-
-//     // // Atualiza os dados no repositório
-//     // const updatedBanner = Banner.create({
-//     //   id: existingBanner.id,
-//     //   desk_banner_1: desk_banner_1 || existingBanner.desk_banner_1,
-//     //   desk_banner_2: desk_banner_2 || existingBanner.desk_banner_2,
-//     //   desk_banner_3: desk_banner_3 || existingBanner.desk_banner_3,
-//     //   mob_banner_1: mob_banner_1 || existingBanner.mob_banner_1,
-//     //   mob_banner_2: mob_banner_2 || existingBanner.mob_banner_2,
-//     //   mob_banner_3: mob_banner_3 || existingBanner.mob_banner_3,
-//     // })
-
-//     await this.bannerRepository.update(data.id, updatedBanner);
-
-//     return updatedBanner;
-//   }
-
-//   private async updateImage(file: string | Buffer | undefined, existingFile: string): Promise<string | undefined> {
-//     if (file) {
-//       const publicId = getCloudinaryPublicId(existingFile);
-
-//       if (publicId) {
-//         await this.uploadFileService.delete(publicId);
-//       }
-
-//       const newImageURL = await this.uploadFileService.upload(file, "lotaria_nacional/banners");
-//       return newImageURL;
-//     }
-
-//     // Se nenhum arquivo foi enviado, retorna undefined
-//     return undefined;
-//   }
-// }
+      await this.bannerRepository.update(existingBanners.props.id!, existingBanners.props);
+    } catch (error) {
+      console.log("UpdateBannerUseCase ~ execute ~ error", error);
+      throw error;
+    }
+  }
+  async handleFileUpload(newFile: string | Buffer | undefined, existingFile: string | undefined): Promise<string | undefined> {
+    if (newFile) {
+      const publicID = getCloudinaryPublicId(newFile as string);
+      if (publicID) {
+        await this.fileUploadService.delete(publicID);
+        const newUpdatedFile = await this.fileUploadService.upload(newFile, "lotaria_nacional/banners");
+        return newUpdatedFile;
+      }
+    }
+    return existingFile;
+  }
+}

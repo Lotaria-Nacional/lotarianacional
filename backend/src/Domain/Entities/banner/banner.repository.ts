@@ -1,10 +1,9 @@
-import { Banner } from "./banner";
+import { Banner, BannerProps } from "./banner";
 
 export interface IBannerRespository {
-  saveDesktop(banner: Banner): Promise<void>;
-  saveMobile(banner: Banner): Promise<void>;
+  save(banner: Banner): Promise<void>;
   getAll(): Promise<Banner[]>;
-  getById(id: string): Promise<Banner | null>;
-  update(id: string, data: Partial<Banner>): Promise<void>;
+  getFirst(): Promise<Banner | null>;
+  update(id: string, data: Partial<BannerProps>): Promise<void>;
   delete(id: string): Promise<void>;
 }
