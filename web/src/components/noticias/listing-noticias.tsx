@@ -6,15 +6,13 @@ import ListingNewsSkeleton from "./listing-news-skeleton"
 const ListingNoticias = () => {
   const { isLoading, news } = useNews()
 
-  const lastThreeNews = news.slice(-3)
-
   return (
     <>
       {isLoading ? (
         <ListingNewsSkeleton />
-      ) : lastThreeNews.length > 0 ? (
+      ) : news.length > 0 ? (
         <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {lastThreeNews.map((data) => (
+          {news.slice(-3).map((data) => (
             <NoticiaCard key={data.id} noticia={data} />
           ))}
         </div>
