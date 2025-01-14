@@ -1,17 +1,17 @@
-import { Result } from "../../../Domain/Entities/Result/Result"
-import { IResultRepository } from "../../../Domain/Entities/Result/result.respository"
+import { Result } from "../../../Domain/Entities/Result/Result";
+import { IResultRepository } from "../../../Domain/Entities/Result/result.respository";
 
 export type CreateResultInputDTO = {
-  name: string
-  hour: string
-  dailyId?: string
-  videoURL: string | null
-  number_1: number
-  number_2: number
-  number_3: number
-  number_4: number
-  number_5: number
-}
+  name: string;
+  hour: string;
+  dailyId?: string;
+  videoURL: string;
+  number_1: number;
+  number_2: number;
+  number_3: number;
+  number_4: number;
+  number_5: number;
+};
 export class CreateResultUseCase {
   constructor(private resultRepository: IResultRepository) {}
 
@@ -25,8 +25,8 @@ export class CreateResultUseCase {
       number_3: data.number_3,
       number_4: data.number_4,
       number_5: data.number_5,
-    })
+    });
 
-    await this.resultRepository.save(result)
+    await this.resultRepository.save(result);
   }
 }

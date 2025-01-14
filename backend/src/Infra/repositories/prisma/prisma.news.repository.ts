@@ -1,6 +1,6 @@
 import { prisma } from "../../Database/prisma";
 import { News } from "../../../Domain/Entities/News/News";
-import { INewsRespository } from "../../../Domain/Entities/News/news.repository";
+import { INewsResponse, INewsRespository } from "../../../Domain/Entities/News/news.repository";
 
 export class PrismaNewsRespository implements INewsRespository {
   async delete(id: string): Promise<void> {
@@ -30,19 +30,35 @@ export class PrismaNewsRespository implements INewsRespository {
     });
   }
 
-  async getAll(): Promise<News[] | []> {
-    const newsList = await prisma.news.findMany({ orderBy: { createdAt: "desc" } });
+  async getAll(page: number, pageSize: number): Promise<INewsResponse | []> {
+    const skip = (page - 1) * pageSize;
+    const take = pageSize;
 
-    if (!newsList) return [];
+    const totalRecords = await prisma.news.count();
+    const totalPages = Math.ceil(totalRecords / pageSize);
 
-    return newsList.map((news) =>
-      News.create({
-        id: news.id,
-        title: news.title,
-        image: news.image,
-        description: news.description,
-      })
-    );
+    const news = await prisma.news.findMany({
+      skip,
+      take,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    if (news.length === 0) return [];
+
+    return {
+      data: news.map((news) =>
+        News.create({
+          id: news.id,
+          title: news.title,
+          image: news.image,
+          description: news.description,
+        })
+      ),
+      totalPages,
+      totalRecords,
+    };
   }
 
   async update(id: string, data: Partial<News>): Promise<News> {

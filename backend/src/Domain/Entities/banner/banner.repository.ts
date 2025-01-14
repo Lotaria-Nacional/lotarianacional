@@ -6,5 +6,5 @@ export interface IBannerRespository {
   getFirst(): Promise<Banner | null>;
   getById(id: string): Promise<Banner | null>;
   update(id: string, data: Partial<BannerProps>): Promise<void>;
-  delete(id: string): Promise<void>;
+  delete(data: Partial<BannerProps>): Promise<void>;
 }

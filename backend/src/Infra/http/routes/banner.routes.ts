@@ -41,10 +41,10 @@ router.post("/banner", uploadBannerFile, (req: Request, res: Response) => {
 router.get("/banner", (req: Request, res: Response) => {
   getBannersController.handle(req, res);
 });
-router.put("/banner/:id", uploadBannerFile, (req: Request, res: Response) => {
-  updateBannerController.handle(req, res);
-});
-router.delete("/banner/:id", (req: Request, res: Response) => {
+// router.put("/banner/:id", uploadBannerFile, (req: Request, res: Response) => {
+//   updateBannerController.handle(req, res);
+// });
+router.put("/banner", (req: Request, res: Response) => {
   deleteBannersController.handle(req, res);
 });
 

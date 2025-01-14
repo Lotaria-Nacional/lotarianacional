@@ -75,18 +75,15 @@ export class PrismaBannerRepository implements IBannerRespository {
 
   async update(id: string, data: Partial<BannerProps>): Promise<void> {
     try {
-      const existingBanner = await prisma.banners.findUnique({ where: { id } });
-      if (!existingBanner) throw new NotFoundError("Banner não encontrado.");
-
       await prisma.banners.update({
         where: { id },
         data: {
-          desktop_banner_1: data?.desk_banner_1 || existingBanner.desktop_banner_1,
-          desktop_banner_2: data?.desk_banner_2 || existingBanner.desktop_banner_2,
-          desktop_banner_3: data?.desk_banner_3 || existingBanner.desktop_banner_3,
-          mobile_banner_1: data?.mob_banner_1 || existingBanner.mobile_banner_1,
-          mobile_banner_2: data?.mob_banner_2 || existingBanner.mobile_banner_2,
-          mobile_banner_3: data?.mob_banner_3 || existingBanner.mobile_banner_3,
+          desktop_banner_1: data?.desk_banner_1,
+          desktop_banner_2: data?.desk_banner_2,
+          desktop_banner_3: data?.desk_banner_3,
+          mobile_banner_1: data?.mob_banner_1,
+          mobile_banner_2: data?.mob_banner_2,
+          mobile_banner_3: data?.mob_banner_3,
         },
       });
     } catch (error) {
@@ -95,10 +92,20 @@ export class PrismaBannerRepository implements IBannerRespository {
     }
   }
 
-  async delete(id: string): Promise<void> {
-    const existingBanner = await prisma.banners.findUnique({ where: { id } });
+  async delete(banner: Partial<BannerProps>): Promise<void> {
+    const existingBanner = await prisma.banners.findFirst();
     if (!existingBanner) throw new NotFoundError("Banner não encontrado.");
 
-    await prisma.banners.delete({ where: { id } });
+    await prisma.banners.update({
+      where: { id: existingBanner.id },
+      data: {
+        desktop_banner_1: banner.desk_banner_1,
+        desktop_banner_2: banner.desk_banner_2,
+        desktop_banner_3: banner.desk_banner_3,
+        mobile_banner_1: banner.mob_banner_1,
+        mobile_banner_2: banner.mob_banner_2,
+        mobile_banner_3: banner.mob_banner_3,
+      },
+    });
   }
 }
