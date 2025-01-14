@@ -13,8 +13,9 @@ const ResultCard = ({ result }: Props) => {
     result.number_4,
     result.number_5,
   ]
+
   return (
-    <div className="relative w-full lg:w-[235px] h-[130px] lg:h-[119px] text-white p-3 flex flex-col justify-between">
+    <div className="relative w-full lg:w-[180px] h-[115px] text-white gap-4 p-2 flex flex-col justify-between">
       <img
         src={CARD.card_loto}
         alt="card loto 5/90"
@@ -25,11 +26,12 @@ const ResultCard = ({ result }: Props) => {
         <span className="text-[15px] uppercase font-medium">{result.name}</span>
         <span className="text-[15px] uppercase font-medium">{result.hour}</span>
       </header>
-      <div className="flex items-center w-full justify-between z-10">
+      
+      <div className="flex items-center gap-1 w-full justify-between z-10">
         {numbers.map((number, index) => (
           <span
             key={index}
-            className="size-[45px] lg:size-[35px] rounded-full bg-white flex items-center justify-center text-[24px] lg:text-[15px] font-bold text-RED-200"
+            className="size-[30px] rounded-full bg-white flex items-center justify-center text-[24px] lg:text-[15px] font-bold text-RED-200"
           >
             {number}
           </span>

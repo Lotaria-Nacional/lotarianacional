@@ -1,8 +1,19 @@
 import axios from "../config/axios"
 import { INews } from "../interfaces"
 
-export const getNews = async (): Promise<INews[]> => {
-  const result = await axios.get("/news")
+export type INewsResponse = {
+  data: INews[] | []
+  totalPages: number
+  totalRecords: number
+}
+
+export const getNews = async (
+  page?: number,
+  pageSize?: number
+): Promise<INewsResponse | null> => {
+  const result = await axios.get("/news", {
+    params: { page, pageSize: 2 },
+  })
   return result.data
 }
 

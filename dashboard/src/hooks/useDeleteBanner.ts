@@ -6,10 +6,10 @@ import { useState } from "react"
 export function useDeleteBanner() {
   const [isDeleting, setIsDeleting] = useState(false)
 
-  const handleDeleteBanner = async (id: string) => {
+  const handleDeleteBanner = async (devicePosition: string) => {
     setIsDeleting(true)
     try {
-      const result = await deleteBanner(id)
+      const result = await deleteBanner(devicePosition)
       return result.message
     } catch (error) {
       if (isAxiosError(error)) {

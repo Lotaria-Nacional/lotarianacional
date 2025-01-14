@@ -15,7 +15,6 @@ const BannersPage = () => {
           <span className="px-5 h-[30px] flex items-center justify-center rounded-[10px] bg-GRAY-100 w-fit">
             Mobile
           </span>
-
           <MobileBanner />
         </div>
       </div>

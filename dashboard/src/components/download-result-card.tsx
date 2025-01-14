@@ -41,20 +41,21 @@ const DownloadResultCard = ({ result }: Props) => {
           {result.name}
         </span>
       </div>
-      <div className="w-full flex flex-col gap-4">
+
+      <div className="w-full flex flex-col items-center gap-4">
         <div
           ref={divRef}
-          className="loto-bg h-[119px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-4"
+          className="loto-bg w-full lg:w-[180px] h-[115px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-2"
         >
           <div className="flex flex-col text-[15px] text-white">
             <span className="uppercase">{result.name}</span>
             <span>{result.hour}</span>
           </div>
-          <div className="w-full mx-auto flex items-center gap-3">
+          <div className="w-full mx-auto flex items-center gap-1">
             {numbers.map((number) => (
               <span
                 key={number}
-                className="size-[35px] bg-white text-RED-200 font-medium text-center flex items-center justify-center rounded-[50px]"
+                className="size-[30px] bg-white text-RED-200 font-medium text-center flex items-center justify-center rounded-[50px]"
               >
                 {number}
               </span>
@@ -65,7 +66,7 @@ const DownloadResultCard = ({ result }: Props) => {
         <Button
           type="submit"
           disabled={isLoading}
-          className="bg-RED-200"
+          className="bg-RED-200 w-full"
           onClick={handleDownloadResult}
         >
           {isLoading ? "Baixando..." : "Baixar"}

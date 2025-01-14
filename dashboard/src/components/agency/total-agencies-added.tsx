@@ -3,14 +3,20 @@ import { getAgencies } from "@/api/agency.api"
 import TotalResultsAndAgenciesSkeleton from "../skeletons/total-results-and-agencies-skeleton"
 
 const TotalAgenciesAdded = () => {
-  const [isLoading, setIsLoading] = useState(true)
-  const [totalAgencies, setTotalAgencies] = useState<number | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [totalAgencies, setTotalAgencies] = useState<number>(0)
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getAgencies()
-      setTotalAgencies(data.length)
-      setIsLoading(false)
+      setIsLoading(true)
+      try {
+        const data = await getAgencies()
+        setTotalAgencies(data.totalRecords)
+      } catch (error) {
+        throw error
+      } finally {
+        setIsLoading(false)
+      }
     }
 
     fetch()

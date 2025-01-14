@@ -112,7 +112,7 @@ const AddResultCardInput = ({ hour, name }: Props) => {
                     "watch?v=",
                     "embed/"
                   )
-                  
+
                   setData({ ...data, videoURL: youtubeEmbedURL })
                 }}
               />
@@ -125,20 +125,23 @@ const AddResultCardInput = ({ hour, name }: Props) => {
           </DialogContent>
         </Dialog>
       </div>
-      <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
-        <div className="loto-bg h-[119px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-4">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full flex items-center flex-col gap-4"
+      >
+        <div className="loto-bg w-full lg:w-[180px] h-[115px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-4">
           <div className="flex flex-col text-[15px] text-white">
             <span className="uppercase">{name}</span>
             <span>{hour}</span>
           </div>
-          <div className="w-full mx-auto flex items-center gap-3">
+          <div className="w-full mx-auto flex items-center justify-center gap-1">
             <input
               type="text"
               maxLength={2}
               inputMode="numeric"
               value={data.number_1}
               onChange={(e) => handleInputChange(e, "number_1")}
-              className="size-[35px] bg-white text-center flex items-center justify-center rounded-[50px]"
+              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
             />
             <input
               type="text"
@@ -146,7 +149,7 @@ const AddResultCardInput = ({ hour, name }: Props) => {
               inputMode="numeric"
               value={data.number_2}
               onChange={(e) => handleInputChange(e, "number_2")}
-              className="size-[35px] bg-white text-center flex items-center justify-center rounded-[50px]"
+              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
             />
             <input
               type="text"
@@ -154,7 +157,7 @@ const AddResultCardInput = ({ hour, name }: Props) => {
               inputMode="numeric"
               value={data.number_3}
               onChange={(e) => handleInputChange(e, "number_3")}
-              className="size-[35px] bg-white text-center flex items-center justify-center rounded-[50px]"
+              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
             />
             <input
               type="text"
@@ -162,7 +165,7 @@ const AddResultCardInput = ({ hour, name }: Props) => {
               inputMode="numeric"
               value={data.number_4}
               onChange={(e) => handleInputChange(e, "number_4")}
-              className="size-[35px] bg-white text-center flex items-center justify-center rounded-[50px]"
+              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
             />
             <input
               type="text"
@@ -170,12 +173,16 @@ const AddResultCardInput = ({ hour, name }: Props) => {
               inputMode="numeric"
               value={data.number_5}
               onChange={(e) => handleInputChange(e, "number_5")}
-              className="size-[35px] bg-white text-center flex items-center justify-center rounded-[50px]"
+              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
             />
           </div>
         </div>
 
-        <Button disabled={isLoading} type="submit" className="bg-RED-200">
+        <Button
+          disabled={isLoading}
+          type="submit"
+          className="bg-RED-200 w-full"
+        >
           {isLoading ? "Salvando..." : "Salvar"}
         </Button>
       </form>

@@ -1,79 +1,116 @@
-import { useState } from "react"
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react"
+import { Button } from "../ui/button"
+import { SetURLSearchParams } from "react-router-dom"
+import { useMemo } from "react"
 
 type Props = {
-  totalPage: number
+  pages?: number
+  currentPage: number
+  setSearch: SetURLSearchParams
 }
 
-const Pagination = ({ totalPage }: Props) => {
-  const [currentPage, setCurrentPage] = useState<number>(1)
+const MAX_VIEW_BUTTONS = 3
 
-  //  2 -> 3 -> 5 -> 6 -> 7
-  // -1 -> 0 -> 1 -> 2 -> 3
+const Pagination = ({ pages, currentPage, setSearch }: Props) => {
+  if (!pages || pages <= 1) return null // Se não houver páginas, não renderiza nada
 
-  const getSequence = () => {
-    let start = currentPage - 2
-    let end = currentPage + 2
+  const updatePage = (newPage: number) => {
+    setSearch((state) => {
+      state.set("page", String(newPage))
+      return state
+    })
+  }
 
-    if (start < 1) {
-      start = 1
-      end = 5
+  const controls = useMemo(() => {
+    const calculateMaxViewButtons = () => {
+      let maxLeft = currentPage - Math.floor(MAX_VIEW_BUTTONS / 2)
+      let maxRight = currentPage + Math.floor(MAX_VIEW_BUTTONS / 2)
+
+      if (maxLeft < 1) {
+        maxLeft = 1
+        maxRight = MAX_VIEW_BUTTONS
+      }
+
+      if (maxRight > pages) {
+        maxRight = pages
+        maxLeft = pages - (MAX_VIEW_BUTTONS - 1)
+        if (maxLeft < 1) {
+          maxLeft = 1
+        }
+      }
+
+      return { maxLeft, maxRight }
     }
 
-    if (end > totalPage) {
-      start = totalPage - 4
-      end = totalPage
+    return {
+      calculateMaxViewButtons,
+      nextPage: () => {
+        if (currentPage < pages) updatePage(currentPage + 1)
+      },
+      prevPage: () => {
+        if (currentPage > 1) updatePage(currentPage - 1)
+      },
+      goToStart: () => updatePage(1),
+      goToEnd: () => updatePage(pages),
     }
+  }, [currentPage, pages, setSearch])
 
-    return Array.from({ length: end - start + 1 }, (_, num) => start + num)
-  }
+  const { maxLeft, maxRight } = controls.calculateMaxViewButtons()
 
-  const handleChangePage = (newPage: number) => {
-    setCurrentPage(newPage)
-  }
-
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPage))
-  }
-
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1))
-  }
-
-  const sequence = getSequence()
+  const slicedPages = Array.from(
+    { length: maxRight - maxLeft + 1 },
+    (_, i) => i + maxLeft
+  )
 
   return (
-    <div className="flex w-full items-center justify-center mx-auto">
-      <button
-        onClick={handlePrevPage}
-        disabled={currentPage === 1}
-        className="w-[39px] h-[38px] border border-GRAY-100 text-GRAY-200 flex items-center justify-center"
+    <div className="w-full px-4 lg:px-0 mx-auto justify-center py-8 flex items-center gap-2 lg:w-[50vw]">
+      <Button
+        className="bg-RED-200 text-white"
+        onClick={controls.goToStart}
+        aria-label="Ir para o início"
       >
-        <FiChevronLeft />
-      </button>
+        <ChevronsLeft />
+      </Button>
+      <Button
+        className="bg-RED-200 text-white"
+        onClick={controls.prevPage}
+        aria-label="Página anterior"
+      >
+        <ChevronLeft />
+      </Button>
 
-      {sequence.map((num, index) => (
-        <button
-          key={index}
-          disabled={num === currentPage}
-          onClick={() => handleChangePage(num)}
-          style={{
-            color: currentPage === num ? "#FFF" : "",
-            backgroundColor: currentPage === num ? "#951913" : "",
-          }}
-          className="w-[39px] h-[38px] border border-GRAY-100 p-4 text-black flex items-center justify-center"
+      {slicedPages.map((page) => (
+        <Button
+          key={page}
+          onClick={() => updatePage(page)}
+          aria-label={`Ir para a página ${page}`}
+          className={`bg-RED-200 text-white ${
+            page === currentPage ? "bg-black" : ""
+          }`}
         >
-          {num}
-        </button>
+          {page}
+        </Button>
       ))}
 
-      <button
-        onClick={handleNextPage}
-        disabled={currentPage === totalPage}
-        className="w-[39px] h-[38px] border border-GRAY-100 text-GRAY-200 flex items-center justify-center"
+      <Button
+        className="bg-RED-200 text-white"
+        onClick={controls.nextPage}
+        aria-label="Próxima página"
       >
-        <FiChevronRight />
-      </button>
+        <ChevronRight />
+      </Button>
+      <Button
+        className="bg-RED-200 text-white"
+        onClick={controls.goToEnd}
+        aria-label="Ir para o fim"
+      >
+        <ChevronsRight />
+      </Button>
     </div>
   )
 }

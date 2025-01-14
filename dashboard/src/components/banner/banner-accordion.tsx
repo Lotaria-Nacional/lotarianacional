@@ -48,8 +48,10 @@ const BannerAccordion = ({
 
   const handleDelete = async () => {
     try {
-      const result = await handleDeleteBanner("")
-      toast.success(result)
+      console.log({
+        devicePosition: name,
+      })
+      await handleDeleteBanner(name)
     } catch (error: any) {
       toast.error(error)
     }
@@ -101,7 +103,7 @@ const BannerAccordion = ({
               </DialogFooter>
             </DialogContent>
           </Dialog>
-          <Button disabled className="bg-RED-200" onClick={handleDelete}>
+          <Button className="bg-RED-200" onClick={handleDelete}>
             {isDeleting ? "Eliminando..." : "Eliminar"}
           </Button>
         </div>

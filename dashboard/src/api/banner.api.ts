@@ -23,8 +23,9 @@ export const updateBanner = async (
 }
 
 export const deleteBanner = async (
-  id: string
+  devicePosition: string
 ): Promise<{ message: string }> => {
-  const response = await axios.delete(`/banner/${id}`)
+  console.log("dashboard ~ deleteBanner ~ devicePosition: ", devicePosition)
+  const response = await axios.put(`/banner`, { devicePosition })
   return response.data
 }

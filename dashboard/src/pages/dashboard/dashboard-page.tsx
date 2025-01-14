@@ -6,10 +6,10 @@ import TotalAgenciesAdded from "@/components/agency/total-agencies-added"
 
 const DashboardPage = () => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-0">
       <div className="w-full lg:w-[1128px] gap-[20px] lg:min-h-[333px] flex flex-col lg:flex-row p-4 mx-auto">
-        <div className="w-full lg:w-[534px] flex flex-col gap-3 p-3 bg-white rounded-[20px]">
-          <div className="w-full flex flex-row justify-between items-start px-2">
+        <div className="w-full lg:w-[534px] flex flex-col gap-3 p-6 bg-white rounded-[20px]">
+          <div className="w-full flex flex-row justify-between items-start">
             <span className="font-medium">Resultados diários</span>
             <DotsButton />
           </div>
@@ -18,8 +18,8 @@ const DashboardPage = () => {
         <StatisticSection />
       </div>
 
-      <div className="w-full lg:w-[1128px] h-[263px] gap-[20px] flex flex-col lg:flex-row p-4 mx-auto">
-        <div className="w-full lg:w-[534px] flex flex-col lg:flex-row gap-3 ">
+      <div className="w-full lg:w-[1128px] h-[263px] gap-[15px] flex flex-col lg:flex-row p-4 mx-auto">
+        <div className="w-full lg:w-[534px] flex flex-col lg:flex-row gap-2">
           <TotalResultsAdded />
           <TotalAgenciesAdded />
         </div>
