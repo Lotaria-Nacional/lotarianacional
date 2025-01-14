@@ -12,27 +12,22 @@ import {
 } from "../ui/accordion"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
+import { toast } from "react-toastify"
 import { LOGOS } from "@/constants/assets"
 import { ChangeEvent, useState } from "react"
-import { toast } from "react-toastify"
+import { AddBannerType } from "./desktop-banner"
+import { DeviceType, IBanner } from "@/interfaces"
 import { useDeleteBanner } from "@/hooks/useDeleteBanner"
-import { AddBannerType, DeviceType } from "./desktop-banner"
 
 type Props = {
+  banner: IBanner
   value: string
-  name: DeviceType
   isLoading: boolean
-  bannerImg: string | undefined
+  device: DeviceType
   save: (data: AddBannerType) => void
 }
 
-const BannerAccordion = ({
-  name,
-  value,
-  save,
-  bannerImg,
-  isLoading,
-}: Props) => {
+const BannerAccordion = ({ value, save, device, banner, isLoading }: Props) => {
   const { handleDeleteBanner, isDeleting } = useDeleteBanner()
   const [previewImg, setPreviewImg] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
@@ -48,14 +43,14 @@ const BannerAccordion = ({
 
   const handleDelete = async () => {
     try {
-      console.log({
-        devicePosition: name,
-      })
-      await handleDeleteBanner(name)
+      await handleDeleteBanner(banner.id)
+      window.location.reload()
     } catch (error: any) {
       toast.error(error)
     }
   }
+
+  const handleSave = async () => save({ image: file!, device })
 
   return (
     <AccordionItem
@@ -67,7 +62,7 @@ const BannerAccordion = ({
         <div className="relative w-full h-full">
           <img
             alt="banner"
-            src={bannerImg || LOGOS.red_logo}
+            src={banner?.image || LOGOS.red_logo}
             className="absolute inset-0 w-full h-full object-contain"
           />
         </div>
@@ -75,7 +70,9 @@ const BannerAccordion = ({
         <div className="h-full flex flex-col items-center gap-2 justify-center">
           <Dialog>
             <DialogTrigger asChild>
-              <Button className="bg-GRAY-300">Alterar</Button>
+              <Button className="bg-GRAY-300">
+                {banner?.image ? "Alterar" : "Adicionar"}
+              </Button>
             </DialogTrigger>
             <DialogContent>
               {previewImg && (
@@ -91,7 +88,7 @@ const BannerAccordion = ({
                 <Button
                   disabled={isLoading}
                   variant={"destructive"}
-                  onClick={() => save({ file: file!, device: name })}
+                  onClick={handleSave}
                 >
                   {isLoading ? "Salvando..." : "Salvar"}
                 </Button>

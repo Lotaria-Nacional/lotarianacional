@@ -1,16 +1,16 @@
-import { getBanners } from "@/api/banner.api"
 import { IBanner } from "@/interfaces"
 import { useEffect, useState } from "react"
+import { getBanners } from "@/api/banner.api"
 
 export function useBanners() {
   const [isLoading, setIsLoading] = useState(true)
-  const [banner, setBanner] = useState<IBanner | null>(null)
+  const [banners, setBanners] = useState<IBanner[] | []>([])
 
   useEffect(() => {
     const fetch = async () => {
       try {
         const data = await getBanners()
-        setBanner(data)
+        setBanners(data)
       } catch (error) {
         console.log(error)
         throw error
@@ -21,5 +21,5 @@ export function useBanners() {
     fetch()
   }, [])
 
-  return { isLoading, banner }
+  return { isLoading, banners }
 }

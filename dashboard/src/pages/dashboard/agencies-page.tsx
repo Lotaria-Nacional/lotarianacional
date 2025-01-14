@@ -14,7 +14,8 @@ const AgenciesPage = () => {
 
   return (
     <main className="bg-white p-4 rounded-lg w-full h-full flex flex-col items-center justify-center gap-4">
-      <Button asChild className="bg-YELLOW self-end">
+
+      <Button asChild className="bg-YELLOW self-end m-4">
         <NavLink to={"/adicionar-agencia"} className="flex items-center">
           <PlusIcon />
           Adicionar

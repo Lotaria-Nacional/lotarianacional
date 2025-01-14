@@ -7,12 +7,9 @@ export type INewsResponse = {
   totalRecords: number
 }
 
-export const getNews = async (
-  page?: number,
-  pageSize?: number
-): Promise<INewsResponse | null> => {
+export const getNews = async (page?: number): Promise<INewsResponse | null> => {
   const result = await axios.get("/news", {
-    params: { page, pageSize: 2 },
+    params: { page },
   })
   return result.data
 }

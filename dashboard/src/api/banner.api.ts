@@ -1,10 +1,9 @@
 import axios from "@/config/axios"
 import { IBanner } from "@/interfaces"
 
-export const getBanners = async (): Promise<IBanner> => {
+export const getBanners = async (): Promise<IBanner[]> => {
   const response = await axios.get("/banner")
-
-  return response.data[0]
+  return response.data
 }
 
 export const addBanner = async (
@@ -22,10 +21,7 @@ export const updateBanner = async (
   return response.data
 }
 
-export const deleteBanner = async (
-  devicePosition: string
-): Promise<{ message: string }> => {
-  console.log("dashboard ~ deleteBanner ~ devicePosition: ", devicePosition)
-  const response = await axios.put(`/banner`, { devicePosition })
+export const deleteBanner = async (id: string): Promise<{ message: string }> => {
+  const response = await axios.delete(`/banner/${id}`)
   return response.data
 }

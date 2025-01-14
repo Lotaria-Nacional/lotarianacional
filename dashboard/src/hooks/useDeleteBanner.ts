@@ -1,15 +1,15 @@
+import { useState } from "react"
+import { isAxiosError } from "axios"
 import { deleteBanner } from "@/api/banner.api"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
-import { isAxiosError } from "axios"
-import { useState } from "react"
 
 export function useDeleteBanner() {
   const [isDeleting, setIsDeleting] = useState(false)
 
-  const handleDeleteBanner = async (devicePosition: string) => {
+  const handleDeleteBanner = async (id: string) => {
     setIsDeleting(true)
     try {
-      const result = await deleteBanner(devicePosition)
+      const result = await deleteBanner(id)
       return result.message
     } catch (error) {
       if (isAxiosError(error)) {

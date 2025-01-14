@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getNews, INewsResponse } from "@/api/news.api"
 
-export function useNews(page?: number, pageSize?: number) {
+export function useNews(page?: number) {
   const [isLoading, setIsLoading] = useState(false)
   const [news, setNews] = useState<INewsResponse | null>(null)
 
@@ -9,14 +9,14 @@ export function useNews(page?: number, pageSize?: number) {
     const fetch = async () => {
       setIsLoading(true)
       try {
-        const data = await getNews(page, pageSize)
+        const data = await getNews(page)
         setNews(data)
       } finally {
         setIsLoading(false)
       }
     }
     fetch()
-  }, [page, pageSize])
+  }, [page])
 
   return { news, isLoading }
 }
