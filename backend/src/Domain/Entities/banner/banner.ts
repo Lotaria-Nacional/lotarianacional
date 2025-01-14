@@ -11,7 +11,7 @@ export class Banner {
   static create(props: BannerProps) {
     return new Banner({
       ...props,
-      createdAt: new Date(),
+      createdAt: props.createdAt ?? new Date(),
     });
   }
 
