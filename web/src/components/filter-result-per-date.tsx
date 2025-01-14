@@ -32,7 +32,7 @@ const FilterResultPerDate = ({ date, setDate }: Props) => {
   }
 
   return (
-    <div className="relative border py-1 px-2 h-10 flex items-center justify-center rounded-lg gap-2">
+    <div className="relative border py-1 px-2 h-10 flex items-center justify-center text-center rounded-lg gap-2">
       <label htmlFor="date" className="cursor-pointer">
         <span>Filtrar por data</span>
         <input
@@ -42,7 +42,7 @@ const FilterResultPerDate = ({ date, setDate }: Props) => {
           value={tempDate}
           onChange={handleChange}
           onClick={handleClickInput}
-          className="absolute opacity-0 w-full h-full top-0 left-0 cursor-pointer"
+          className="absolute opacity-0 w-full h-full  top-0 left-0 cursor-pointer"
         />
       </label>
     </div>

@@ -18,7 +18,7 @@ const ResultadosListing = ({ resultsListing }: ResultadosListingProps) => {
   const TOTAL_RESULTS = 4
 
   return (
-    <div className="w-full flex lg:items-center gap-8 lg:justify-start">
+    <div className="w-full md:flex hidden lg:items-center gap-8 lg:justify-start">
       {resultsListing.map((data, index) => {
         const totalResults = data.results.length
         const placeHoldersCount = TOTAL_RESULTS - totalResults

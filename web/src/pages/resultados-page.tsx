@@ -5,6 +5,7 @@ import { useDailyResults } from "../hooks/api/query/useDailyResults"
 import FilterResultPerDate from "../components/filter-result-per-date"
 import ResultsSkeleton from "@/components/resultados/results-skeleton"
 import ResultadosListing from "../components/resultados/resultados-listing"
+import ResultadosListingMobile from "@/components/resultados/resultados-listing-mobile"
 
 const ResultadosPage = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -25,6 +26,7 @@ const ResultadosPage = () => {
       ) : (
         <div className="w-full overflow-x-scroll lg:overflow-visible">
           <ResultadosListing resultsListing={results} />
+          <ResultadosListingMobile resultsListing={results} />
         </div>
       )}
     </Container>

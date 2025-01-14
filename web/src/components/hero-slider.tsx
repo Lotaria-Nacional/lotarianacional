@@ -12,6 +12,9 @@ import { useBanner } from "@/hooks/api/query/useBanner"
 const HeroSlider = () => {
   const { banner, isLoading } = useBanner()
 
+  const desktopBanners = banner.filter((ban) => ban.device === "desktop")
+  const mobileBanners = banner.filter((ban) => ban.device === "mobile")
+
   if (isLoading)
     return (
       <div className="w-full h-[180px] lg:h-[calc(100vh-160px)] bg-LT_RED-100 flex items-center justify-center">
@@ -21,8 +24,8 @@ const HeroSlider = () => {
 
   return (
     <>
-      <DesktopSwiper banner={banner} />
-      <MobileSwiper banner={banner} />
+      <DesktopSwiper banner={desktopBanners} />
+      <MobileSwiper banner={mobileBanners} />
     </>
   )
 }

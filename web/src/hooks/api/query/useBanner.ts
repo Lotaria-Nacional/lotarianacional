@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 export function useBanner() {
   const [isLoading, setIsLoading] = useState(true)
-  const [banner, setBanner] = useState<IBanner | null>(null)
+  const [banner, setBanner] = useState<IBanner[] | []>([])
 
   useEffect(() => {
     const fetch = async () => {
