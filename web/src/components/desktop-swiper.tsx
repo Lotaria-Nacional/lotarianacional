@@ -1,6 +1,6 @@
 import { IMAGES } from "../constants/assets"
-import { Autoplay, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
+import { Autoplay, Pagination } from "swiper/modules"
 
 //@ts-ignore
 import "swiper/css"
@@ -18,11 +18,11 @@ type Props = {
 const DesktopSwiper = ({ banner }: Props) => {
   return (
     <Swiper
+      pagination
       loop={true}
       autoplay={{ delay: 6000 }}
-      modules={[Autoplay, Pagination]}
       className="h-full lg:block hidden"
-      pagination
+      modules={[Autoplay, Pagination]}
     >
       <SwiperSlide className="relative ">
         <img

@@ -1,22 +1,22 @@
-import { INews } from "@/interfaces"
-import { getNews } from "@/api/noticias.api"
 import { useEffect, useState } from "react"
+import { getNews, INewsResponse } from "@/api/noticias.api"
 
-export function useNews(): { news: INews[]; isLoading: boolean } {
-  const [isLoading, setIsLoading] = useState(true)
-  const [news, setNews] = useState<INews[]>([])
+export function useNews(page?: number) {
+  const [isLoading, setIsLoading] = useState(false)
+  const [news, setNews] = useState<INewsResponse | null>(null)
 
   useEffect(() => {
     const fetch = async () => {
+      setIsLoading(true)
       try {
-        const data = await getNews()
+        const data = await getNews(page)
         setNews(data)
       } finally {
         setIsLoading(false)
       }
     }
     fetch()
-  }, [])
+  }, [page])
 
   return { isLoading, news }
 }

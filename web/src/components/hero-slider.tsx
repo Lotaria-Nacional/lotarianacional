@@ -14,7 +14,7 @@ const HeroSlider = () => {
 
   if (isLoading)
     return (
-      <div className="w-full h-[calc(100vh-160px)] bg-LT_RED-100 flex items-center justify-center">
+      <div className="w-full h-[180px] lg:h-[calc(100vh-160px)] bg-LT_RED-100 flex items-center justify-center">
         <span className="text-white">Carregando...</span>
       </div>
     )

@@ -1,6 +1,11 @@
-import { IAgency } from "../interfaces";
+import { IAgency } from "../interfaces"
 
-export function filterAgenciesBySearchParams(params: string, agencies: IAgency[]): IAgency[] {
+export function filterAgenciesBySearchParams(
+  params: string,
+  agencies?: IAgency[]
+) {
+  if (!agencies) return
+
   return params === ""
     ? agencies
     : agencies.filter(

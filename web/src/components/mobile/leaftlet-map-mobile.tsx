@@ -2,10 +2,11 @@ import L from "leaflet"
 import pin from "/icons/pin.svg"
 import "leaflet/dist/leaflet.css"
 import { HiPhone } from "react-icons/hi"
-import agencias from "../../constants/db/agencias.json"
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
+import { IAgency } from "@/interfaces"
 
-const LeafletMapMobile = () => {
+type AgencyMapProps = { agencies?: IAgency[] }
+const LeafletMapMobile = ({ agencies }: AgencyMapProps) => {
   const mapIcon = new L.Icon({
     iconUrl: pin,
     iconRetinaUrl: pin,
@@ -26,7 +27,7 @@ const LeafletMapMobile = () => {
       />
 
       {/* Add a marker */}
-      {agencias.map((item, i) => (
+      {agencies?.map((item, i) => (
         <Marker
           key={i}
           position={[item.latitude, item.longitude]}

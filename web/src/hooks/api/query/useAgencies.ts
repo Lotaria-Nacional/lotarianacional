@@ -1,14 +1,13 @@
-import { IAgency } from "../../../interfaces"
 import { useEffect, useState } from "react"
-import { getAgencies } from "../../../api/agencias.api"
+import { getAgencies, IAgencyResponse } from "../../../api/agencias.api"
 
-export function useAgencies() {
+export function useAgencies(page?: number) {
   const [isLoading, setIsLoading] = useState(true)
-  const [agencies, setAgencies] = useState<IAgency[]>([])
+  const [agencies, setAgencies] = useState<IAgencyResponse | null>(null)
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getAgencies()
+      const data = await getAgencies(page)
       setAgencies(data)
       try {
       } finally {

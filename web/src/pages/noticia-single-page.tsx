@@ -59,9 +59,9 @@ const NoticiaSinglePage = () => {
 
             {isLoadingOtherNews ? (
               <OtherNewsSkeleton />
-            ) : news.length > 0 ? (
+            ) : news && news.data.length > 0 ? (
               <ul className="flex flex-col gap-8">
-                {news.map((data) => (
+                {news.data.map((data) => (
                   <li
                     key={data.id}
                     className="flex lg:flex-row flex-col items-center gap-4 w-full"

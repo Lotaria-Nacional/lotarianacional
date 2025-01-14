@@ -3,16 +3,26 @@ import "leaflet/dist/leaflet.css"
 import L from "leaflet"
 import pin from "/icons/pin.svg"
 import { HiPhone } from "react-icons/hi"
+import { useAgencies } from "@/hooks/api"
 import { useLocation } from "react-router-dom"
-import { useAgencies } from "@/hooks/api/query/useAgencies"
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
+import { useEffect, useState } from "react"
 
 const LeafletMap = () => {
   const { pathname } = useLocation()
   const { agencies } = useAgencies()
-  if (pathname === "/agencias" && window.innerWidth < 767) {
-    return
-  }
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  if (pathname === "/agencias" && windowWidth < 767) return null
 
   const mapIcon = new L.Icon({
     iconUrl: pin,
@@ -24,7 +34,7 @@ const LeafletMap = () => {
   return (
     <MapContainer
       zoom={10}
-      className="h-[400px] lg:h-[500px] w-full"
+      className="h-[400px] lg:h-[500px] lg:block hidden w-full"
       center={[-8.817223708289081, 13.231914368768138]}
     >
       {/* Add a tile layer */}
@@ -34,7 +44,7 @@ const LeafletMap = () => {
       />
 
       {/* Add a marker */}
-      {agencies.map((item) => (
+      {agencies?.data.map((item) => (
         <Marker
           key={item.id}
           icon={mapIcon}
