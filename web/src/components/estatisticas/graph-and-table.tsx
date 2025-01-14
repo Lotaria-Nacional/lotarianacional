@@ -1,6 +1,5 @@
 import BarChart from "./bar-chart"
 import { IStats } from "@/interfaces"
-import { motion } from "framer-motion"
 import StatsInfoText, { StatsTextColor } from "./stats-info-text"
 
 type Props = {
@@ -9,18 +8,9 @@ type Props = {
 }
 
 const GraphAndTable = ({ switchTableAndGraph, statsDataArr }: Props) => {
-  const motionProps = {
-    initial: { opacity: 0, x: switchTableAndGraph ? -50 : 50 }, // Define a direção do slide
-    animate: { opacity: 1, x: 0 }, // Traz o componente para o centro
-    exit: { opacity: 0, x: switchTableAndGraph ? 50 : -50 }, // Desliza para fora na direção oposta
-    transition: { duration: 0.6 },
-  }
   return switchTableAndGraph ? (
     <>
-      <motion.div
-        {...motionProps}
-        className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-10 xl:grid-cols-[repeat(15,1fr)] gap-4 w-full place-items-center"
-      >
+      <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-10 xl:grid-cols-[repeat(15,1fr)] gap-4 w-full place-items-center">
         {statsDataArr?.map((item, index) => (
           <div
             key={index}
@@ -40,7 +30,7 @@ const GraphAndTable = ({ switchTableAndGraph, statsDataArr }: Props) => {
             <span className="text-black">{item.sortedTimes}</span>
           </div>
         ))}
-      </motion.div>
+      </div>
       <div className="flex items-center mt-8 justify-between w-full xl:w-2/5">
         <StatsInfoText text="Números quentes" color={StatsTextColor.red} />
         <StatsInfoText text="Números normais" color={StatsTextColor.yellow} />
@@ -48,12 +38,9 @@ const GraphAndTable = ({ switchTableAndGraph, statsDataArr }: Props) => {
       </div>
     </>
   ) : (
-    <motion.div
-      {...motionProps}
-      className="relative border rounded-lg flex items-center justify-center w-full h-full lg:h-[550px]"
-    >
+    <div className="relative border border-neutral-100 rounded-lg flex items-center justify-center w-full h-full lg:h-[440px]">
       <BarChart stats={statsDataArr} />
-    </motion.div>
+    </div>
   )
 }
 

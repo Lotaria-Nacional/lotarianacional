@@ -10,7 +10,7 @@ import StatisticSkeleton from "@/components/estatisticas/statistic-skeleton"
 
 const EstatisticasPage = () => {
   const { isLoading, stats } = useStatistic()
-  const [switchTableAndGraph, setSwitchTableAndGraph] = useState(false)
+  const [switchTableAndGraph, setSwitchTableAndGraph] = useState(true)
 
   if (isLoading) return <StatisticSkeleton />
 

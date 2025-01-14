@@ -25,7 +25,7 @@ const BarChart = ({ stats }: Props) => {
         borderWidth: 2,
       },
     },
-    responsive: true,
+    // responsive: true,
     plugins: {
       legend: {
         display: false,
@@ -51,7 +51,7 @@ const BarChart = ({ stats }: Props) => {
     [labels]
   )
 
-  return <Bar data={data} options={options} className="mx-auto h-full w-full" />
+  return <Bar data={data} options={options} className="w-full h-full" />
 }
 
 export default BarChart
