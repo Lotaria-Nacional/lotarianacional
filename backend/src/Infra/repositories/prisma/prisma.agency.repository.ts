@@ -16,18 +16,48 @@ export class PrismaAgencyRepository implements IAgencyRespository {
     });
   }
 
-  async getAll(page: number, pageSize: number): Promise<IAgenciesResponse | []> {
-    const skip = (page - 1) * pageSize; // Calcula o número de registros a serem ignorados
-    const take = pageSize; // Define a quantidade de registros por página
+  async getAll(page: number = 1, pageSize: number = 1): Promise<IAgenciesResponse | []> {
+    const isPaginated = page && pageSize;
 
-    const totalRecords = await prisma.agencies.count();
-    const totalPages = Math.ceil(totalRecords / pageSize);
+    // Se a paginação for ativada
+    if (isPaginated) {
+      const skip = (page - 1) * pageSize;
+      const take = pageSize;
 
+      const totalRecords = await prisma.agencies.count();
+      const totalPages = Math.ceil(totalRecords / pageSize);
+
+      const agencies = await prisma.agencies.findMany({
+        skip,
+        take,
+        orderBy: {
+          createdAt: "desc", // Ordena por data de criação
+        },
+      });
+
+      if (agencies.length === 0) return [];
+
+      return {
+        data: agencies.map((agency) =>
+          Agency.create({
+            id: agency.id,
+            name: agency.name,
+            phone: agency.phone,
+            latitude: agency.latitude,
+            longitude: agency.longitude,
+            location_text: agency.location_text,
+            createdAt: agency.createdAt,
+          })
+        ),
+        totalPages,
+        totalRecords,
+      };
+    }
+
+    // Caso contrário, retorne todas as agências
     const agencies = await prisma.agencies.findMany({
-      skip, // Pula os registros conforme a página
-      take, // Limita a quantidade de registros conforme o tamanho da página
       orderBy: {
-        createdAt: "desc", // Ordena os registros por data de criação (descendente)
+        createdAt: "desc",
       },
     });
 
@@ -45,8 +75,8 @@ export class PrismaAgencyRepository implements IAgencyRespository {
           createdAt: agency.createdAt,
         })
       ),
-      totalPages,
-      totalRecords,
+      totalPages: 1, // Como não há paginação, definimos como 1
+      totalRecords: agencies.length,
     };
   }
 

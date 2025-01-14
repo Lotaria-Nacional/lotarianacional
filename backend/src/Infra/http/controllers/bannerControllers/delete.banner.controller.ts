@@ -6,9 +6,8 @@ export class DeleteBannerController {
 
   async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const { devicePosition } = req.body;
-      console.log("DeleteBannerController ~ handle ~ devicePosition", devicePosition);
-      await this.deleteBannerUseCase.execute(devicePosition);
+      const { id } = req.params;
+      await this.deleteBannerUseCase.execute(id);
       return res.status(200).json({ message: "Removido com sucesso." });
     } catch (error) {
       return res.status(500).json({ error: error, message: "Erro interno no servidor." });

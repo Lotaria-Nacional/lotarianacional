@@ -1,21 +1,25 @@
 export type BannerProps = {
   id?: string;
-  desk_banner_1?: string;
-  desk_banner_2?: string;
-  desk_banner_3?: string;
-  mob_banner_1?: string;
-  mob_banner_2?: string;
-  mob_banner_3?: string;
+  device: string;
+  image: string;
+  createdAt?: Date;
 };
 
 export class Banner {
   constructor(public props: BannerProps) {}
 
-  static create(props: BannerProps): Banner {
-    return new Banner(props);
+  static create(props: BannerProps) {
+    return new Banner({
+      ...props,
+      createdAt: new Date(),
+    });
   }
 
-  update(data: BannerProps): void {
-    Object.assign(this.props, data);
+  update(props: Partial<BannerProps>) {
+    Object.assign(this.props, props);
+  }
+
+  toJSON() {
+    return this.props;
   }
 }

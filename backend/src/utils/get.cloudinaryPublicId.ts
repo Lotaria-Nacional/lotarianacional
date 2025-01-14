@@ -1,3 +1,4 @@
+
 export function getCloudinaryPublicId(file: string): string | undefined {
   if (!file || typeof file !== "string") return undefined
 

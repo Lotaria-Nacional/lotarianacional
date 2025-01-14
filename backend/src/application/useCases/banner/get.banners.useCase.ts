@@ -1,27 +1,15 @@
-import { Banner, BannerProps } from "../../../Domain/Entities/banner/banner";
+import { Banner } from "../../../Domain/Entities/banner/banner";
 import { IBannerRespository } from "../../../Domain/Entities/banner/banner.repository";
 
-export class GetBannersUseCase {
-  constructor(private bannerRepository: IBannerRespository) {}
+export class GetAllBannersUseCase {
+  constructor(private bannerRepo: IBannerRespository) {}
 
-  async execute():Promise<BannerProps[]> {
+  async execute() {
     try {
-      const banners = await this.bannerRepository.getAll();
-      return banners.map(
-        (banner) =>
-          Banner.create({
-            id: banner.props.id,
-            desk_banner_1: banner.props.desk_banner_1,
-            desk_banner_2: banner.props.desk_banner_2,
-            desk_banner_3: banner.props.desk_banner_3,
-            mob_banner_1: banner.props.mob_banner_1,
-            mob_banner_2: banner.props.mob_banner_2,
-            mob_banner_3: banner.props.mob_banner_3,
-          }).props
-      );
+      const banners = await this.bannerRepo.getAll();
+      return banners.map((banner) => banner.toJSON());
     } catch (error) {
-      console.log("GetBannersUseCase ~ execute ~ error", error);
-      throw error;
+      throw new Error("Erro ao obter os banners");
     }
   }
 }
