@@ -19,7 +19,6 @@ export class PrismaAgencyRepository implements IAgencyRespository {
   async getAll(page: number = 1, pageSize: number = 1): Promise<IAgenciesResponse | []> {
     const isPaginated = page && pageSize;
 
-    // Se a paginação for ativada
     if (isPaginated) {
       const skip = (page - 1) * pageSize;
       const take = pageSize;
