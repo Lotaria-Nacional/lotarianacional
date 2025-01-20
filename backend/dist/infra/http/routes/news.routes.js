@@ -1,22 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const prisma_news_repository_1 = require("../../repositories/prisma/prisma.news.repository");
 const create_news_useCase_1 = require("../../../application/useCases/news/create.news.useCase");
 const get_news_useCase_1 = require("../../../application/useCases/news/get.news.useCase");
 const get_newsById_useCase_1 = require("../../../application/useCases/news/get.newsById.useCase");
 const update_news_useCase_1 = require("../../../application/useCases/news/update.news.useCase");
 const delete_news_useCase_1 = require("../../../application/useCases/news/delete.news.useCase");
+const CloudinaryUploadService_1 = require("../../Services/ImageUpload/CloudinaryUploadService");
+const multer_middleware_1 = require("../middlewares/multer.middleware");
+const prisma_news_repository_1 = require("../../repositories/prisma/prisma.news.repository");
 const create_news_controller_1 = require("../controllers/newsControllers/create.news.controller");
+const delete_news_controller_1 = require("../controllers/newsControllers/delete.news.controller");
 const get_news_controller_1 = require("../controllers/newsControllers/get.news.controller");
 const get_newsById_controller_1 = require("../controllers/newsControllers/get.newsById.controller");
 const update_news_controller_1 = require("../controllers/newsControllers/update.news.controller");
-const delete_news_controller_1 = require("../controllers/newsControllers/delete.news.controller");
-const cloudinaryUploadService_1 = require("../../services/imageUpload/cloudinaryUploadService");
-const multer_middleware_1 = require("../middlewares/multer.middleware");
 const router = (0, express_1.Router)();
 const prismaNewsRepository = new prisma_news_repository_1.PrismaNewsRespository();
-const cloudinaryUploadService = new cloudinaryUploadService_1.CloudinaryUploadService();
+const cloudinaryUploadService = new CloudinaryUploadService_1.CloudinaryUploadService();
 //CREATE NEWS
 const createNewsUseCase = new create_news_useCase_1.CreateNewsUseCase(prismaNewsRepository, cloudinaryUploadService);
 const createNewsController = new create_news_controller_1.CreateNewsController(createNewsUseCase);

@@ -7,6 +7,7 @@ class Result {
         this.dailyId = props.dailyId;
         this.name = props.name;
         this.hour = props.hour;
+        this.videoURL = props.videoURL;
         this.number_1 = props.number_1;
         this.number_2 = props.number_2;
         this.number_3 = props.number_3;
@@ -17,17 +18,23 @@ class Result {
     static create(props) {
         return new Result(props);
     }
-    update(number_1, number_2, number_3, number_4, number_5) {
-        if (number_1)
-            this.number_1 = number_1;
-        if (number_2)
-            this.number_2 = number_2;
-        if (number_3)
-            this.number_3 = number_3;
-        if (number_4)
-            this.number_4 = number_4;
-        if (number_5)
-            this.number_5 = number_5;
+    update(updateData) {
+        if (updateData.name)
+            this.name = updateData.name;
+        if (updateData.hour)
+            this.hour = updateData.hour;
+        if (updateData.videoURL)
+            this.videoURL = updateData.videoURL;
+        if (updateData.number_1)
+            this.number_1 = updateData.number_1;
+        if (updateData.number_2)
+            this.number_2 = updateData.number_2;
+        if (updateData.number_3)
+            this.number_3 = updateData.number_3;
+        if (updateData.number_4)
+            this.number_4 = updateData.number_4;
+        if (updateData.number_5)
+            this.number_5 = updateData.number_5;
     }
 }
 exports.Result = Result;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserUseCase = void 0;
-const user_1 = require("../../../domain/entities/user/user");
+const User_1 = require("../../../Domain/Entities/User/User");
 class CreateUserUseCase {
     constructor(userRespository, fileUpload, hashService) {
         this.userRespository = userRespository;
@@ -15,7 +15,7 @@ class CreateUserUseCase {
             image = fileImage;
         }
         const hashedPassword = await this.hashService.hash(user.password);
-        const newUser = user_1.User.create({
+        const newUser = User_1.User.create({
             ...user,
             profilePic: image,
             password: hashedPassword,

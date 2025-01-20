@@ -10,7 +10,7 @@ class UpdateResultUseCase {
         const result = await this.resultRepository.getById(data.id);
         if (!result)
             throw new notFound_error_1.NotFoundError("Resultado não encontrado.");
-        result.update(data.number_1, data.number_2, data.number_3, data.number_4, data.number_5);
+        result.update(data);
         this.resultRepository.update(data);
         return result;
     }

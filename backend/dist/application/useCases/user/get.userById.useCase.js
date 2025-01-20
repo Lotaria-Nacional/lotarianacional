@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetUserByIdUseCase = void 0;
-const user_1 = require("../../../domain/entities/user/user");
+const User_1 = require("../../../Domain/Entities/User/User");
 const notFound_error_1 = require("../../../shared/errors/notFound.error");
 class GetUserByIdUseCase {
     constructor(userRepository) {
@@ -12,7 +12,7 @@ class GetUserByIdUseCase {
         if (!user) {
             throw new notFound_error_1.NotFoundError("Usúario não encontrado.");
         }
-        return user_1.User.create(user);
+        return User_1.User.create(user);
     }
 }
 exports.GetUserByIdUseCase = GetUserByIdUseCase;

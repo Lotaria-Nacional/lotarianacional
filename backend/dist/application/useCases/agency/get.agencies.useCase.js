@@ -5,9 +5,16 @@ class GetAgenciesUseCase {
     constructor(agencyRespository) {
         this.agencyRespository = agencyRespository;
     }
-    async execute() {
-        const results = await this.agencyRespository.getAll();
-        return results;
+    async execute(data) {
+        const { page, pageSize } = data;
+        try {
+            const result = await this.agencyRespository.getAll(page, pageSize);
+            return result;
+        }
+        catch (error) {
+            console.log("GetAgenciesUseCase ~ execute ~ error", error);
+            throw new Error("Erro ao recuperar agências. Tente novamente mais tarde.");
+        }
     }
 }
 exports.GetAgenciesUseCase = GetAgenciesUseCase;

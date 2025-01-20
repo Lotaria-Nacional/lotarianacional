@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateNewsUseCase = void 0;
-const news_1 = require("../../../domain/entities/news/news");
+const News_1 = require("../../../Domain/Entities/News/News");
 class CreateNewsUseCase {
     constructor(newsRepository, fileUpload) {
         this.newsRepository = newsRepository;
@@ -9,7 +9,7 @@ class CreateNewsUseCase {
     }
     async execute(data) {
         const imageURL = await this.fileUpload.upload(data.image, "lotaria_nacional/news");
-        const news = news_1.News.create({ ...data, image: imageURL });
+        const news = News_1.News.create({ ...data, image: imageURL });
         await this.newsRepository.save(news);
     }
 }

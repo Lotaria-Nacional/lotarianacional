@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrismaAgencyRepository = void 0;
-const prisma_1 = require("../../database/prisma");
-const agency_1 = require("../../../domain/entities/agency/agency");
+const prisma_1 = require("../../Database/prisma");
+const Agency_1 = require("../../../Domain/Entities/Agency/Agency");
 class PrismaAgencyRepository {
     async save(agency) {
         await prisma_1.prisma.agencies.create({
@@ -16,7 +16,38 @@ class PrismaAgencyRepository {
             },
         });
     }
-    async getAll() {
+    async getAll(page = 1, pageSize = 1) {
+        const isPaginated = page && pageSize;
+        // Se a paginação for ativada
+        if (isPaginated) {
+            const skip = (page - 1) * pageSize;
+            const take = pageSize;
+            const totalRecords = await prisma_1.prisma.agencies.count();
+            const totalPages = Math.ceil(totalRecords / pageSize);
+            const agencies = await prisma_1.prisma.agencies.findMany({
+                skip,
+                take,
+                orderBy: {
+                    createdAt: "desc", // Ordena por data de criação
+                },
+            });
+            if (agencies.length === 0)
+                return [];
+            return {
+                data: agencies.map((agency) => Agency_1.Agency.create({
+                    id: agency.id,
+                    name: agency.name,
+                    phone: agency.phone,
+                    latitude: agency.latitude,
+                    longitude: agency.longitude,
+                    location_text: agency.location_text,
+                    createdAt: agency.createdAt,
+                })),
+                totalPages,
+                totalRecords,
+            };
+        }
+        // Caso contrário, retorne todas as agências
         const agencies = await prisma_1.prisma.agencies.findMany({
             orderBy: {
                 createdAt: "desc",
@@ -24,21 +55,25 @@ class PrismaAgencyRepository {
         });
         if (agencies.length === 0)
             return [];
-        return agencies.map((agency) => agency_1.Agency.create({
-            id: agency.id,
-            name: agency.name,
-            phone: agency.phone,
-            latitude: agency.latitude,
-            longitude: agency.longitude,
-            location_text: agency.location_text,
-            createdAt: agency.createdAt,
-        }));
+        return {
+            data: agencies.map((agency) => Agency_1.Agency.create({
+                id: agency.id,
+                name: agency.name,
+                phone: agency.phone,
+                latitude: agency.latitude,
+                longitude: agency.longitude,
+                location_text: agency.location_text,
+                createdAt: agency.createdAt,
+            })),
+            totalPages: 1, // Como não há paginação, definimos como 1
+            totalRecords: agencies.length,
+        };
     }
     async getById(id) {
         const agency = await prisma_1.prisma.agencies.findUnique({ where: { id } });
         if (!agency)
             return null;
-        return agency_1.Agency.create({
+        return Agency_1.Agency.create({
             id: agency.id,
             name: agency.name,
             phone: agency.phone,
@@ -59,7 +94,7 @@ class PrismaAgencyRepository {
                 location_text: data.location_text,
             },
         });
-        return agency_1.Agency.create({
+        return Agency_1.Agency.create({
             id: agency.id,
             name: agency.name,
             phone: agency.phone,

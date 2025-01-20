@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetNewsByIdUseCase = void 0;
-const news_1 = require("../../../domain/entities/news/news");
+const News_1 = require("../../../Domain/Entities/News/News");
 const notFound_error_1 = require("../../../shared/errors/notFound.error");
 class GetNewsByIdUseCase {
     constructor(newsRepository) {
@@ -11,7 +11,7 @@ class GetNewsByIdUseCase {
         const data = await this.newsRepository.getById(id);
         if (!data)
             throw new notFound_error_1.NotFoundError("Notícia não encontrada.");
-        return news_1.News.create({
+        return News_1.News.create({
             id: data.id,
             title: data.title,
             image: data.image,

@@ -15,7 +15,6 @@ class CreateNewsController {
         });
         try {
             const newsData = createNewsSchema.parse(req.body);
-            console.log(newsData);
             await this.createNewsUseCase.execute({ ...newsData, image: fileImage });
             return res.status(201).json({ message: "Criado com sucesso!" });
         }

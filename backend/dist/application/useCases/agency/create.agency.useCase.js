@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateAgencyUseCase = void 0;
-const agency_1 = require("../../../domain/entities/agency/agency");
+const Agency_1 = require("../../../Domain/Entities/Agency/Agency");
 class CreateAgencyUseCase {
     constructor(agencyRepository) {
         this.agencyRepository = agencyRepository;
     }
     async execute(data) {
-        const agency = agency_1.Agency.create({
+        const agency = Agency_1.Agency.create({
             name: data.name,
             latitude: data.latitude,
             longitude: data.longitude,

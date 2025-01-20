@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrismaNewsRespository = void 0;
-const prisma_1 = require("../../database/prisma");
-const news_1 = require("../../../domain/entities/news/news");
+const prisma_1 = require("../../Database/prisma");
+const News_1 = require("../../../Domain/Entities/News/News");
 class PrismaNewsRespository {
     async delete(id) {
         await prisma_1.prisma.news.delete({ where: { id } });
@@ -11,7 +11,7 @@ class PrismaNewsRespository {
         const data = await prisma_1.prisma.news.findUnique({ where: { id } });
         if (!data)
             return null;
-        return news_1.News.create({
+        return News_1.News.create({
             id: data.id,
             image: data.image,
             title: data?.title,
@@ -29,14 +29,30 @@ class PrismaNewsRespository {
             },
         });
     }
-    async getAll() {
-        const newsList = await prisma_1.prisma.news.findMany();
-        return newsList.map((news) => news_1.News.create({
-            id: news.id,
-            title: news.title,
-            image: news.image,
-            description: news.description,
-        }));
+    async getAll(page, pageSize) {
+        const skip = (page - 1) * pageSize;
+        const take = pageSize;
+        const totalRecords = await prisma_1.prisma.news.count();
+        const totalPages = Math.ceil(totalRecords / pageSize);
+        const news = await prisma_1.prisma.news.findMany({
+            skip,
+            take,
+            orderBy: {
+                createdAt: "desc",
+            },
+        });
+        if (news.length === 0)
+            return [];
+        return {
+            data: news.map((news) => News_1.News.create({
+                id: news.id,
+                title: news.title,
+                image: news.image,
+                description: news.description,
+            })),
+            totalPages,
+            totalRecords,
+        };
     }
     async update(id, data) {
         const result = await prisma_1.prisma.news.update({
@@ -47,7 +63,7 @@ class PrismaNewsRespository {
                 image: data.image,
             },
         });
-        return news_1.News.create({
+        return News_1.News.create({
             id: result.id,
             title: result.title,
             image: result.image,

@@ -17,7 +17,7 @@ class AuthenticateUserUseCase {
         if (!isPasswordCorrect)
             throw new invalid_password_error_1.InvalidPassword();
         const token = this.tokenService.generateToken({ userId: user.id });
-        return { token };
+        return { token, user };
     }
 }
 exports.AuthenticateUserUseCase = AuthenticateUserUseCase;

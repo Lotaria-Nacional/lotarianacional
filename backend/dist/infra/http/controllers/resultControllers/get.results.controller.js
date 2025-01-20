@@ -8,7 +8,8 @@ class GetResultsController {
     async handle(req, res) {
         try {
             const results = await this.getResultsUseCase.execute();
-            return res.status(200).json(results);
+            const total = results.length;
+            return res.status(200).json({ results, total: total });
         }
         catch (error) {
             return res.status(500).json({ message: error.message });

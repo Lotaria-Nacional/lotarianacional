@@ -6,8 +6,12 @@ class GetAgenciesController {
         this.getAgenciesUseCase = getAgenciesUseCase;
     }
     async handle(req, res) {
+        const { page = 1, pageSize = 10 } = req.query;
         try {
-            const agencies = await this.getAgenciesUseCase.execute();
+            const agencies = await this.getAgenciesUseCase.execute({
+                page: parseInt(page, 10),
+                pageSize: parseInt(pageSize, 10),
+            });
             return res.status(200).json(agencies);
         }
         catch (error) {

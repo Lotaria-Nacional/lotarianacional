@@ -10,12 +10,11 @@ class CreateUserController {
         const profileImage = req.file?.buffer;
         try {
             const createUserSchema = zod_1.z.object({
-                firstName: zod_1.z.string(),
-                lastName: zod_1.z.string(),
-                email: zod_1.z.string().email(),
-                password: zod_1.z
-                    .string()
-                    .min(6, "A palavra-passe deve conter pelo menos 6 caractéres."),
+                firstName: zod_1.z.string().min(1, "O nome é obrigatório."),
+                lastName: zod_1.z.string().min(1, "O sobrenome é obrigatório."),
+                email: zod_1.z.string().email().min(1, "O email é obrigatório."),
+                role: zod_1.z.string().min(1, "A função do usuário é obrigatória."),
+                password: zod_1.z.string().min(6, "A palavra-passe deve conter pelo menos 6 caractéres."),
                 profilePic: zod_1.z.string().optional(),
             });
             const user = createUserSchema.parse(req.body);

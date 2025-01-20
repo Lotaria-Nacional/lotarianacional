@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const prisma_agency_repository_1 = require("../../repositories/prisma/prisma.agency.repository");
-const get_agencies_useCase_1 = require("../../../application/useCases/agency/get.agencies.useCase");
-const get_agencies_controller_1 = require("../controllers/agencyControllers/get.agencies.controller");
+const delete_agency_useCase_1 = require("../../../application/useCases/agency/delete.agency.useCase");
 const create_agency_useCase_1 = require("../../../application/useCases/agency/create.agency.useCase");
-const create_agency_controller_1 = require("../controllers/agencyControllers/create.agency.controller");
+const get_agencies_useCase_1 = require("../../../application/useCases/agency/get.agencies.useCase");
 const get_agencyById_useCase_1 = require("../../../application/useCases/agency/get.agencyById.useCase");
+const update_agency_useCase_1 = require("../../../application/useCases/agency/update.agency.useCase");
+const prisma_agency_repository_1 = require("../../repositories/prisma/prisma.agency.repository");
+const create_agency_controller_1 = require("../controllers/agencyControllers/create.agency.controller");
+const delete_agency_controller_1 = require("../controllers/agencyControllers/delete.agency.controller");
+const get_agencies_controller_1 = require("../controllers/agencyControllers/get.agencies.controller");
 const get_agenctById_controller_1 = require("../controllers/agencyControllers/get.agenctById.controller");
 const update_agency_controller_1 = require("../controllers/agencyControllers/update.agency.controller");
-const update_agency_useCase_1 = require("../../../application/useCases/agency/update.agency.useCase");
-const delete_agency_controller_1 = require("../controllers/agencyControllers/delete.agency.controller");
-const delete_agency_useCase_1 = require("../../../application/useCases/agency/delete.agency.useCase");
 const router = (0, express_1.Router)();
 const prismaAgencyRepository = new prisma_agency_repository_1.PrismaAgencyRepository();
 //CREATE

@@ -13,15 +13,13 @@ class UpdateAgencyController {
             name: zod_1.z.string().optional(),
             phone: zod_1.z.number().optional(),
             location_text: zod_1.z.string().optional(),
-            latitude: zod_1.z.number().int().optional(),
-            longitude: zod_1.z.number().int().optional(),
+            latitude: zod_1.z.number().optional(),
+            longitude: zod_1.z.number().optional(),
         });
         try {
             const data = updateAgencySchema.parse(req.body);
             const updatedAgency = await this.updateAgencyUseCase.execute(id, data);
-            return res
-                .status(200)
-                .json({ message: "Atualizado com sucesso.", data: updatedAgency });
+            return res.status(200).json({ message: "Atualizado com sucesso.", data: updatedAgency });
         }
         catch (error) {
             if (error instanceof notFound_error_1.NotFoundError) {
