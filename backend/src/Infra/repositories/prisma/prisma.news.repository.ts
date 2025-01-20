@@ -30,7 +30,7 @@ export class PrismaNewsRespository implements INewsRespository {
     });
   }
 
-  async getAll(page: number, pageSize: number): Promise<INewsResponse | []> {
+  async getAll(page: number = 1, pageSize: number): Promise<INewsResponse> {
     const skip = (page - 1) * pageSize;
     const take = pageSize;
 
@@ -44,8 +44,6 @@ export class PrismaNewsRespository implements INewsRespository {
         createdAt: "desc",
       },
     });
-
-    if (news.length === 0) return [];
 
     return {
       data: news.map((news) =>

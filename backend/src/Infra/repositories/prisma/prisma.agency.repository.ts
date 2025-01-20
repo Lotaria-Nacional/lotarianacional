@@ -16,51 +16,20 @@ export class PrismaAgencyRepository implements IAgencyRespository {
     });
   }
 
-  async getAll(page: number = 1, pageSize: number = 1): Promise<IAgenciesResponse | []> {
-    const isPaginated = page && pageSize;
+  async getAll(page: number = 1, pageSize: number = 1): Promise<IAgenciesResponse> {
+    const skip = (page - 1) * pageSize;
+    const take = pageSize;
 
-    if (isPaginated) {
-      const skip = (page - 1) * pageSize;
-      const take = pageSize;
+    const totalRecords = await prisma.agencies.count();
+    const totalPages = Math.ceil(totalRecords / pageSize);
 
-      const totalRecords = await prisma.agencies.count();
-      const totalPages = Math.ceil(totalRecords / pageSize);
-
-      const agencies = await prisma.agencies.findMany({
-        skip,
-        take,
-        orderBy: {
-          createdAt: "desc", // Ordena por data de criação
-        },
-      });
-
-      if (agencies.length === 0) return [];
-
-      return {
-        data: agencies.map((agency) =>
-          Agency.create({
-            id: agency.id,
-            name: agency.name,
-            phone: agency.phone,
-            latitude: agency.latitude,
-            longitude: agency.longitude,
-            location_text: agency.location_text,
-            createdAt: agency.createdAt,
-          })
-        ),
-        totalPages,
-        totalRecords,
-      };
-    }
-
-    // Caso contrário, retorne todas as agências
     const agencies = await prisma.agencies.findMany({
+      skip,
+      take,
       orderBy: {
         createdAt: "desc",
       },
     });
-
-    if (agencies.length === 0) return [];
 
     return {
       data: agencies.map((agency) =>
@@ -74,8 +43,8 @@ export class PrismaAgencyRepository implements IAgencyRespository {
           createdAt: agency.createdAt,
         })
       ),
-      totalPages: 1, // Como não há paginação, definimos como 1
-      totalRecords: agencies.length,
+      totalPages,
+      totalRecords,
     };
   }
 
