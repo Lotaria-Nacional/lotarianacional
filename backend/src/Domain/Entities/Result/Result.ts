@@ -23,8 +23,8 @@ export type UpdateNumberInputDTO = {
 };
 
 export class Result {
-  public readonly id?: string;
-  public readonly dailyId?: string;
+  public id?: string;
+  public dailyId?: string;
   public name: string;
   public hour: string;
   public videoURL: string;

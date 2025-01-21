@@ -1,12 +1,14 @@
 import { formatDate } from "../../../utils/date";
 import { Result } from "../../../Domain/Entities/Result/Result";
 import { CreateResultInputDTO } from "../result/create.result.useCase";
+import { Emission } from "../../../Domain/Entities/emission/emission.entity";
 import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult";
 import { IExcelService } from "../../../Domain/services/xlsx.service.interface";
+import { IEmissionRepository } from "../../../Domain/Entities/emission/emission.repository";
 import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository";
 
 export class CreateDailyResultUseCase {
-  constructor(private dailyResultRespository: IDailyResultRespository, private excelService: IExcelService) {}
+  constructor(private dailyResultRespository: IDailyResultRespository, private excelService: IExcelService, private emissionRepository: IEmissionRepository) {}
 
   async execute(data: CreateResultInputDTO): Promise<void> {
     const today = new Date();
@@ -21,7 +23,11 @@ export class CreateDailyResultUseCase {
         dailyResult.results.push(this.createNewResult(data));
         await this.dailyResultRespository.update(dailyResult);
       }
-
+      const emission = Emission.create({
+        description: data.name,
+        url: data.videoURL,
+      });
+      await this.emissionRepository.save(emission);
       await this.excelService.generateAndSaveExcel();
     } catch (error) {
       console.error("Erro ao criar o resultado do dia:", error);
@@ -36,11 +42,9 @@ export class CreateDailyResultUseCase {
       formatedDate: formatDate(date),
     });
   }
-
   private isNewDailyResultRequired(dailyResult: DailyResult): boolean {
     return dailyResult.results.length >= 4;
   }
-
   private createNewResult(data: CreateResultInputDTO): Result {
     return Result.create({
       name: data.name,

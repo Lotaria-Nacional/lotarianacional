@@ -77,3 +77,11 @@ model Statistics {
   createdAt DateTime @default(now())
   statsData Json
 }
+
+model Emission {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  url String
+  createdAt DateTime @default(now())
+  formatedData String?
+  description String?
+}

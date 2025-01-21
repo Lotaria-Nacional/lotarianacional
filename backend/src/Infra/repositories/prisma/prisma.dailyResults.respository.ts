@@ -177,7 +177,6 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
       },
     });
   }
-
   async getByDate(date: string): Promise<DailyResult | null> {
     const data = await prisma.dailyResult.findUnique({
       where: { date: new Date(date) },
@@ -215,7 +214,6 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
       where: { id },
     });
   }
-
   async getById(id: string): Promise<DailyResult | null> {
     const dailyResult = await prisma.dailyResult.findUnique({
       where: { id },
