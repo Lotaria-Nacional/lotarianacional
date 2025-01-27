@@ -75,13 +75,16 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
 
     if (date) {
       const targetDate = new Date(date);
+      if (isNaN(targetDate.getTime())) {
+        throw new Error("Formato de data inválido.");
+      }
       const startOfTargetWeek = startOfWeek(targetDate, { weekStartsOn: 1 });
-      const endOfTargetWeek = addDays(startOfTargetWeek, 5);
+      const endOfTargetWeek = addDays(startOfTargetWeek, 6);
 
       whereClause = {
         createdAt: {
-          $gte: startOfTargetWeek,
-          $lte: endOfTargetWeek,
+          gte: new Date(startOfTargetWeek.toISOString()),
+          lte: new Date(endOfTargetWeek.toISOString()),
         },
       };
     }
@@ -94,7 +97,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
       },
     });
 
-    const blockSize = 7;
+    const blockSize = 6;
     const totalResults = dailyResults.length;
     const startIndex = totalResults - (totalResults % blockSize || blockSize);
     let limitedResults = dailyResults.slice(startIndex, startIndex + blockSize);
