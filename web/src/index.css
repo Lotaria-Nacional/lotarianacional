@@ -137,3 +137,14 @@ details[open] summary::after {
   font-weight: 500;
   font-size: 68px;
 }
+.fade-in-text {
+  animation: fade-in-text 300ms ease;
+}
+@keyframes fade-in-text {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: auto;
+  }
+}

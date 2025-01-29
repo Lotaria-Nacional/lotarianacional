@@ -13,7 +13,7 @@ const ComoJogarInstructionsSwiper = () => {
   const [activeSlide, setActiveSlide] = useState(0)
 
   return (
-    <div className="flex flex-col justify-between h-[350px] md:h-[450px] lg:h-full p-8 w-full border border-neutral-200 rounded-xl ">
+    <div className="flex flex-col justify-between h-[450px] md:h-[450px] lg:h-full p-8 w-full border border-neutral-200 rounded-xl ">
       <Swiper
         spaceBetween={50}
         className="w-full"

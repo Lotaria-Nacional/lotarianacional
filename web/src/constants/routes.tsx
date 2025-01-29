@@ -13,6 +13,7 @@ import {
 import App from "../App"
 import { createBrowserRouter } from "react-router-dom"
 import NoticiaSinglePage from "../pages/noticia-single-page"
+import ChancesEPremiosPage from "@/pages/chances-e-prémios"
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: "/noticia/:id",
         element: <NoticiaSinglePage />,
+      },
+      {
+        path: "/chances-e-premios/",
+        element: <ChancesEPremiosPage />,
       },
     ],
   },

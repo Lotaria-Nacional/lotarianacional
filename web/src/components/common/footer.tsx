@@ -2,6 +2,7 @@ import Container from "./container"
 import { Link } from "react-router-dom"
 import { LOGO } from "../../constants/assets"
 import { NAVIGATION_LINKS } from "../../constants/links"
+import SocialMediaLinks from "./social-media-links"
 
 const Footer = () => {
   return (
@@ -46,7 +47,10 @@ const Footer = () => {
 
           <div className="flex w-full h-full justify-between flex-col gap-4">
             <h1 className="text-xl capitalize font-bold">Contactos</h1>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2">
+              <div className="lg:hidden block">
+                <SocialMediaLinks />
+              </div>
               <span>Tel: + 244 923 190 007</span>
               <span>geral@lotarianacional.com</span>
               <span>Rainha Ginga Nº 79</span>

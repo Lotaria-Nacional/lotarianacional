@@ -15,7 +15,7 @@ const TableChanceSelectInput = ({ selected, handleSelect, chances }: Props) => {
         onChange={(e) => handleSelect(e)}
         className="lg:rounded-none z-1 cursor-pointer w-full outline-none border-none bg-inherit text-white text-center"
       >
-        <option value="Chance" selected disabled className="normal-case">
+        <option defaultValue="Chance" disabled className="normal-case">
           Chance
         </option>
         {chances.map((chance, index) => (

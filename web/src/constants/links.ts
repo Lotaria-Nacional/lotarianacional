@@ -4,8 +4,8 @@ import { SiFacebook, SiX, SiLinkedin, SiWhatsapp } from "react-icons/si"
 export const NAVIGATION_LINKS = [
   {
     id: 1,
-    label: "sobre nós",
-    link: "sobre-nos",
+    label: "Chances e prémios",
+    link: "chances-e-premios",
   },
   {
     id: 2,
@@ -22,20 +22,74 @@ export const NAVIGATION_LINKS = [
     label: "estatísticas",
     link: "estatisticas",
   },
+
   {
     id: 5,
-    label: "agências",
-    link: "agencias",
+    label: "recrutamento",
+    link: "recrutamento",
+  },
+]
+
+export const MOBILE_NAVIGATION_LINKS = [
+  {
+    id: 1,
+    label: "Chances e prémios",
+    link: "/chances-e-premios",
+  },
+  {
+    id: 2,
+    label: "como jogar",
+    link: "/como-jogar",
+  },
+  {
+    id: 3,
+    label: "resultados",
+    link: "/resultados",
+  },
+  {
+    id: 4,
+    label: "estatísticas",
+    link: "/estatisticas",
+  },
+
+  {
+    id: 5,
+    label: "Notícias",
+    link: "/noticias",
   },
   {
     id: 6,
-    label: "notícias",
-    link: "noticias",
+    label: "Agências",
+    link: "/agencias",
   },
   {
     id: 7,
+    label: "Sobre nós",
+    link: "/sobre-nos",
+  },
+
+  {
+    id: 8,
     label: "recrutamento",
     link: "recrutamento",
+  },
+]
+
+export const DROPDOWN_MENU = [
+  {
+    id: 1,
+    label: "Notícias",
+    link: "/noticias",
+  },
+  {
+    id: 2,
+    label: "Agências",
+    link: "/agencias",
+  },
+  {
+    id: 3,
+    label: "Sobre nós",
+    link: "/sobre-nos",
   },
 ]
 

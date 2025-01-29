@@ -49,7 +49,7 @@ const DesktopTablePlayground = ({
             filterTableContent.correct_numbers.map((cell, index) => (
               <div key={index} className="flex items-center justify-center">
                 <div
-                  key={index}
+                  key={`${index} inner-div`}
                   className={`border ${
                     index === filterTableContent.correct_numbers.length - 1 &&
                     "rounded-bl-[10px]"
@@ -58,13 +58,13 @@ const DesktopTablePlayground = ({
                   {formatMoney(Number(value))}
                 </div>
                 <div
-                  key={index}
+                  key={`${index} inner-inner-div`}
                   className="border w-[340px] p-[10px] flex gap-[8PX] justify-center items-center h-[39px]"
                 >
                   {bullets.map((_, i) => {
                     return (
                       <div
-                        key={i}
+                        key={`${i} deep-inner-div`}
                         className={`w-[19px] h-[19px] rounded-full ${
                           i < cell ? "bg-LT_RED-300" : "bg-gray-300"
                         }`}
@@ -73,14 +73,14 @@ const DesktopTablePlayground = ({
                   })}
                 </div>
                 <div
-                  key={index}
+                  key={`${index} inner-div-1`}
                   className="border w-[340px] text-center p-[10px] h-[39px] "
                 >
                   {filterTableContent.multiplier[index]}
                 </div>
 
                 <div
-                  key={index}
+                  key={`${index} inner-div-2`}
                   className={`border text-center w-[340px] p-[10px] h-[39px] ${
                     index === filterTableContent.correct_numbers.length - 1 &&
                     "rounded-br-[10px]"
