@@ -19,11 +19,11 @@ const DailyResults = () => {
   const PLACEHOLDERS_TO_SHOW = TOTAL_RESULTS - results_length
 
   return (
-    <Container className="absolute z-[1] hidden lg:flex h-full px-0 bg-red-600 justify-end py-4 inset-0 w-full">
+    <Container className="absolute z-[1] hidden lg:flex h-full px-0 justify-end py-4 inset-0 w-full">
       {isLoading ? (
         <DailyResultSkeleton />
       ) : (
-        <div className="h-full bg-yellow-200 w-[250px] flex flex-col justify-center gap-2 items-center">
+        <div className="h-full w-[250px] flex flex-col justify-center gap-2 items-center">
           <header className="text-center text-yellow-500">
             <h1 className="text-LT_WHITE font-bold text-base uppercase">
               resultados diários
