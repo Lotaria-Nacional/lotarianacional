@@ -17,6 +17,17 @@ type Props = {
 
 const DesktopSwiper = ({ banner }: Props) => {
   const hasBanners = banner.length > 0
+
+  // Função para renderizar cada slide
+  const renderSlide = (image: string, alt: string) => (
+    <SwiperSlide className="relative">
+      <img
+        alt={alt}
+        src={image}
+        className="absolute inset-0 object-cover w-full h-full"
+      />
+    </SwiperSlide>
+  )
   return (
     <Swiper
       pagination
@@ -25,27 +36,17 @@ const DesktopSwiper = ({ banner }: Props) => {
       className="h-full lg:block hidden"
       modules={[Autoplay, Pagination]}
     >
-      <SwiperSlide className="relative ">
-        <img
-          alt="lotaria banner 1"
-          src={hasBanners ? banner[0].image : IMAGES.banner1}
-          className="absolute inset-0 object-cover h-full w-full"
-        />
-      </SwiperSlide>
-      <SwiperSlide className="relative">
-        <img
-          alt="lotaria banner 2"
-          src={hasBanners ? banner[1].image : IMAGES.banner2}
-          className="absolute inset-0 object-cover w-full h-full"
-        />
-      </SwiperSlide>
-      <SwiperSlide className="relative">
-        <img
-          alt="lotaria banner 3"
-          src={hasBanners ? banner[2].image : IMAGES.banner3}
-          className="absolute inset-0 object-cover w-full h-full"
-        />
-      </SwiperSlide>
+      {hasBanners && banner[0]
+        ? renderSlide(banner[0].image, "lotaria banner 1")
+        : renderSlide(IMAGES.banner1, "Banner default 1")}
+
+      {hasBanners && banner[1]
+        ? renderSlide(banner[1].image, "lotaria banner 2")
+        : renderSlide(IMAGES.banner2, "Banner default 2")}
+
+      {hasBanners && banner[2]
+        ? renderSlide(banner[2].image, "lotaria banner 3")
+        : renderSlide(IMAGES.banner3, "Banner default 3")}
     </Swiper>
   )
 }

@@ -1,20 +1,22 @@
 import LeafletMap from "../components/map"
 import { ICONS } from "../constants/assets"
-import Emissoes from "../components/emissoes"
 import LinkCard from "../components/link-card"
 import { LINK_CARDS } from "../constants/links"
 import HeroSlider from "../components/hero-slider"
 import Container from "../components/common/container"
+import Emissoes from "../components/emissoes/emissoes"
 import { PERGUNTAS_FREQUENTES } from "../constants/faq"
 import CountDownCard from "../components/count-down-card"
 import DailyResults from "../components/resultados/daily-results"
 import ListingNoticias from "../components/noticias/listing-noticias"
 import MobileDailyResults from "../components/mobile/mobile-daily-results"
+import PlayGroundTable from "./playground-table"
 
 const HomePage = () => {
   return (
     <>
       <main className="flex gap-8 lg:gap-20 flex-col">
+        {/* <ExplanationPopUp /> */}
         {/** HERO SECTION */}
         <section className="relative lg:h-[calc(100vh-165px)] h-[25vh]">
           <HeroSlider />
@@ -25,22 +27,47 @@ const HomePage = () => {
         <MobileDailyResults />
 
         {/** LINK CARDS SECTION */}
-        <Container className=" grid grid-cols-1 mb-8 lg:mb-0 md:grid-cols-3 gap-8">
-          <LinkCard item={LINK_CARDS[0]} />
+        <Container className=" grid grid-cols-1 text-neutral-700 items-start mb-8 lg:mb-0 md:grid-cols-3 gap-8">
+          <LinkCard
+            item={LINK_CARDS[0]}
+            className="lg:h-[220px] lg:mt-[8px] mt-[10px] h-[170px]"
+          />
+
           <CountDownCard />
-          <LinkCard item={LINK_CARDS[2]} />
+
+          <LinkCard
+            item={LINK_CARDS[2]}
+            className="lg:h-[220px] h-[170px] mt-[12px] lg:mt-[10px]"
+          />
         </Container>
 
+        {/** PLAYGROUND TABLE SECTION */}
+        <section className="bg-LT_GRAY-100/30 flex h-auto py-[50px] lg:py-[100px] items-center justify-center">
+          <Container className="flex-col gap-8 lg:gap-[40px]">
+            <header className="flex flex-col w-full gap-[16px] lg:gap-2 items-center justify-center h-[92px]">
+              <h1 className="font-bold text-[24px] lg:text-[34px] uppercase">
+                CHANCES E PRÉMIOS
+              </h1>
+              <p className="text-[#818181] text-[14px] lg:text-[16px] text-center lg:text-left">
+                Use a tabela abaixo para simular os prémios com base no valor
+                apostado e nas diferentes chances
+              </p>
+            </header>
+            <PlayGroundTable />
+          </Container>
+        </section>
+
         {/** EMISSÕES SECTION */}
-        <Container className="flex-col gap-6 ">
+        <Container className="flex-col gap-8">
           <h1 className="font-bold text-[24px] lg:text-[34px] uppercase">
             últimas emissões
           </h1>
+
           <Emissoes />
         </Container>
 
         {/** ÚLTIMAS NOTICIAS SECTION */}
-        <Container className="flex-col gap-8  ">
+        <Container className="flex-col gap-8">
           <h1 className="font-bold text-[24px] lg:text-[34px] uppercase">
             últimas notícias
           </h1>

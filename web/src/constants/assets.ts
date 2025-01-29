@@ -12,7 +12,17 @@ export const IMAGES = {
   trevoBg: "/banner/bg-trevo.webp",
   cardLoto: "/banner/card-loto.webp",
   recrutamento: "/banner/recrutamento.webp",
-  videoThumbnail: "/banner/video-thumbnail.png",
+  videoThumbnail: "/como_jogar/video-thumbnail-como-jogar.webp",
+  comojogar1: "/como_jogar/banners/como-jogar-1.webp",
+  comojogar2: "/como_jogar/banners/como-jogar-2.webp",
+  comojogar3: "/como_jogar/banners/como-jogar-3.webp",
+  comojogar4: "/como_jogar/banners/como-jogar-4.webp",
+  comojogar5: "/como_jogar/banners/como-jogar-5.webp",
+  comojogar6: "/como_jogar/banners/como-jogar-6.webp",
+  comojogar7: "/como_jogar/banners/como-jogar-7.webp",
+  comojogar8: "/como_jogar/banners/como-jogar-8.webp",
+  comojogar9: "/como_jogar/banners/como-jogar-9.webp",
+  comojogar10: "/como_jogar/banners/como-jogar-10.webp",
 }
 
 export const ICONS = {
@@ -28,4 +38,6 @@ export const ICONS = {
   estatisticas: "/icons/estatisticas.webp",
   verticalLine: "/icons/vertical-line.png",
   verGrafico: "/icons/ver-grafico-icon.png",
+  newEstatistica: "/icons/new-estatisticas.webp",
+  resultados: "/icons/modelo-resultados.webp",
 }

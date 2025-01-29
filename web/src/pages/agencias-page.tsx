@@ -33,10 +33,12 @@ const AgenciasPage = () => {
 
         {isLoading ? (
           <AgencySkeleton />
-        ) : filteredAgencies && filteredAgencies.length > 0 ? (
+        ) : filteredAgencies &&
+          Array.isArray(filteredAgencies) &&
+          filteredAgencies.length > 0 ? (
           <>
             <section className="lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full hidden">
-              {filteredAgencies.map((agency, i) => (
+              {filteredAgencies?.map((agency, i) => (
                 <AgencyCard key={i} agency={agency} />
               ))}
             </section>
@@ -52,7 +54,7 @@ const AgenciasPage = () => {
       </Container>
 
       <LeafletMap />
-      <LeafletMapMobile agencies={agencies?.data} />
+      <LeafletMapMobile agencies={agencies?.data || []} />
     </>
   )
 }

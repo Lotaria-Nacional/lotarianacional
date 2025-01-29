@@ -7,7 +7,7 @@ import { NAVIGATION_LINKS } from "../../constants/links"
 
 const Header = () => {
   return (
-    <header className="radialGradient w-full sticky text-base z-[10000] top-0 flex items-center">
+    <header className="bg-[#b51817] border-b border-b-white w-full sticky text-base z-[500] top-0 flex items-center">
       <Container className="flex-row py-4 lg:py0 lg:h-[120px] text-white justify-between">
         <Link reloadDocument to={"/"}>
           <Logo />

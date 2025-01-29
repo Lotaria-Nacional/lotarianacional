@@ -51,7 +51,7 @@ const BarChart = ({ stats }: Props) => {
     [labels]
   )
 
-  return <Bar data={data} options={options} className="w-full h-full" />
+  return <Bar data={data} options={options} className="w-full grow flex-1 h-full" />
 }
 
 export default BarChart

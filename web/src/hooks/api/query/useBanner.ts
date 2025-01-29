@@ -1,4 +1,4 @@
-import { getBanners } from "@/api/banner"
+import { getBanners } from "@/api/banner.api"
 import { IBanner } from "@/interfaces"
 import { useEffect, useState } from "react"
 

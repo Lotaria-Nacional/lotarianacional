@@ -14,7 +14,7 @@ const NoticiasPage = () => {
     <Container className="py-12 flex flex-col gap-4 w-full">
       {isLoading ? (
         <NewsSkeleton />
-      ) : news && news.data.length > 0 ? (
+      ) : news && Array.isArray(news.data) && news.data.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {news.data.map((data, index) => (

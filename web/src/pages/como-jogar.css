@@ -1,0 +1,6 @@
+.como-jogar {
+  pointer-events: none;
+  height: 100%; /* Garante altura consistente */
+  position: relative;
+  z-index: 40; /* Isola o botão */
+}

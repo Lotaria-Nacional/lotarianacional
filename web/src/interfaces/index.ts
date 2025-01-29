@@ -87,3 +87,17 @@ export interface IStatistic {
   statsData: IStats[]
   createdAt: Date
 }
+
+export interface IEmission {
+  id: string
+  url: string
+  description?: string
+  formatedDate: string
+  createdAt: Date
+}
+
+export interface TablePlaygroundData {
+  label: string
+  multiplier: number[]
+  correct_numbers: number[]
+}

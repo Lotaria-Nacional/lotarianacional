@@ -1,4 +1,4 @@
-import { getStatistics } from "@/api/estatisticas"
+import { getStatistics } from "@/api/estatisticas.api"
 import { IStatistic } from "@/interfaces"
 import { useEffect, useState } from "react"
 

@@ -18,9 +18,9 @@ const GraphAndTable = ({ switchTableAndGraph, statsDataArr }: Props) => {
           >
             <span
               className={`h-6 w-6 p-2 text-white flex font-bold items-center justify-center ${
-                item.sortedTimes > 3
+                item.sortedTimes > 1
                   ? "bg-LT_RED-200/90"
-                  : item.sortedTimes > 3
+                  : item.sortedTimes == 1
                   ? "bg-yellow-400"
                   : "bg-[#00A5FF]"
               } rounded-full`}

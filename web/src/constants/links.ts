@@ -1,5 +1,5 @@
-import { SiFacebook, SiX, SiLinkedin, SiWhatsapp } from "react-icons/si"
 import { ICONS } from "../constants/assets"
+import { SiFacebook, SiX, SiLinkedin, SiWhatsapp } from "react-icons/si"
 
 export const NAVIGATION_LINKS = [
   {
@@ -43,20 +43,20 @@ export const LINK_CARDS = [
   {
     id: 1,
     link: "/resultados",
-    icon: ICONS.calculadora,
-    text: ["últimos", "resultados"],
+    icon: ICONS.resultados,
+    text: "Resultados",
   },
   {
     id: 2,
     link: "#",
     icon: ICONS.roleta,
-    text: ["horários", "dos próximos jogos"],
+    text: "horários dos próximos jogos",
   },
   {
     id: 3,
     link: "/estatisticas",
-    icon: ICONS.estatisticas,
-    text: ["estatísticas dos", "últimos jogos"],
+    icon: ICONS.newEstatistica,
+    text: "estatísticas",
   },
 ]
 

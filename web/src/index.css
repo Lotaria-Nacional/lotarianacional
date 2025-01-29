@@ -126,3 +126,14 @@ details[open] summary::after {
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: edo;
+  src: url("../public/edosz.ttf");
+}
+
+.edoSZ {
+  font-family: edo;
+  font-weight: 500;
+  font-size: 68px;
+}

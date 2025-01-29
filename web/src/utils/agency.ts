@@ -4,7 +4,7 @@ export function filterAgenciesBySearchParams(
   params: string,
   agencies?: IAgency[]
 ) {
-  if (!agencies) return
+  if (!agencies) return []
 
   return params === ""
     ? agencies

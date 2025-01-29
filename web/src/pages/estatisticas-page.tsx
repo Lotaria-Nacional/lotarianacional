@@ -2,7 +2,6 @@ import { useState } from "react"
 import Ui from "../components/ui"
 import { IStats } from "@/interfaces"
 import { ICONS } from "../constants/assets"
-import { AnimatePresence } from "framer-motion"
 import Container from "../components/common/container"
 import { useStatistic } from "@/hooks/api/query/useStatistic"
 import GraphAndTable from "@/components/estatisticas/graph-and-table"
@@ -59,12 +58,10 @@ const EstatisticasPage = () => {
               </Ui.Button>
             </div>
 
-            <AnimatePresence mode="wait">
-              <GraphAndTable
-                statsDataArr={statsDataArr}
-                switchTableAndGraph={switchTableAndGraph}
-              />
-            </AnimatePresence>
+            <GraphAndTable
+              statsDataArr={statsDataArr}
+              switchTableAndGraph={switchTableAndGraph}
+            />
           </>
         </div>
       </Container>

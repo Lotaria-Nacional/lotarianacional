@@ -7,6 +7,7 @@ interface TimeRemaining {
 }
 
 const CountDownCard: React.FC = () => {
+  const isMonday = new Date().getDay() === 0
   const calculateTimeToNextGame = (): TimeRemaining => {
     const now = new Date()
     const currentHour = now.getHours()
@@ -48,19 +49,27 @@ const CountDownCard: React.FC = () => {
   }, [])
 
   return (
-    <div className="flex w-full h-full flex-col gap-2 items-center">
+    <div className="flex w-full h-full flex-col gap-1 items-center">
       <div className="radialGradient w-full h-[180px] lg:h-[230px] rounded-3xl flex items-center justify-center">
-        <div className="h-[147px] w-full object-contain flex items-center justify-center text-5xl font-medium text-white">
-          <span>{String(time.hours).padStart(2, "0")}</span>
-          <span>h</span>
-          <span>{String(time.minutes).padStart(2, "0")}</span>
-          <span>:</span>
-          <span>{String(time.seconds).padStart(2, "0")}</span>
+        <div className="relative h-[147px] w-full object-contain flex items-center justify-center edoSZ text-5xl font-medium text-yellow-400">
+          {isMonday ? (
+            <img
+              src="/placeholders/countdown-placeholder.webp"
+              className="absolute w-[200px] h-full object-contain"
+            />
+          ) : (
+            <>
+              <span>{String(time.hours).padStart(2, "0")}</span>
+              <span>:</span>
+              <span>{String(time.minutes).padStart(2, "0")}</span>
+              <span>:</span>
+              <span>{String(time.seconds).padStart(2, "0")}</span>
+            </>
+          )}
         </div>
       </div>
-      <header className="font-bold text-LT_BLACK flex flex-row lg:flex-col gap-2 mt-3 lg:gap-0 uppercase text-[28px] text-center">
-        <h4>Próximo</h4>
-        <h4>Jogo</h4>
+      <header className="font-bold text-LT_BLACK flex flex-row lg:flex-col gap-2 mt-3 lg:gap-0 uppercase text-[18px] lg:text-[20px] text-center">
+        <h4>Próximo Jogo</h4>
       </header>
     </div>
   )

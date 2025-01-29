@@ -47,10 +47,10 @@ const Footer = () => {
           <div className="flex w-full h-full justify-between flex-col gap-4">
             <h1 className="text-xl capitalize font-bold">Contactos</h1>
             <div className="flex flex-col">
-              <span>Tel: + 244 900 000 000</span>
+              <span>Tel: + 244 923 190 007</span>
               <span>geral@lotarianacional.com</span>
-              <span>Belas Business Park Edifício Huambo, 3º andar 302</span>
-              <span>Talatona - Luanda</span>
+              <span>Rainha Ginga Nº 79</span>
+              {/* <span>Talatona - Luanda</span> */}
             </div>
             <div className="flex items-center justify-end w-full gap-4">
               <img

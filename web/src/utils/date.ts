@@ -1,3 +1,5 @@
+import { MONTHS } from "@/constants/months"
+
 export const formatWeekDay = (value: string) => {
   const data = new Date(value)
 
@@ -23,25 +25,10 @@ export const formatDate = (value: string) => {
 }
 
 export const dateFormat = (date: string) => {
-  const months = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-  ]
-
   const currDate = new Date(date)
 
   const day = currDate.getUTCDate()
-  const month = months[currDate.getUTCMonth()]
+  const month = MONTHS[currDate.getUTCMonth()]
   const year = currDate.getUTCFullYear()
 
   return `${day} ${month} ${year}`
