@@ -7,7 +7,6 @@ type Props = {
 }
 
 const AgencyFilter = ({ setFilter, selectedLetter }: Props) => {
-  
   const handleSelect = (value: string) => {
     setFilter((prev) => {
       if (value || value !== "") {
@@ -25,7 +24,7 @@ const AgencyFilter = ({ setFilter, selectedLetter }: Props) => {
         onClick={() => handleSelect("")}
         className="text-LT_RED-200 cursor-pointer rounded-lg border border-LT_RED-200 px-2 py-1 capitalize"
       >
-        ver todos
+        Todas
       </span>
 
       <div className="hidden lg:flex items-center justify-between gap-3">

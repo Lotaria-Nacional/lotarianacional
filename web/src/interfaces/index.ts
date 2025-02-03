@@ -92,7 +92,7 @@ export interface IEmission {
   id: string
   url: string
   description?: string
-  formatedDate: string
+  formatedData: string
   createdAt: Date
 }
 

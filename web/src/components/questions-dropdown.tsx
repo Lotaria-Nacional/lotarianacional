@@ -23,22 +23,26 @@ const QuestionsDropdown = () => {
         <li
           key={index}
           onClick={() => handleDrop(index)}
-          className={`flex cursor-pointer flex-col py-4 lg:py-8  w-full gap-4 lg:gap-10 select-none ${
+          className={`flex cursor-pointer flex-col py-2 lg:py-3 w-full gap-4 lg:gap-5 select-none ${
             index !== PERGUNTAS_FREQUENTES.length - 1 &&
             "border-b border-b-zinc-300"
           }`}
         >
           <div className="items-center justify-between flex">
             <span
-              className={`font-semibold uppercase w-[80%] lg:w-[90%] ${
+              className={`font-semibold w-[80%] lg:w-[90%] ${
                 openIndex === index ? "text-LT_RED-100" : ""
               }`}
             >
               {item.question}
             </span>
 
-            <span className="flex items-center justify-center size-10 rounded-full border border-zinc-300 text-zinc-500">
-              {openIndex === index ? <PiMinus /> : <PiPlus />}
+            <span className="flex items-center justify-center size-8">
+              {openIndex === index ? (
+                <PiMinus className="text-black" />
+              ) : (
+                <PiPlus className="text-black" />
+              )}
             </span>
           </div>
           {openIndex === index && (
@@ -60,7 +64,7 @@ const QuestionsDropdown = () => {
 
       <button
         onClick={handleShowMoreQuestions}
-        className="mt-[40px] border-none text-LT_RED-100 rounded-lg w-fit self-start"
+        className="mt-[40px] border border-LT_RED-100 px-3 py-1 text-LT_RED-100 rounded-lg w-fit self-start"
       >
         {showMoreQuestions ? "Ocultar" : " Ver mais"}
       </button>

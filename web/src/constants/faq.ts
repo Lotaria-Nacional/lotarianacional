@@ -9,9 +9,8 @@ export const PERGUNTAS_FREQUENTES: FAQType[] = [
   {
     id: 1,
     question: "Como jogar?",
-    answer:
-      "Para saberes como fazer a tua aposta basta clicares no link abaixo: ",
-    link: "https://www.instagram.com/p/DFK_hb7z1UN/?igsh=MTJhYzQ3Nm55Z3hpMA==",
+    answer: "Para saberes como fazer a tua aposta basta clicares no link: ",
+    link: "/como-jogar",
   },
   {
     id: 2,
@@ -31,7 +30,7 @@ export const PERGUNTAS_FREQUENTES: FAQType[] = [
     question: "Como funciona o Jogo Loto 5/90?",
     answer:
       "O jogo Loto 5/90 funciona da seguinte forma: máquina de lotaria mistura 90 bolas numeradas de 1 à 90. A máquina sorteia 5 bolas, caso 1 ou mais dos teus números escolhidos forem sorteados pela máquina, tu ganhas! Saiba mais em: ",
-    link: "https://www.instagram.com/p/DFK_hb7z1UN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    link: "/como-jogar",
   },
   {
     id: 5,
@@ -49,7 +48,8 @@ export const PERGUNTAS_FREQUENTES: FAQType[] = [
     id: 7,
     question: "Como se calculam os prémios?",
     answer:
-      "Para mais informações sobre como calcular o teu prémio partilhamos aqui o nosso ficheiro informativo: Imagem. Para mais informações sobre como calcular o teu prémio partilhamos aqui o link de acesso ao folheto informativo Link:",
+      "Para mais informações sobre como calcular o teu prémio clique no link para acessar o nosso simular de chances e prémios.",
+    link: "/chances-e-premios",
   },
   {
     id: 8,

@@ -25,10 +25,10 @@ export const NAVIGATION_LINKS = [
 
   {
     id: 5,
-    label: "recrutamento",
-    link: "recrutamento",
+    label: "agências",
+    link: "agencias",
   },
-]
+] as const
 
 export const MOBILE_NAVIGATION_LINKS = [
   {
@@ -51,29 +51,12 @@ export const MOBILE_NAVIGATION_LINKS = [
     label: "estatísticas",
     link: "/estatisticas",
   },
-
   {
     id: 5,
-    label: "Notícias",
-    link: "/noticias",
-  },
-  {
-    id: 6,
     label: "Agências",
     link: "/agencias",
   },
-  {
-    id: 7,
-    label: "Sobre nós",
-    link: "/sobre-nos",
-  },
-
-  {
-    id: 8,
-    label: "recrutamento",
-    link: "recrutamento",
-  },
-]
+] as const
 
 export const DROPDOWN_MENU = [
   {
@@ -91,7 +74,7 @@ export const DROPDOWN_MENU = [
     label: "Sobre nós",
     link: "/sobre-nos",
   },
-]
+] as const
 
 export const LINK_CARDS = [
   {
@@ -112,7 +95,7 @@ export const LINK_CARDS = [
     icon: ICONS.newEstatistica,
     text: "estatísticas",
   },
-]
+] as const
 
 export const SOCIAL_MEDIA = [
   {
@@ -130,5 +113,44 @@ export const SOCIAL_MEDIA = [
   {
     icon: SiWhatsapp,
     link: "#",
+  },
+] as const
+
+export const FOOTER_NAVIGATION_LINKS = [
+  {
+    id: 1,
+    label: "Chances e prémios",
+    link: "chances-e-premios",
+  },
+  {
+    id: 2,
+    label: "como jogar",
+    link: "como-jogar",
+  },
+  {
+    id: 3,
+    label: "resultados",
+    link: "resultados",
+  },
+  {
+    id: 4,
+    label: "estatísticas",
+    link: "estatisticas",
+  },
+
+  {
+    id: 5,
+    label: "Notícias",
+    link: "/noticias",
+  },
+  {
+    id: 6,
+    label: "Sobre nós",
+    link: "/sobre-nos",
+  },
+  {
+    id: 7,
+    label: "Recrutamento",
+    link: "/recrutamento",
   },
 ] as const

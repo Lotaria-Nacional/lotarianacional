@@ -3,7 +3,6 @@ import Logo from "./logo"
 import Container from "./container"
 import { Link, NavLink } from "react-router-dom"
 import MobileMenu from "../mobile/menu/mobile-menu"
-import DropDownMenuButton from "./drop-down-menu-button"
 import { NAVIGATION_LINKS } from "../../constants/links"
 
 const Header = () => {
@@ -33,9 +32,6 @@ const Header = () => {
                 </NavLink>
               </li>
             ))}
-            <div className="h-[20px] w-[.5px] bg-white" />
-
-            <DropDownMenuButton />
           </ul>
         </nav>
         <MobileMenu />

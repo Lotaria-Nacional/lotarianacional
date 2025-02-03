@@ -7,11 +7,14 @@ import TableChanceSelectInput from "@/components/como-jogar/table-chance-select-
 const PlayGroundTable = () => {
   const {
     chances,
-    filteredTableContent,
-    handleSelect,
-    handleValue,
     value,
     selected,
+    handleValue,
+    handleSetChoice,
+    filteredTableContent,
+    setIsSelectMenuOpen,
+    isSelectMenuOpen,
+    selectDivRef,
   } = useTablePlayground(TABLE_PLAYGROUND_JSON)
 
   const formatMoney = (value: number) => {
@@ -26,23 +29,27 @@ const PlayGroundTable = () => {
   return (
     <main className="w-full flex flex-col items-center gap-4 lg:gap-[40px]">
       <div className="w-full flex lg:flex-row flex-col gap-4 lg:h-[42px] items-center justify-between">
-        <div className="flex border lg:h-full items-center h-[44px] rounded-[10px] w-full lg:w-[457px]">
-          <span className="bg-white h-full flex font-semibold sm:text-[14px] text-[12px] lg:text-[16px] rounded-l-[10px] px-[16px] w-full items-center justify-center text-center">
+        <div className="flex lg:h-full items-center justify-center h-[44px] rounded-[10px] gap-4  w-full lg:w-[450px]">
+          <span className="h-full items-center justify-center flex font-semibold sm:text-[14px] text-[12px] lg:text-[16px] w-[300px]">
             Escolha a sua chance
           </span>
           <TableChanceSelectInput
             chances={chances}
-            handleSelect={handleSelect}
-            selected={selected || "Chance"}
+            ref={selectDivRef}
+            selected={selected || null}
+            handleSetChoice={handleSetChoice}
+            isSelectMenuOpen={isSelectMenuOpen}
+            setIsSelectMenuOpen={setIsSelectMenuOpen}
           />
         </div>
 
         <input
           type="text"
           value={value}
+          inputMode="numeric"
           onChange={handleValue}
           placeholder="Digite o valor da aposta"
-          className="w-full lg:w-[340px] bg-white border py-[10px] rounded-[10px] text-[16px] h-full outline-none text-center placeholder:text-center placeholder:text-[#818181]"
+          className="w-full lg:w-[340px] bg-white border border-black py-[10px] rounded-[10px] text-[16px] h-full outline-none text-center placeholder:text-center placeholder:text-black"
         />
       </div>
 

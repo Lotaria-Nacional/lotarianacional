@@ -19,7 +19,7 @@ const DailyResults = () => {
   const PLACEHOLDERS_TO_SHOW = TOTAL_RESULTS - results_length
 
   return (
-    <Container className="absolute z-[1] hidden lg:flex h-full px-0 justify-end py-4 inset-0 w-full">
+    <Container className="absolute z-[1] hidden lg:flex h-full px-0  justify-end py-4 inset-0 w-full">
       {isLoading ? (
         <DailyResultSkeleton />
       ) : (

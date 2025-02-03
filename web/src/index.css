@@ -15,7 +15,7 @@ h4 {
 }
 
 body {
-  @apply font-Inter;
+  font-family: "Inter", sans-serif;
 }
 
 .radialGradient {
@@ -42,7 +42,12 @@ details summary::after {
 details[open] summary::after {
   content: "-";
 }
-
+.swiper-button-next,
+.swiper-button-prev {
+  width: 42px !important;
+  height: 42px !important;
+  cursor: pointer !important;
+}
 .swiper-button-next::after,
 .swiper-button-prev::after {
   color: #d9d9d9 !important;
@@ -129,7 +134,27 @@ details[open] summary::after {
 
 @font-face {
   font-family: edo;
-  src: url("../public/edosz.ttf");
+  src: url("../public/fonts/edosz.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../public/fonts/Inter_18pt-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../public/fonts/Inter_18pt-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../public/fonts/Inter_18pt-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../public/fonts/Inter_18pt-SemiBold.ttf") format("truetype");
+  font-weight: 600;
 }
 
 .edoSZ {
@@ -137,14 +162,37 @@ details[open] summary::after {
   font-weight: 500;
   font-size: 68px;
 }
+.edoSZ-38 {
+  font-family: edo;
+  font-weight: 500;
+  font-size: 38px;
+}
 .fade-in-text {
   animation: fade-in-text 300ms ease;
 }
+
+.dropdown-scale {
+  animation: dropdown-scale 300ms ease-in;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
 @keyframes fade-in-text {
   from {
     opacity: 0;
   }
   to {
     opacity: auto;
+  }
+}
+
+@keyframes dropdown-scale {
+  from {
+    scale: 0;
+  }
+  to {
+    scale: 1;
   }
 }

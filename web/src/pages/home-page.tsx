@@ -1,3 +1,4 @@
+import FAQ from "@/components/faq"
 import LeafletMap from "../components/map"
 import LinkCard from "../components/link-card"
 import { LINK_CARDS } from "../constants/links"
@@ -5,13 +6,11 @@ import PlayGroundTable from "./playground-table"
 import HeroSlider from "../components/hero-slider"
 import Container from "../components/common/container"
 import Emissoes from "../components/emissoes/emissoes"
-
 import CountDownCard from "../components/count-down-card"
 import DailyResults from "../components/resultados/daily-results"
 import ListingNoticias from "../components/noticias/listing-noticias"
 import MobileDailyResults from "../components/mobile/mobile-daily-results"
 import { useScrollToChancesSection } from "@/hooks/useScrollToChancesSection"
-import FAQ from "@/components/faq"
 
 const HomePage = () => {
   const { chancesSectionRef } = useScrollToChancesSection()
@@ -52,8 +51,8 @@ const HomePage = () => {
           className="bg-LT_GRAY-100/30 flex h-auto py-[50px] lg:py-[50px] items-center justify-center"
         >
           <Container className="flex-col gap-8 items-center justify-center lg:gap-[40px]">
-            <header className="flex flex-col w-full gap-[16px] lg:gap-2 items-center justify-center h-[92px]">
-              <h1 className="font-bold text-[24px] lg:text-[34px] uppercase">
+            <header className="flex flex-col w-full gap-[16px] lg:gap-2 items-center justify-center min-h-[92px]">
+              <h1 className="font-bold edoSZ-38 !leading-8 text-center text-[24px] lg:text-[34px] uppercase">
                 CHANCES E PRÉMIOS
               </h1>
               <p className="text-[#818181] text-[14px] lg:text-[16px] text-center lg:text-left">

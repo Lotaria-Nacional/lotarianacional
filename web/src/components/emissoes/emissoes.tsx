@@ -1,14 +1,11 @@
-//@ts-ignore
-import "swiper/css"
-//@ts-ignore
-import "swiper/css/navigation"
-import "./emissoes-slider-nav.css"
+import { Skeleton } from "../ui/skeleton"
 import EmissoesSlider from "./emissoes-slider"
 import EmptyState from "../common/empty-state"
-import { useEmission } from "@/hooks/api/query/useEmission"
 import { isValidArray } from "@/utils/array-validation"
-import { Skeleton } from "../ui/skeleton"
+import { useEmission } from "@/hooks/api/query/useEmission"
 
+import "swiper/swiper-bundle.css"
+import "./emissoes-slider-nav.css"
 const Emissoes = () => {
   const { emissions, isLoading } = useEmission()
 

@@ -1,0 +1,20 @@
+<Swiper className="w-full h-full" initialSlide={lastRes}>
+  {res.map((arr, arrIndex) => (
+     <SwiperSlide
+      key={arrIndex}
+      className="w-full flex justify-start h-full gap-6"
+      >
+       {arr.map((dailyRes, dailyResIndex) => (
+         <ul key={dailyResIndex} className="flex flex-col gap-2">
+          <header className="flex flex-col items-center">
+           <h1>{formatDate(dailyRes.date.toString())}</h1>
+           <h4>{dailyRes.formatedDate.split(",")[0]}</h4>
+          </header>
+         {dailyRes.results.map((res, resIndex) => (
+             <ResultadoCard key={resIndex} result={res} />
+           ))}
+         </ul>
+       ))}
+     </SwiperSlide>
+  ))}
+</Swiper> 

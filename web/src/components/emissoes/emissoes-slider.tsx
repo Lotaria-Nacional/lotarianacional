@@ -1,16 +1,10 @@
+import { useState } from "react"
+import { IEmission } from "@/interfaces"
 import { Swiper as SwiperType } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Thumbs } from "swiper/modules"
 
-//@ts-ignore
-import "swiper/css"
-//@ts-ignore
-import "swiper/css/navigation"
-//@ts-ignore
-import "swiper/css/thumbs"
-
-import { useState } from "react"
-import { IEmission } from "@/interfaces"
+import "swiper/swiper-bundle.css"
 
 type EmissionProps = {
   emissions: IEmission[]
@@ -19,6 +13,16 @@ type EmissionProps = {
 const EmissoesSlider = ({ emissions }: EmissionProps) => {
   const [activeIndex, setActiveIndex] = useState(0) // Índice do vídeo principal
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
+  const [frameLoad, setFrameLoad] = useState(true)
+
+  const breakpoints = {
+    560: {
+      slidesPerView: 3,
+    },
+    300: {
+      slidesPerView: 2,
+    },
+  }
 
   return (
     <div className="w-full flex flex-col gap-2 h-full">
@@ -32,6 +36,11 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         className="h-[200px] lg:h-[500px] w-full flex rounded-xl items-center justify-center relative"
       >
+        {frameLoad && (
+          <div className="w-full h-full absolute inset-0 flex items-center justify-center">
+            <span className="animate-spin border-LT_RED-100 size-8 border-4 border-t-transparent rounded-full" />
+          </div>
+        )}
         {emissions.map(
           (slide, index) =>
             index === activeIndex && ( // Apenas renderiza o vídeo ativo
@@ -42,6 +51,7 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
                 <iframe
                   loading="lazy"
                   allowFullScreen
+                  onLoad={() => setFrameLoad(false)}
                   src={slide.url + "?rel=0&autoplay=0&controls=0"}
                   className="absolute inset-0 object-cover w-full h-full rounded-xl"
                 ></iframe>
@@ -55,20 +65,27 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
         navigation
         slidesPerView={3}
         spaceBetween={10}
-        modules={[Navigation, Thumbs]}
         watchSlidesProgress
+        breakpoints={breakpoints}
         onSwiper={setThumbsSwiper}
+        modules={[Navigation, Thumbs]}
         className="h-[100px] lg:h-[200px] w-full"
       >
         {emissions.map((slide, index) => (
           <SwiperSlide
             key={`thumb-${index}`}
-            onClick={() => setActiveIndex(index)} // Atualiza o índice ativo
+            onClick={() => setActiveIndex(index)}
             className={`cursor-pointer relative flex items-center justify-center text-sm font-medium rounded-xl`}
           >
-            {index === activeIndex && (
+            {index === activeIndex ? (
               <div className="absolute inset-0 w-full h-full text-white bg-black/70 flex items-center justify-center rounded-xl">
                 <span>Em reprodução</span>
+              </div>
+            ) : (
+              <div className="absolute inset-0 w-full h-full text-white flex flex-col items-start p-4 justify-end rounded-xl">
+                <span className="capitalize bg-LT_RED-100 rounded-md px-2 text-white py-1 text-xs md:text-base">
+                  {slide.description}
+                </span>
               </div>
             )}
             <img

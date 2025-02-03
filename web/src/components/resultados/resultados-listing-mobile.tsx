@@ -7,7 +7,7 @@ type Props = {
 
 const ResultadosListingMobile = ({ resultsListing }: Props) => {
   const result = resultsListing[resultsListing.length - 2]
-  console.log("ResultadosListingMobile ~ result", result)
+
   return (
     <div className="md:hidden block">
       <ul className="flex mx-auto rounded-2xl flex-col items-center w-fit p-2 border-2 border-dashed border-LT_RED-200 bg-red-200 justify-center gap-2">

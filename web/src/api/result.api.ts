@@ -1,8 +1,15 @@
 import axios from "../config/axios"
 import { IDailyResult } from "../interfaces"
 
-export const getDailyResults = async (date?:string): Promise<IDailyResult[]> => {
+export const getDailyResults = async (
+  date?: string
+): Promise<IDailyResult[]> => {
   const response = await axios.get(`/daily-results?date=${date}`)
+  return response.data
+}
+
+export const getAllDailyResults = async (): Promise<IDailyResult[]> => {
+  const response = await axios.get("/all-daily-results")
   return response.data
 }
 

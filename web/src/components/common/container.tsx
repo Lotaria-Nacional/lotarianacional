@@ -1,5 +1,6 @@
 import { HTMLAttributes } from "react"
 import { twMerge } from "tailwind-merge"
+import "./container.css"
 
 /**
  * Um Container responsivo usando Tailwind CSS.
@@ -25,8 +26,8 @@ const Container = ({
       {...rest}
       className={twMerge(
         defaultClasses
-          ? "px-6 xl:w-[1360px] w-full mx-auto flex items-center"
-          : "",
+          ? "px-6 container lg:w-full w-full mx-auto flex items-center"
+          : "container",
         className
       )}
     >

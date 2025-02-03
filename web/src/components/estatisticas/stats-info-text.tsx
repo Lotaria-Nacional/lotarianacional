@@ -1,6 +1,6 @@
 export const enum StatsTextColor {
-  red = "bg-LT_RED-100",
-  yellow = "bg-yellow-400",
+  red = "bg-LT_RED-300",
+  gray = "bg-zinc-500",
   blue = "bg-[#00A5FF]",
 }
 

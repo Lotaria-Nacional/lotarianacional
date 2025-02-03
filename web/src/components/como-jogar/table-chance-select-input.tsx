@@ -1,35 +1,61 @@
-import { ChangeEvent } from "react"
+import { ChevronDown } from "lucide-react"
+import { forwardRef, SetStateAction } from "react"
 
 type Props = {
-  handleSelect: (e: ChangeEvent<HTMLSelectElement>) => void
   chances: string[]
-  selected: string
+  selected: string | null
+  isSelectMenuOpen: boolean
+  handleSetChoice: (value: string) => void
+  ref: React.MutableRefObject<HTMLDivElement | null>
+  setIsSelectMenuOpen: React.Dispatch<SetStateAction<boolean>>
 }
 
-const TableChanceSelectInput = ({ selected, handleSelect, chances }: Props) => {
-  return (
-    <div className="flex items-center relative text-[12px] lg:text-[16px] justify-center px-4 gap-4 rounded-r-[10px] h-full w-full bg-LT_RED-300 text-white">
-      <select
-        name="select-input"
-        value={selected}
-        onChange={(e) => handleSelect(e)}
-        className="lg:rounded-none z-1 cursor-pointer w-full outline-none border-none bg-inherit text-white text-center"
+const TableChanceSelectInput = forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      chances,
+      selected,
+      handleSetChoice,
+      isSelectMenuOpen,
+      setIsSelectMenuOpen,
+    },
+    ref
+  ) => {
+    const toggleSelectMenu = () => setIsSelectMenuOpen((prev) => !prev)
+    return (
+      <div
+        ref={ref}
+        className="relative flex flex-col text-center gap-3 w-[400px]"
       >
-        <option defaultValue="Chance" disabled className="normal-case">
-          Chance
-        </option>
-        {chances.map((chance, index) => (
-          <option
-            value={chance}
-            className="capitalize"
-            key={`Chance - ${index}`}
-          >
-            {chance}
-          </option>
-        ))}
-      </select>
-    </div>
-  )
-}
+        <button
+          onClick={toggleSelectMenu}
+          className="bg-LT_RED-300 text-white py-2 rounded-[10px] border-none flex gap-2 items-center justify-center"
+        >
+          {selected ? selected : "Chance"}
+          <ChevronDown />
+        </button>
+        {isSelectMenuOpen && (
+          <ul className="absolute fade-in-text z-[20] rounded-t-[10px] rounded-b-[10px] -bottom-[170px] flex flex-col bg-white shadow-[0px_0px_3px_1px_#ccc] w-full">
+            {chances.map((item, index) => (
+              <li
+                key={`${index} - ${item}`}
+                onClick={() => handleSetChoice(item)}
+                className={`border-b ${
+                  index === 0
+                    ? "rounded-t-[10px]"
+                    : index === chances.length - 1
+                    ? "rounded-b-[10px]"
+                    : ""
+                } border-b-zinc-300 py-2 w-full cursor-pointer hover:bg-LT_RED-300 hover:text-white text-black transition-all duration-300 ease-in-out`}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    )
+  }
+)
 
 export default TableChanceSelectInput

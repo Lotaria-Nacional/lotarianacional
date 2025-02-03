@@ -1,8 +1,8 @@
 import Container from "./container"
 import { Link } from "react-router-dom"
 import { LOGO } from "../../constants/assets"
-import { NAVIGATION_LINKS } from "../../constants/links"
 import SocialMediaLinks from "./social-media-links"
+import { FOOTER_NAVIGATION_LINKS } from "../../constants/links"
 
 const Footer = () => {
   return (
@@ -31,7 +31,7 @@ const Footer = () => {
           <div className="flex flex-col h-full w-fit gap-4">
             <h1 className="text-xl capitalize font-bold">Links</h1>
             <ul className="flex flex-col">
-              {NAVIGATION_LINKS.map((link) => (
+              {FOOTER_NAVIGATION_LINKS.map((link) => (
                 <li key={link.id}>
                   <Link
                     to={link.link}

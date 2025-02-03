@@ -29,7 +29,7 @@ const DesktopTablePlayground = ({
           {tableHeaders.map((cell, index) => (
             <div
               key={index}
-              className={`w-[340px] h-[39px] p-[10px] flex items-center justify-center bg-LT_RED-300 text-white border ${
+              className={`xl:w-full lg:w-[340px] h-[39px] p-[10px] flex items-center justify-center bg-LT_RED-300 text-white border ${
                 index === 0
                   ? "rounded-tl-[10px]"
                   : index === tableHeaders.length - 1
@@ -44,7 +44,7 @@ const DesktopTablePlayground = ({
 
         {/** ########################  TABLE BODY  ############################### */}
 
-        <div className="h-full flex flex-col">
+        <div className="h-full w-full flex flex-col">
           {filterTableContent ? (
             filterTableContent.correct_numbers.map((cell, index) => (
               <div key={index} className="flex items-center justify-center">
@@ -53,13 +53,13 @@ const DesktopTablePlayground = ({
                   className={`border ${
                     index === filterTableContent.correct_numbers.length - 1 &&
                     "rounded-bl-[10px]"
-                  } w-[340px] p-[10px] h-[39px] text-center`}
+                  } xl:w-full lg:w-[340px] p-[10px] h-[39px] text-center`}
                 >
                   {formatMoney(Number(value))}
                 </div>
                 <div
                   key={`${index} inner-inner-div`}
-                  className="border w-[340px] p-[10px] flex gap-[8PX] justify-center items-center h-[39px]"
+                  className="border xl:w-full lg:w-[340px] p-[10px] flex gap-[8PX] justify-center items-center h-[39px]"
                 >
                   {bullets.map((_, i) => {
                     return (
@@ -74,14 +74,14 @@ const DesktopTablePlayground = ({
                 </div>
                 <div
                   key={`${index} inner-div-1`}
-                  className="border w-[340px] text-center p-[10px] h-[39px] "
+                  className="border xl:w-full lg:w-[340px] text-center p-[10px] h-[39px] "
                 >
                   {filterTableContent.multiplier[index]}
                 </div>
 
                 <div
                   key={`${index} inner-div-2`}
-                  className={`border text-center w-[340px] p-[10px] h-[39px] ${
+                  className={`border text-center xl:w-full lg:w-[340px] p-[10px] h-[39px] ${
                     index === filterTableContent.correct_numbers.length - 1 &&
                     "rounded-br-[10px]"
                   }`}
@@ -94,18 +94,21 @@ const DesktopTablePlayground = ({
             ))
           ) : (
             <div className="w-full bg-white h-[39px] flex items-center justify-center">
-              <div className="w-[340px] border h-full text-center flex items-center justify-center">
+              <div className="xl:w-full lg:w-[340px] border h-full text-center flex items-center justify-center">
                 {formatMoney(Number(value))}
               </div>
-              <div className="w-[340px] border h-full text-center flex items-center justify-center gap-[10px]">
-                {bullets.map(() => (
-                  <span className="size-[19px] rounded-full bg-LT_GRAY-100" />
+              <div className="xl:w-full lg:w-[340px] border h-full text-center flex items-center justify-center gap-[10px]">
+                {bullets.map((_, index) => (
+                  <span
+                    key={index}
+                    className="size-[19px] rounded-full bg-LT_GRAY-100"
+                  />
                 ))}
               </div>
-              <div className="w-[340px] border h-full text-center flex items-center justify-center">
+              <div className="xl:w-full lg:w-[340px] border h-full text-center flex items-center justify-center">
                 0
               </div>
-              <div className="w-[340px] border h-full text-center flex items-center justify-center">
+              <div className="xl:w-full lg:w-[340px] border h-full text-center flex items-center justify-center">
                 0 AKZ
               </div>
             </div>

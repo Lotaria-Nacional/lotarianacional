@@ -14,6 +14,7 @@ import App from "../App"
 import { createBrowserRouter } from "react-router-dom"
 import NoticiaSinglePage from "../pages/noticia-single-page"
 import ChancesEPremiosPage from "@/pages/chances-e-prémios"
+import NewResultsPage from "@/pages/new-results-page"
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "/chances-e-premios/",
         element: <ChancesEPremiosPage />,
+      },
+      {
+        path: "/resultados-teste/",
+        element: <NewResultsPage />,
       },
     ],
   },
