@@ -12,6 +12,7 @@ export class PrismaEmissionRepository implements IEmissionRepository {
     return emissions.map((emission) =>
       Emission.create({
         url: emission.url,
+        createdAt: emission.createdAt,
         description: emission.description ?? "",
         formatedData: emission.formatedData ?? "",
       })
