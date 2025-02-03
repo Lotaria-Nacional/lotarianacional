@@ -16,6 +16,8 @@ import { DeleteDailyResultsController } from "../controllers/dailyResultsControl
 import { CreateDailyResultsController } from "../controllers/dailyResultsControllers/create.dailyResult.controller";
 import { GetLastDailyResultController } from "../controllers/dailyResultsControllers/get.LastDailyResult.controller";
 import { PrismaEmissionRepository } from "../../repositories/prisma/prisma.emission.repository";
+import { GetAllDailyResultsUseCase } from "../../../application/useCases/dailyResult/getAll.dailyResults.useCase";
+import { GetAllDailyResultsController } from "../controllers/dailyResultsControllers/getAll.dailyResults.controller";
 
 const router = Router();
 //REPOSITORIES
@@ -28,12 +30,14 @@ const excelService = new XLSXService(cloudinaryService, excelRespository, prisma
 
 //USE CASES
 const createDailyResultsUseCase = new CreateDailyResultUseCase(prismaDailyResult, excelService, emissionRepo);
+const getAllDailyResultsUseCase = new GetAllDailyResultsUseCase(prismaDailyResult);
 const getDailyResultsUseCase = new GetDailyResultsUseCase(prismaDailyResult);
 const getLastDailyResultsUseCase = new GetLastDailyResultUseCase(prismaDailyResult);
 const deleteDailyResultUseCase = new DeleteDailyResultUseCase(prismaDailyResult);
 
 //CONTROLLERS
 const createDailyResultsController = new CreateDailyResultsController(createDailyResultsUseCase);
+const getAllDailyResultsController = new GetAllDailyResultsController(getAllDailyResultsUseCase);
 const getDailyResultsController = new GetDailyResultsController(getDailyResultsUseCase);
 const getLastDailyResultsController = new GetLastDailyResultController(getLastDailyResultsUseCase);
 const deleteDailyResultController = new DeleteDailyResultsController(deleteDailyResultUseCase);
@@ -44,6 +48,9 @@ router.post("/daily-result", (req: Request, res: Response) => {
 });
 router.get("/daily-results", (req: Request, res: Response) => {
   getDailyResultsController.handle(req, res);
+});
+router.get("/all-daily-results", (req: Request, res: Response) => {
+  getAllDailyResultsController.handle(req, res);
 });
 router.get("/last-daily-result", (req: Request, res: Response) => {
   getLastDailyResultsController.handle(req, res);

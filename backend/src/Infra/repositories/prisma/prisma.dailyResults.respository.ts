@@ -13,6 +13,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
       },
       include: { results: true },
     });
+    console.log(dailyResults);
 
     return dailyResults.map((dailyResult) =>
       DailyResult.create({
@@ -99,6 +100,7 @@ export class PrismaDailyResultsRespository implements IDailyResultRespository {
 
     const blockSize = 6;
     const totalResults = dailyResults.length;
+    // const startIndex = totalResults - Math.max(totalResults - blockSize, 0);
     const startIndex = totalResults - (totalResults % blockSize || blockSize);
     let limitedResults = dailyResults.slice(startIndex, startIndex + blockSize);
 
