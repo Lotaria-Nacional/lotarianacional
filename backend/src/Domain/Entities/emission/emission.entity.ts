@@ -11,12 +11,12 @@ type EmissionProps = {
 export class Emission {
   private constructor(private props: EmissionProps) {}
 
-  static create(props: Omit<EmissionProps, "id">): Emission {
+  static create(props: EmissionProps): Emission {
     const currentDate = new Date();
     return new Emission({
       ...props,
-      createdAt: currentDate,
-      formatedData: formatDate(currentDate),
+      createdAt: props.createdAt || currentDate,
+      formatedData: props.formatedData || formatDate(currentDate),
     });
   }
   toJSON() {

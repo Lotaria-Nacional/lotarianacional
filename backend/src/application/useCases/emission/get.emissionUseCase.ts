@@ -7,14 +7,8 @@ export class GetEmissionUseCase {
   async execute(): Promise<Emission[]> {
     try {
       const emissions = await this.emissionRepository.getAll();
-      return emissions.map((emission) =>
-        Emission.create({
-          url: emission.toJSON().url,
-          createdAt: emission.toJSON().createdAt,
-          description: emission.toJSON().description,
-          formatedData: emission.toJSON().formatedData,
-        })
-      );
+
+      return emissions;
     } catch (error) {
       throw error;
     }
