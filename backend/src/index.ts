@@ -12,10 +12,10 @@ import newsRoutes from "./Infra/http/routes/news.routes";
 import agencyRoutes from "./Infra/http/routes/agency.routes";
 import resultRoutes from "./Infra/http/routes/result.routes";
 import bannerResults from "./Infra/http/routes/banner.routes";
+import emissionRoutes from "./Infra/http/routes/emissions.route";
 import dailyResults from "./Infra/http/routes/dailyResults.routes";
 import statisticRoutes from "./Infra/http/routes/statistics.routes";
 import recruitmentRoutes from "./Infra/http/routes/recruitment.routes";
-import emissionRoutes from "./Infra/http/routes/emissions.route";
 
 const app = express();
 
