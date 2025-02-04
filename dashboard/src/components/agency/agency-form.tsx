@@ -37,8 +37,8 @@ const AgencyForm = () => {
       name,
       phone: parseInt(phone),
       location_text: locationText,
-      latitude: parseInt(latitude),
-      longitude: parseInt(longitude),
+      latitude: Number(latitude),
+      longitude: Number(longitude),
     }
     try {
       const response = await createAgency(data)

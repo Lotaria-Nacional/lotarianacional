@@ -3,7 +3,11 @@ import { getAgencies, IAgencyResponse } from "@/api/agency.api"
 
 export function useAgencies(page?: number, pageSize?: number) {
   const [isLoading, setIsLoading] = useState(true)
-  const [agencies, setAgencies] = useState<IAgencyResponse | null>(null)
+  const [agencies, setAgencies] = useState<IAgencyResponse>({
+    data: [],
+    totalPages: 0,
+    totalRecords: 0,
+  })
 
   useEffect(() => {
     const fetch = async () => {

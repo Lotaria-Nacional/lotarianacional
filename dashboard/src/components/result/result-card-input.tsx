@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-import { Video } from "lucide-react"
+import { Trash2, Video } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
@@ -35,11 +35,13 @@ type Props = {
     number_3: number
     number_4: number
     number_5: number
+    createdAt: Date
   }
 }
 
 const ResultCardInput = ({ result }: Props) => {
   const [isLoading, setIsLoading] = useState(false)
+
   const [data, setData] = useState({
     name: result.name,
     hour: result.hour,
@@ -68,6 +70,18 @@ const ResultCardInput = ({ result }: Props) => {
 
   const handleUpdate = async (e: FormEvent) => {
     e.preventDefault()
+
+    const now = new Date().getTime()
+    const createdAtTime = new Date(result.createdAt).getTime()
+    const timeDifferenceInSeconds = (now - createdAtTime) / 1000
+
+    if (timeDifferenceInSeconds > 900) {
+      toast.error(
+        "O tempo para editar o resultado expirou. Não é possível salvar alterações."
+      )
+      return
+    }
+
     setIsLoading(true)
     try {
       const response = await updateResults(result.id, data)
@@ -190,10 +204,23 @@ const ResultCardInput = ({ result }: Props) => {
           />
         </div>
       </div>
-
-      <Button disabled={isLoading} type="submit" className="bg-RED-200 w-full">
-        {isLoading ? "Salvando..." : "Salvar alterações"}
-      </Button>
+      <div className="flex items-center justify-between w-full gap-2">
+        <Button
+          type="submit"
+          disabled={isLoading}
+          className="bg-RED-200 w-full"
+        >
+          {isLoading ? "Salvando..." : "Salvar alterações"}
+        </Button>
+        <Button
+          type="submit"
+          className="border"
+          disabled={isLoading}
+          variant={"secondary"}
+        >
+          <Trash2 />
+        </Button>
+      </div>
     </form>
   )
 }

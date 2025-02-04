@@ -1,17 +1,18 @@
-import eye from "../assets/icons/eye.png"
-import dots from "../assets/icons/dots.png"
-import bell from "../assets/icons/bell.png"
-import edit from "../assets/icons/edit.png"
-import users from "../assets/icons/users.png"
-import file from "../assets/icons/file.png"
-import trash from "../assets/icons/trash.png"
-import window from "../assets/icons/window.png"
-import ticket from "../assets/icons/ticket.png"
-import agency from "../assets/icons/agency.png"
-import settings from "../assets/icons/settings.png"
-import newspaper from "../assets/icons/newspaper.png"
+import eye from "../assets/svg/eye.svg"
+// import dots from "../assets/icons/dots.png"
+import bell from "../assets/svg/notification.svg"
+import edit from "../assets/svg/edit.svg"
+import users from "../assets/svg/users.svg"
+import file from "../assets/svg/file.svg"
+import trash from "../assets/svg/trash.svg"
+import window from "../assets/svg/banner.svg"
+import ticket from "../assets/svg/ticket.svg"
+import agency from "../assets/svg/agency.svg"
+import settings from "../assets/svg/settings.svg"
+import newspaper from "../assets/svg/news.svg"
 import card_list from "../assets/icons/card-list.png"
-import dashboard from "../assets/icons/dashboard.png"
+import dashboard from "../assets/svg/overview.svg"
+import emission from "../assets/svg/emission.svg"
 
 import loto590 from "/logo/loto590.png"
 import red_logo from "/logo/red-logo.png"
@@ -21,7 +22,7 @@ import card_loto from "/card-loto.webp"
 
 export const ICON = {
   eye,
-  dots,
+  // dots,
   bell,
   edit,
   file,
@@ -34,6 +35,7 @@ export const ICON = {
   newspaper,
   card_list,
   dashboard,
+  emission,
 } as const
 
 export const LOGOS = { red_logo, white_logo, loto590 } as const

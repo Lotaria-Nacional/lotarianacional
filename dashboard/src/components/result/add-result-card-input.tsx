@@ -18,6 +18,7 @@ import { KeyProps } from "./result-card-input"
 import { ChangeEvent, FormEvent, useState } from "react"
 import { CreateDailyResult, createDailyResult } from "@/api/results.api"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
+import { extractYouTubeID } from "@/utils/youtube"
 
 type Props = {
   name: "fezada" | "aqueceu" | "kazola" | "eskebra"
@@ -35,6 +36,10 @@ const AddResultCardInput = ({ hour, name }: Props) => {
     number_5: "",
     videoURL: "",
   })
+
+  // const currHour = new Date().getHours()
+  // const targetHour = parseInt(hour.split("h")[0], 10) // Extrai a hora e converte para número
+  // const canAddResult = currHour >= targetHour
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -108,11 +113,7 @@ const AddResultCardInput = ({ hour, name }: Props) => {
                 value={data.videoURL}
                 placeholder="ex:https://youtube.com/watch?v=ffHiqRK1aBY"
                 onChange={(e) => {
-                  const youtubeEmbedURL = e.target.value.replace(
-                    "watch?v=",
-                    "embed/"
-                  )
-
+                  const youtubeEmbedURL = extractYouTubeID(e.target.value)
                   setData({ ...data, videoURL: youtubeEmbedURL })
                 }}
               />
@@ -179,8 +180,8 @@ const AddResultCardInput = ({ hour, name }: Props) => {
         </div>
 
         <Button
-          disabled={isLoading}
           type="submit"
+          disabled={isLoading}
           className="bg-RED-200 w-full"
         >
           {isLoading ? "Salvando..." : "Salvar"}

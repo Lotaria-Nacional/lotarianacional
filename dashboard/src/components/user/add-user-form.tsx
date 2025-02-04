@@ -107,6 +107,7 @@ const AddUserForm = () => {
               <SelectContent>
                 <SelectItem value="admin">Admin</SelectItem>
                 <SelectItem value="editor">Editor</SelectItem>
+                <SelectItem value="studio">Studio</SelectItem>
               </SelectContent>
             </Select>
           </Label>

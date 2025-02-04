@@ -18,6 +18,7 @@ import { createBrowserRouter } from "react-router-dom"
 import LoginPage from "./pages/auth/login-page"
 import UsersPage from "./pages/dashboard/users-page"
 import NotFoundPage from "./pages/error/404-not-found-page"
+import EmissionsPage from "./pages/dashboard/emissions-page"
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
       { path: "editar-resultados", element: <EditResultsPage /> },
       { path: "adicionar-resultados", element: <AddResultsPage /> },
       { path: "usuarios", element: <UsersPage /> },
+      { path: "emissoes", element: <EmissionsPage /> },
     ],
   },
   {

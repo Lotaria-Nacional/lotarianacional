@@ -1,26 +1,18 @@
 import { isAxiosError } from "axios"
 import { toast } from "react-toastify"
-import { FormEvent, useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
-import { getUser, updateUser } from "@/api/user.api"
 import { useAuth } from "@/context/authContext"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/components/ui/select"
-
+import { getUser, updateUser } from "@/api/user.api"
+import { FormEvent, useEffect, useState } from "react"
+import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 import SettingFormSkeleton from "@/components/skeletons/setting-form-skeleton"
 
 type UserInputData = {
   firstName: string
   lastName: string
   email: string
-  role: string
 }
 
 const SettingsPage = () => {
@@ -31,7 +23,6 @@ const SettingsPage = () => {
     email: "",
     firstName: "",
     lastName: "",
-    role: "",
   })
 
   useEffect(() => {
@@ -41,7 +32,6 @@ const SettingsPage = () => {
           const response = await getUser(user.id)
           setUserData({
             email: response.email,
-            role: response.role,
             firstName: response.firstName,
             lastName: response.lastName,
           })
@@ -121,19 +111,7 @@ const SettingsPage = () => {
             }
           />
         </Label>
-        <Label className="flex flex-col gap-3" htmlFor="email">
-          Função
-          <Select
-            defaultValue={userData.role}
-            onValueChange={(value) => setUserData({ ...userData, role: value })}
-          >
-            <SelectTrigger>{userData.role}</SelectTrigger>
-            <SelectContent>
-              <SelectItem value="admin">Admin</SelectItem>
-              <SelectItem value="editor">Editor</SelectItem>
-            </SelectContent>
-          </Select>
-        </Label>
+
         <Button disabled={isUpdating} type="submit" className="bg-RED-200">
           {isUpdating ? "Salvando..." : "Salvar alterações"}
         </Button>

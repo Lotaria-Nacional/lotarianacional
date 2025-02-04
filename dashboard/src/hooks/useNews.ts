@@ -3,7 +3,11 @@ import { getNews, INewsResponse } from "@/api/news.api"
 
 export function useNews(page?: number) {
   const [isLoading, setIsLoading] = useState(false)
-  const [news, setNews] = useState<INewsResponse | null>(null)
+  const [news, setNews] = useState<INewsResponse>({
+    data: [],
+    totalPages: 0,
+    totalRecords: 0,
+  })
 
   useEffect(() => {
     const fetch = async () => {

@@ -24,7 +24,7 @@ const NewsPage = () => {
 
         {isLoading ? (
           <NewsTableSkeleton />
-        ) : news?.data && news.data.length > 0 ? (
+        ) : news?.data && Array.isArray(news.data) && news.data.length > 0 ? (
           <>
             <NewsTable news={news.data} />
             <Pagination

@@ -15,7 +15,7 @@ export function useStatistics(): UseStatisticsResponse {
     const fetch = async () => {
       try {
         const data = await getStatistics()
-        console.log(data)
+
         setStats(data)
       } finally {
         setIsLoading(false)

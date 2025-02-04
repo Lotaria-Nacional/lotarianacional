@@ -71,4 +71,12 @@ export interface IStatistic {
   createdAt: Date
 }
 
+export interface IEmission {
+  id: string
+  url: string
+  description?: string
+  formatedDate: string
+  createdAt: Date
+}
+
 export type DeviceType = "desktop" | "mobile"

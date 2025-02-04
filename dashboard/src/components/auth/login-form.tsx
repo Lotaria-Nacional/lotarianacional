@@ -2,8 +2,9 @@ import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Button } from "../ui/button"
 import { NavLink } from "react-router-dom"
-import { FormEvent, useState } from "react"
+import { Eye, EyeClosed } from "lucide-react"
 import { useAuth } from "@/context/authContext"
+import { ChangeEvent, FormEvent, useState } from "react"
 
 type Credentials = {
   email: string
@@ -12,14 +13,27 @@ type Credentials = {
 
 const LoginForm = () => {
   const { login, isLoading } = useAuth()
+  const [showPassword, setShowPassword] = useState(false)
+
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
     password: "",
   })
 
+  const handleCredentials = async (
+    e: ChangeEvent<HTMLInputElement>,
+    key: "password" | "email"
+  ) => {
+    setCredentials({ ...credentials, [key]: e.target.value })
+  }
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     await login(credentials.email, credentials.password)
+  }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev)
   }
 
   return (
@@ -42,25 +56,32 @@ const LoginForm = () => {
             type="email"
             placeholder="user@example.com"
             value={credentials.email}
-            onChange={(e) =>
-              setCredentials({ ...credentials, email: e.target.value })
-            }
+            onChange={(e) => handleCredentials(e, "email")}
             className="placeholder:text-zinc-400"
           />
         </Label>
         <Label htmlFor="email" className="space-y-2 w-full mt-6">
           <span className="text-zinc-500">Palavra-passe</span>
-          <Input
-            id="password"
-            type="password"
-            placeholder="*********"
-            value={credentials.password}
-            onChange={(e) =>
-              setCredentials({ ...credentials, password: e.target.value })
-            }
-            className="placeholder:text-zinc-400 "
-          />
+          <div className="relative flex items-center justify-center w-full">
+            <Input
+              id="password"
+              placeholder="*********"
+              value={credentials.password}
+              onChange={(e) => handleCredentials(e, "password")}
+              className="placeholder:text-zinc-400 "
+              type={showPassword ? "text" : "password"}
+            />
+
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute p-3 text-center flex items-center justify-center top-0 right-0"
+            >
+              {showPassword ? <EyeClosed size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
         </Label>
+
         <div className="w-full mt-3 flex-wrap gap-4 flex items-center justify-between">
           <Label
             htmlFor="remember"

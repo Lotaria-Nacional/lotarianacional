@@ -5,8 +5,8 @@ import usePagination from "@/hooks/usePagination"
 import { useAgencies } from "@/hooks/useAgencies"
 import Pagination from "@/components/common/pagination"
 import AgencyTable from "@/components/agency/agency-table"
-import NothingToShow from "@/components/common/nothing-to-show"
 import AgencyTableSkeleton from "@/components/skeletons/agency-table-skeleton"
+import NothingToShow from "@/components/common/nothing-to-show"
 
 const AgenciesPage = () => {
   const { currentPage, setSearch } = usePagination()
@@ -14,7 +14,6 @@ const AgenciesPage = () => {
 
   return (
     <main className="bg-white p-4 rounded-lg w-full h-full flex flex-col items-center justify-center gap-4">
-
       <Button asChild className="bg-YELLOW self-end m-4">
         <NavLink to={"/adicionar-agencia"} className="flex items-center">
           <PlusIcon />
@@ -24,7 +23,9 @@ const AgenciesPage = () => {
 
       {isLoading ? (
         <AgencyTableSkeleton />
-      ) : agencies && agencies.data.length > 0 ? (
+      ) : agencies &&
+        Array.isArray(agencies.data) &&
+        agencies.data.length > 0 ? (
         <>
           <AgencyTable agencies={agencies.data} />
           <Pagination
@@ -36,6 +37,7 @@ const AgenciesPage = () => {
       ) : (
         <NothingToShow />
       )}
+      {/* <NothingToShow /> */}
     </main>
   )
 }

@@ -16,20 +16,19 @@ import { useEffect, useState } from "react"
 
 const DotsButton = () => {
   const [id, setId] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  // const [isLoading, setIsLoading] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
     const fetch = async () => {
-      setIsLoading(true)
       const data = await getLastDailyResult()
-      console.log(data.id)
       setId(data.id)
-      setIsLoading(false)
     }
     fetch()
   }, [])
 
   const handleDeleteDailyResult = async () => {
+    setIsDeleting(true)
     try {
       const response = await deleteDailyResult(id)
       toast.success(response.message)
@@ -41,13 +40,17 @@ const DotsButton = () => {
         return toast.error(error.response.data.message)
       }
       return toast.error(SERVER_CONNECTION_ERROR)
+    } finally {
+      setIsDeleting(false)
     }
   }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="text-2xl text-GRAY-200 flex items-center justify-center">
         <BsThreeDots />
       </DropdownMenuTrigger>
+
       <DropdownMenuContent>
         <DropdownMenuItem>
           <Edit2 />
@@ -55,11 +58,11 @@ const DotsButton = () => {
         </DropdownMenuItem>
 
         <DropdownMenuItem
-          disabled={isLoading}
+          disabled={isDeleting}
           onClick={handleDeleteDailyResult}
         >
           <Trash2 />
-          <span>{isLoading ? "Eliminando..." : "Eliminar"}</span>
+          <span>{isDeleting ? "Eliminando..." : "Eliminar"}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

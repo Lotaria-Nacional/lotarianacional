@@ -105,6 +105,7 @@ const EditUserForm = ({ user }: Props) => {
           <SelectContent>
             <SelectItem value="admin">admin</SelectItem>
             <SelectItem value="editor">editor</SelectItem>
+            <SelectItem value="editor">studio</SelectItem>
           </SelectContent>
         </Select>
       </Label>
