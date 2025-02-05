@@ -1,5 +1,7 @@
+import { useState } from "react"
 import { twMerge } from "tailwind-merge"
 import { IResult } from "../../interfaces"
+import { FaPlayCircle } from "react-icons/fa"
 import { useModal } from "@/context/modal-provider"
 
 export type ResultCardProps = {
@@ -9,6 +11,7 @@ export type ResultCardProps = {
 
 const ResultadoCard = ({ result, className }: ResultCardProps) => {
   const { openModal } = useModal()
+  const [isOver, setIsOVer] = useState(false)
 
   const sortedNumbers = [
     result.number_1,
@@ -18,8 +21,13 @@ const ResultadoCard = ({ result, className }: ResultCardProps) => {
     result.number_5,
   ]
 
+  const handleMouseOver = () => setIsOVer(true)
+  const handleMouseLeave = () => setIsOVer(false)
+
   return (
     <div
+      onMouseOver={handleMouseOver}
+      onMouseLeave={handleMouseLeave}
       onClick={() => openModal(result.videoURL)}
       className={twMerge(
         "relative bg-[url('/banner/card-loto.webp')] w-[180px] h-[115px] bg-center bg-cover bg-no-repeat flex flex-col gap-4 p-2 rounded-2xl text-LT_WHITE uppercase text-sm font-bold cursor-pointer",
@@ -41,6 +49,11 @@ const ResultadoCard = ({ result, className }: ResultCardProps) => {
           </span>
         ))}
       </div>
+      {isOver && (
+        <div className="absolute bg-LT_RED-200 rounded-2xl flex items-center justify-center z-[20] inset-0 w-full h-full ">
+          <FaPlayCircle fill="#fff" size={38} />
+        </div>
+      )}
     </div>
   )
 }

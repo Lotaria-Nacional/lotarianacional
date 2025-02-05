@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { IEmission } from "@/interfaces"
-import { Swiper as SwiperType } from "swiper"
+import { Navigation } from "swiper/modules"
+import { formatRawDate } from "@/utils/date"
+import { FaPlayCircle } from "react-icons/fa"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Thumbs } from "swiper/modules"
+import { generateVideoThumbnail } from "@/utils/youtube"
 
 import "swiper/swiper-bundle.css"
 
@@ -11,8 +13,7 @@ type EmissionProps = {
 }
 
 const EmissoesSlider = ({ emissions }: EmissionProps) => {
-  const [activeIndex, setActiveIndex] = useState(0) // Índice do vídeo principal
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
   const [frameLoad, setFrameLoad] = useState(true)
 
   const breakpoints = {
@@ -26,13 +27,10 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
 
   return (
     <div className="w-full flex flex-col gap-2 h-full">
-      {/* Slider principal (vídeo ativo com navegação) */}
       <Swiper
         navigation
         slidesPerView={1}
         spaceBetween={20}
-        modules={[Navigation, Thumbs]}
-        thumbs={{ swiper: thumbsSwiper }}
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         className="h-[200px] lg:h-[500px] w-full flex rounded-xl items-center justify-center relative"
       >
@@ -43,7 +41,7 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
         )}
         {emissions.map(
           (slide, index) =>
-            index === activeIndex && ( // Apenas renderiza o vídeo ativo
+            index === activeIndex && (
               <SwiperSlide
                 key={`main-${index}`}
                 className="relative w-full rounded-xl"
@@ -60,15 +58,12 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
         )}
       </Swiper>
 
-      {/* Slider com thumbnails (navegação e clique para mudar o vídeo principal) */}
       <Swiper
         navigation
         slidesPerView={3}
         spaceBetween={10}
-        watchSlidesProgress
+        modules={[Navigation]}
         breakpoints={breakpoints}
-        onSwiper={setThumbsSwiper}
-        modules={[Navigation, Thumbs]}
         className="h-[100px] lg:h-[200px] w-full"
       >
         {emissions.map((slide, index) => (
@@ -82,10 +77,18 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
                 <span>Em reprodução</span>
               </div>
             ) : (
-              <div className="absolute inset-0 w-full h-full text-white flex flex-col items-start p-4 justify-end rounded-xl">
-                <span className="capitalize bg-LT_RED-100 rounded-md px-2 text-white py-1 text-xs md:text-base">
-                  {slide.description}
-                </span>
+              <div className="absolute capitalize inset-0  w-full h-full text-white flex text-xs items-end p-2 justify-start">
+                <div className="rounded-md px-1 md:px-2 bg-LT_RED-100 text-[10px] md:text-sm lg:text-base flex gap-1  items-center">
+                  <span className="py-1">{slide.description}</span>
+                  <span>-</span>
+                  <span className="py-1">{formatRawDate(slide.createdAt)}</span>
+                </div>
+                <div className="absolute hidden lg:flex left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <FaPlayCircle
+                    size={42}
+                    className="hover:scale-[1.10] transition-all duration-300 ease"
+                  />
+                </div>
               </div>
             )}
             <img
@@ -98,15 +101,6 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
       </Swiper>
     </div>
   )
-}
-
-// Ajuste na função para extrair corretamente o videoID e gerar a thumbnail
-const generateVideoThumbnail = (url: string): string => {
-  // Extrair o videoId de diferentes tipos de URL do YouTube
-  const urlParams = new URLSearchParams(new URL(url).search)
-  const videoID = urlParams.get("v") || url.split("/")[4] // Suporta URLs do tipo "https://www.youtube.com/watch?v=VIDEO_ID"
-  const videoThumbnail = `https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`
-  return videoThumbnail
 }
 
 export default EmissoesSlider

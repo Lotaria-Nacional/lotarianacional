@@ -4,9 +4,8 @@ import { IEmission } from "@/interfaces"
 export const getEmissions = async (): Promise<IEmission[]> => {
   try {
     const emissions = await axios.get("/emissions")
-    return emissions.data
+         return emissions.data
   } catch (error) {
-    console.log("getEmissions ~ error", error)
     throw error
   }
 }

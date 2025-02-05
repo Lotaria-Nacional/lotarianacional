@@ -10,10 +10,10 @@ const ComoJogarVideo = ({ handleClose }: Props) => {
     >
       <video
         controls
-        className="w-fit h-2/3"
+        className="w-fit h-2/3 px-3"
         onClick={(e) => e.stopPropagation()}
       >
-        <source src="/como_jogar/video-como-jogar.mp4" className="" />
+        <source src="/como_jogar/video-como-jogar.mp4" />
       </video>
     </div>
   )

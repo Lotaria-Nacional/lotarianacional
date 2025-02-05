@@ -51,7 +51,7 @@ const GraphAndTable = ({ switchTableAndGraph, statsDataArr }: Props) => {
           )
         })}
       </div>
-      <div className="flex items-center mt-8 justify-between w-full xl:w-2/5">
+      <div className="flex flex-col lg:flex-row items-start mt-2 mx-auto lg:mt-8 lg:justify-between justify-start w-fit xl:w-2/5">
         <StatsInfoText text="Números quentes" color={StatsTextColor.red} />
         <StatsInfoText text="Números normais" color={StatsTextColor.gray} />
         <StatsInfoText text="Números frios" color={StatsTextColor.blue} />

@@ -1,5 +1,5 @@
-import { IoCloseOutline } from "react-icons/io5"
 import { useEffect } from "react"
+import { IoCloseOutline } from "react-icons/io5"
 
 type Props = {
   handleClose: () => void
@@ -7,7 +7,6 @@ type Props = {
 }
 
 const VideoLightBox = ({ handleClose, videoURL }: Props) => {
-  // Fechar o Lightbox ao pressionar a tecla "Esc"
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {

@@ -33,3 +33,7 @@ export const dateFormat = (date: string) => {
 
   return `${day} ${month} ${year}`
 }
+
+export const formatRawDate = (date: Date) => {
+  return date.toString().split("T")[0].split("-").reverse().join("-")
+}
