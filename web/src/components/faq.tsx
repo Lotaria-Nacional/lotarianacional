@@ -2,6 +2,7 @@ import Container from "./common/container"
 import { ICONS } from "../constants/assets"
 import { SiWhatsapp } from "react-icons/si"
 import QuestionsDropdown from "./questions-dropdown"
+import Button from "./ui/button/button"
 
 const FAQ = () => {
   const supportNumber = "+244923190007"
@@ -17,13 +18,11 @@ const FAQ = () => {
           suas perguntas sobre apostas e outras soluções para aumentar suas
           chances de ganhar!
         </p>
-        <a
-          target="_blank"
-          href={`https://wa.me/${supportNumber}`}
-          className="rounded-lg w-fit px-10 py-2 bg-LT_RED-100 text-center text-white flex items-center justify-center gap-3"
-        >
-          Alguma pergunta?
-          <SiWhatsapp />
+        <a target="_blank" href={`https://wa.me/${supportNumber}`}>
+          <Button variant="red">
+            Alguma pergunta?
+            <SiWhatsapp />
+          </Button>
         </a>
       </div>
 

@@ -15,11 +15,13 @@ import { createBrowserRouter } from "react-router-dom"
 import NoticiaSinglePage from "../pages/noticia-single-page"
 import ChancesEPremiosPage from "@/pages/chances-e-prémios"
 import NewResultsPage from "@/pages/new-results-page"
+import ErrorPage from "@/pages/error-page"
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

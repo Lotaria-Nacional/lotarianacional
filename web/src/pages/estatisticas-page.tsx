@@ -1,11 +1,11 @@
 import { useState } from "react"
-import Ui from "../components/ui"
 import { IStats } from "@/interfaces"
 import { ICONS } from "../constants/assets"
 import Container from "../components/common/container"
 import { useStatistic } from "@/hooks/api/query/useStatistic"
 import GraphAndTable from "@/components/estatisticas/graph-and-table"
 import StatisticSkeleton from "@/components/estatisticas/statistic-skeleton"
+import Button from "@/components/ui/button/button"
 
 const EstatisticasPage = () => {
   const { isLoading, stats } = useStatistic()
@@ -44,18 +44,14 @@ const EstatisticasPage = () => {
                 Números em destaque
               </h1>
 
-              <Ui.Button
-                btn="red"
-                onClick={toggleGraphAndTable}
-                className="gap-1 lg:gap-2 text-[14px] py-3 px-4"
-              >
+              <Button variant="red" onClick={toggleGraphAndTable}>
                 <img
                   alt="ícone de gráfico"
                   src={ICONS.estatisticas}
                   className="object-contain w-5 h-5"
                 />
                 {switchTableAndGraph ? "Ver gráfico" : "Ver tabela"}
-              </Ui.Button>
+              </Button>
             </div>
 
             <GraphAndTable

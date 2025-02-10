@@ -5,7 +5,7 @@ import { AnchorHTMLAttributes } from "react"
 type Props = {
   link: string
   className?: string
-  btn?: "red" | "default"
+  variant?: "red" | "default"
   children: React.ReactNode
 } & AnchorHTMLAttributes<HTMLAnchorElement>
 
@@ -13,7 +13,7 @@ const LinkButton = ({
   link,
   children,
   className,
-  btn = "default",
+  variant = "default",
   ...rest
 }: Props) => {
   return (
@@ -22,10 +22,10 @@ const LinkButton = ({
       {...rest}
       reloadDocument
       className={twMerge(
-        `px-5 py-4 flex items-center gap-2 h-[49px] lg:w-fit w-full border font-medium rounded-lg text-base ${
-          btn === "default"
-            ? "bg-LT_WHITE text-LT_RED-100 border-LT_RED-100"
-            : "bg-LT_RED-100 text-white"
+        `flex items-center rounded-[8px] px-4 gap-[8px] justify-center text-base h-fit w-fit ${
+          variant === "default"
+            ? "bg-LT_WHITE text-LT_RED-100 border-LT_RED-200 border"
+            : "bg-LT_RED-200 text-white"
         }`,
         className
       )}

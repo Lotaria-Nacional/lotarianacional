@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { PiMinus, PiPlus } from "react-icons/pi"
 import { PERGUNTAS_FREQUENTES } from "../constants/faq"
+import { Link } from "react-router-dom"
 const QuestionsDropdown = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const [showMoreQuestions, setShowMoreQuestions] = useState(false)
@@ -49,13 +50,13 @@ const QuestionsDropdown = () => {
             <p className="fade-in-text">
               {item.answer}
               {item.link && (
-                <a
-                  target="_blank"
-                  href={item.link}
+                <Link
+                  to={item.link}
+                  reloadDocument
                   className="text-LT_RED-100 underline"
                 >
                   clique aqui
-                </a>
+                </Link>
               )}
             </p>
           )}

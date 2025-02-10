@@ -1,21 +1,24 @@
+import { HOW_TO_PLAY } from "@/constants/how-to-play"
 import Container from "../components/common/container"
+import ComoJogarRow from "@/components/como-jogar/como-jogar-row"
 import ComoJogarTopSection from "@/components/como-jogar/como-jogar-top-section"
-import ComoJogarVideoContainer from "@/components/como-jogar/como-jogar-video-container"
-// import ComoJogarInstructionsSwiper from "@/components/como-jogar/como-jogar-instructions-swiper"
+import ComoJogarSwiperMobile from "@/components/como-jogar/como-jogar-swiper-mobile"
 
-import "swiper/swiper-bundle.css"
 import "./como-jogar.css"
 
 const ComoJogarPage = () => {
   return (
-    <main className="py-6 lg:py-12 ">
-      <Container className="h-full flex-col gap-4">
+    <main className="pt-4 lg:pt-10 pb-[80px]">
+      <Container className="h-full flex-col gap-2 lg:gap-10">
         <ComoJogarTopSection />
 
-        <section className="flex w-full py-8 gap-4">
-          {/* <ComoJogarInstructionsSwiper /> */}
-          <ComoJogarVideoContainer />
+        <section className="lg:flex w-full gap-[40px] flex-col">
+          {HOW_TO_PLAY.map((data, index) => (
+            <ComoJogarRow reverse={index % 2 === 0} key={data.id} data={data} />
+          ))}
         </section>
+
+        <ComoJogarSwiperMobile data={HOW_TO_PLAY} />
       </Container>
     </main>
   )

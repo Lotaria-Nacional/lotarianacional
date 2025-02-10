@@ -19,11 +19,19 @@ const HomePage = () => {
     <>
       <main className="flex gap-8 lg:gap-20 flex-col">
         {/* <ExplanationPopUp /> */}
+
         {/** HERO SECTION */}
         <section className="relative lg:h-[calc(100vh-165px)] h-[25vh]">
           <HeroSlider />
           <DailyResults />
         </section>
+        {/* 
+        <iframe
+          src="https://games.elephantbet.co.ao/Inner/authorization.php?partnerId=18756188&gameId=806666&language=pt&openType=fun&devicetypeid=1&fronttypeid=1&exitURL=https%3A%2F%2Fwww.elephantbet.co.ao&deposit_url=https%3A%2F%2Fwww.elephantbet.co.ao%3Fprofile%3Dopen%26account%3Dbalance%26page%3Ddeposit&frameId=gameView&logoSource=%2Flogo.png"
+          width={500}
+          height={500}
+          className="mx-auto"
+        ></iframe> */}
 
         {/** MOBILE DAILY SECTION */}
         <MobileDailyResults />

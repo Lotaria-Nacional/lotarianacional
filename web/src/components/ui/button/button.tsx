@@ -3,23 +3,23 @@ import { twMerge } from "tailwind-merge"
 
 type Props = {
   className?: string
-  btn?: "red" | "default"
+  variant?: "red" | "default"
   children: React.ReactNode
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-const DefaultButton = ({
+const Button = ({
   children,
   className,
-  btn = "default",
+  variant = "default",
   ...rest
 }: Props) => {
   return (
     <button
       {...rest}
       className={twMerge(
-        `px-2 flex items-center gap-2 py-2 font-medium rounded-lg text-base ${
-          btn === "default"
-            ? "bg-LT_WHITE text-LT_RED-100"
+        `flex items-center rounded-[8px] gap-[8px] text-[14px] cursor-pointer justify-center h-[40px] px-4 w-fit ${
+          variant === "default"
+            ? "bg-LT_WHITE text-LT_RED-100 border-LT_RED-200 border"
             : "bg-LT_RED-200 text-white"
         }`,
         className
@@ -30,4 +30,4 @@ const DefaultButton = ({
   )
 }
 
-export default DefaultButton
+export default Button

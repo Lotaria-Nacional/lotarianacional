@@ -46,7 +46,7 @@ const NoticiaSinglePage = () => {
             ) : isValidArray(news.data) ? (
               <ul className="flex flex-col gap-8">
                 {news.data.map((data) => (
-                  <OtherNewsRow data={data} />
+                  <OtherNewsRow key={data.id} data={data} />
                 ))}
               </ul>
             ) : (

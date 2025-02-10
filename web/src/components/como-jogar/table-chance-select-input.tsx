@@ -25,7 +25,7 @@ const TableChanceSelectInput = forwardRef<HTMLDivElement, Props>(
     return (
       <div
         ref={ref}
-        className="relative flex flex-col text-center gap-3 w-[400px]"
+        className="relative flex flex-col text-center gap-3 w-[220px] lg:w-[400px]"
       >
         <button
           onClick={toggleSelectMenu}

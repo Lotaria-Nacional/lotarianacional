@@ -28,7 +28,6 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
   return (
     <div className="w-full flex flex-col gap-2 h-full">
       <Swiper
-        navigation
         slidesPerView={1}
         spaceBetween={20}
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}

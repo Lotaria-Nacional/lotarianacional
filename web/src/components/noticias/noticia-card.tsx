@@ -1,6 +1,6 @@
-import UI from "../ui"
 import { INews } from "../../interfaces"
 import { dateFormat } from "../../utils/date"
+import LinkButton from "../ui/button/link-button"
 
 type Prop = {
   noticia: INews
@@ -20,12 +20,9 @@ const NoticiaCard = ({ noticia: { createdAt, image, title, id } }: Prop) => {
 
       <h1 className="font-semibold text-[20px] line-clamp-2">{title}</h1>
 
-      <UI.LinkButton
-        link={`/noticia/${id}`}
-        className="py-1 px-4 h-fit hover:scale-[0.9] w-fit duration-200 transition-all ease-in-out"
-      >
+      <LinkButton link={`/noticia/${id}`} className="py-1 px-4">
         Ler mais
-      </UI.LinkButton>
+      </LinkButton>
     </div>
   )
 }

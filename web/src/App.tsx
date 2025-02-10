@@ -9,10 +9,12 @@ const App = () => {
   const { isModalOpen } = useModal()
 
   return (
-    <main className="w-full">
+    <main className="w-full min-h-screen flex flex-col">
       <TopHeader />
       <Header />
-      <Outlet />
+      <main className="flex-1">
+        <Outlet />
+      </main>
       <Footer />
 
       {isModalOpen && <CardEmission />}

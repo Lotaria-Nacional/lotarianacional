@@ -1,4 +1,3 @@
-import Ui from "../components/ui"
 import { isAxiosError } from "axios"
 import { toast } from "react-toastify"
 import { FormEvent, useState } from "react"
@@ -7,6 +6,8 @@ import { IMAGES } from "../constants/assets"
 import Container from "../components/common/container"
 import { useRecruitmentSubmit } from "@/hooks/api/index"
 import { regexIBAN, regexPhoneNumber } from "@/utils/regex"
+import Button from "@/components/ui/button/button"
+import InputContainer from "@/components/ui/form/input-container"
 
 const RecrutamentoPage = () => {
   const { submit, isLoading } = useRecruitmentSubmit()
@@ -65,7 +66,7 @@ const RecrutamentoPage = () => {
         className="w-full bg-zinc-100 rounded-xl space-y-6 p-7 h-full"
       >
         <div className="flex items-center flex-wrap lg:flex-nowrap gap-4 w-full">
-          <Ui.InputContainer labelName="Nome">
+          <InputContainer labelName="Nome">
             <input
               type="text"
               placeholder="Nome"
@@ -75,9 +76,9 @@ const RecrutamentoPage = () => {
               }
               className="p-2 rounded-lg border outline-none"
             />
-          </Ui.InputContainer>
+          </InputContainer>
 
-          <Ui.InputContainer labelName="Sobrenome">
+          <InputContainer labelName="Sobrenome">
             <input
               type="text"
               placeholder="Sobrenome"
@@ -87,10 +88,10 @@ const RecrutamentoPage = () => {
               }
               className="p-2 rounded-lg border outline-none"
             />
-          </Ui.InputContainer>
+          </InputContainer>
         </div>
 
-        <Ui.InputContainer labelName="Telefone">
+        <InputContainer labelName="Telefone">
           <div className=" w-full rounded-lg border flex items-center gap-1 bg-white">
             <div className="flex px-2 gap-1 h-[40px] items-center justify-center bg-LT_GRAY-100/40">
               <img
@@ -114,9 +115,9 @@ const RecrutamentoPage = () => {
               }
             />
           </div>
-        </Ui.InputContainer>
+        </InputContainer>
 
-        <Ui.InputContainer labelName="Gênero">
+        <InputContainer labelName="Gênero">
           <fieldset className="flex items-center gap-3">
             <label className="flex items-center gap-1">
               <input
@@ -144,9 +145,9 @@ const RecrutamentoPage = () => {
               <span>Feminino</span>
             </label>
           </fieldset>
-        </Ui.InputContainer>
+        </InputContainer>
 
-        <Ui.InputContainer labelName="Cópia do B.I">
+        <InputContainer labelName="Cópia do B.I">
           <input
             type="file"
             accept="image/*"
@@ -156,9 +157,9 @@ const RecrutamentoPage = () => {
             }
           />
           <span className="text-xs text-zinc-400">(Tamanho máx. 4MB)</span>
-        </Ui.InputContainer>
+        </InputContainer>
 
-        <Ui.InputContainer labelName="Fotos tipo passe">
+        <InputContainer labelName="Fotos tipo passe">
           <input
             type="file"
             accept="image/*"
@@ -168,9 +169,9 @@ const RecrutamentoPage = () => {
             }
           />
           <span className="text-xs text-zinc-400">(Tamanho máx. 4MB)</span>
-        </Ui.InputContainer>
+        </InputContainer>
 
-        <Ui.InputContainer labelName="Curriculum vitae">
+        <InputContainer labelName="Curriculum vitae">
           <input
             type="file"
             className="p-2 rounded-lg border outline-none"
@@ -182,9 +183,9 @@ const RecrutamentoPage = () => {
             }
           />
           <span className="text-xs text-zinc-400">(Tamanho máx. 4MB)</span>
-        </Ui.InputContainer>
+        </InputContainer>
 
-        <Ui.InputContainer labelName="Comprovativo de residência">
+        <InputContainer labelName="Comprovativo de residência">
           <input
             type="file"
             className="p-2 rounded-lg border outline-none"
@@ -196,9 +197,9 @@ const RecrutamentoPage = () => {
             }
           />
           <span className="text-xs text-zinc-400">(Tamanho máx. 4MB)</span>
-        </Ui.InputContainer>
+        </InputContainer>
 
-        <Ui.InputContainer labelName="IBAN">
+        <InputContainer labelName="IBAN">
           <div className="flex p-2 rounded-lg border items-center gap-1 bg-white w-full">
             AO06
             <input
@@ -214,15 +215,15 @@ const RecrutamentoPage = () => {
               }
             />
           </div>
-        </Ui.InputContainer>
+        </InputContainer>
 
-        <Ui.Button
-          btn="red"
+        <Button
+          variant="red"
           disabled={isLoading}
           className="w-full justify-center"
         >
           {isLoading ? "Submetendo..." : "Submeter candidatura"}
-        </Ui.Button>
+        </Button>
       </form>
 
       <section className="w-full hidden lg:block lg:h-full relative">

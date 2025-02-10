@@ -1,6 +1,6 @@
 import { INews } from "@/interfaces"
 import { dateFormat } from "@/utils/date"
-import { NavLink } from "react-router-dom"
+import LinkButton from "../ui/button/link-button"
 
 type Props = {
   data: INews
@@ -26,13 +26,9 @@ const OtherNewsRow = ({ data }: Props) => {
           {dateFormat(data.createdAt)}
         </span>
 
-        <NavLink
-          reloadDocument
-          to={`/noticia/${data.id}`}
-          className="py-1 px-4 border rounded-lg text-LT_RED-100 border-LT_RED-100 h-fit hover:scale-[0.9] w-fit duration-200 transition-all ease-in-out"
-        >
+        <LinkButton link={`/noticia/${data.id}`} className="py-1 px-4">
           Ler mais
-        </NavLink>
+        </LinkButton>
       </div>
     </li>
   )
