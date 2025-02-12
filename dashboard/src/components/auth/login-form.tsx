@@ -1,7 +1,6 @@
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Button } from "../ui/button"
-import { NavLink } from "react-router-dom"
 import { Eye, EyeClosed } from "lucide-react"
 import { useAuth } from "@/context/authContext"
 import { ChangeEvent, FormEvent, useState } from "react"
@@ -90,9 +89,9 @@ const LoginForm = () => {
             <Input id="remember" type="checkbox" className="size-4" />
             Lembrar
           </Label>
-          <NavLink to={"#"} className="text-xs text-zinc-500">
+          {/* <NavLink to={"#"} className="text-xs text-zinc-500">
             Esqueceu a sua palavra-passe?
-          </NavLink>
+          </NavLink> */}
         </div>
         <Button
           type="submit"

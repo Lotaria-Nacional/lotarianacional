@@ -8,7 +8,7 @@ type Props = {
 
 const Container = ({ children, className, ...rest }: Props) => {
   return (
-    <section {...rest} className={twMerge("px-6 mx-auto w-full", className)}>
+    <section {...rest} className={twMerge("lg:px-6 px-1 mx-auto w-full", className)}>
       {children}
     </section>
   )
