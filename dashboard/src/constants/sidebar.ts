@@ -27,24 +27,18 @@ export const SIDEBAR_MENU_LINKS = [
   },
   {
     id: 5,
-    icon: ICON.emission,
-    label: "Emissões",
-    link: "emissoes",
-  },
-  {
-    id: 6,
     icon: ICON.agency,
     label: "Agências",
     link: "agencias",
   },
   {
-    id: 7,
+    id: 6,
     icon: ICON.newspaper,
     label: "Notícias",
     link: "noticias",
   },
   {
-    id: 8,
+    id: 7,
     icon: ICON.users,
     label: "Usuários",
     link: "usuarios",
