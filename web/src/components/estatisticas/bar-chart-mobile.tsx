@@ -19,7 +19,7 @@ export const enum COLORS {
   GRAY = "#e1e1e1",
 }
 
-const BarChart = ({ stats }: Props) => {
+export default function BarChartMobile({ stats }: Props) {
   const data = useMemo(
     () =>
       stats &&
@@ -32,20 +32,21 @@ const BarChart = ({ stats }: Props) => {
   )
 
   const interval = 2
-
   return (
-    <div className="relative hidden lg:flex w-full h-full lg:h-[440px]">
-      <ResponsiveContainer height={"100%"} width={"100%"}>
-        <RechartsBarChart data={data} margin={{ left: -30, top: 40 }}>
+    <div className="w-full items-start justify-start lg:hidden flex relative">
+      <ResponsiveContainer width="100%" height={900}>
+        <RechartsBarChart
+          data={data}
+          layout="vertical"
+          margin={{ left: -30, top: 10 }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" interval={interval} />
-          <YAxis />
+          <YAxis interval={interval} type="category" dataKey="name" />
+          <XAxis type="number" />
           <Tooltip />
-          <Bar dataKey="Vezes" fill={COLORS.RED} width={600} />
+          <Bar dataKey="Vezes" fill={COLORS.RED} />
         </RechartsBarChart>
       </ResponsiveContainer>
     </div>
   )
 }
-
-export default BarChart

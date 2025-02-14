@@ -1,9 +1,7 @@
 type Props = {
   data: {
     id: number
-    title: string
     image: string
-    image_mobile: string
     description: string
   }
   reverse: boolean
@@ -27,7 +25,7 @@ const ComoJogarRow = ({
           </span>
           <span>Passo</span>
         </h1>
-        <p className="text-[20px]">{description}</p>
+        <p className="text-[20px] text-justify">{description}</p>
       </div>
     </div>
   )

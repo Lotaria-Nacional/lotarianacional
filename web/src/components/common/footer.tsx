@@ -29,8 +29,8 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col h-full w-fit gap-4">
-            <h1 className="text-xl capitalize font-bold">Links</h1>
-            <ul className="flex flex-col">
+            <h1 className="text-xl capitalize font-bold">Links Adicionais</h1>
+            <ul className="flex flex-col gap-2">
               {FOOTER_NAVIGATION_LINKS.map((link) => (
                 <li key={link.id}>
                   <Link
@@ -42,6 +42,15 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/regulamento.pdf"
+                  target="_blank"
+                  className="capitalize hover:text-LT_RED-100 duration-200 ease-in-out transition-colors"
+                >
+                  Regulamentos do Loto 5/90
+                </a>
+              </li>
             </ul>
           </div>
 

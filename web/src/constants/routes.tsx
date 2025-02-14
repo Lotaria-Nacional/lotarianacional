@@ -9,13 +9,14 @@ import {
   RecrutamentoPage,
   EstatisticasPage,
 } from "../pages/index"
-
 import App from "../App"
-import { createBrowserRouter } from "react-router-dom"
-import NoticiaSinglePage from "../pages/noticia-single-page"
-import ChancesEPremiosPage from "@/pages/chances-e-prémios"
-import NewResultsPage from "@/pages/new-results-page"
 import ErrorPage from "@/pages/error-page"
+import TermsPage from "@/pages/terms-page"
+import { createBrowserRouter } from "react-router-dom"
+import ChancesEPremiosPage from "@/pages/chances-e-prémios"
+import NoticiaSinglePage from "../pages/noticia-single-page"
+import RegulamentationPage from "@/pages/regulamentation-page"
+import PoliticsAndPrivacyPage from "@/pages/politics-and-privacy-page"
 
 export const router = createBrowserRouter([
   {
@@ -67,9 +68,18 @@ export const router = createBrowserRouter([
         path: "/chances-e-premios/",
         element: <ChancesEPremiosPage />,
       },
+
       {
-        path: "/resultados-teste/",
-        element: <NewResultsPage />,
+        path: "/termos-e-condicoes-gerais",
+        element: <TermsPage />,
+      },
+      {
+        path: "/termos-de-privacidade",
+        element: <PoliticsAndPrivacyPage />,
+      },
+      {
+        path: "/regulamentos-do-loto-5/90",
+        element: <RegulamentationPage />,
       },
     ],
   },

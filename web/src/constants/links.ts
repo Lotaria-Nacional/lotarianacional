@@ -119,38 +119,35 @@ export const SOCIAL_MEDIA = [
 export const FOOTER_NAVIGATION_LINKS = [
   {
     id: 1,
-    label: "Chances e prémios",
-    link: "chances-e-premios",
-  },
-  {
-    id: 2,
-    label: "como jogar",
-    link: "como-jogar",
-  },
-  {
-    id: 3,
-    label: "resultados",
-    link: "resultados",
-  },
-  {
-    id: 4,
-    label: "estatísticas",
-    link: "estatisticas",
-  },
-
-  {
-    id: 5,
-    label: "Notícias",
-    link: "/noticias",
-  },
-  {
-    id: 6,
     label: "Sobre nós",
     link: "/sobre-nos",
   },
   {
-    id: 7,
+    id: 2,
+    label: "Notícias",
+    link: "/noticias",
+  },
+  {
+    id: 3,
     label: "Recrutamento",
     link: "/recrutamento",
   },
+  {
+    id: 4,
+    label: "Termos e condições gerais",
+    link: "/termos-e-condicoes-gerais",
+    // link: "#",
+  },
+  {
+    id: 5,
+    label: "Termos de Privacidade",
+    link: "/termos-de-privacidade",
+    // link: "#",
+  },
+  // {
+  //   id: 6,
+  //   label: "Regulamentos do Loto 5/90",
+  //   link: "/regulamento.pdf",
+  //   // link: "#",
+  // },
 ] as const

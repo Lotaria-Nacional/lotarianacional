@@ -25,13 +25,6 @@ const HomePage = () => {
           <HeroSlider />
           <DailyResults />
         </section>
-        {/* 
-        <iframe
-          src="https://games.elephantbet.co.ao/Inner/authorization.php?partnerId=18756188&gameId=806666&language=pt&openType=fun&devicetypeid=1&fronttypeid=1&exitURL=https%3A%2F%2Fwww.elephantbet.co.ao&deposit_url=https%3A%2F%2Fwww.elephantbet.co.ao%3Fprofile%3Dopen%26account%3Dbalance%26page%3Ddeposit&frameId=gameView&logoSource=%2Flogo.png"
-          width={500}
-          height={500}
-          className="mx-auto"
-        ></iframe> */}
 
         {/** MOBILE DAILY SECTION */}
         <MobileDailyResults />
@@ -59,13 +52,13 @@ const HomePage = () => {
           className="bg-LT_GRAY-100/30 flex h-auto py-[50px] lg:py-[50px] items-center justify-center"
         >
           <Container className="flex-col gap-8 items-center justify-center lg:gap-[40px]">
-            <header className="flex flex-col w-full gap-[16px] lg:gap-2 items-center justify-center min-h-[92px]">
+            <header className="flex flex-col w-full gap-[16px] lg:gap-[24px] items-center justify-center min-h-[92px]">
               <h1 className="font-bold edoSZ-38 !leading-8 text-center text-[24px] lg:text-[34px] uppercase">
                 CHANCES E PRÉMIOS
               </h1>
-              <p className="text-[#818181] text-[14px] lg:text-[16px] text-center lg:text-left">
+              <p className="text-center w-full">
                 Use a tabela abaixo para simular os prémios com base no valor
-                apostado e nas diferentes chances
+                apostado e nas diferentes chances.
               </p>
             </header>
             <PlayGroundTable />

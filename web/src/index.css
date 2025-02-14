@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -134,26 +132,26 @@ details[open] summary::after {
 
 @font-face {
   font-family: edo;
-  src: url("../public/fonts/edosz.ttf") format("truetype");
+  src: url("/fonts/edosz.ttf") format("truetype");
 }
 @font-face {
   font-family: "Inter";
-  src: url("../public/fonts/Inter_18pt-Regular.ttf") format("truetype");
+  src: url("/fonts/Inter_18pt-Regular.ttf") format("truetype");
   font-weight: 400;
 }
 @font-face {
   font-family: "Inter";
-  src: url("../public/fonts/Inter_18pt-Bold.ttf") format("truetype");
+  src: url("/fonts/Inter_18pt-Bold.ttf") format("truetype");
   font-weight: 700;
 }
 @font-face {
   font-family: "Inter";
-  src: url("../public/fonts/Inter_18pt-Light.ttf") format("truetype");
+  src: url("/fonts/Inter_18pt-Light.ttf") format("truetype");
   font-weight: 300;
 }
 @font-face {
   font-family: "Inter";
-  src: url("../public/fonts/Inter_18pt-SemiBold.ttf") format("truetype");
+  src: url("/fonts/Inter_18pt-SemiBold.ttf") format("truetype");
   font-weight: 600;
 }
 

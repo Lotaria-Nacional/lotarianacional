@@ -1,6 +1,8 @@
 import BarChart from "./bar-chart"
 import { IStats } from "@/interfaces"
 import StatsInfoText, { StatsTextColor } from "./stats-info-text"
+import BarChartMobile from "./bar-chart-mobile"
+import React from "react"
 
 // Função para calcular percentis corretamente
 const calculatePercentile = (arr: number[], percentile: number) => {
@@ -58,9 +60,10 @@ const GraphAndTable = ({ switchTableAndGraph, statsDataArr }: Props) => {
       </div>
     </>
   ) : (
-    <div className="relative border border-neutral-100 rounded-lg flex items-center justify-center w-full h-full lg:h-[440px]">
+    <React.Fragment>
       <BarChart stats={statsDataArr} />
-    </div>
+      <BarChartMobile stats={statsDataArr} />
+    </React.Fragment>
   )
 }
 

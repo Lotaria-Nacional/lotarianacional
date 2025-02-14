@@ -25,18 +25,17 @@ const AgenciasPage = () => {
 
   return (
     <>
-      <Container className="lg:py-12 hidden lg:flex flex-col gap-4">
-        <AgencyFilter
-          setFilter={setSearchParams}
-          selectedLetter={paramsValue}
-        />
-
+      <Container className="lg:py-[40px] hidden lg:flex flex-col gap-4">
         {isLoading ? (
           <AgencySkeleton />
         ) : filteredAgencies &&
           Array.isArray(filteredAgencies) &&
           filteredAgencies.length > 0 ? (
           <>
+            <AgencyFilter
+              setFilter={setSearchParams}
+              selectedLetter={paramsValue}
+            />
             <section className="lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full hidden">
               {filteredAgencies?.map((agency, i) => (
                 <AgencyCard key={i} agency={agency} />

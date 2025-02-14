@@ -6,6 +6,7 @@ import { useStatistic } from "@/hooks/api/query/useStatistic"
 import GraphAndTable from "@/components/estatisticas/graph-and-table"
 import StatisticSkeleton from "@/components/estatisticas/statistic-skeleton"
 import Button from "@/components/ui/button/button"
+import PageTitle from "@/components/page-title"
 
 const EstatisticasPage = () => {
   const { isLoading, stats } = useStatistic()
@@ -35,16 +36,18 @@ const EstatisticasPage = () => {
 
   return (
     <>
-      <Container className="flex-col pt-6 pb-12">
+      <Container className="flex-col py-[40px]">
         <div className="bg-white w-full items-center flex rounded-lg flex-col gap-8">
           {/** NUMBERS GRID DATA */}
           <>
             <div className="w-full flex items-center justify-between">
-              <h1 className="text-[18px] text-wrap lg:text-nowrap w-[150px] lg:w-fit lg:text-[20px] font-bold lg:text-center">
-                Números em destaque
-              </h1>
+              <PageTitle>Números em destaque</PageTitle>
 
-              <Button variant="red" onClick={toggleGraphAndTable}>
+              <Button
+                variant="red"
+                className="flex"
+                onClick={toggleGraphAndTable}
+              >
                 <img
                   alt="ícone de gráfico"
                   src={ICONS.estatisticas}

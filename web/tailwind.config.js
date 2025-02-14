@@ -4,9 +4,6 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        Inter: "Inter, serif",
-      },
       colors: {
         LT_WHITE: "#FFFF",
         LT_BLACK: "#141414",

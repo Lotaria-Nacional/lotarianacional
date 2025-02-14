@@ -11,6 +11,7 @@ import ResultadoCard from "@/components/resultados/resultado-card"
 import ResultCardPlaceholder from "@/components/resultados/result-card-placeholder"
 
 import "swiper/swiper-bundle.css"
+import PageTitle from "../page-title"
 
 type Props = {
   data: IDailyResult[]
@@ -36,7 +37,7 @@ const ResultadosListing = ({ data }: Props) => {
   return (
     <section className="w-full  flex flex-col gap-6">
       <section className="w-full flex items-center justify-between lg:px-0 px-5">
-        <h1 className="font-bold text-xl">Histórico de resultados</h1>
+        <PageTitle>Histórico de resultados</PageTitle>
         <div className="flex items-center bg-zinc-200 rounded-full p-1 gap-4">
           <ChevronLeft
             className={BUTTON_STYLE}

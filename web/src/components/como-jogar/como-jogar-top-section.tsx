@@ -2,14 +2,13 @@ import usePopUp from "@/hooks/usePopUp"
 import { MdClose } from "react-icons/md"
 import Button from "../ui/button/button"
 import { FaPlayCircle } from "react-icons/fa"
+import PageTitle from "../page-title"
 
 const ComoJogarTopSection = () => {
   const { handleOpenPopUp, handleClosePopUp, isPopUpOpen } = usePopUp()
   return (
-    <section className="w-full flex items-center justify-between border-b pb-4">
-      <h1 className="text-[18px] lg:text-[20px] font-bold">
-        Como jogar o Loto5/90
-      </h1>
+    <section className="w-full flex items-center justify-between border-b pb-2 lg:pb-4">
+      <PageTitle>Como jogar o Loto5/90</PageTitle>
 
       <Button onClick={handleOpenPopUp} variant="red">
         <FaPlayCircle />
