@@ -10,6 +10,7 @@ import AgencyFilter from "../components/agencia/agency-filter"
 import { filterAgenciesBySearchParams } from "../utils/agency"
 import AgencySkeleton from "@/components/agencia/agency-skeleton"
 import LeafletMapMobile from "../components/mobile/leaftlet-map-mobile"
+import { defaultAgency } from "@/constants/default-agency"
 
 const AgenciasPage = () => {
   const { currentPage, setSearch } = usePagination()
@@ -18,24 +19,28 @@ const AgenciasPage = () => {
 
   const { agencies, isLoading } = useAgencies(currentPage)
 
+  const allAgencies = agencies?.data
+    ? [...agencies.data, defaultAgency]
+    : [defaultAgency]
+
   const filteredAgencies = filterAgenciesBySearchParams(
     paramsValue,
-    agencies?.data
+    allAgencies
   )
 
   return (
     <>
       <Container className="lg:py-[40px] hidden lg:flex flex-col gap-4">
+        <AgencyFilter
+          setFilter={setSearchParams}
+          selectedLetter={paramsValue}
+        />
         {isLoading ? (
           <AgencySkeleton />
         ) : filteredAgencies &&
           Array.isArray(filteredAgencies) &&
           filteredAgencies.length > 0 ? (
           <>
-            <AgencyFilter
-              setFilter={setSearchParams}
-              selectedLetter={paramsValue}
-            />
             <section className="lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full hidden">
               {filteredAgencies?.map((agency, i) => (
                 <AgencyCard key={i} agency={agency} />
