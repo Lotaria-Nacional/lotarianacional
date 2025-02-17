@@ -61,7 +61,7 @@ const Footer = () => {
                 <SocialMediaLinks />
               </div>
               <span>Tel: + 244 923 190 007</span>
-              <span>geral@lotarianacional.com</span>
+              <span>geral@lotarianacional.co.ao</span>
               <span>Rainha Ginga Nº 79</span>
               {/* <span>Talatona - Luanda</span> */}
             </div>
