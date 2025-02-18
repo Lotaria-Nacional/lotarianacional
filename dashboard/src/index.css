@@ -79,3 +79,28 @@ input::-webkit-inner-spin-button {
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: "edoSz";
+  src: url("/edosz.ttf") format("truetype");
+  font-weight: 700;
+}
+
+.edo-Sz {
+  font-family: "edoSz";
+  font-size: 49.64px;
+}
+
+.ticket-background {
+  background-image: url("/ticket.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.result-ticket-background {
+  background-image: url("/result.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

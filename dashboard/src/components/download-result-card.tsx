@@ -1,9 +1,9 @@
 import { saveAs } from "file-saver"
-import { Button } from "./ui/button"
 import { toPng } from "html-to-image"
 import { IResult } from "@/interfaces"
 import { toast } from "react-toastify"
 import { useRef, useState } from "react"
+import { BsDownload } from "react-icons/bs"
 
 type Props = {
   result: IResult
@@ -12,6 +12,14 @@ type Props = {
 const DownloadResultCard = ({ result }: Props) => {
   const divRef = useRef<HTMLDivElement | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+
+  const resultDate = result.createdAt
+    .toString()
+    .split("T")[0]
+    .split("-")
+    .reverse()
+    .join("/")
+
   const numbers = [
     result.number_1,
     result.number_2,
@@ -24,7 +32,11 @@ const DownloadResultCard = ({ result }: Props) => {
     setIsLoading(true)
     if (!divRef.current) return
     try {
-      const dataURL = await toPng(divRef.current)
+      const dataURL = await toPng(divRef.current, {
+        quality: 1,
+        width: 1081,
+        height: 1350,
+      })
       saveAs(dataURL, "resultado.png")
       toast.success("Download feito com sucesso.")
     } catch (error) {
@@ -35,42 +47,61 @@ const DownloadResultCard = ({ result }: Props) => {
   }
 
   return (
-    <div className="bg-white rounded-[20px] h-[270px] shadow-sm shadow-white/20 p-2 w-full flex flex-col justify-around">
-      <div className="w-full flex items-center justify-between">
-        <span className="bg-yellow-500 text-black px-3 py-1 font-medium rounded-[10px] w-fit  uppercase">
-          {result.name}
-        </span>
-      </div>
+    <div className="flex flex-col gap-2 w-full">
+      <button
+        disabled={isLoading}
+        onClick={handleDownloadResult}
+        className="self-end bg-white px-4 py-1 flex items-center gap-2 hover:bg-white/60 transition-all ease duration-200 rounded-md"
+      >
+        <span>{isLoading ? "Baixando..." : "Baixar"}</span>
+        <BsDownload />
+      </button>
+      <div
+        ref={divRef}
+        className="bg-blue-500 w-[337.43px] h-[421.4px] ticket-background justify-between flex flex-col"
+      >
+        <div className="w-full flex justify-end p-4">
+          <img src="/18.webp" width={34.12} height={34.12} />
+        </div>
+        <div className="flex items-center justify-center w-full -mt-4">
+          <img src="/loto.webp" width={159.82} height={63.05} />
+        </div>
+        <div className="flex w-[204.52px] h-[101.42px] mx-auto flex-col items-center mt-1 justify-center -rotate-[9.1deg]">
+          <span className="text-white text-[22.39px]">SORTEIO</span>
+          <h1 className="text-yellow-400 text-[40px] -mt-4 edo-Sz">
+            {result.name}!
+          </h1>
+        </div>
 
-      <div className="w-full flex flex-col items-center gap-4">
-        <div
-          ref={divRef}
-          className="loto-bg w-full lg:w-[180px] h-[115px] rounded-[13px] flex flex-col justify-center items-start gap-4 p-2"
-        >
-          <div className="flex flex-col text-[15px] text-white">
-            <span className="uppercase">{result.name}</span>
-            <span>{result.hour}</span>
-          </div>
-          <div className="w-full mx-auto flex items-center gap-1">
-            {numbers.map((number) => (
-              <span
-                key={number}
-                className="size-[30px] bg-white text-RED-200 font-medium text-center flex items-center justify-center rounded-[50px]"
-              >
-                {number}
-              </span>
-            ))}
+        <div className="mt-2 self-center">
+          <div className="relative result-ticket-background w-[232.86px] h-[121.84px] flex flex-col items-center justify-center">
+            <div className="mb-[50px] text-[10px] flex flex-col items-center text-white uppercase">
+              <h4 className="font-normal">
+                {resultDate}
+                <span className="text-yellow-400 ml-1 text-[11px]">
+                  {result.hour.replace(/h/, ":")}
+                </span>
+              </h4>
+              <span className="font-normal">Números sorteados</span>
+            </div>
+
+            <div className="absolute bottom-6 left-6 w-full flex items-center gap-1">
+              {numbers.map((number, i) => (
+                <span
+                  key={i}
+                  className="bg-white rounded-full size-[33.24px] flex items-center justify-center text-center text-[22.16px] text-RED-100"
+                >
+                  {number}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-        <Button
-          type="submit"
-          disabled={isLoading}
-          className="bg-RED-200 w-full"
-          onClick={handleDownloadResult}
-        >
-          {isLoading ? "Baixando..." : "Baixar"}
-        </Button>
+        <div className="w-full flex items-center justify-between p-4">
+          <img src="/images.webp" width={85.85} height={33.3} />
+          <img src="/elephant-bet.webp" width={46.05} height={43.01} />
+        </div>
       </div>
     </div>
   )
