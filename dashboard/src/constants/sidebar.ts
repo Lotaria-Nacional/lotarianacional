@@ -17,7 +17,7 @@ export const SIDEBAR_MENU_LINKS = [
     id: 3,
     icon: ICON.ticket,
     label: "Baixar ticket",
-    link: "baixar-ticket",
+    link: "baixar-ticket/feed",
   },
   {
     id: 4,

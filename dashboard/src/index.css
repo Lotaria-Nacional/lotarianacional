@@ -80,27 +80,51 @@ input::-webkit-inner-spin-button {
   }
 }
 
+.result-ticket-feed {
+  background-image: url("/download-ticket/result-ticket-feed.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.result-ticket-story {
+  background-image: url("/download-ticket/result-ticket-story.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.todays-results-feed {
+  background-image: url("/download-ticket/todays-result-feed.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.todays-results-story {
+  background-image: url("/download-ticket/todays-result-story.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 @font-face {
-  font-family: "edoSz";
-  src: url("/edosz.ttf") format("truetype");
-  font-weight: 700;
+  font-family: "Edo-Sz";
+  src: url("./assets/fonts/edosz.ttf") format("truetype");
 }
 
-.edo-Sz {
-  font-family: "edoSz";
+.font-edoSz {
+  font-family: "Edo-Sz";
   font-size: 49.64px;
+  color: #e6ce2e;
+  transform: rotate(-9.1deg);
 }
 
-.ticket-background {
-  background-image: url("/ticket.webp");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.lotaria-scroll-bar::-webkit-scrollbar {
+  height: 4px;
 }
-
-.result-ticket-background {
-  background-image: url("/result.webp");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.lotaria-scroll-bar::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  /* background-color: #951913; */
+  background-color: #b01816;
 }

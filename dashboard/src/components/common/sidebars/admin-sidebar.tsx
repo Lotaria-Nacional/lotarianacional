@@ -6,10 +6,9 @@ import { NavLink } from "react-router-dom"
 import { LOGOS } from "../../../constants/assets"
 import LogoutButton from "../../auth/logout-button"
 
-
 const AdminSidebar = () => {
   return (
-    <aside className="h-full w-full lg:w-[254px] bg-RED-200 flex flex-col items-start p-4 sticky z-50 top-0 lg:static">
+    <aside className="h-screen w-full lg:w-[254px] bg-RED-200 flex flex-col items-start p-4 sticky z-50 top-0">
       <nav className="flex flex-row lg:flex-col gap-10 grow w-full lg:w-auto justify-between lg:justify-normal">
         <NavLink to={"/"}>
           <img
@@ -64,7 +63,6 @@ const AdminSidebar = () => {
             </li>
           ))}
         </ul>
-
       </nav>
 
       <LogoutButton />

@@ -12,13 +12,15 @@ import EditAgencyPage from "@/pages/dashboard/edit-agency-page"
 import AddResultsPage from "./pages/dashboard/add-results-page"
 import EditResultsPage from "@/pages/dashboard/edit-results-page"
 import SettingsPage from "./pages/dashboard/settings/settings-page"
-import DownloadTicketPage from "./pages/dashboard/download-ticket-page"
+import DownloadTicketPage from "./pages/dashboard/download-ticket-page/download-ticket-page"
 
 import { createBrowserRouter } from "react-router-dom"
 import LoginPage from "./pages/auth/login-page"
 import UsersPage from "./pages/dashboard/users-page"
 import NotFoundPage from "./pages/error/404-not-found-page"
 import EmissionsPage from "./pages/dashboard/emissions-page"
+import Posts from "./pages/dashboard/download-ticket-page/posts"
+import TodaysResults from "./pages/dashboard/download-ticket-page/todays-results"
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +38,20 @@ export const router = createBrowserRouter([
       { path: "noticia/:id", element: <EditNewsPage /> },
       { path: "adicionar-agencia", element: <AddAgencyPage /> },
       { path: "agencia/:id", element: <EditAgencyPage /> },
-      { path: "baixar-ticket", element: <DownloadTicketPage /> },
+      {
+        path: "baixar-ticket",
+        element: <DownloadTicketPage />,
+        children: [
+          {
+            path: "feed",
+            element: <Posts />,
+          },
+          {
+            path: "resultados-do-dia",
+            element: <TodaysResults />,
+          },
+        ],
+      },
       { path: "editar-resultados", element: <EditResultsPage /> },
       { path: "adicionar-resultados", element: <AddResultsPage /> },
       { path: "usuarios", element: <UsersPage /> },

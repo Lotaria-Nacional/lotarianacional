@@ -6,7 +6,7 @@ import MobileMenuButton from "@/components/mobile/mobile-menu-button"
 
 const StudioSidebar = () => {
   return (
-    <aside className="h-full w-full lg:w-[254px] bg-RED-200 flex flex-col items-start p-4 sticky z-50 top-0 lg:static">
+    <aside className="h-screen w-full lg:w-[254px] bg-RED-200 flex flex-col items-start p-4 sticky z-50 top-0 lg:static">
       <nav className="flex flex-row lg:flex-col gap-6 grow w-full lg:w-auto justify-between lg:justify-normal">
         <NavLink to={"/"}>
           <img

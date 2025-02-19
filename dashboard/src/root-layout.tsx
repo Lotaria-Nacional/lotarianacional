@@ -15,7 +15,7 @@ const RootLayout = () => {
 
   return (
     <>
-      <div className="w-full h-screen px-3 flex flex-col gap-10 items-center justify-center bg-RED-200 lg:hidden">
+      <div className="w-[400px] min-h-screen px-6 flex flex-col gap-10 items-center justify-center bg-RED-200 lg:hidden">
         <img
           src={LOGO}
           className="object-contain w-[160px]"
@@ -26,12 +26,12 @@ const RootLayout = () => {
         </span>
       </div>
 
-      <main className="lg:h-screen min-h-screen flex flex-col lg:flex-row">
+      <main className="relative min-h-screen hidden lg:flex flex-col lg:flex-row">
         <Sidebar />
 
-        <section className="bg-GRAY-100 w-full flex flex-col min-h-screen">
+        <section className="bg-GRAY-100 w-full flex flex-col justify-between h-full">
           <Header />
-          <Container className="py-4 h-full overflow-y-scroll">
+          <Container className="py-4 min-h-screen">
             <Outlet />
           </Container>
         </section>

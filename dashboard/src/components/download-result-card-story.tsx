@@ -1,14 +1,10 @@
-import { toPng } from "html-to-image"
-import { IResult } from "@/interfaces"
-import { toast } from "react-toastify"
-import { useCallback, useRef, useState } from "react"
 import { BsDownload } from "react-icons/bs"
+import { DownloadTicketProps } from "./download-result-card"
+import { useCallback, useRef, useState } from "react"
+import { toPng } from "html-to-image"
+import { toast } from "react-toastify"
 
-export type DownloadTicketProps = {
-  result: IResult
-}
-
-const DownloadResultCard = ({ result }: DownloadTicketProps) => {
+const DownloadResultCardStory = ({ result }: DownloadTicketProps) => {
   const divRef = useRef<HTMLDivElement | null>(null)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -26,10 +22,10 @@ const DownloadResultCard = ({ result }: DownloadTicketProps) => {
     try {
       const dataURL = await toPng(divRef.current, {
         cacheBust: true,
-        pixelRatio: 20,
+        pixelRatio: 25,
       })
       const linkButton = document.createElement("a")
-      linkButton.download = `${result.name}-resultado-${
+      linkButton.download = `${result.name}-resultado-story-${
         result.createdAt.toString().split("T")[0]
       }.png`
       linkButton.href = dataURL
@@ -50,7 +46,7 @@ const DownloadResultCard = ({ result }: DownloadTicketProps) => {
     .join("/")
 
   return (
-    <div className="flex shrink-0 flex-col gap-2 w-[337.43px]">
+    <div className="w-[274.84px] flex flex-col gap-2">
       <button
         onClick={handleDownload}
         disabled={isLoading}
@@ -62,27 +58,26 @@ const DownloadResultCard = ({ result }: DownloadTicketProps) => {
 
       <div
         ref={divRef}
-        className="relative flex flex-col items-center gap-2 p-4 w-full h-[421.4px] result-ticket-feed"
+        className="result-ticket-story w-full h-[490.4px] relative flex items-center"
       >
-        <h2 className="font-edoSz absolute top-[140px]">{result.name}</h2>
+        <div className="w-full flex items-center gap-[16px] absolute bottom-[160px] flex-col">
+          <h2 className="font-edoSz">{result.name}</h2>
 
-        <div className="flex flex-col gap-3 absolute bottom-[102px] items-center justify-center">
-          <header className="flex flex-col text-white">
-            <span className="text-[11.5px]">
+          <header className="flex flex-col items-center text-white text-[11px] mt-3">
+            <span className="font-bold">
               {resultDate}{" "}
               <span className="text-yellow-400">
                 {result.hour.replace("h", ":")}
               </span>
             </span>
-
-            <span className="text-[8.54px]">NÚMEROS SORTEADOS</span>
+            <span className="font-normal">NÚMEROS SORTEADOS</span>
           </header>
 
-          <div className="w-full flex items-center gap-[1.87px]">
-            {numbers.map((number, index) => (
+          <div className="flex items-center gap-[2.87px]">
+            {numbers.map((number) => (
               <span
-                key={index}
-                className="size-[33.24px] bg-white rounded-full text-RED-300 text-[22.16px] flex items-center justify-center"
+                key={number}
+                className="size-[27.44px] flex items-center justify-center bg-white rounded-full text-center text-RED-300 text-[18.16px]"
               >
                 {number}
               </span>
@@ -94,4 +89,4 @@ const DownloadResultCard = ({ result }: DownloadTicketProps) => {
   )
 }
 
-export default DownloadResultCard
+export default DownloadResultCardStory
