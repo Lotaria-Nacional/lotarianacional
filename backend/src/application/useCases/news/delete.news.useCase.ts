@@ -16,7 +16,7 @@ export class DeleteNewsUseCase {
     if (existingNews.image && typeof existingNews.image === "string") {
       const publicId = getCloudinaryPublicId(existingNews.image)
       if (publicId) {
-        await this.fileUpload.delete(publicId)
+        await this.fileUpload.delete(publicId, "image");
       }
     }
 

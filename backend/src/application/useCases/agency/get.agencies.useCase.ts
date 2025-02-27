@@ -1,4 +1,3 @@
-import { Agency } from "../../../Domain/Entities/Agency/Agency";
 import { IAgenciesResponse, IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository";
 
 type GetAgenciesInputDTO = {
@@ -17,6 +16,6 @@ export class GetAgenciesUseCase {
     } catch (error) {
       console.log("GetAgenciesUseCase ~ execute ~ error", error);
       throw new Error("Erro ao recuperar agências. Tente novamente mais tarde.");
-    }
+    } 
   }
 }

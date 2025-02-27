@@ -60,6 +60,7 @@ model Agencies {
   phone Int
   latitude Float
   longitude Float
+  type String
   createdAt DateTime
   location_text String
 }

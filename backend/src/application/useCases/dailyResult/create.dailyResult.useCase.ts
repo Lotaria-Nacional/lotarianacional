@@ -20,6 +20,11 @@ export class CreateDailyResultUseCase {
         dailyResult = this.createNewDailyResult(today, [this.createNewResult(data)]);
         await this.dailyResultRespository.save(dailyResult);
       } else {
+        dailyResult.results.forEach((result) => {
+          if (result.name === data.name) {
+            throw new Error("Este resultado já foi inserido.");
+          }
+        });
         dailyResult.results.push(this.createNewResult(data));
         await this.dailyResultRespository.update(dailyResult);
       }
@@ -28,7 +33,7 @@ export class CreateDailyResultUseCase {
         url: data.videoURL,
       });
       await this.emissionRepository.save(emission);
-      await this.excelService.generateAndSaveExcel();
+      // await this.excelService.generateAndSaveExcel();
     } catch (error) {
       console.error("Erro ao criar o resultado do dia:", error);
       throw error;

@@ -16,7 +16,7 @@ export class DeleteUserUseCase {
     if (user.profilePic && typeof user.profilePic === "string") {
       const publicId = getCloudinaryPublicId(user.profilePic)
       if (publicId) {
-        await this.fileUploader.delete(publicId)
+        await this.fileUploader.delete(publicId, "image");
       }
     }
 

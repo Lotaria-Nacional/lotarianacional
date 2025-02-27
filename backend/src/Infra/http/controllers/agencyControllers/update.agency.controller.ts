@@ -14,6 +14,7 @@ export class UpdateAgencyController {
       location_text: z.string().optional(),
       latitude: z.number().optional(),
       longitude: z.number().optional(),
+      type: z.enum(["lotaria-nacional", "elephant-bet", "arreiou"], { errorMap: () => ({ message: "O tipo da agência é obrigatório." }) }).optional(),
     });
 
     try {

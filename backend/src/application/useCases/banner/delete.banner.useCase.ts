@@ -12,7 +12,7 @@ export class DeleteBannerUseCase {
       if (!existingBanner) throw new NotFoundError("Banner não encontrado.");
       const publicID = getCloudinaryPublicId(existingBanner.props.image);
       if (publicID) {
-        await this.fileUpload.delete(publicID);
+        await this.fileUpload.delete(publicID, "image");
       }
       await this.bannerRepository.delete(id);
     } catch (error) {

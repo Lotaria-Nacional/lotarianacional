@@ -34,8 +34,8 @@ export class UpdateBannerUseCase {
 
     if (publicID) {
       try {
-        await this.fileService.delete(publicID);
-        const newImg = await this.fileService.upload(newImage, "lotaria_nacional/banners");
+        await this.fileService.delete(publicID, "image");
+        const newImg = await this.fileService.upload(newImage, "lotaria_nacional/banners", "image");
         return newImg;
       } catch (error) {
         console.log("UpdateBannerUseCase ~ execute ~ error", error);

@@ -4,6 +4,7 @@ import { IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respo
 
 type UpdateAgencyInputDTO = {
   name?: string;
+  type?: string;
   phone?: number;
   latitude?: number;
   longitude?: number;

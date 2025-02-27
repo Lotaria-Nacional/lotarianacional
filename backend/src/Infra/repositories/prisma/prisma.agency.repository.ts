@@ -6,6 +6,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
   async save(agency: Agency): Promise<void> {
     await prisma.agencies.create({
       data: {
+        type: agency.type,
         name: agency.name,
         location_text: agency.location_text,
         latitude: agency.latitude,
@@ -35,6 +36,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
       data: agencies.map((agency) =>
         Agency.create({
           id: agency.id,
+          type: agency.type,
           name: agency.name,
           phone: agency.phone,
           latitude: agency.latitude,
@@ -54,6 +56,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
     return Agency.create({
       id: agency.id,
       name: agency.name,
+      type: agency.type,
       phone: agency.phone,
       latitude: agency.latitude,
       longitude: agency.longitude,
@@ -68,6 +71,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
       data: {
         name: data.name,
         phone: data.phone,
+        type: data.type,
         latitude: data.latitude,
         longitude: data.longitude,
         location_text: data.location_text,
@@ -77,6 +81,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
     return Agency.create({
       id: agency.id,
       name: agency.name,
+      type: agency.type,
       phone: agency.phone,
       latitude: agency.latitude,
       longitude: agency.longitude,

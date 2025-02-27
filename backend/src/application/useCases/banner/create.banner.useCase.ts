@@ -17,7 +17,7 @@ export class CreateBannerUseCase {
       if (banners.length >= 6) {
         throw new Error("Atingiu o limite de banners.");
       }
-      const imageURL = await this.fileService.upload(image, "lotaria_nacional/banners");
+      const imageURL = await this.fileService.upload(image, "lotaria_nacional/banners", "image");
       const banner = Banner.create({
         device,
         image: imageURL,
