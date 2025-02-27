@@ -15,7 +15,7 @@ import { isAxiosError } from "axios"
 import { Button } from "../ui/button"
 import { toast } from "react-toastify"
 import { KeyProps } from "./result-card-input"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react"
 import { CreateDailyResult, createDailyResult } from "@/api/results.api"
 import { SERVER_CONNECTION_ERROR, TRY_LATER_ERROR } from "@/constants/error"
 import { extractYouTubeID } from "@/utils/youtube"
@@ -27,6 +27,9 @@ type Props = {
 
 const AddResultCardInput = ({ hour, name }: Props) => {
   const [isLoading, setIsLoading] = useState(false)
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false)
+
+  const limitOfBeingActiveInMinutes = 30
 
   const [data, setData] = useState({
     number_1: "",
@@ -37,9 +40,28 @@ const AddResultCardInput = ({ hour, name }: Props) => {
     videoURL: "",
   })
 
-  // const currHour = new Date().getHours()
-  // const targetHour = parseInt(hour.split("h")[0], 10) // Extrai a hora e converte para número
-  // const canAddResult = currHour >= targetHour
+  const targetTime = useMemo(() => {
+    const [targetHour, targetMinutes] = hour.split("h").map(Number)
+    const t = new Date()
+    t.setHours(targetHour, targetMinutes, 0, 0)
+    return t
+  }, [hour])
+
+  useEffect(() => {
+    const checkTime = () => {
+      const now = new Date()
+      const diffMinutes = (now.getTime() - targetTime.getTime()) / (1000 * 60)
+
+      setIsButtonEnabled(
+        diffMinutes >= 0 && diffMinutes <= limitOfBeingActiveInMinutes
+      )
+    }
+
+    checkTime()
+    const interval = setInterval(checkTime, 1000 * 60)
+
+    return () => clearInterval(interval)
+  }, [hour])
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -58,6 +80,13 @@ const AddResultCardInput = ({ hour, name }: Props) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+
+    const now = new Date()
+    const diffMinutes = (now.getTime() - targetTime.getTime()) / (1000 * 60)
+    if (diffMinutes < 0 || diffMinutes > limitOfBeingActiveInMinutes) {
+      return toast.error("O envio só é permitido dentro do horário correto!")
+    }
+
     setIsLoading(true)
     const resultData: CreateDailyResult = {
       hour,
@@ -72,7 +101,6 @@ const AddResultCardInput = ({ hour, name }: Props) => {
     try {
       const response = await createDailyResult(resultData)
       console.log({ name, hour, data })
-
       toast.success(response.message)
     } catch (error) {
       if (isAxiosError(error)) {
@@ -86,10 +114,11 @@ const AddResultCardInput = ({ hour, name }: Props) => {
       setIsLoading(false)
     }
   }
+
   return (
     <div className="bg-white rounded-[20px] h-[270px] shadow-sm shadow-white/20 p-2 w-full flex flex-col justify-around">
       <div className="w-full flex items-center justify-between">
-        <span className="bg-yellow-500 text-black px-3 py-1 font-medium rounded-[10px] w-fit  uppercase">
+        <span className="bg-yellow-500 text-black px-3 py-1 font-medium rounded-[10px] w-fit uppercase">
           {name}
         </span>
         <Dialog>
@@ -111,7 +140,7 @@ const AddResultCardInput = ({ hour, name }: Props) => {
               <Input
                 type="text"
                 value={data.videoURL}
-                placeholder="ex:https://youtube.com/watch?v=ffHiqRK1aBY"
+                placeholder="ex: https://youtube.com/watch?v=ffHiqRK1aBY"
                 onChange={(e) => {
                   const youtubeEmbedURL = extractYouTubeID(e.target.value)
                   setData({ ...data, videoURL: youtubeEmbedURL })
@@ -136,55 +165,35 @@ const AddResultCardInput = ({ hour, name }: Props) => {
             <span>{hour}</span>
           </div>
           <div className="w-full mx-auto flex items-center justify-center gap-1">
-            <input
-              type="text"
-              maxLength={2}
-              inputMode="numeric"
-              value={data.number_1}
-              onChange={(e) => handleInputChange(e, "number_1")}
-              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
-            />
-            <input
-              type="text"
-              maxLength={2}
-              inputMode="numeric"
-              value={data.number_2}
-              onChange={(e) => handleInputChange(e, "number_2")}
-              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
-            />
-            <input
-              type="text"
-              maxLength={2}
-              inputMode="numeric"
-              value={data.number_3}
-              onChange={(e) => handleInputChange(e, "number_3")}
-              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
-            />
-            <input
-              type="text"
-              maxLength={2}
-              inputMode="numeric"
-              value={data.number_4}
-              onChange={(e) => handleInputChange(e, "number_4")}
-              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
-            />
-            <input
-              type="text"
-              maxLength={2}
-              inputMode="numeric"
-              value={data.number_5}
-              onChange={(e) => handleInputChange(e, "number_5")}
-              className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
-            />
+            {["number_1", "number_2", "number_3", "number_4", "number_5"].map(
+              (key) => (
+                <input
+                  key={key}
+                  type="text"
+                  maxLength={2}
+                  inputMode="numeric"
+                  value={data[key as KeyProps]}
+                  onChange={(e) => handleInputChange(e, key as KeyProps)}
+                  className="size-[30px] bg-white text-center flex items-center justify-center rounded-[50px]"
+                />
+              )
+            )}
           </div>
         </div>
 
         <Button
           type="submit"
-          disabled={isLoading}
-          className="bg-RED-200 w-full"
+          disabled={isLoading || !isButtonEnabled}
+          title={isButtonEnabled ? "Disponível no horário certo!" : ""}
+          className={`w-full ${
+            isButtonEnabled ? "bg-RED-200" : "bg-RED-200/90"
+          }`}
         >
-          {isLoading ? "Salvando..." : "Salvar"}
+          {isLoading
+            ? "Salvando..."
+            : isButtonEnabled
+            ? "Salvar"
+            : "Bloqueado 🔒"}
         </Button>
       </form>
     </div>

@@ -3,12 +3,11 @@ import { Result } from "../../../Domain/Entities/Result/Result";
 import { CreateResultInputDTO } from "../result/create.result.useCase";
 import { Emission } from "../../../Domain/Entities/emission/emission.entity";
 import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult";
-import { IExcelService } from "../../../Domain/services/xlsx.service.interface";
 import { IEmissionRepository } from "../../../Domain/Entities/emission/emission.repository";
 import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository";
 
 export class CreateDailyResultUseCase {
-  constructor(private dailyResultRespository: IDailyResultRespository, private excelService: IExcelService, private emissionRepository: IEmissionRepository) {}
+  constructor(private dailyResultRespository: IDailyResultRespository, private emissionRepository: IEmissionRepository) {}
 
   async execute(data: CreateResultInputDTO): Promise<void> {
     const today = new Date();

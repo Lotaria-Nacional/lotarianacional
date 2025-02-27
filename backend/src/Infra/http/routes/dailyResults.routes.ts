@@ -1,15 +1,8 @@
 import { Request, Response, Router } from "express";
-
-import { PrismaStatisticRepository } from "../../repositories/prisma/prisma.statistic.repository";
 import { PrismaDailyResultsRespository } from "../../repositories/prisma/prisma.dailyResults.respository";
-
-import { XLSXService } from "../../Services/Excel/xlsxService";
-import { CloudinaryUploadService } from "../../Services/ImageUpload/CloudinaryUploadService";
-
 import { GetDailyResultsUseCase } from "../../../application/useCases/dailyResult/get.dailyResults.useCase";
 import { DeleteDailyResultUseCase } from "../../../application/useCases/dailyResult/delete.dailyResult.useCase";
 import { CreateDailyResultUseCase } from "../../../application/useCases/dailyResult/create.dailyResult.useCase";
-
 import { GetDailyResultsController } from "../controllers/dailyResultsControllers/get.dailyResults.controller";
 import { GetLastDailyResultUseCase } from "../../../application/useCases/dailyResult/get.lastDailyResult.useCase";
 import { DeleteDailyResultsController } from "../controllers/dailyResultsControllers/delete.dailyResult.controller";
@@ -22,14 +15,10 @@ import { GetAllDailyResultsController } from "../controllers/dailyResultsControl
 const router = Router();
 //REPOSITORIES
 const prismaDailyResult = new PrismaDailyResultsRespository();
-const cloudinaryService = new CloudinaryUploadService();
-const excelRespository = new PrismaStatisticRepository();
 const emissionRepo = new PrismaEmissionRepository();
 
-const excelService = new XLSXService(cloudinaryService, excelRespository, prismaDailyResult);
-
 //USE CASES
-const createDailyResultsUseCase = new CreateDailyResultUseCase(prismaDailyResult, excelService, emissionRepo);
+const createDailyResultsUseCase = new CreateDailyResultUseCase(prismaDailyResult, emissionRepo);
 const getAllDailyResultsUseCase = new GetAllDailyResultsUseCase(prismaDailyResult);
 const getDailyResultsUseCase = new GetDailyResultsUseCase(prismaDailyResult);
 const getLastDailyResultsUseCase = new GetLastDailyResultUseCase(prismaDailyResult);

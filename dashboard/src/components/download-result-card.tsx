@@ -64,11 +64,11 @@ const DownloadResultCard = ({ result }: DownloadTicketProps) => {
         ref={divRef}
         className="relative flex flex-col items-center gap-2 p-4 w-full h-[421.4px] result-ticket-feed"
       >
-        <h2 className="font-edoSz absolute top-[140px]">{result.name}</h2>
+        <h2 className="font-edoSz absolute top-[130px]">{result.name}</h2>
 
         <div className="flex flex-col gap-3 absolute bottom-[102px] items-center justify-center">
           <header className="flex flex-col text-white">
-            <span className="text-[11.5px]">
+            <span className="text-[11.5px] font-bold">
               {resultDate}{" "}
               <span className="text-yellow-400">
                 {result.hour.replace("h", ":")}

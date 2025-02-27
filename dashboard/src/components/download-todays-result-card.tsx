@@ -53,22 +53,19 @@ const DownloadTodaysResultCard = ({ data }: Props) => {
 
   return (
     <div className="flex shrink-0 flex-col gap-2 w-[337.43px]">
-      <div className="flex items-end justify-between w-full">
-        <span className="text-[12px]">Para o Feed</span>
-        <button
-          onClick={handleDownload}
-          className="flex items-center text-sm gap-2 rounded-md duration-200 ease-in transition-all hover:bg-white/70 cursor-pointer bg-white px-4 py-2"
-        >
-          {isDownloading ? "Baixando..." : "Baixar"}
-          <BsDownload />
-        </button>
-      </div>
+      <button
+        onClick={handleDownload}
+        className="self-end flex items-center text-sm gap-2 rounded-md duration-200 ease-in transition-all hover:bg-white/70 cursor-pointer bg-white px-4 py-2"
+      >
+        {isDownloading ? "Baixando..." : "Baixar"}
+        <BsDownload />
+      </button>
 
       <div
         ref={ref}
         className="relative todays-results-feed flex flex-col items-center gap-1 p-4 w-full h-[421.4px]"
       >
-        <header className="absolute items-center top-[144px] flex flex-col text-white text-[13px]">
+        <header className="absolute mr-3 items-center top-[141px] flex flex-col text-white text-[13px]">
           <span className="font-bold">{resultDate}</span>
           <span className="text-[8px]">NÚMEROS SORTEADOS</span>
           <span></span>

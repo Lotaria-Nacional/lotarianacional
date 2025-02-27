@@ -46,7 +46,7 @@ const DownloadResultCardStory = ({ result }: DownloadTicketProps) => {
     .join("/")
 
   return (
-    <div className="w-[274.84px] flex flex-col gap-2">
+    <div className="w-[274.84px] shrink-0 flex flex-col gap-2">
       <button
         onClick={handleDownload}
         disabled={isLoading}

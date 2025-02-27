@@ -54,16 +54,13 @@ const DownloadTodaysResultCardStory = ({ data }: Props) => {
 
   return (
     <div className="flex shrink-0 flex-col gap-2 w-[274.84px]">
-      <div className="flex items-end justify-between w-full">
-        <span className="text-[12px]">Para os Stories</span>
-        <button
-          onClick={handleDownload}
-          className="flex items-center text-sm gap-2 rounded-md duration-200 ease-in transition-all hover:bg-white/70 cursor-pointer bg-white px-4 py-2"
-        >
-          {isDownloading ? "Baixando..." : "Baixar"}
-          <BsDownload />
-        </button>
-      </div>
+      <button
+        onClick={handleDownload}
+        className="self-end flex items-center text-sm gap-2 rounded-md duration-200 ease-in transition-all hover:bg-white/70 cursor-pointer bg-white px-4 py-2"
+      >
+        {isDownloading ? "Baixando..." : "Baixar"}
+        <BsDownload />
+      </button>
 
       <div
         ref={ref}

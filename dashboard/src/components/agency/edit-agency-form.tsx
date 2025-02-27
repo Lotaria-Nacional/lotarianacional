@@ -22,6 +22,7 @@ const EditAgencyForm = () => {
   }
 
   const [name, setName] = useState("")
+  const [type, setType] = useState("")
   const [phone, setPhone] = useState("")
   const [latitude, setLatitude] = useState("")
   const [latLong, setLatLong] = useState("")
@@ -31,6 +32,7 @@ const EditAgencyForm = () => {
   useEffect(() => {
     if (agency) {
       setName(agency.name || "")
+      setType(agency.type || "")
       setPhone(agency.phone ? agency.phone.toString() : "")
       setLocationText(agency.location_text || "")
       setLatitude(agency.latitude ? agency.latitude.toString() : "")
@@ -50,6 +52,7 @@ const EditAgencyForm = () => {
     try {
       const data = {
         name,
+        type,
         phone: parseInt(phone),
         location_text: locationText,
         latitude: Number(latitude),
@@ -86,8 +89,11 @@ const EditAgencyForm = () => {
   if (isLoading) return <EditAgencyFormSkeleton />
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-10">
-      <div className="grid grid-cols-2 gap-4">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col w-full p-[200px] gap-10"
+    >
+      <div className="flex flex-col w-full gap-4">
         <div className="flex flex-col gap-2">
           <Label htmlFor="">Nome da agência</Label>
           <Input
@@ -112,19 +118,35 @@ const EditAgencyForm = () => {
             }}
           />
         </div>
-        <div className="flex flex-col gap-2 col-span-2">
-          <Label htmlFor="">Localização</Label>
-          <Input
-            type="text"
-            value={locationText}
-            placeholder="Cruzeiro, rua do Timor"
-            onChange={(e) => {
-              const value = e.target.value
-              if (CHAR_REGEX.test(value)) {
-              }
-              setLocationText(value)
-            }}
-          />
+        <div className="w-full flex items-center gap-2">
+          <div className="flex w-full flex-col gap-2 ">
+            <Label htmlFor="">Localização</Label>
+            <Input
+              type="text"
+              value={locationText}
+              placeholder="Cruzeiro, rua do Timor"
+              onChange={(e) => {
+                const value = e.target.value
+                if (CHAR_REGEX.test(value)) {
+                }
+                setLocationText(value)
+              }}
+            />
+          </div>
+          <label className="flex w-full flex-col gap-2">
+            Tipo de agência
+            <select
+              onChange={(e) => setType(e.target.value)}
+              className="py-2 rounded-md border mb-2"
+            >
+              <option selected disabled>
+                {type.replace("-", " ").toUpperCase()}
+              </option>
+              <option value="lotaria-nacional">Lotaria Nacional</option>
+              <option value="elephant-bet">Elephant Bet</option>
+              <option value="arreiou">Arreiou</option>
+            </select>
+          </label>
         </div>
 
         <div className="flex flex-col col-span-2 gap-2">
@@ -137,12 +159,12 @@ const EditAgencyForm = () => {
           />
         </div>
 
-        <div className="flex items-center gap-2 col-span-2">
-          <div className="flex flex-col gap-2">
+        <div className="flex w-full items-center gap-2 col-span-2">
+          <div className="flex w-full flex-col gap-2">
             <Label htmlFor="">Latitude</Label>
             <Input type="text" disabled value={latitude} />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex w-full flex-col gap-2">
             <Label htmlFor="">Longitude</Label>
             <Input type="text" disabled value={longitude} />
           </div>

@@ -8,8 +8,9 @@ const AddAgencyPage = () => {
             Adicionar Agência
           </span>
         </div>
-
-        <AgencyForm />
+        <div className="w-[calc(100%-350px)]">
+          <AgencyForm />
+        </div>
       </div>
     </main>
   )

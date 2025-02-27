@@ -58,6 +58,7 @@ const AgencyTable = ({ agencies }: Props) => {
           <TableRow>
             <TableHead>Nome</TableHead>
             <TableHead>Localização</TableHead>
+            <TableHead>Tipo</TableHead>
             <TableHead>Número</TableHead>
             <TableHead>Ações</TableHead>
           </TableRow>
@@ -67,6 +68,7 @@ const AgencyTable = ({ agencies }: Props) => {
             <TableRow key={agency.id}>
               <TableCell>{agency.name}</TableCell>
               <TableCell>{agency.location_text}</TableCell>
+              <TableCell>{agency.type}</TableCell>
               <TableCell>{agency.phone}</TableCell>
               <TableCell className="flex items-center gap-2">
                 <Button
