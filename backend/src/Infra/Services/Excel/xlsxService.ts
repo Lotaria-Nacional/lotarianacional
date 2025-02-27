@@ -110,7 +110,7 @@ export class XLSXService implements IExcelService {
     const existingPublicID = getCloudinaryPublicId(existingStatistc.file);
     if (existingPublicID) {
       try {
-        await this.fileUploadService.delete(existingPublicID);
+        await this.fileUploadService.delete(existingPublicID, "raw");
         await this.statisticRespository.delete(statisticID);
       } catch (error) {
         console.error("Erro ao deletar o ficheiro antigo ou a estatística: ", error);
@@ -119,6 +119,6 @@ export class XLSXService implements IExcelService {
     }
   }
   private async uploadNewStatistic(fileBuffer: Buffer): Promise<string> {
-    return this.fileUploadService.upload(fileBuffer, "lotaria_nacional/statistcs");
+    return this.fileUploadService.upload(fileBuffer, "lotaria_nacional/statistcs", "raw");
   }
 }
