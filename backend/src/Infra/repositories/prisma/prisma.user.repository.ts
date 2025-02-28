@@ -32,7 +32,7 @@ export class PrismaUserRespository implements IUserRepository {
         lastName: user.lastName,
         password: user.password,
         firstName: user.firstName,
-        profilePic: (user.profilePic as string) || undefined,
+        profilePic: user.profilePic as string,
       })
     )
   }
@@ -46,7 +46,7 @@ export class PrismaUserRespository implements IUserRepository {
         role: user.role,
         lastName: user.lastName,
         password: user.password,
-        profilePic: (user.profilePic as string) || undefined,
+        profilePic: user.profilePic as string,
       },
     })
     return User.create({
@@ -55,7 +55,7 @@ export class PrismaUserRespository implements IUserRepository {
       firstName: updatedUser.firstName,
       lastName: updatedUser.lastName,
       password: updatedUser.password,
-      profilePic: updatedUser.profilePic || undefined,
+      profilePic: updatedUser.profilePic,
     })
   }
 
