@@ -1,8 +1,8 @@
 import { firebase } from "../../Config/firebase"
-import { CloudinaryFileType, IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
+import { CloudinaryResourceOption, IFileUpload } from "../../../Domain/services/fileUpload.service.interface"
 
 export class FirebaseUploadService implements IFileUpload {
-  async upload(file: string, folder: string, type:CloudinaryFileType): Promise<string> {
+  async upload(file: string, folder: string, type:CloudinaryResourceOption): Promise<string> {
     console.log("Chegou no Firebase Service")
     return new Promise((resolve, reject) => {
       if (typeof file === "string" && file.endsWith(".zip")) {

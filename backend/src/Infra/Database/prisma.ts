@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 export const prisma = new PrismaClient({
-  log: ["error", "query", "warn", "info"],
+  log: ["error","warn"]
 });
 
 async function testConnection() {

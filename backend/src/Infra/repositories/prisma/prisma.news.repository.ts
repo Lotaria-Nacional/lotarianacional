@@ -52,6 +52,7 @@ export class PrismaNewsRespository implements INewsRespository {
           title: news.title,
           image: news.image,
           description: news.description,
+          createdAt: news.createdAt
         })
       ),
       totalPages,
