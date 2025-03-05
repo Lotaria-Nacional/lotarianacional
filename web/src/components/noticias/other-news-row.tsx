@@ -1,12 +1,12 @@
-import { INews } from "@/interfaces"
-import { dateFormat } from "@/utils/date"
-import LinkButton from "../ui/button/link-button"
+import { INews } from "@/interfaces";
+import LinkButton from "../ui/button/link-button";
 
 type Props = {
-  data: INews
-}
+  data: INews;
+};
 
 const OtherNewsRow = ({ data }: Props) => {
+  console.log(data.createdAt)
   return (
     <li
       key={data.id}
@@ -22,16 +22,14 @@ const OtherNewsRow = ({ data }: Props) => {
 
       <div className="flex flex-col w-full gap-2">
         <span className="text-lg line-clamp-3 font-bold">{data.title}</span>
-        <span className="text-sm text-zinc-400">
-          {dateFormat(data.createdAt)}
-        </span>
+        <span className="text-sm text-zinc-400">{data.createdAt}</span>
 
         <LinkButton link={`/noticia/${data.id}`} className="py-1 px-4">
           Ler mais
         </LinkButton>
       </div>
     </li>
-  )
-}
+  );
+};
 
-export default OtherNewsRow
+export default OtherNewsRow;

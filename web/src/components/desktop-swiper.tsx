@@ -31,7 +31,7 @@ const DesktopSwiper = () => {
       pagination
       loop={true}
       autoplay={{ delay: 6000 }}
-      className="h-full lg:block hidden"
+      className="h-full md:block hidden"
       modules={[Autoplay, Pagination]}
     >
       {renderSlide(IMAGES.banner1, "Banner default 1")}

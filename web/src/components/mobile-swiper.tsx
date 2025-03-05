@@ -1,14 +1,14 @@
-import { IMAGES } from "../constants/assets"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Pagination } from "swiper/modules"
+import { IMAGES } from "../constants/assets";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 
 //@ts-ignore
-import "swiper/css"
+import "swiper/css";
 //@ts-ignore
-import "swiper/css/autoplay"
+import "swiper/css/autoplay";
 //@ts-ignore
-import "swiper/css/pagination"
-import "./hero-slider.css"
+import "swiper/css/pagination";
+import "./hero-slider.css";
 // import { IBanner } from "@/interfaces"
 
 // type Props = {
@@ -27,7 +27,7 @@ const MobileSwiper = () => {
         className="absolute inset-0 object-cover w-full h-full"
       />
     </SwiperSlide>
-  )
+  );
 
   return (
     <Swiper
@@ -35,7 +35,7 @@ const MobileSwiper = () => {
       loop={true}
       autoplay={{ delay: 6000 }}
       modules={[Autoplay, Pagination]}
-      className="h-full lg:hidden block"
+      className="h-full md:hidden block"
     >
       {renderSlide(IMAGES.banner1, "Banner default 1")}
 
@@ -43,7 +43,7 @@ const MobileSwiper = () => {
 
       {renderSlide(IMAGES.banner3, "Banner default 3")}
     </Swiper>
-  )
-}
+  );
+};
 
-export default MobileSwiper
+export default MobileSwiper;

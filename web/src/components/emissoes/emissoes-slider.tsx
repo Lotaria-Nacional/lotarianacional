@@ -91,7 +91,7 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
               </div>
             )}
             <img
-              src={generateVideoThumbnail(slide.url)}
+              src={generateVideoThumbnail(slide.url) || ""}
               alt={`Thumbnail ${index}`}
               className="object-cover w-full h-full rounded-xl"
             />

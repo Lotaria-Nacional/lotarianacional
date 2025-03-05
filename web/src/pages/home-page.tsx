@@ -21,7 +21,7 @@ const HomePage = () => {
         {/* <ExplanationPopUp /> */}
 
         {/** HERO SECTION */}
-        <section className="relative lg:h-[calc(100vh-165px)] h-[25vh]">
+        <section className="relative md:h-[calc(100vh-465px)] lg:h-[calc(100vh-165px)] h-[14vh]">
           <HeroSlider />
           <DailyResults />
         </section>
@@ -90,7 +90,7 @@ const HomePage = () => {
       </main>
       <LeafletMap />
     </>
-  )
+  );
 }
 
 export default HomePage
