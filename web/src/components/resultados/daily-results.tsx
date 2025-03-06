@@ -1,39 +1,40 @@
-import Container from "../common/container"
-import ResultadoCard from "./resultado-card"
-import DailyResultSkeleton from "./daily-result-skeleton"
-import { useLastDailyResult } from "@/hooks/api/query/useLastDailyResult"
+import Container from "../common/container";
+import ResultadoCard from "./resultado-card";
+import DailyResultSkeleton from "./daily-result-skeleton";
+import { useLastDailyResult } from "@/hooks/api/query/useLastDailyResult";
 
-import fezada from "/placeholders/fezada.svg"
-import kazola from "/placeholders/kazola.svg"
-import aqueceu from "/placeholders/aqueceu.svg"
-import eskebra from "/placeholders/eskebra.svg"
+import fezada from "/placeholders/fezada.svg";
+import kazola from "/placeholders/kazola.svg";
+import aqueceu from "/placeholders/aqueceu.svg";
+import eskebra from "/placeholders/eskebra.svg";
 
 const DailyResults = () => {
-  const { isLoading, lastDailyResult } = useLastDailyResult()
-  const PLACEHOLDERS = [fezada, aqueceu, kazola, eskebra]
+  const { isLoading, lastDailyResult } = useLastDailyResult();
+  const PLACEHOLDERS = [fezada, aqueceu, kazola, eskebra];
 
-  if (!lastDailyResult || lastDailyResult.results.length === 0) return
+  if (!lastDailyResult || lastDailyResult.results.length === 0) return;
 
-  const TOTAL_RESULTS = 4
-  const results_length = lastDailyResult.results.length
-  const PLACEHOLDERS_TO_SHOW = TOTAL_RESULTS - results_length
+  const TOTAL_RESULTS = 4;
+  const results_length = lastDailyResult.results.length;
+  const PLACEHOLDERS_TO_SHOW = TOTAL_RESULTS - results_length;
 
   return (
     <Container className="absolute z-[1] hidden lg:flex h-full px-0  justify-end py-4 inset-0 w-full">
       {isLoading ? (
         <DailyResultSkeleton />
       ) : (
-        <div className="h-full w-[250px] flex flex-col justify-center gap-2 items-center">
-          <header className="text-center text-yellow-500">
+        <div className="h-full w-[250px] flex flex-col justify-center gap-6 items-center">
+          <header className="text-center text-black flex-col flex gap-4">
             <h1 className="text-LT_WHITE font-bold text-base uppercase">
               resultados diários
             </h1>
-            <h2 className="text-lg">
-              {lastDailyResult.formatedDate
-                .split(",")[1]
-                .split(" ")
-                .join("")
-                .replace(/de/g, "/")}
+            <h2 className="text-base bg-yellow-400 rounded-md w-fit mx-auto px-2">
+              {lastDailyResult.date
+                .toString()
+                .split("T")[0]
+                .split("-")
+                .reverse()
+                .join("-")}
             </h2>
           </header>
           <div className="flex flex-col gap-2">
@@ -56,7 +57,7 @@ const DailyResults = () => {
         </div>
       )}
     </Container>
-  )
-}
+  );
+};
 
-export default DailyResults
+export default DailyResults;
