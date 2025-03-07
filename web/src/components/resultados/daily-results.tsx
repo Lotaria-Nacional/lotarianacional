@@ -24,11 +24,11 @@ const DailyResults = () => {
         <DailyResultSkeleton />
       ) : (
         <div className="h-full w-[250px] flex flex-col justify-center gap-6 items-center">
-          <header className="text-center text-black flex-col flex gap-4">
+          <header className="text-center text-black flex-col flex gap-4 items-center justify-center">
             <h1 className="text-LT_WHITE font-bold text-base uppercase">
               resultados diários
             </h1>
-            <h2 className="text-base bg-yellow-400 rounded-md w-fit mx-auto px-2">
+            <h2 className="bg-yellow-400 px-2 rounded-md py-1 w-fit">
               {lastDailyResult.date
                 .toString()
                 .split("T")[0]

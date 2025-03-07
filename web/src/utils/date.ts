@@ -17,9 +17,9 @@ export const formatDate = (value: string) => {
   const mes = dataOriginal.getMonth() + 1
   const ano = dataOriginal.getFullYear()
 
-  const dataFormatada = `${dia.toString().padStart(2, "0")}/${mes
+  const dataFormatada = `${dia.toString().padStart(2, "0")}-${mes
     .toString()
-    .padStart(2, "0")}/${ano}`
+    .padStart(2, "0")}-${ano}`
 
   return dataFormatada
 }
