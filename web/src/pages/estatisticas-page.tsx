@@ -1,38 +1,38 @@
-import { useState } from "react"
-import { IStats } from "@/interfaces"
-import { ICONS } from "../constants/assets"
-import Container from "../components/common/container"
-import { useStatistic } from "@/hooks/api/query/useStatistic"
-import GraphAndTable from "@/components/estatisticas/graph-and-table"
-import StatisticSkeleton from "@/components/estatisticas/statistic-skeleton"
-import Button from "@/components/ui/button/button"
-import PageTitle from "@/components/page-title"
+import { useState } from "react";
+import { IStats } from "@/interfaces";
+import { ICONS } from "../constants/assets";
+import Container from "../components/common/container";
+import { useStatistic } from "@/hooks/api/query/useStatistic";
+import GraphAndTable from "@/components/estatisticas/graph-and-table";
+import StatisticSkeleton from "@/components/estatisticas/statistic-skeleton";
+import Button from "@/components/ui/button/button";
+import PageTitle from "@/components/page-title";
 
 const EstatisticasPage = () => {
-  const { isLoading, stats } = useStatistic()
-  const [switchTableAndGraph, setSwitchTableAndGraph] = useState(true)
+  const { isLoading, stats } = useStatistic();
+  const [switchTableAndGraph, setSwitchTableAndGraph] = useState(true);
 
-  if (isLoading) return <StatisticSkeleton />
+  if (isLoading) return <StatisticSkeleton />;
 
   const renderNumber = (maxNumber: number, data?: IStats[]) => {
     const numberMap = data
       ? new Map(data.map((obj) => [obj.sortedNumber, obj.sortedTimes]))
-      : new Map()
+      : new Map();
 
     return Array.from({ length: maxNumber }, (_, i) => {
-      const number = i + 1
+      const number = i + 1;
       return {
         sortedNumber: number,
         sortedTimes: numberMap.get(number) || 0,
-      }
-    })
-  }
+      };
+    });
+  };
 
-  const statsDataArr = renderNumber(90, stats?.statsData)
+  const statsDataArr = renderNumber(90, stats?.statsData);
 
   const toggleGraphAndTable = () => {
-    setSwitchTableAndGraph((prev) => !prev)
-  }
+    setSwitchTableAndGraph((prev) => !prev);
+  };
 
   return (
     <>
@@ -41,7 +41,7 @@ const EstatisticasPage = () => {
           {/** NUMBERS GRID DATA */}
           <>
             <div className="w-full flex items-center justify-between">
-              <PageTitle>Números em destaque</PageTitle>
+              <PageTitle>Estatísticas</PageTitle>
 
               <Button
                 variant="red"
@@ -65,7 +65,7 @@ const EstatisticasPage = () => {
         </div>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default EstatisticasPage
+export default EstatisticasPage;

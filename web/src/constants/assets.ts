@@ -1,7 +1,7 @@
 export const LOGO = {
   lotaria: "/logo/logo.webp",
   isj: "/logo/isj.webp",
-  adultOnly: "/logo/+18.png",
+  adultOnly: "/logo/18+.svg",
 }
 
 export const IMAGES = {

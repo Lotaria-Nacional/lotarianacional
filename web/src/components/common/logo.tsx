@@ -5,7 +5,7 @@ const Logo = () => {
     <img
       src={LOGO.lotaria}
       alt="logotipo da lotaria nacional"
-      className="w-[150px] object-contain"
+      className="md:w-[150px] w-[100px] object-contain"
     />
   )
 }

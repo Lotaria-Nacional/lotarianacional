@@ -77,7 +77,7 @@ const Footer = () => {
                   src={LOGO.adultOnly}
                   className="w-[50px] object-cover"
                 />
-                <img src={LOGO.isj} alt="" className="w-[90px] object-cover" />
+                <img src={LOGO.isj} alt="" className="w-[70px] object-cover" />
               </div>
             </div>
           </div>

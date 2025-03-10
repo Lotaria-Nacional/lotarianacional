@@ -62,11 +62,11 @@ const ResultadosListing = ({ data }: Props) => {
   return (
     <section className="w-full  flex flex-col gap-6">
       <section className="w-full flex items-center justify-between lg:px-0 px-5">
-        <PageTitle>Histórico de resultados</PageTitle>
+        <PageTitle>Resultados</PageTitle>
         <div className="flex items-center gap-2">
           {canGoBack && (
             <button onClick={handleGoBack} className={GO_BACK_BUTTON_STYLE}>
-              Hoje
+              Últimos
             </button>
           )}
           <div className="flex items-center bg-zinc-200 rounded-full p-1 gap-4">
