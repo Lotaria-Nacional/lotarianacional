@@ -6,7 +6,7 @@ type Props = {
 };
 
 const OtherNewsRow = ({ data }: Props) => {
-  console.log(data.createdAt)
+  console.log(data.createdAt);
   return (
     <li
       key={data.id}
@@ -22,7 +22,14 @@ const OtherNewsRow = ({ data }: Props) => {
 
       <div className="flex flex-col w-full gap-2">
         <span className="text-lg line-clamp-3 font-bold">{data.title}</span>
-        <span className="text-sm text-zinc-400">{data.createdAt}</span>
+        <span className="text-sm text-zinc-400">
+          {data.createdAt
+            .toString()
+            .split("T")[0]
+            .split("-")
+            .reverse()
+            .join("-")}
+        </span>
 
         <LinkButton link={`/noticia/${data.id}`} className="py-1 px-4">
           Ler mais

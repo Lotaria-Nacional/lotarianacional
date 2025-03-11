@@ -1,11 +1,13 @@
-import { INews } from "@/interfaces"
-import { dateFormat } from "@/utils/date"
+import { INews } from "@/interfaces";
+import { dateFormat } from "@/utils/date";
+import DOMPurify from "dompurify";
 
 type Props = {
-  data: INews
-}
+  data: INews;
+};
 
 const SingleNewsContent = ({ data }: Props) => {
+  const sanitizedHTML = DOMPurify.sanitize(data.description);
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col gap-4">
@@ -23,9 +25,12 @@ const SingleNewsContent = ({ data }: Props) => {
       </div>
 
       <hr className="my-8" />
-      <p className="text-lg">{data.description}</p>
+      <div
+        className="text-lg"
+        dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default SingleNewsContent
+export default SingleNewsContent;
