@@ -7,6 +7,7 @@ type Props = {
 };
 
 const SingleNewsContent = ({ data }: Props) => {
+  console.log(data.description);
   const sanitizedHTML = DOMPurify.sanitize(data.description);
   return (
     <div className="flex flex-col w-full">
@@ -26,7 +27,7 @@ const SingleNewsContent = ({ data }: Props) => {
 
       <hr className="my-8" />
       <div
-        className="text-lg"
+        className="text-lg  "
         dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
       />
     </div>

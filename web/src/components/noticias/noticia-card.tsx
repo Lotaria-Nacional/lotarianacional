@@ -8,8 +8,8 @@ type Prop = {
 
 const NoticiaCard = ({ noticia: { createdAt, title, id, image } }: Prop) => {
   return (
-    <div className="w-full h-full flex flex-col gap-4">
-      <div className="relative w-full lg:w-[420px] h-[250px]">
+    <div className="lg:w-full flex flex-col gap-4">
+      <div className="relative w-full h-[240px]">
         <img
           src={image}
           alt="thumbnail de notícia"
