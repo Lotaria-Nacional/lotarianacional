@@ -5,9 +5,10 @@ import { Emission } from "../../../Domain/Entities/emission/emission.entity";
 import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult";
 import { IEmissionRepository } from "../../../Domain/Entities/emission/emission.repository";
 import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository";
+import { IExcelService } from "../../../Domain/services/xlsx.service.interface";
 
 export class CreateDailyResultUseCase {
-  constructor(private dailyResultRespository: IDailyResultRespository, private emissionRepository: IEmissionRepository) {}
+  constructor(private dailyResultRespository: IDailyResultRespository, private emissionRepository: IEmissionRepository, private excelService:IExcelService) {}
 
   async execute(data: CreateResultInputDTO): Promise<void> {
     const today = new Date();
@@ -32,7 +33,7 @@ export class CreateDailyResultUseCase {
         url: data.videoURL,
       });
       await this.emissionRepository.save(emission);
-      // await this.excelService.generateAndSaveExcel();
+      await this.excelService.generateAndSaveExcel();
     } catch (error) {
       console.error("Erro ao criar o resultado do dia:", error);
       throw error;

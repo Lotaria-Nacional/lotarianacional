@@ -78,7 +78,6 @@ export class XLSXService implements IExcelService {
 
     return result;
   }
-
   private formatExcelData(data: any[]): any[][] {
     const header = ["data", "fezada", "kazola", "aqueceu", "eskebra"];
     const dataRes = this.handleExcelCell(data);
@@ -113,7 +112,7 @@ export class XLSXService implements IExcelService {
         await this.fileUploadService.delete(existingPublicID, "raw");
         await this.statisticRespository.delete(statisticID);
       } catch (error) {
-        console.error("Erro ao deletar o ficheiro antigo ou a estatística: ", error);
+        console.error("Erro: ", error);
         throw error;
       }
     }
