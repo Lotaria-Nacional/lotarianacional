@@ -1,70 +1,60 @@
-import "leaflet/dist/leaflet.css"
+import "leaflet/dist/leaflet.css";
 
-import L from "leaflet"
-import pin from "/icons/pin.svg"
-import yellowPin from "/icons/yellow-pin.svg"
-import { HiPhone } from "react-icons/hi"
-import { useAgencies } from "@/hooks/api"
-import { useLocation } from "react-router-dom"
 import {
-  MapContainer,
-  TileLayer,
-  Marker,
   Popup,
+  Marker,
+  TileLayer,
+  MapContainer,
   useMapEvents,
-} from "react-leaflet"
-import { useEffect, useState } from "react"
+} from "react-leaflet";
+import {
+  ArreiouMarket,
+  LotariaMarket,
+  ElephantBetMarket,
+  CentralMarket,
+} from "./agencia/agency-marker";
+
+import { HiPhone } from "react-icons/hi";
+import { useAgencies } from "@/hooks/api";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const LeafletMap = () => {
-  const { pathname } = useLocation()
-  const { agencies } = useAgencies()
+  const { pathname } = useLocation();
+  const { agencies } = useAgencies();
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth)
-    }
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  if (pathname === "/agencias" && windowWidth < 767) return null
-
-  const mapIcon = new L.Icon({
-    iconUrl: pin,
-    iconRetinaUrl: pin,
-    iconSize: new L.Point(25, 50),
-    className: "bg-transparent",
-  })
-
-  const lotariaIcon = new L.Icon({
-    iconUrl: yellowPin,
-    iconRetinaUrl: yellowPin,
-    iconSize: new L.Point(50, 70),
-    className: "bg-transparent",
-  })
+  if (pathname === "/agencias" && windowWidth < 767) return null;
 
   const ScrollZoomHandler = () => {
     const map = useMapEvents({
       click: () => {
-        map.scrollWheelZoom.enable() // Enable scroll zoom on click
+        map.scrollWheelZoom.enable();
       },
       mouseout: () => {
-        map.scrollWheelZoom.disable() // Disable scroll zoom when mouse leaves the map
+        map.scrollWheelZoom.disable();
       },
-    })
+    });
 
     useEffect(() => {
-      map.scrollWheelZoom.disable() // Disable scroll zoom by default
-    }, [map])
+      map.scrollWheelZoom.disable();
+    }, [map]);
 
-    return null // This component does not render any JSX
-  }
+    return null;
+  };
 
   return (
     <MapContainer
-      zoom={10}
+      zoom={13}
       className="h-[400px] lg:h-[500px] lg:block hidden w-full"
       center={[-8.817223708289081, 13.231914368768138]}
       scrollWheelZoom={false}
@@ -78,10 +68,16 @@ const LeafletMap = () => {
       {/* Add a marker */}
       {agencies &&
         agencies.data.length > 0 &&
-        agencies?.data.map((item) => (
+        agencies.data.map((item) => (
           <Marker
             key={item.id}
-            icon={mapIcon}
+            icon={
+              item.type === "lotaria-nacional"
+                ? LotariaMarket
+                : item.type === "elephant-bet"
+                ? ElephantBetMarket
+                : ArreiouMarket
+            }
             position={[item.latitude, item.longitude]}
           >
             <Popup>
@@ -110,7 +106,7 @@ const LeafletMap = () => {
           </Marker>
         ))}
       <Marker
-        icon={lotariaIcon}
+        icon={CentralMarket}
         position={[-8.813747300833915, 13.234881167766654]}
       >
         <Popup>
@@ -138,7 +134,7 @@ const LeafletMap = () => {
         </Popup>
       </Marker>
     </MapContainer>
-  )
-}
+  );
+};
 
-export default LeafletMap
+export default LeafletMap;

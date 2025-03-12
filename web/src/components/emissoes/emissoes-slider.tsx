@@ -1,20 +1,20 @@
-import { useState } from "react"
-import { IEmission } from "@/interfaces"
-import { Navigation } from "swiper/modules"
-import { formatRawDate } from "@/utils/date"
-import { FaPlayCircle } from "react-icons/fa"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { generateVideoThumbnail } from "@/utils/youtube"
+import { useState } from "react";
+import { IEmission } from "@/interfaces";
+import { Navigation } from "swiper/modules";
+import { formatRawDate } from "@/utils/date";
+import { FaPlayCircle } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { generateVideoThumbnail } from "@/utils/youtube";
 
-import "swiper/swiper-bundle.css"
+import "swiper/swiper-bundle.css";
 
 type EmissionProps = {
-  emissions: IEmission[]
-}
+  emissions: IEmission[];
+};
 
 const EmissoesSlider = ({ emissions }: EmissionProps) => {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [frameLoad, setFrameLoad] = useState(true)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [frameLoad, setFrameLoad] = useState(true);
 
   const breakpoints = {
     560: {
@@ -23,8 +23,7 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
     300: {
       slidesPerView: 2,
     },
-  }
-
+  };
   return (
     <div className="w-full flex flex-col gap-2 h-full">
       <Swiper
@@ -91,7 +90,7 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
               </div>
             )}
             <img
-              src={generateVideoThumbnail(slide.url) || ""}
+              src={generateVideoThumbnail(slide.url)}
               alt={`Thumbnail ${index}`}
               className="object-cover w-full h-full rounded-xl"
             />
@@ -99,7 +98,7 @@ const EmissoesSlider = ({ emissions }: EmissionProps) => {
         ))}
       </Swiper>
     </div>
-  )
-}
+  );
+};
 
-export default EmissoesSlider
+export default EmissoesSlider;

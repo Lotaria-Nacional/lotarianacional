@@ -1,14 +1,15 @@
-import { ChevronDown } from "lucide-react"
-import { forwardRef, SetStateAction } from "react"
+// import { r } from "react-icons/si";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { forwardRef, SetStateAction } from "react";
 
 type Props = {
-  chances: string[]
-  selected: string | null
-  isSelectMenuOpen: boolean
-  handleSetChoice: (value: string) => void
-  ref: React.MutableRefObject<HTMLDivElement | null>
-  setIsSelectMenuOpen: React.Dispatch<SetStateAction<boolean>>
-}
+  chances: string[];
+  selected: string | null;
+  isSelectMenuOpen: boolean;
+  handleSetChoice: (value: string) => void;
+  ref: React.MutableRefObject<HTMLDivElement | null>;
+  setIsSelectMenuOpen: React.Dispatch<SetStateAction<boolean>>;
+};
 
 const TableChanceSelectInput = forwardRef<HTMLDivElement, Props>(
   (
@@ -21,7 +22,7 @@ const TableChanceSelectInput = forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) => {
-    const toggleSelectMenu = () => setIsSelectMenuOpen((prev) => !prev)
+    const toggleSelectMenu = () => setIsSelectMenuOpen((prev) => !prev);
     return (
       <div
         ref={ref}
@@ -32,7 +33,12 @@ const TableChanceSelectInput = forwardRef<HTMLDivElement, Props>(
           className="bg-LT_RED-300 text-white py-2 rounded-[10px] border-none flex gap-2 items-center justify-center"
         >
           {selected ? selected : "Chance"}
-          <ChevronDown />
+
+          {isSelectMenuOpen ? (
+            <FiChevronUp size={24} />
+          ) : (
+            <FiChevronDown size={24} />
+          )}
         </button>
         {isSelectMenuOpen && (
           <ul className="absolute fade-in-text z-[20] rounded-t-[10px] rounded-b-[10px] -bottom-[170px] flex flex-col bg-white shadow-[0px_0px_3px_1px_#ccc] w-full">
@@ -54,8 +60,8 @@ const TableChanceSelectInput = forwardRef<HTMLDivElement, Props>(
           </ul>
         )}
       </div>
-    )
+    );
   }
-)
+);
 
-export default TableChanceSelectInput
+export default TableChanceSelectInput;

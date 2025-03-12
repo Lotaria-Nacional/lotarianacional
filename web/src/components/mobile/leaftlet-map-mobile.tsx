@@ -1,18 +1,20 @@
 import L from "leaflet"
-import pin from "/icons/pin.svg"
 import "leaflet/dist/leaflet.css"
 import { HiPhone } from "react-icons/hi"
 import { IAgency } from "@/interfaces"
+import yellowPin from "/icons/yellow-pin.svg";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
+import { ArreiouMarket, ElephantBetMarket, LotariaMarket } from "../agencia/agency-marker"
 
 type AgencyMapProps = { agencies?: IAgency[] }
 const LeafletMapMobile = ({ agencies }: AgencyMapProps) => {
-  const mapIcon = new L.Icon({
-    iconUrl: pin,
-    iconRetinaUrl: pin,
-    iconSize: new L.Point(25, 50),
-    className: "bg-transparent ",
-  })
+
+  const lotariaIcon = new L.Icon({
+    iconUrl: yellowPin,
+    iconRetinaUrl: yellowPin,
+    iconSize: new L.Point(50, 70),
+    className: "bg-transparent",
+  });
 
   return (
     <MapContainer
@@ -32,7 +34,13 @@ const LeafletMapMobile = ({ agencies }: AgencyMapProps) => {
           <Marker
             key={i}
             position={[item.latitude, item.longitude]}
-            icon={mapIcon}
+            icon={
+              item.type === "lotaria-nacional"
+                ? LotariaMarket
+                : item.type === "elephant-bet"
+                ? ElephantBetMarket
+                : ArreiouMarket
+            }
           >
             <Popup>
               <div className="w-[320px] h-[181px] p-2 rounded-xl flex flex-col items-start justify-between">
@@ -59,8 +67,36 @@ const LeafletMapMobile = ({ agencies }: AgencyMapProps) => {
             </Popup>
           </Marker>
         ))}
+      <Marker
+        icon={lotariaIcon}
+        position={[-8.813747300833915, 13.234881167766654]}
+      >
+        <Popup>
+          <div className="w-[320px] lg:w-[305px] h-[181px] p-2 rounded-xl flex flex-col items-start justify-between">
+            <header className="flex flex-col text-white gap-2 items-start">
+              <h1 className="text-xl font-bold">Sede - Lotaria Nacional</h1>
+              <span className="text-base">Mutamba, Rua Rainha Ginga 79</span>
+            </header>
+
+            <div className="w-full flex items-center justify-between text-base">
+              <a
+                href={"tel:+244923190007"}
+                className="flex bg-white border group hover:border-white hover:bg-transparent transition-all duration-300 ease-in-out items-center gap-2 px-2 rounded-lg h-[30px]"
+              >
+                <HiPhone
+                  size={24}
+                  className="text-LT_RED-200 group-hover:text-white"
+                />
+                <span className="text-LT_RED-200 group-hover:text-white">
+                  Ligar
+                </span>
+              </a>
+            </div>
+          </div>
+        </Popup>
+      </Marker>
     </MapContainer>
-  )
+  );
 }
 
 export default LeafletMapMobile

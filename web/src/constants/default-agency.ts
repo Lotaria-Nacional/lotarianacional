@@ -7,5 +7,6 @@ export const defaultAgency: IAgency = {
   longitude: 13.234881167766654,
   location_text: "Mutamba, Rua Rainha Ginga 79",
   phone: 923190007,
+  type:"lotaria-nacional",
   createdAt: new Date(),
 }
