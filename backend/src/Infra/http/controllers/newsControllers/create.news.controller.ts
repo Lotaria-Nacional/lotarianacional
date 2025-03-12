@@ -22,8 +22,8 @@ export class CreateNewsController {
     } catch (error) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({ message: error.errors[0].message })
-      }
-      return res.status(400).json({ message: "Erro interno no servidor." })
+    }
+      return res.status(400).json({ message: "Erro interno no servidor.", err:error })
     }
   }
 }
