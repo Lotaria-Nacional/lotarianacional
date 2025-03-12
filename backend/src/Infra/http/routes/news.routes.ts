@@ -6,7 +6,7 @@ import { GetNewsByIdUseCase } from "../../../application/useCases/news/get.newsB
 import { UpdateNewsUseCase } from "../../../application/useCases/news/update.news.useCase"
 import { DeleteNewsUseCase } from "../../../application/useCases/news/delete.news.useCase"
 
-import { CloudinaryUploadService } from "../../Services/ImageUpload/CloudinaryUploadService"
+
 import { upload } from "../middlewares/multer.middleware"
 import { PrismaNewsRespository } from "../../repositories/prisma/prisma.news.repository"
 import { CreateNewsController } from "../controllers/newsControllers/create.news.controller"
@@ -14,6 +14,7 @@ import { DeleteNewsController } from "../controllers/newsControllers/delete.news
 import { GetNewsController } from "../controllers/newsControllers/get.news.controller"
 import { GetNewsByIdController } from "../controllers/newsControllers/get.newsById.controller"
 import { UpdateNewsController } from "../controllers/newsControllers/update.news.controller"
+import { CloudinaryUploadService } from "../../Services/ImageUpload/CloudinaryUploadService"
 
 const router = Router()
 

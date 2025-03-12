@@ -2,7 +2,6 @@ import { Request, Response, Router } from "express";
 import { upload } from "../middlewares/multer.middleware";
 import { CreateBannerUseCase } from "../../../application/useCases/banner/create.banner.useCase";
 import { PrismaBannerRepository } from "../../repositories/prisma/prisma.banner.repository";
-import { CloudinaryUploadService } from "../../Services/ImageUpload/CloudinaryUploadService";
 import { CreateBannerController } from "../controllers/bannerControllers/create.desktop.banner.controller";
 import { GetAllBannersUseCase } from "../../../application/useCases/banner/get.banners.useCase";
 import { GetAllBannersController } from "../controllers/bannerControllers/getAll.banners.controller";
@@ -10,6 +9,7 @@ import { UpdateBannerController } from "../controllers/bannerControllers/update.
 import { UpdateBannerUseCase } from "../../../application/useCases/banner/update.banner.useCase";
 import { DeleteBannerUseCase } from "../../../application/useCases/banner/delete.banner.useCase";
 import { DeleteBannerController } from "../controllers/bannerControllers/delete.banner.controller";
+import { CloudinaryUploadService } from "../../Services/ImageUpload/CloudinaryUploadService";
 
 const router = Router();
 

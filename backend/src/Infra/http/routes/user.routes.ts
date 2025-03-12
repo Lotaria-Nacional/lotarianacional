@@ -8,13 +8,13 @@ import { DeleteUserUseCase } from "../../../application/useCases/user/delete.use
 import { CreateUserUseCase } from "../../../application/useCases/user/create.user.useCase"
 import { GetUserByIdUseCase } from "../../../application/useCases/user/get.userById.useCase"
 
-import { CloudinaryUploadService } from "../../Services/ImageUpload/CloudinaryUploadService"
 import { GetUsersController } from "../controllers/userControllers/get.users.controllers"
 import { UpdateUserController } from "../controllers/userControllers/update.user.controller"
 import { CreateUserController } from "../controllers/userControllers/create.user.controller"
 import { DeleteUserController } from "../controllers/userControllers/delete.user.controller"
 import { GetUserByIdController } from "../controllers/userControllers/get.userById.controller"
 import { BcryptHashService } from "../../Services/Hash/BcryptHashService"
+import { CloudinaryUploadService } from "../../Services/ImageUpload/CloudinaryUploadService"
 
 const router = Router()
 

@@ -17,7 +17,6 @@ export class UpdateNewsController {
     })
     try {
       const newsData = updateNewsSchema.parse(req.body)
-      console.log(newsData)
       const updatedNews = await this.updateNewsUseCase.execute(id, {
         ...newsData,
         image: fileImage,

@@ -7,7 +7,6 @@ export class GetAllDailyResultsController {
   async handle(req: Request, res: Response) {
     try {
       const results = await this.getAllDailyResultsUseCase.execute();
-      console.log(results);
       
       return res.status(200).json(results);
     } catch (error) {
