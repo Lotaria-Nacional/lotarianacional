@@ -65,7 +65,7 @@ const QuestionsDropdown = () => {
 
       <button
         onClick={handleShowMoreQuestions}
-        className="mt-[40px] border border-LT_RED-100 px-3 py-1 text-LT_RED-100 rounded-lg w-fit self-start"
+        className="mt-[40px] border border-LT_RED-300 px-3 py-1 text-LT_RED-300 rounded-lg w-fit self-start"
       >
         {showMoreQuestions ? "Ocultar" : " Ver mais"}
       </button>

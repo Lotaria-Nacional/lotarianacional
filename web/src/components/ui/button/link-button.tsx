@@ -24,8 +24,8 @@ const LinkButton = ({
       className={twMerge(
         `flex items-center rounded-[8px] px-4 gap-[8px] justify-center text-base h-fit w-fit ${
           variant === "default"
-            ? "bg-LT_WHITE text-LT_RED-100 border-LT_RED-200 border"
-            : "bg-LT_RED-200 text-white"
+            ? "bg-LT_WHITE text-LT_RED-300 border-LT_RED-300 border"
+            : "bg-LT_RED-300 text-white"
         }`,
         className
       )}

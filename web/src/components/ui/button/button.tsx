@@ -19,8 +19,8 @@ const Button = ({
       className={twMerge(
         `flex items-center rounded-[8px] gap-[8px] text-[14px] cursor-pointer justify-center h-[40px] px-4 w-fit ${
           variant === "default"
-            ? "bg-LT_WHITE text-LT_RED-100 border-LT_RED-200 border"
-            : "bg-LT_RED-200 text-white"
+            ? "bg-LT_WHITE text-LT_RED-300 border-LT_RED-300 border"
+            : "bg-LT_RED-300 text-white"
         }`,
         className
       )}
