@@ -1,5 +1,5 @@
-import Container from "./container"
-import { ICONS } from "../../constants/assets"
+import Container from "./container";
+import { ICONS } from "../../constants/assets";
 
 const TopHeader = () => {
   return (
@@ -44,11 +44,18 @@ const TopHeader = () => {
                 className="size-7 object-contain"
               />
             </a>
+            <a target="_blank" href="https://www.tiktok.com/@lotarianacional">
+              <img
+                src={ICONS.tiktok}
+                alt="ícone do tiktok"
+                className="size-7 object-contain"
+              />
+            </a>
           </div>
         </div>
       </Container>
     </section>
-  )
-}
+  );
+};
 
-export default TopHeader
+export default TopHeader;

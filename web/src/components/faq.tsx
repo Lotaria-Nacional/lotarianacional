@@ -1,11 +1,12 @@
-import Container from "./common/container"
-import { ICONS } from "../constants/assets"
-import { SiWhatsapp } from "react-icons/si"
-import QuestionsDropdown from "./questions-dropdown"
-import Button from "./ui/button/button"
+import Container from "./common/container";
+import { ICONS } from "../constants/assets";
+import { SiWhatsapp } from "react-icons/si";
+import QuestionsDropdown from "./questions-dropdown";
+import Button from "./ui/button/button";
 
 const FAQ = () => {
-  const supportNumber = "+244923190007"
+  const supportNumber = "+244942185667";
+  
   return (
     <Container className="lg:items-start lg:flex-row flex-col gap-8 lg:gap-12 justify-center">
       {/** REGULAMENTO SECTION */}
@@ -38,7 +39,7 @@ const FAQ = () => {
         <QuestionsDropdown />
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default FAQ
+export default FAQ;

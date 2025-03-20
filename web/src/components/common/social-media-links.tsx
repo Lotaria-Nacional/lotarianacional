@@ -1,4 +1,4 @@
-import { ICONS } from "@/constants/assets"
+import { ICONS } from "@/constants/assets";
 
 const SocialMediaLinks = () => {
   return (
@@ -32,9 +32,16 @@ const SocialMediaLinks = () => {
             className="size-7 object-contain"
           />
         </a>
+        <a target="_blank" href="https://www.tiktok.com/@lotarianacional">
+          <img
+            src={ICONS.tiktokGray}
+            alt="ícone do instagram"
+            className="size-7 object-contain"
+          />
+        </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SocialMediaLinks
+export default SocialMediaLinks;

@@ -31,6 +31,8 @@ export const ICONS = {
   roleta: "/icons/roleta.webp",
   target: "/icons/target.webp",
   valores: "/icons/valores.webp",
+  tiktok: "/icons/tiktok.svg",
+  tiktokGray: "/icons/tiktok-gray.svg",
   facebook: "/icons/facebook.png",
   linkedin: "/icons/linkedin.png",
   instagram: "/icons/instagram.png",

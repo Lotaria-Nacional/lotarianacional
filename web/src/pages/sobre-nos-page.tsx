@@ -1,5 +1,5 @@
-import { ICONS, IMAGES } from "../constants/assets"
-import Container from "../components/common/container"
+import { ICONS, IMAGES } from "../constants/assets";
+import Container from "../components/common/container";
 
 const SobreNosPage = () => {
   return (
@@ -13,14 +13,12 @@ const SobreNosPage = () => {
           />
           <Container className="flex flex-col items-start text-white gap-4 z-10">
             <h1 className="text-[24px] lg:text-[34px] font-bold">Quem somos</h1>
-            <p className="text-[20px]">
+            <p className="text-[16px] md:text-[20px]">
               A Lotaria Nacional é a entidade oficial encarregada de gerir e
-              organizar os jogos de lotaria em Angola, oferecendo aos seus
-              participantes a oportunidade de transformar os seus sonhos em
-              realidade. Com uma longa tradição no mercado, A Lotaria Nacional
-              promove um ambiente de jogo responsável e seguro, sempre com o
-              compromisso de apoiar causas sociais e o desenvolvimento de várias
-              comunidades em Angola.
+              organizar os jogos de lotaria em Angola. Com uma longa tradição no
+              mercado, A Lotaria Nacional promove um ambiente de jogo
+              responsável e seguro, sempre com o compromisso de apoiar causas
+              sociais e o desenvolvimento de várias comunidades em Angola.
             </p>
           </Container>
         </section>
@@ -52,11 +50,11 @@ const SobreNosPage = () => {
                     ética
                   </h1>
                   <p>
-                    Estamos comprometidos com princípios de transparência,
-                    responsabilidade social e protecção dos participantes.
-                    Valorizamos a confiança que os nossos jogadores depositam em
+                    Estamos comprometidos com os princípios de transparência,
+                    responsabilidade social e proteção dos participantes.
+                    Valorizamos a confiança que nossos jogadores depositam em
                     nós e trabalhamos com rigor para garantir que todas as
-                    operações são realizadas de forma justa e segura.
+                    operações sejam realizadas de forma justa e segura.
                   </p>
                   <ul className="flex flex-col gap-4">
                     <li>
@@ -64,10 +62,10 @@ const SobreNosPage = () => {
                         Responsabilidade Social:
                       </span>
                       Encorajamos o jogo responsável e disponibilizamos
-                      ferramentas para ajudar os jogadores a controlar os seus
+                      ferramentas para ajudar os jogadores a controlar seus
                       hábitos de jogo. Promovemos a conscientização sobre os
                       riscos do jogo excessivo e oferecemos suporte a quem
-                      necessitar.
+                      precisar.
                     </li>
 
                     <li>
@@ -76,10 +74,10 @@ const SobreNosPage = () => {
                           Proteção ao Jogador:
                         </span>
                         Respeitamos a privacidade e os dados pessoais dos nossos
-                        jogadores, através de medidas rigorosas que protegem
+                        jogadores por meio de medidas rigorosas que protegem
                         todas as informações coletadas. Além disso, asseguramos
-                        que apenas pessoas maiores de idade podem participar dos
-                        nossos jogos.
+                        que apenas maiores de idade podem participar dos nossos
+                        jogos.
                       </p>
                     </li>
 
@@ -89,9 +87,9 @@ const SobreNosPage = () => {
                           Justiça e Integridade:
                         </span>
                         Comprometemo-nos a manter a imparcialidade em todos os
-                        sorteios. As nossas máquinas e algoritmos são
-                        regularmente auditados por entidades independentes para
-                        garantir a justiça dos resultados.
+                        sorteios. Nossas máquinas e algoritmos são regularmente
+                        auditados por entidades independentes para garantir a
+                        justiça dos resultados.
                       </p>
                     </li>
                   </ul>
@@ -105,7 +103,7 @@ const SobreNosPage = () => {
                 <img src={ICONS.valores} className="size-10" alt="icone" />
                 <div className="flex flex-col gap-2 md:items-start items-center">
                   <h1 className="capitalize font-bold text-[24px] lg:text-[28px]">
-                    visão
+                    valores
                   </h1>
                   <ul className="flex flex-col gap-4">
                     <li className="flex flex-col">
@@ -116,7 +114,7 @@ const SobreNosPage = () => {
                     </li>
                     <li className="flex flex-col">
                       <h4 className="text-lg font-bold">Responsabilidade</h4>
-                      <p>Se dizemos, fazemos. Garantimos, pagamos.</p>
+                      <p>Se dissermos, fazemos. Garantimos, pagamos.</p>
                     </li>
                     <li className="flex flex-col">
                       <h4 className="text-lg font-bold">Acessibilidade</h4>
@@ -126,7 +124,7 @@ const SobreNosPage = () => {
                     </li>
                     <li className="flex flex-col">
                       <h4 className="text-lg font-bold">Entretenimento</h4>
-                      <p>Os nosso produtos sõo divertidos.</p>
+                      <p>Os nossos produtos são divertidos.</p>
                     </li>
                   </ul>
                 </div>
@@ -136,7 +134,7 @@ const SobreNosPage = () => {
         </Container>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default SobreNosPage
+export default SobreNosPage;
