@@ -9,14 +9,8 @@ import "swiper/css/autoplay"
 //@ts-ignore
 import "swiper/css/pagination"
 import "./hero-slider.css"
-// import { IBanner } from "@/interfaces"
-
-// type Props = {
-//   banner: IBanner[] | []
-// }
 
 const DesktopSwiper = () => {
-  // Função para renderizar cada slide
   const renderSlide = (image: string, alt: string) => (
     <SwiperSlide className="relative">
       <img
@@ -34,11 +28,11 @@ const DesktopSwiper = () => {
       className="h-full md:block hidden"
       modules={[Autoplay, Pagination]}
     >
-      {renderSlide(IMAGES.banner1, "Banner default 1")}
+      {renderSlide(IMAGES.banner3, "Banner default 1")}
 
-      {renderSlide(IMAGES.banner2, "Banner default 2")}
+      {renderSlide(IMAGES.banner1, "Banner default 2")}
 
-      {renderSlide(IMAGES.banner3, "Banner default 3")}
+      {renderSlide(IMAGES.banner2, "Banner default 3")}
     </Swiper>
   )
 }
