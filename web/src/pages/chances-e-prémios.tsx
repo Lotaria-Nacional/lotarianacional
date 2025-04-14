@@ -1,6 +1,7 @@
-import PageTitle from "@/components/page-title"
-import PlayGroundTable from "./playground-table"
-import Container from "@/components/common/container"
+import PageTitle from "@/components/page-title";
+import PlayGroundTable from "./playground-table";
+import Container from "@/components/common/container";
+// import GMap from "@/components/google-map";
 
 const ChancesEPremiosPage = () => {
   return (
@@ -18,8 +19,9 @@ const ChancesEPremiosPage = () => {
         </header>
         <PlayGroundTable />
       </Container>
+      {/* <GMap /> */}
     </main>
-  )
-}
+  );
+};
 
-export default ChancesEPremiosPage
+export default ChancesEPremiosPage;

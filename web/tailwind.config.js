@@ -17,6 +17,9 @@ export default {
           200: "#3C3C3B",
           300: "#30302F",
         },
+        // LT_YELLOW:{
+        //   100:""
+        // },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

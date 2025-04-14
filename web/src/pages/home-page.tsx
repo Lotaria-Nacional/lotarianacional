@@ -11,6 +11,7 @@ import DailyResults from "../components/resultados/daily-results"
 import ListingNoticias from "../components/noticias/listing-noticias"
 import MobileDailyResults from "../components/mobile/mobile-daily-results"
 import { useScrollToChancesSection } from "@/hooks/useScrollToChancesSection"
+import GMap from "@/components/google-map"
 
 const HomePage = () => {
   const { chancesSectionRef } = useScrollToChancesSection()
@@ -88,6 +89,7 @@ const HomePage = () => {
           <FAQ />
         </section>
       </main>
+      <GMap />
       <LeafletMap />
     </>
   );

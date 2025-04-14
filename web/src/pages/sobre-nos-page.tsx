@@ -1,5 +1,6 @@
 import { ICONS, IMAGES } from "../constants/assets";
 import Container from "../components/common/container";
+import { SlEye } from "react-icons/sl";
 
 const SobreNosPage = () => {
   return (
@@ -13,7 +14,7 @@ const SobreNosPage = () => {
           />
           <Container className="flex flex-col items-start text-white gap-4 z-10">
             <h1 className="text-[24px] lg:text-[34px] font-bold">Quem somos</h1>
-            <p className="text-[16px] md:text-[20px]">
+            <p className="text-[16px] text-justify lg:text-start md:text-[20px]">
               A Lotaria Nacional é a entidade oficial encarregada de gerir e
               organizar os jogos de lotaria em Angola. Com uma longa tradição no
               mercado, A Lotaria Nacional promove um ambiente de jogo
@@ -29,75 +30,22 @@ const SobreNosPage = () => {
             <div className="shadow-[0px_0px_6px_2px_#d9d9d9] rounded-xl items-center w-full bg-white flex p-8">
               <div className="flex w-full flex-col md:flex-row items-center lg:items-start gap-4">
                 <img src={ICONS.target} className="size-10" alt="icone" />
-                <div className="flex flex-col gap-2 md:items-start items-center">
+                <div className="flex text-justify lg:text-start flex-col gap-2 md:items-start items-center">
                   <h1 className="capitalize font-bold text-[24px] lg:text-[28px]">
                     missão
                   </h1>
                   <p>
-                    Oferecer os melhores produtos de lotaria no ambiente mais
-                    seguro possível para todos.
+                    A Mota Tavares & Jogos dedica-se a oferecer experiências de
+                    jogo emocionantes e seguras, proporcionando diversão ao
+                    público. O nosso compromisso é operar com ética e
+                    responsabilidade, assegurando que os jogos sociais sejam uma
+                    força positiva para a sociedade.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* ÉTICA */}
-            <div className="shadow-[0px_0px_6px_2px_#d9d9d9] rounded-xl lg:row-span-2 items-center lg:items-start w-full bg-white flex p-8">
-              <div className="flex w-full flex-col md:flex-row items-center md:items-start gap-4">
-                <img src={ICONS.target} className="size-10" alt="icone" />
-                <div className="flex flex-col gap-2 items-center md:items-start ">
-                  <h1 className="capitalize font-bold text-[24px] lg:text-[28px]">
-                    ética
-                  </h1>
-                  <p>
-                    Estamos comprometidos com os princípios de transparência,
-                    responsabilidade social e proteção dos participantes.
-                    Valorizamos a confiança que nossos jogadores depositam em
-                    nós e trabalhamos com rigor para garantir que todas as
-                    operações sejam realizadas de forma justa e segura.
-                  </p>
-                  <ul className="flex flex-col gap-4">
-                    <li>
-                      <span className="font-bold mr-1">
-                        Responsabilidade Social:
-                      </span>
-                      Encorajamos o jogo responsável e disponibilizamos
-                      ferramentas para ajudar os jogadores a controlar seus
-                      hábitos de jogo. Promovemos a conscientização sobre os
-                      riscos do jogo excessivo e oferecemos suporte a quem
-                      precisar.
-                    </li>
-
-                    <li>
-                      <p>
-                        <span className="font-bold mr-1">
-                          Proteção ao Jogador:
-                        </span>
-                        Respeitamos a privacidade e os dados pessoais dos nossos
-                        jogadores por meio de medidas rigorosas que protegem
-                        todas as informações coletadas. Além disso, asseguramos
-                        que apenas maiores de idade podem participar dos nossos
-                        jogos.
-                      </p>
-                    </li>
-
-                    <li>
-                      <p>
-                        <span className="font-bold mr-1">
-                          Justiça e Integridade:
-                        </span>
-                        Comprometemo-nos a manter a imparcialidade em todos os
-                        sorteios. Nossas máquinas e algoritmos são regularmente
-                        auditados por entidades independentes para garantir a
-                        justiça dos resultados.
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* VISÃO */}
+            {/* VALORES */}
             <div className="shadow-[0px_0px_6px_2px_#d9d9d9] rounded-xl items-center w-full bg-white flex p-8">
               <div className="flex flex-col md:flex-row w-full items-center md:items-start gap-4">
                 <img src={ICONS.valores} className="size-10" alt="icone" />
@@ -105,28 +53,40 @@ const SobreNosPage = () => {
                   <h1 className="capitalize font-bold text-[24px] lg:text-[28px]">
                     valores
                   </h1>
-                  <ul className="flex flex-col gap-4">
-                    <li className="flex flex-col">
-                      <h4 className="text-lg font-bold">Integridade</h4>
-                      <p>
-                        Honestidade e transparência em todas as nossas ações.
-                      </p>
+                  <ul className="flex flex-col gap-4 list-disc">
+                    <li className="list-item flex-col">
+                      Diversidade e Inclusão
                     </li>
-                    <li className="flex flex-col">
-                      <h4 className="text-lg font-bold">Responsabilidade</h4>
-                      <p>Se dissermos, fazemos. Garantimos, pagamos.</p>
+                    <li className="list-item flex-col">Responsabilidade</li>
+                    <li className="list-item flex-col">
+                      Transparência e Ética
                     </li>
-                    <li className="flex flex-col">
-                      <h4 className="text-lg font-bold">Acessibilidade</h4>
-                      <p>
-                        Não é caro, grande rede de vendedores. Fácil de jogar.
-                      </p>
+                    <li className="list-item flex-col">
+                      Colaboração e Trabalho em Equipa
                     </li>
-                    <li className="flex flex-col">
-                      <h4 className="text-lg font-bold">Entretenimento</h4>
-                      <p>Os nossos produtos são divertidos.</p>
+                    <li className="list-item flex-col">
+                      Resiliência e Adaptabilidade
                     </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* VISÃO */}
+            <div className="shadow-[0px_0px_6px_2px_#d9d9d9] rounded-xl min-h-[260px] lg:col-span-2 items-center lg:items-center w-full bg-white flex p-8">
+              <div className="flex w-full flex-col md:flex-row items-center md:items-start gap-4">
+                <SlEye size={50} className="self-start text-LT_RED-200" />
+                <div className="flex text-justify lg:text-start flex-col gap-2 items-center md:items-start ">
+                  <h1 className="capitalize font-bold text-[24px] lg:text-[28px]">
+                    visão
+                  </h1>
+                  <p>
+                    Ser a principal operadora de jogos sociais em Angola,
+                    reconhecida pela inovação, transparência e impacto social
+                    positivo, promovendo um ambiente de entretenimento
+                    responsável, sustentável e comprometido com o
+                    desenvolvimento da comunidade.
+                  </p>
                 </div>
               </div>
             </div>

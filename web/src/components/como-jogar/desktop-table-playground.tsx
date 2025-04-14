@@ -1,26 +1,26 @@
-import { ChangeEvent } from "react"
-import { tableHeaders } from "@/constants/teste"
+import { ChangeEvent } from "react";
+import { tableHeaders } from "@/constants/teste";
 
-import TableInfoDesktop from "./table-info-desktop"
+import TableInfoDesktop from "./table-info-desktop";
 
 export type TablePlayroundProps = {
-  handleValue: (e: ChangeEvent<HTMLInputElement>) => void
+  handleValue: (e: ChangeEvent<HTMLInputElement>) => void;
   filterTableContent:
     | {
-        multiplier: number[]
-        correct_numbers: number[]
+        multiplier: number[];
+        correct_numbers: number[];
       }
-    | undefined
-  formatMoney: (value: number) => string
-  value: string
-}
+    | undefined;
+  formatMoney: (value: number) => string;
+  value: string;
+};
 
 const DesktopTablePlayground = ({
   value,
   formatMoney,
   filterTableContent,
 }: TablePlayroundProps) => {
-  const bullets = Array.from({ length: 5 }).map((bullet) => bullet)
+  const bullets = Array.from({ length: 5 }).map((bullet) => bullet);
   return (
     <>
       <div className="w-full hidden lg:block h-full rounded-[16px] bg-white">
@@ -69,7 +69,7 @@ const DesktopTablePlayground = ({
                           i < cell ? "bg-LT_RED-300" : "bg-gray-300"
                         }`}
                       />
-                    )
+                    );
                   })}
                 </div>
                 <div
@@ -118,7 +118,7 @@ const DesktopTablePlayground = ({
 
       <TableInfoDesktop />
     </>
-  )
-}
+  );
+};
 
-export default DesktopTablePlayground
+export default DesktopTablePlayground;

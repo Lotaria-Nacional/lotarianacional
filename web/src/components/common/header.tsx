@@ -1,9 +1,10 @@
-import Logo from "./logo"
+import Logo from "./logo";
 
-import Container from "./container"
-import { Link, NavLink } from "react-router-dom"
-import MobileMenu from "../mobile/menu/mobile-menu"
-import { NAVIGATION_LINKS } from "../../constants/links"
+import Container from "./container";
+// import Button from "../ui/button/button";
+import { Link, NavLink } from "react-router-dom";
+import MobileMenu from "../mobile/menu/mobile-menu";
+import { NAVIGATION_LINKS } from "../../constants/links";
 
 const Header = () => {
   return (
@@ -35,10 +36,16 @@ const Header = () => {
           </ul>
         </nav>
 
+        <div className="items-center gap-4 hidden">
+          {/* <Button className="bg-yellow-400 text-black uppercase px-10 font-semibold hover:bg-yellow-500 duration-200 ease-in-out transition-all">
+            Jogar
+          </Button> */}
+        </div>
+
         <MobileMenu />
       </Container>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
