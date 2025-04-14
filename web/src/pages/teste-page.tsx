@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FaPlayCircle } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FaPlayCircle, FaStopCircle } from "react-icons/fa";
 
 import "swiper/swiper-bundle.css";
 
@@ -56,16 +56,24 @@ export default function TestePage() {
           />
 
           <div
-            onMouseOver={handleMouseOver}
-            onMouseLeave={handleMouseLeave}
             className={`${
               isOver ? "block" : "hidden"
             } absolute w-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100]`}
           >
+            <FaStopCircle
+              size={80}
+              onClick={handlePauseVideo}
+              className={`${
+                canPlayVideo ? "block" : "hidden"
+              } text-white/50 cursor-pointer`}
+            />
+
             <FaPlayCircle
               size={80}
               onClick={handleCanPlayVideo}
-              className="text-white/60 cursor-pointer"
+              className={`${
+                canPlayVideo ? "hidden" : "block"
+              } text-white/50 cursor-pointer`}
             />
           </div>
         </SwiperSlide>
