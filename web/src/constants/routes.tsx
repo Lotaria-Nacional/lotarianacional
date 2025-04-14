@@ -17,6 +17,7 @@ import ChancesEPremiosPage from "@/pages/chances-e-prémios";
 import NoticiaSinglePage from "../pages/noticia-single-page";
 import RegulamentationPage from "@/pages/regulamentation-page";
 import PoliticsAndPrivacyPage from "@/pages/politics-and-privacy-page";
+import TestePage from "@/pages/teste-page";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: "/regulamentos-do-loto-5-90",
         element: <RegulamentationPage />,
+      },
+      {
+        path: "/teste/page",
+        element: <TestePage />,
       },
     ],
   },

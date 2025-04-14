@@ -1,12 +1,12 @@
 //@ts-ignore
-import "swiper/css"
+import "swiper/css";
 //@ts-ignore
-import "swiper/css/autoplay"
+import "swiper/css/autoplay";
 //@ts-ignore
-import "swiper/css/pagination"
-import "./hero-slider.css"
-import MobileSwiper from "./mobile-swiper"
-import DesktopSwiper from "./desktop-swiper"
+import "swiper/css/pagination";
+import "./hero-slider.css";
+import MobileSwiper from "./mobile-swiper";
+import DesktopSwiper from "./desktop-swiper";
 // import { useBanner } from "@/hooks/api/query/useBanner"
 
 const HeroSlider = () => {
@@ -27,7 +27,7 @@ const HeroSlider = () => {
       <DesktopSwiper />
       <MobileSwiper />
     </>
-  )
-}
+  );
+};
 
-export default HeroSlider
+export default HeroSlider;

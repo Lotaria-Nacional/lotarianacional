@@ -1,17 +1,17 @@
-import { useState } from "react"
-import { twMerge } from "tailwind-merge"
-import { IResult } from "../../interfaces"
-import { FaPlayCircle } from "react-icons/fa"
-import { useModal } from "@/context/modal-provider"
+import { useState } from "react";
+import { twMerge } from "tailwind-merge";
+import { IResult } from "../../interfaces";
+import { FaPlayCircle } from "react-icons/fa";
+import { useModal } from "@/context/modal-provider";
 
 export type ResultCardProps = {
-  result: IResult
-  className?: string
-}
+  result: IResult;
+  className?: string;
+};
 
 const ResultadoCard = ({ result, className }: ResultCardProps) => {
-  const { openModal } = useModal()
-  const [isOver, setIsOVer] = useState(false)
+  const { openModal } = useModal();
+  const [isOver, setIsOVer] = useState(false);
 
   const sortedNumbers = [
     result.number_1,
@@ -19,10 +19,10 @@ const ResultadoCard = ({ result, className }: ResultCardProps) => {
     result.number_3,
     result.number_4,
     result.number_5,
-  ]
+  ];
 
-  const handleMouseOver = () => setIsOVer(true)
-  const handleMouseLeave = () => setIsOVer(false)
+  const handleMouseOver = () => setIsOVer(true);
+  const handleMouseLeave = () => setIsOVer(false);
 
   return (
     <div
@@ -49,13 +49,16 @@ const ResultadoCard = ({ result, className }: ResultCardProps) => {
           </span>
         ))}
       </div>
-      {isOver && (
-        <div className="absolute bg-LT_RED-200 rounded-2xl flex items-center justify-center z-[20] inset-0 w-full h-full ">
-          <FaPlayCircle fill="#fff" size={38} />
-        </div>
-      )}
-    </div>
-  )
-}
 
-export default ResultadoCard
+      <div
+        className={` ${
+          isOver ? "flex" : "hidden"
+        } absolute bg-LT_RED-200 rounded-2xl items-center justify-center z-[20] inset-0 w-full h-full`}
+      >
+        <FaPlayCircle fill="#fff" size={38} />
+      </div>
+    </div>
+  );
+};
+
+export default ResultadoCard;
