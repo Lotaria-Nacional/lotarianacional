@@ -1,20 +1,19 @@
-import FAQ from "@/components/faq"
-import LeafletMap from "../components/map"
-import LinkCard from "../components/link-card"
-import { LINK_CARDS } from "../constants/links"
-import PlayGroundTable from "./playground-table"
-import HeroSlider from "../components/hero-slider"
-import Container from "../components/common/container"
-import Emissoes from "../components/emissoes/emissoes"
-import CountDownCard from "../components/count-down-card"
-import DailyResults from "../components/resultados/daily-results"
-import ListingNoticias from "../components/noticias/listing-noticias"
-import MobileDailyResults from "../components/mobile/mobile-daily-results"
-import { useScrollToChancesSection } from "@/hooks/useScrollToChancesSection"
-import GMap from "@/components/google-map"
+import FAQ from "@/components/faq";
+import LeafletMap from "../components/map";
+import LinkCard from "../components/link-card";
+import { LINK_CARDS } from "../constants/links";
+import PlayGroundTable from "./playground-table";
+import HeroSlider from "../components/hero-slider";
+import Container from "../components/common/container";
+import Emissoes from "../components/emissoes/emissoes";
+import CountDownCard from "../components/count-down-card";
+import DailyResults from "../components/resultados/daily-results";
+import ListingNoticias from "../components/noticias/listing-noticias";
+import MobileDailyResults from "../components/mobile/mobile-daily-results";
+import { useScrollToChancesSection } from "@/hooks/useScrollToChancesSection";
 
 const HomePage = () => {
-  const { chancesSectionRef } = useScrollToChancesSection()
+  const { chancesSectionRef } = useScrollToChancesSection();
 
   return (
     <>
@@ -89,10 +88,9 @@ const HomePage = () => {
           <FAQ />
         </section>
       </main>
-      <GMap />
       <LeafletMap />
     </>
   );
-}
+};
 
-export default HomePage
+export default HomePage;
