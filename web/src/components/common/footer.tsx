@@ -1,8 +1,8 @@
-import Container from "./container"
-import { Link } from "react-router-dom"
-import { LOGO } from "../../constants/assets"
-import SocialMediaLinks from "./social-media-links"
-import { FOOTER_NAVIGATION_LINKS } from "../../constants/links"
+import Container from "./container";
+import { Link } from "react-router-dom";
+import { LOGO } from "../../constants/assets";
+import SocialMediaLinks from "./social-media-links";
+import { FOOTER_NAVIGATION_LINKS } from "../../constants/links";
 
 const Footer = () => {
   return (
@@ -42,15 +42,6 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <a
-                  href="/regulamento.pdf"
-                  target="_blank"
-                  className="capitalize hover:text-LT_RED-100 duration-200 ease-in-out transition-colors"
-                >
-                  Regulamentos do Loto 5/90
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -92,7 +83,7 @@ const Footer = () => {
         </Container>
       </section>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

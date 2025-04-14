@@ -1,8 +1,13 @@
+import { ARTICLES } from "@/constants/regulations";
+import Container from "@/components/common/container";
+import RregulationContent from "@/components/regulation-content";
+import RegulationTitle from "@/components/regulamentation/regulation-title";
+
 export default function RegulamentationPage() {
   return (
     <main className="py-[50px] h-full">
-      {/* <Container className="flex-col gap-4">
-        <h2 className="font-bold">
+      <Container className="flex-col gap-4">
+        <h2 className="font-bold text-justify">
           REGULAMENTO QUE CRIA O JOGO LOTO 5/90 E ESTABELECE AS RESPECTIVAS
           NORMAS DE ORGANIZAÇÃO E FUNCIONAMENTO
         </h2>
@@ -16,7 +21,7 @@ export default function RegulamentationPage() {
         {ARTICLES.map((article, index) => (
           <RregulationContent key={index} content={article} />
         ))}
-      </Container> */}
+      </Container>
     </main>
-  )
+  );
 }

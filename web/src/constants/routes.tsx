@@ -8,15 +8,15 @@ import {
   ResultadosPage,
   RecrutamentoPage,
   EstatisticasPage,
-} from "../pages/index"
-import App from "../App"
-import ErrorPage from "@/pages/error-page"
-import TermsPage from "@/pages/terms-page"
-import { createBrowserRouter } from "react-router-dom"
-import ChancesEPremiosPage from "@/pages/chances-e-prémios"
-import NoticiaSinglePage from "../pages/noticia-single-page"
-import RegulamentationPage from "@/pages/regulamentation-page"
-import PoliticsAndPrivacyPage from "@/pages/politics-and-privacy-page"
+} from "../pages/index";
+import App from "../App";
+import ErrorPage from "@/pages/error-page";
+import TermsPage from "@/pages/terms-page";
+import { createBrowserRouter } from "react-router-dom";
+import ChancesEPremiosPage from "@/pages/chances-e-prémios";
+import NoticiaSinglePage from "../pages/noticia-single-page";
+import RegulamentationPage from "@/pages/regulamentation-page";
+import PoliticsAndPrivacyPage from "@/pages/politics-and-privacy-page";
 
 export const router = createBrowserRouter([
   {
@@ -78,9 +78,9 @@ export const router = createBrowserRouter([
         element: <PoliticsAndPrivacyPage />,
       },
       {
-        path: "/regulamentos-do-loto-5/90",
+        path: "/regulamentos-do-loto-5-90",
         element: <RegulamentationPage />,
       },
     ],
   },
-])
+]);

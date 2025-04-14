@@ -136,18 +136,15 @@ export const FOOTER_NAVIGATION_LINKS = [
     id: 4,
     label: "Termos e condições gerais",
     link: "/termos-e-condicoes-gerais",
-    // link: "#",
   },
   {
     id: 5,
     label: "Termos de Privacidade",
     link: "/termos-de-privacidade",
-    // link: "#",
   },
-  // {
-  //   id: 6,
-  //   label: "Regulamentos do Loto 5/90",
-  //   link: "/regulamento.pdf",
-  //   // link: "#",
-  // },
+  {
+    id: 6,
+    label: "Regulamentos do Loto 5/90",
+    link: "/regulamentos-do-loto-5-90",
+  },
 ] as const

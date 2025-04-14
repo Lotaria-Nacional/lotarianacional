@@ -1,22 +1,26 @@
-import Container from "../common/container"
-import { formatDate } from "../../utils/date"
-import ResultadoCard from "../resultados/resultado-card"
-import { useLastDailyResult } from "@/hooks/api/query/useLastDailyResult"
-
-import fezada from "/placeholders/fezada.svg"
-import kazola from "/placeholders/kazola.svg"
-import eskebra from "/placeholders/eskebra.svg"
-import aqueceu from "/placeholders/aqueceu.svg"
+import Container from "../common/container";
+import { formatDate } from "../../utils/date";
+import fezada from "/placeholders/fezada.svg";
+import kazola from "/placeholders/kazola.svg";
+import eskebra from "/placeholders/eskebra.svg";
+import aqueceu from "/placeholders/aqueceu.svg";
+import ResultadoCard from "../resultados/resultado-card";
+import { useLastDailyResult } from "@/hooks/api/query/useLastDailyResult";
+import ResultsSkeletonMobile from "../resultados/results-skeleton-mobile";
 
 const MobileDailyResults = () => {
-  const { lastDailyResult } = useLastDailyResult()
-  const PLACE_HOLDERS_IMGS = [fezada, aqueceu, kazola, eskebra]
+  const { lastDailyResult, isLoading } = useLastDailyResult();
+  const PLACE_HOLDERS_IMGS = [fezada, aqueceu, kazola, eskebra];
 
-  if (!lastDailyResult) return
+  if (isLoading) {
+    return <ResultsSkeletonMobile />;
+  }
 
-  const TOTAL_RESULTS = 4
-  const resultsLength = lastDailyResult.results.length
-  const RESULTS_PLACEHOLDER = TOTAL_RESULTS - lastDailyResult.results.length
+  if (!lastDailyResult) return;
+
+  const TOTAL_RESULTS = 4;
+  const resultsLength = lastDailyResult.results.length;
+  const RESULTS_PLACEHOLDER = TOTAL_RESULTS - lastDailyResult.results.length;
 
   return (
     <Container className="flex-col gap-4 flex lg:hidden !pl-6 px-0 !w-full">
@@ -45,7 +49,7 @@ const MobileDailyResults = () => {
         ))}
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default MobileDailyResults
+export default MobileDailyResults;
