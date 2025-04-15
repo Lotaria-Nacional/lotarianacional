@@ -206,3 +206,10 @@ details[open] summary::after {
     scale: 1;
   }
 }
+
+.result-card-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('/banner/card-loto.webp');
+}

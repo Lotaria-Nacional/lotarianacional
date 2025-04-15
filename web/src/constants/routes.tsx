@@ -17,7 +17,7 @@ import ChancesEPremiosPage from "@/pages/chances-e-prémios";
 import NoticiaSinglePage from "../pages/noticia-single-page";
 import RegulamentationPage from "@/pages/regulamentation-page";
 import PoliticsAndPrivacyPage from "@/pages/politics-and-privacy-page";
-import TestePage from "@/pages/teste-page";
+import { TestePage } from "@/pages/teste-page";
 
 export const router = createBrowserRouter([
   {

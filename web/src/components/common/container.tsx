@@ -1,6 +1,6 @@
-import { HTMLAttributes } from "react"
-import { twMerge } from "tailwind-merge"
-import "./container.css"
+import { HTMLAttributes } from "react";
+import { twMerge } from "tailwind-merge";
+import "./container.css";
 
 /**
  * Um Container responsivo usando Tailwind CSS.
@@ -10,10 +10,10 @@ import "./container.css"
  */
 
 type Props = {
-  className?: string
-  defaultClasses?: boolean
-  children: React.ReactNode
-} & HTMLAttributes<HTMLDivElement>
+  className?: string;
+  defaultClasses?: boolean;
+  children: React.ReactNode;
+} & HTMLAttributes<HTMLDivElement>;
 
 const Container = ({
   children,
@@ -33,7 +33,7 @@ const Container = ({
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default Container
+export default Container;

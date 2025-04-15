@@ -6,9 +6,9 @@ export const LOGO = {
 
 export const IMAGES = {
   noticia: "/banner/noticia.webp",
-  banner1: "/banner/banner-001.webp",
-  banner2: "/banner/banner-002.webp",
-  banner3: "/banner/banner-003.webp",
+  banner1: "/banner/banner-0001.webp",
+  banner2: "/banner/banner-0002.webp",
+  banner3: "/banner/banner-0003.webp",
   trevoBg: "/banner/bg-trevo.webp",
   cardLoto: "/banner/card-loto.webp",
   recrutamento: "/banner/recrutamento.webp",

@@ -21,7 +21,7 @@ const HomePage = () => {
         {/* <ExplanationPopUp /> */}
 
         {/** HERO SECTION */}
-        <section className="relative md:h-[calc(100vh-465px)] lg:h-[calc(100vh-165px)] h-[24vh]">
+        <section className="relative md:h-[calc(100vh-465px)] lg:h-[calc(100vh-165px)] h-[20vh]">
           <HeroSlider />
           <DailyResults />
         </section>
