@@ -3,7 +3,7 @@ import { Skeleton } from "../ui/skeleton";
 
 export default function ResultsSkeletonMobile() {
   return (
-    <Container className="fle flex-col gap-4">
+    <Container className="lg:hidden flex flex-col gap-4">
       <div className="w-full flex items-center justify-between">
         <Skeleton className="w-[150px] h-[30px]" />
         <Skeleton className="w-[100px] h-[30px]" />
