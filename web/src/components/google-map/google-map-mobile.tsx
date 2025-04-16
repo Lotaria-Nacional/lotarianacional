@@ -1,7 +1,6 @@
 import { useAgencies } from "@/hooks/api";
-import { useLocation } from "react-router-dom";
 import GoogleMapMarker from "./google-map-marker";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import arreiouMarker from "../../assets/icons/arreiou-marker.png";
 import lotariaMarker from "../../assets/icons/lotaria-marker.png";
 import elephantMarker from "../../assets/icons/elephat-bet-marker.png";
@@ -9,22 +8,10 @@ import { MarkerF, GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
 import { GOOGLE_CONFIG, GOOGLE_CREDENTIALS } from "./google-config";
 
-export default function GMap() {
-  const { pathname } = useLocation();
+export default function GMapMobile() {
   const { agencies } = useAgencies();
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  if (pathname === "/agencias" && windowWidth < 767) return null;
 
   const [_map, setMap] = useState<google.maps.Map | null>(null);
 
@@ -42,7 +29,7 @@ export default function GMap() {
   }, []);
 
   return (
-    <div className="hidden lg:block">
+    <div className="lg:hidden block">
       {isLoaded ? (
         <GoogleMap
           onLoad={onLoad}

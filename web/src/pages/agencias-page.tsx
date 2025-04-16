@@ -1,32 +1,35 @@
-import LeafletMap from "../components/map"
-import Pagination from "@/components/pagination"
-import { useSearchParams } from "react-router-dom"
-import { usePagination } from "@/hooks/usePagination"
-import Container from "../components/common/container"
-import EmptyState from "../components/common/empty-state"
-import AgencyCard from "../components/agencia/agency-card"
-import { useAgencies } from "../hooks/api/query/useAgencies"
-import AgencyFilter from "../components/agencia/agency-filter"
-import { filterAgenciesBySearchParams } from "../utils/agency"
-import AgencySkeleton from "@/components/agencia/agency-skeleton"
-import LeafletMapMobile from "../components/mobile/leaftlet-map-mobile"
-import { defaultAgency } from "@/constants/default-agency"
+import Pagination from "@/components/pagination";
+import { useSearchParams } from "react-router-dom";
+import { usePagination } from "@/hooks/usePagination";
+import GMap from "@/components/google-map/google-map";
+import Container from "../components/common/container";
+import EmptyState from "../components/common/empty-state";
+import AgencyCard from "../components/agencia/agency-card";
+import { defaultAgency } from "@/constants/default-agency";
+import { useAgencies } from "../hooks/api/query/useAgencies";
+import AgencyFilter from "../components/agencia/agency-filter";
+import AgencySkeleton from "@/components/agencia/agency-skeleton";
+import { filterAgenciesBySearchParams } from "../utils/agency";
+import GMapMobile from "@/components/google-map/google-map-mobile";
+
+// import LeafletMap from "../components/map";
+// import LeafletMapMobile from "../components/mobile/leaftlet-map-mobile";
 
 const AgenciasPage = () => {
-  const { currentPage, setSearch } = usePagination()
-  const [searchParams, setSearchParams] = useSearchParams({ agencia: "" })
-  const paramsValue = searchParams.get("agencia") || ""
+  const { currentPage, setSearch } = usePagination();
+  const [searchParams, setSearchParams] = useSearchParams({ agencia: "" });
+  const paramsValue = searchParams.get("agencia") || "";
 
-  const { agencies, isLoading } = useAgencies(currentPage)
+  const { agencies, isLoading } = useAgencies(currentPage);
 
   const allAgencies = agencies?.data
     ? [...agencies.data, defaultAgency]
-    : [defaultAgency]
+    : [defaultAgency];
 
   const filteredAgencies = filterAgenciesBySearchParams(
     paramsValue,
     allAgencies
-  )
+  );
 
   return (
     <>
@@ -57,10 +60,10 @@ const AgenciasPage = () => {
         )}
       </Container>
 
-      <LeafletMap />
-      <LeafletMapMobile agencies={agencies?.data || []} />
+      <GMap />
+      <GMapMobile />
     </>
-  )
-}
+  );
+};
 
-export default AgenciasPage
+export default AgenciasPage;
