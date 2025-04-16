@@ -5,6 +5,7 @@ import Container from "@/components/common/container";
 import { FaPlayCircle, FaStopCircle } from "react-icons/fa";
 
 import "swiper/swiper-bundle.css";
+import { IMAGES } from "@/constants/assets";
 
 export const TestePage = () => {
   const [isOver, setIsOver] = useState(false);
@@ -56,21 +57,21 @@ export const TestePage = () => {
           <SwiperSlide className="relative w-full h-full select-none">
             <img
               alt={"banner - 01"}
-              src={"/banner/banner-001.webp"}
+              src={IMAGES.banner1}
               className="absolute inset-0 w-full h-full object-cover"
             />
           </SwiperSlide>
           <SwiperSlide className="relative w-full h-full select-none">
             <img
               alt={"banner - 02"}
-              src={"/banner/banner-002.webp"}
+              src={IMAGES.banner2}
               className="absolute inset-0 w-full h-full object-cover"
             />
           </SwiperSlide>
           <SwiperSlide className="relative w-full h-full select-none">
             <img
               alt={"banner - 03"}
-              src={"/banner/banner-003.webp"}
+              src={IMAGES.banner3}
               className="absolute inset-0 w-full h-full object-cover"
             />
           </SwiperSlide>

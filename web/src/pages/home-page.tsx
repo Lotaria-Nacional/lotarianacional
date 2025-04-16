@@ -1,5 +1,4 @@
 import FAQ from "@/components/faq";
-import LeafletMap from "../components/map";
 import LinkCard from "../components/link-card";
 import { LINK_CARDS } from "../constants/links";
 import PlayGroundTable from "./playground-table";
@@ -11,7 +10,7 @@ import DailyResults from "../components/resultados/daily-results";
 import ListingNoticias from "../components/noticias/listing-noticias";
 import MobileDailyResults from "../components/mobile/mobile-daily-results";
 import { useScrollToChancesSection } from "@/hooks/useScrollToChancesSection";
-
+import GMap from "@/components/google-map/google-map";
 const HomePage = () => {
   const { chancesSectionRef } = useScrollToChancesSection();
 
@@ -88,7 +87,7 @@ const HomePage = () => {
           <FAQ />
         </section>
       </main>
-      <LeafletMap />
+      <GMap />
     </>
   );
 };
