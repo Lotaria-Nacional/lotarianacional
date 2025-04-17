@@ -1,19 +1,15 @@
-// import { useAgencies } from "@/hooks/api";
-// import GoogleMapMarker from "./google-map-marker";
-
+import { useAgencies } from "@/hooks/api";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { GOOGLE_CONFIG } from "./google-config";
 import { GoogleMap } from "@react-google-maps/api";
-import GoogleMapMarkerTest from "./google-map-marker-test";
-
-import { agencies } from "../../constants/db/agencies";
 import { useGoogleMaps } from "@/hooks/usseGoogleMaps";
+import GoogleMapMarkerTest from "./google-map-marker-test";
 import GoogleMapMarkerDefault from "./google-map-marker-default";
 
 export default function GMap() {
   const { pathname } = useLocation();
-  // const { agencies } = useAgencies();
+  const { agencies } = useAgencies();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { isLoaded, onLoad, onUnmount, selectedMarker, setSelectedMarker } =
@@ -40,8 +36,8 @@ export default function GMap() {
           mapContainerStyle={GOOGLE_CONFIG.CONTAINER_STYLE}
         >
           {agencies &&
-            agencies.length > 0 &&
-            agencies.map((item, index) => (
+            agencies.data.length > 0 &&
+            agencies.data.map((item, index) => (
               <GoogleMapMarkerTest
                 key={index}
                 data={item}

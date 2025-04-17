@@ -1,15 +1,12 @@
-// import { useAgencies } from "@/hooks/api";
-// import GoogleMapMarker from "./google-map-marker";
-
+import { useAgencies } from "@/hooks/api";
 import { GOOGLE_CONFIG } from "./google-config";
 import { GoogleMap } from "@react-google-maps/api";
 import { useGoogleMaps } from "@/hooks/usseGoogleMaps";
-import { agencies } from "../../constants/db/agencies";
 import GoogleMapMarkerTest from "./google-map-marker-test";
 import GoogleMapMarkerDefault from "./google-map-marker-default";
 
 export default function GMapMobile() {
-  // const { agencies } = useAgencies();
+  const { agencies } = useAgencies();
 
   const { isLoaded, onLoad, onUnmount, selectedMarker, setSelectedMarker } =
     useGoogleMaps();
@@ -25,8 +22,8 @@ export default function GMapMobile() {
           mapContainerStyle={GOOGLE_CONFIG.CONTAINER_STYLE}
         >
           {agencies &&
-            agencies.length > 0 &&
-            agencies.map((item, index) => (
+            agencies.data.length > 0 &&
+            agencies.data.map((item, index) => (
               <GoogleMapMarkerTest
                 key={index}
                 data={item}
