@@ -1,53 +1,34 @@
-import {
-  Sheet,
-  SheetTitle,
-  SheetHeader,
-  SheetTrigger,
-  SheetContent,
-  SheetDescription,
-} from "../ui/sheet"
-import { Menu } from "lucide-react"
-import { NavLink } from "react-router-dom"
-import { SIDEBAR_BOTTOM_LINKS, SIDEBAR_MENU_LINKS } from "@/constants/sidebar"
+import { useEffect, useRef, useState } from "react";
+import MobileMenu from "./mobile-menu";
+import Icon from "../ui/icon";
 
-const MobileMenuButton = () => {
+type Props = {};
+
+export default function MobileMenuButton({}: Props) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLButtonElement | null>(null);
+
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => window.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <Sheet>
-      <SheetTrigger asChild className="block lg:hidden">
-        <Menu className="text-white" size={32} />
-      </SheetTrigger>
-      <SheetContent className="bg-RED-200 border-none flex flex-col justify-start">
-        <SheetHeader>
-          <SheetTitle></SheetTitle>
-          <SheetDescription></SheetDescription>
-          <nav>
-            <ul className="flex flex-col gap-4">
-              {SIDEBAR_MENU_LINKS.map((link) => (
-                <li
-                  key={link.id}
-                  className="flex text-2xl border-b text-white items-center gap-2 h-[50px]"
-                >
-                  <img src={link.icon} alt="" />
-                  <NavLink to={link.link}>{link.label}</NavLink>
-                </li>
-              ))}
-            </ul>
-            <ul className="flex flex-col mt-4 gap-4">
-              {SIDEBAR_BOTTOM_LINKS.map((link) => (
-                <li
-                  key={link.id}
-                  className="flex text-2xl border-b text-white items-center gap-2 h-[50px] "
-                >
-                  <img src={link.icon} alt="" />
-                  <NavLink to={link.link}>{link.label}</NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </SheetHeader>
-      </SheetContent>
-    </Sheet>
-  )
+    <button
+      ref={menuRef}
+      onClick={toggleMenu}
+      className="flex flex-col w-fit items-center text-white"
+    >
+      <Icon name={isMenuOpen ? "close" : "menu"} className="text-[30px]" />
+      <span>Menu</span>
+      {isMenuOpen && <MobileMenu />}
+    </button>
+  );
 }
-
-export default MobileMenuButton
