@@ -1,18 +1,18 @@
-import FAQ from "@/components/faq";
-import LinkCard from "../components/link-card";
-import { LINK_CARDS } from "../constants/links";
-import PlayGroundTable from "./playground-table";
-import HeroSlider from "../components/hero-slider";
-import Container from "../components/common/container";
-import Emissoes from "../components/emissoes/emissoes";
-import CountDownCard from "../components/count-down-card";
-import DailyResults from "../components/resultados/daily-results";
-import ListingNoticias from "../components/noticias/listing-noticias";
-import MobileDailyResults from "../components/mobile/mobile-daily-results";
-import { useScrollToChancesSection } from "@/hooks/useScrollToChancesSection";
-import GMap from "@/components/google-map/google-map";
+import FAQ from "@/components/faq"
+import LinkCard from "../components/link-card"
+import { LINK_CARDS } from "../constants/links"
+import PlayGroundTable from "./playground-table"
+import HeroSlider from "../components/hero-slider"
+import GMap from "@/components/google-map/google-map"
+import Container from "../components/common/container"
+import Emissoes from "../components/emissoes/emissoes"
+import CountDownCard from "../components/count-down-card"
+import DailyResults from "../components/resultados/daily-results"
+import ListingNoticias from "../components/noticias/listing-noticias"
+import MobileDailyResults from "../components/mobile/mobile-daily-results"
+import { useScrollToChancesSection } from "@/hooks/useScrollToChancesSection"
 const HomePage = () => {
-  const { chancesSectionRef } = useScrollToChancesSection();
+  const { chancesSectionRef } = useScrollToChancesSection()
 
   return (
     <>
@@ -34,9 +34,7 @@ const HomePage = () => {
             item={LINK_CARDS[0]}
             className="lg:h-[220px] lg:mt-[8px] mt-[10px] h-[170px]"
           />
-
           <CountDownCard />
-
           <LinkCard
             item={LINK_CARDS[2]}
             className="lg:h-[220px] h-[170px] mt-[12px] lg:mt-[10px]"
@@ -44,7 +42,6 @@ const HomePage = () => {
         </Container>
 
         {/** PLAYGROUND TABLE SECTION */}
-
         <section
           id="chances"
           ref={chancesSectionRef}
@@ -89,7 +86,7 @@ const HomePage = () => {
       </main>
       <GMap />
     </>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

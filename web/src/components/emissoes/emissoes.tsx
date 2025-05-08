@@ -8,7 +8,7 @@ import "swiper/swiper-bundle.css"
 import "./emissoes-slider-nav.css"
 const Emissoes = () => {
   const { emissions, isLoading } = useEmission()
-
+  // console.log(emissions)
   return (
     <>
       {isLoading ? (
