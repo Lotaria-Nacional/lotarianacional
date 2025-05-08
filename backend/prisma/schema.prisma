@@ -48,7 +48,7 @@ model Result {
   number_3    Int
   number_4    Int
   number_5    Int
-  videoURL    String
+  videoURL    String?
   createdAt   DateTime @default(now())
   dailyId     String   @db.ObjectId
   DailyResult DailyResult @relation(fields: [dailyId], references: [id])
@@ -81,7 +81,7 @@ model Statistics {
 
 model Emission {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  url String
+  url String?
   createdAt DateTime @default(now())
   formatedData String?
   description String?

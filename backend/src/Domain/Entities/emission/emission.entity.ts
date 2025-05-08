@@ -2,10 +2,10 @@ import { formatDate } from "../../../utils/date";
 
 type EmissionProps = {
   id?: string;
-  url: string;
+  url?: string | null;
   createdAt?: Date;
-  formatedData?: string;
   description?: string;
+  formatedData?: string;
 };
 
 export class Emission {
@@ -15,8 +15,9 @@ export class Emission {
     const currentDate = new Date();
     return new Emission({
       ...props,
-      createdAt: props.createdAt || currentDate,
-      formatedData: props.formatedData || formatDate(currentDate),
+      url: props.url ?? null,
+      createdAt: props.createdAt ?? currentDate,
+      formatedData: props.formatedData ?? formatDate(currentDate),
     });
   }
   toJSON() {

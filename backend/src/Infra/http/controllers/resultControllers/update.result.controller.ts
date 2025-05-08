@@ -9,13 +9,6 @@ export class UpdateResultController {
   async handle(req: Request, res: Response) {
     const resultIdSchema = z.string();
     const updateResultSchema = z.object({
-      name: z.string().optional(),
-      hour: z.string().optional(),
-      number_1: z.number().int().optional(),
-      number_2: z.number().int().optional(),
-      number_3: z.number().int().optional(),
-      number_4: z.number().int().optional(),
-      number_5: z.number().int().optional(),
       videoURL: z.string().optional(),
     });
 
@@ -25,16 +18,8 @@ export class UpdateResultController {
 
       const updated = {
         id,
-        name: data.name,
-        hour: data.hour,
-        number_1: data.number_1,
-        number_2: data.number_2,
-        number_3: data.number_3,
-        number_4: data.number_4,
-        number_5: data.number_5,
         videoURL: data.videoURL,
       };
-
       const result = await this.updateResultUseCase.execute(updated);
 
       return res.status(200).json({ message: "Atualizado com sucesso.", data: result });

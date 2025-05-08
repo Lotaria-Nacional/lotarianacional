@@ -3,54 +3,58 @@ import { Result } from "../../../Domain/Entities/Result/Result";
 import { CreateResultInputDTO } from "../result/create.result.useCase";
 import { Emission } from "../../../Domain/Entities/emission/emission.entity";
 import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult";
+import { IExcelService } from "../../../Domain/services/xlsx.service.interface";
 import { IEmissionRepository } from "../../../Domain/Entities/emission/emission.repository";
 import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository";
-import { IExcelService } from "../../../Domain/services/xlsx.service.interface";
 
 export class CreateDailyResultUseCase {
-  constructor(private dailyResultRespository: IDailyResultRespository, private emissionRepository: IEmissionRepository, private excelService:IExcelService) {}
+  constructor(private dailyResultRepo: IDailyResultRespository, private emissionRepo: IEmissionRepository, private excelService: IExcelService) {}
 
   async execute(data: CreateResultInputDTO): Promise<void> {
     const today = new Date();
 
     try {
-      let dailyResult = await this.dailyResultRespository.getLast();
+      let dailyResult = await this.dailyResultRepo.getLast();
+      const newResult = this.buildResult(data);
 
-      if (!dailyResult || this.isNewDailyResultRequired(dailyResult)) {
-        dailyResult = this.createNewDailyResult(today, [this.createNewResult(data)]);
-        await this.dailyResultRespository.save(dailyResult);
+      if (!dailyResult || this.shouldCreateNewDailyResult(dailyResult)) {
+        dailyResult = this.buildNewDailyResult(today, [newResult]);
+        await this.dailyResultRepo.save(dailyResult);
       } else {
-        dailyResult.results.forEach((result) => {
-          if (result.name === data.name) {
-            throw new Error("Este resultado já foi inserido.");
-          }
-        });
-        dailyResult.results.push(this.createNewResult(data));
-        await this.dailyResultRespository.update(dailyResult);
+        this.ensureResultIsUnique(dailyResult, data.name);
+        dailyResult.results.push(newResult);
+        await this.dailyResultRepo.update(dailyResult);
       }
-      const emission = Emission.create({
-        description: data.name,
-        url: data.videoURL,
-      });
-      await this.emissionRepository.save(emission);
-      await this.excelService.generateAndSaveExcel();
+
+      if (this.hasValidVideoURL(data.videoURL)) {
+        await this.saveEmission(data.name, data.videoURL!);
+      }
     } catch (error) {
       console.error("Erro ao criar o resultado do dia:", error);
       throw error;
     }
   }
 
-  private createNewDailyResult(date: Date, results: Result[]): DailyResult {
+  private shouldCreateNewDailyResult(dailyResult: DailyResult): boolean {
+    return dailyResult.results.length >= 4;
+  }
+
+  private ensureResultIsUnique(dailyResult: DailyResult, name: string): void {
+    const exists = dailyResult.results.some((result) => result.name === name);
+    if (exists) {
+      throw new Error("Este resultado já foi inserido.");
+    }
+  }
+
+  private buildNewDailyResult(date: Date, results: Result[]): DailyResult {
     return DailyResult.create({
       date,
       results,
       formatedDate: formatDate(date),
     });
   }
-  private isNewDailyResultRequired(dailyResult: DailyResult): boolean {
-    return dailyResult.results.length >= 4;
-  }
-  private createNewResult(data: CreateResultInputDTO): Result {
+
+  private buildResult(data: CreateResultInputDTO): Result {
     return Result.create({
       name: data.name,
       hour: data.hour,
@@ -62,5 +66,14 @@ export class CreateDailyResultUseCase {
       number_4: data.number_4,
       number_5: data.number_5,
     });
+  }
+
+  private hasValidVideoURL(url: string | undefined | null): url is string {
+    return typeof url === "string" && url.trim().length > 0;
+  }
+
+  private async saveEmission(description: string, url: string): Promise<void> {
+    const emission = Emission.create({ description, url });
+    await this.emissionRepo.save(emission);
   }
 }

@@ -5,7 +5,7 @@ export type CreateResultInputDTO = {
   name: string;
   hour: string;
   dailyId?: string;
-  videoURL: string;
+  videoURL?: string | null;
   number_1: number;
   number_2: number;
   number_3: number;

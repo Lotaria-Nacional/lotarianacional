@@ -9,12 +9,13 @@ export class PrismaEmissionRepository implements IEmissionRepository {
         createdAt: "desc",
       },
     });
+
     return emissions.map((emission) =>
       Emission.create({
-        url: emission.url,
-        description: emission.description || "",
-        formatedData: emission.formatedData || "",
-        createdAt: emission.createdAt || new Date(),
+        url: emission.url ?? null,
+        description: emission.description ?? "",
+        formatedData: emission.formatedData ?? "",
+        createdAt: emission.createdAt ?? new Date(),
       })
     );
   }
@@ -29,8 +30,8 @@ export class PrismaEmissionRepository implements IEmissionRepository {
           createdAt,
         },
       });
+      console.log("Salvo");
     } catch (error) {
-      console.log("PrismaEmissionRepository ~ save ~ error --> ", error);
       throw new Error("Infra ~ Erro ao criar a emissão.");
     }
   }
