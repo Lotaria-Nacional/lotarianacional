@@ -2,7 +2,7 @@ import { useAgencies } from "@/hooks/api";
 import { GOOGLE_CONFIG } from "./google-config";
 import { GoogleMap } from "@react-google-maps/api";
 import { useGoogleMaps } from "@/hooks/usseGoogleMaps";
-import GoogleMapMarkerTest from "./google-map-marker-test";
+import GoogleMapMarker from "./google-map-marker";
 import GoogleMapMarkerDefault from "./google-map-marker-default";
 
 export default function GMapMobile() {
@@ -24,7 +24,7 @@ export default function GMapMobile() {
           {agencies &&
             agencies.data.length > 0 &&
             agencies.data.map((item, index) => (
-              <GoogleMapMarkerTest
+              <GoogleMapMarker
                 key={index}
                 data={item}
                 selectedMarker={selectedMarker}

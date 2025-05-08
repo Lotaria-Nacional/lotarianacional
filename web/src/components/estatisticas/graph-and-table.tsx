@@ -1,41 +1,39 @@
-import BarChart from "./bar-chart"
-import { IStats } from "@/interfaces"
-import StatsInfoText, { StatsTextColor } from "./stats-info-text"
-import BarChartMobile from "./bar-chart-mobile"
-import React from "react"
+import React from "react";
+import BarChart from "./bar-chart";
+import { IStats } from "@/interfaces";
+import BarChartMobile from "./bar-chart-mobile";
+import StatsInfoText, { StatsTextColor } from "./stats-info-text";
 
-// Função para calcular percentis corretamente
 const calculatePercentile = (arr: number[], percentile: number) => {
-  if (arr.length === 0) return 0
-  const sortedArr = [...arr].sort((a, b) => a - b)
-  const index = Math.floor(percentile * sortedArr.length) // Usa Math.floor para evitar arredondamento exagerado
-  return sortedArr[Math.max(0, index)]
-}
+  if (arr.length === 0) return 0;
+  const sortedArr = [...arr].sort((a, b) => a - b);
+  const index = Math.floor(percentile * sortedArr.length);
+  return sortedArr[Math.max(0, index)];
+};
 
 type Props = {
-  switchTableAndGraph: boolean
-  statsDataArr: IStats[]
-}
+  switchTableAndGraph: boolean;
+  statsDataArr: IStats[];
+};
 
 const GraphAndTable = ({ switchTableAndGraph, statsDataArr }: Props) => {
-  const frequencies = statsDataArr.map((item) => item.sortedTimes)
+  const frequencies = statsDataArr.map((item) => item.sortedTimes);
 
-  if (frequencies.length === 0) return null
+  if (frequencies.length === 0) return null;
 
-  // Calcular percentis ajustados
-  const p15 = calculatePercentile(frequencies, 0.15) // Números frios
-  const p85 = calculatePercentile(frequencies, 0.85) // Números quentes
+  const p15 = calculatePercentile(frequencies, 0.15);
+  const p85 = calculatePercentile(frequencies, 0.85);
 
   return switchTableAndGraph ? (
     <>
       <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-10 xl:grid-cols-[repeat(15,1fr)] gap-3 w-full place-items-center">
         {statsDataArr?.map((item, index) => {
-          let bgColor = "bg-[#00A5FF]" // Azul (frio) por padrão
+          let bgColor = "bg-[#00A5FF]";
 
           if (item.sortedTimes >= p85) {
-            bgColor = "bg-LT_RED-300" // Vermelho (quente)
+            bgColor = "bg-LT_RED-300";
           } else if (item.sortedTimes >= p15) {
-            bgColor = "bg-zinc-500" // Amarelo (normal)
+            bgColor = "bg-zinc-500";
           }
 
           return (
@@ -50,7 +48,7 @@ const GraphAndTable = ({ switchTableAndGraph, statsDataArr }: Props) => {
               </span>
               <span className="text-black">{item.sortedTimes}</span>
             </div>
-          )
+          );
         })}
       </div>
       <div className="flex flex-col lg:flex-row items-start mt-2 mx-auto lg:mt-8 lg:justify-between justify-start w-fit xl:w-2/5">
@@ -64,7 +62,7 @@ const GraphAndTable = ({ switchTableAndGraph, statsDataArr }: Props) => {
       <BarChart stats={statsDataArr} />
       <BarChartMobile stats={statsDataArr} />
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default GraphAndTable
+export default GraphAndTable;

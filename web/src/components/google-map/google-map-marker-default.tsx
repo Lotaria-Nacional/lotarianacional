@@ -2,7 +2,7 @@ import { SetStateAction } from "react";
 import { HiPhone } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
 import { MarkerF, InfoWindowF } from "@react-google-maps/api";
-import lotariaMarker from "../../assets/icons/lotaria-marker.png";
+import lotariaMarker from "../../assets/icons/google-map/lotaria-sede.svg";
 
 type Props = {
   selectedMarker: number | null;
@@ -14,7 +14,7 @@ function GoogleMapMarkerDefault({ handleClick, selectedMarker }: Props) {
     url: lotariaMarker,
     origin: new window.google.maps.Point(0, 0),
     anchor: new window.google.maps.Point(16, 32),
-    scaledSize: new window.google.maps.Size(24, 32),
+    scaledSize: new window.google.maps.Size(40, 32),
   };
 
   return (
