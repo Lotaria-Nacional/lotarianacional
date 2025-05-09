@@ -1,10 +1,10 @@
 import { useAgencies } from "@/hooks/api";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { GOOGLE_CONFIG } from "./google-config";
-import { GoogleMap } from "@react-google-maps/api";
-import { useGoogleMaps } from "@/hooks/usseGoogleMaps";
 import GoogleMapMarker from "./google-map-marker";
+import { GoogleMap } from "@react-google-maps/api";
+import { GoogleMapConfigProps } from "./google-config";
+import { useGoogleMaps } from "@/hooks/usseGoogleMaps";
 import GoogleMapMarkerDefault from "./google-map-marker-default";
 
 export default function GMap() {
@@ -31,9 +31,9 @@ export default function GMap() {
         <GoogleMap
           onLoad={onLoad}
           onUnmount={onUnmount}
-          center={GOOGLE_CONFIG.CENTER}
-          options={GOOGLE_CONFIG.mapOptions}
-          mapContainerStyle={GOOGLE_CONFIG.CONTAINER_STYLE}
+          center={GoogleMapConfigProps.center}
+          options={GoogleMapConfigProps.options}
+          mapContainerStyle={GoogleMapConfigProps.mapContainerStyle}
         >
           {agencies &&
             agencies.data.length > 0 &&
@@ -41,6 +41,7 @@ export default function GMap() {
               <GoogleMapMarker
                 key={index}
                 data={item}
+                // @ts-ignore
                 index={index}
                 selectedMarker={selectedMarker}
                 handleClick={setSelectedMarker}

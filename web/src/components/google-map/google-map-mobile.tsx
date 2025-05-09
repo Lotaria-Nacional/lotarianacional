@@ -1,5 +1,5 @@
 import { useAgencies } from "@/hooks/api";
-import { GOOGLE_CONFIG } from "./google-config";
+import { GoogleMapConfigProps } from "./google-config";
 import { GoogleMap } from "@react-google-maps/api";
 import { useGoogleMaps } from "@/hooks/usseGoogleMaps";
 import GoogleMapMarker from "./google-map-marker";
@@ -17,9 +17,9 @@ export default function GMapMobile() {
         <GoogleMap
           onLoad={onLoad}
           onUnmount={onUnmount}
-          center={GOOGLE_CONFIG.CENTER}
-          options={GOOGLE_CONFIG.mapOptions}
-          mapContainerStyle={GOOGLE_CONFIG.CONTAINER_STYLE}
+          center={GoogleMapConfigProps.center}
+          options={GoogleMapConfigProps.options}
+          mapContainerStyle={GoogleMapConfigProps.mapContainerStyle}
         >
           {agencies &&
             agencies.data.length > 0 &&
