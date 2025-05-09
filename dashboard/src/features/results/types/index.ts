@@ -14,7 +14,7 @@ export interface ResultEntity {
   number_3: number
   number_4: number
   number_5: number
-  videoURL: string | null
+  videoURL?: string | null
   createdAt: Date
 }
 

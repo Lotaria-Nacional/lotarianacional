@@ -13,7 +13,10 @@ export type CreateResultResponse = {
   message: string
 }
 
-export type UpdateResultRequest = Partial<CreateResultRequest> & { id:string, videoURL:string | null }
+export type UpdateResultRequest = Partial<CreateResultRequest> & {
+  id: string
+  videoURL? : string | null
+}
 
 /* ########## FUNCTIONS ############ */
 
@@ -34,17 +37,19 @@ export async function getAllResults(): Promise<DailyResultEntity[]> {
   return response.data
 }
 
-export async function getTotalResults(): Promise<{total:number}> {
+export async function getTotalResults(): Promise<{ total: number }> {
   const response = await axios.get("/results")
   return response.data
 }
 
-export async function updateResult(data:UpdateResultRequest): Promise<{ message: string }> {
-  const response = await axios.put(`/result/${data.id}`,data)
+export async function updateResult(
+  data: UpdateResultRequest
+): Promise<{ message: string }> {
+  const response = await axios.put(`/result/${data.id}`, data)
   return response.data
 }
 
-export async function deleteResult(id:string): Promise<{ message: string }> {
+export async function deleteResult(id: string): Promise<{ message: string }> {
   const response = await axios.delete(`/daily-result/${id}`)
   return response.data
 }

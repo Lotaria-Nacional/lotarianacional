@@ -1,12 +1,12 @@
 import { toast } from "sonner"
 import Icon from "@/components/ui/icon"
-import { FormEvent, useEffect, useState } from "react"
-import Button from "@/components/ui/lottary-button"
-import { handleFormError } from "@/lib/error"
 import { ResultEntity } from "../../types"
-import UpdateResultCardInput from "./update-result-card-input"
+import { handleFormError } from "@/lib/error"
 import { UpdateResultRequest } from "../../api"
+import Button from "@/components/ui/lottary-button"
+import { FormEvent, useEffect, useState } from "react"
 import { useUpdateResult } from "../../hooks/mutation"
+import UpdateResultCardInput from "./update-result-card-input"
 
 type Props = {
   result: ResultEntity
@@ -14,7 +14,10 @@ type Props = {
 
 export default function UpdateResultForm({ result }: Props) {
   const { mutateAsync, isPending } = useUpdateResult()
-  const [data, setData] = useState<UpdateResultRequest>(result)
+  const [data, setData] = useState<UpdateResultRequest>({
+    ...result,
+    videoURL: result.videoURL as string,
+  })
   const [canUpdateResult, setCanUpdateResult] = useState(true)
 
   useEffect(() => {
@@ -63,7 +66,7 @@ export default function UpdateResultForm({ result }: Props) {
                 type="text"
                 placeholder="https://youtube.com?watch=6tkebf13f"
                 className="bg-transparent w-full h-full outline-none"
-                value={data.videoURL}
+                value={data.videoURL ?? ""}
                 onChange={(e) => setData({ ...data, videoURL: e.target.value })}
               />
             </div>

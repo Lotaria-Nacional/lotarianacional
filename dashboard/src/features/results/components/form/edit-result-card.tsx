@@ -14,7 +14,7 @@ import { getYouTubeEmbedURL } from "../../utils/get-youtube-embed"
 type Props = {
   result_info: {
     id: string
-    videoURL: string | null
+    videoURL?: string | null
   }
 }
 
