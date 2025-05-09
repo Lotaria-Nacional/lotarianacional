@@ -27,6 +27,7 @@ export default function GMapMobile() {
               <GoogleMapMarker
                 key={index}
                 data={item}
+                index={index}
                 selectedMarker={selectedMarker}
                 handleClick={setSelectedMarker}
               />

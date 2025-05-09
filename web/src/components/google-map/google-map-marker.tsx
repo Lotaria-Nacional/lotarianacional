@@ -11,9 +11,10 @@ type Props = {
   selectedMarker: number | null;
   handleClick: React.Dispatch<SetStateAction<number | null>>;
   data: IAgency;
+  index: number;
 };
 
-function GoogleMapMarker({ handleClick, selectedMarker, data }: Props) {
+function GoogleMapMarker({ handleClick, selectedMarker, data, index }: Props) {
   const googleMapIcon = {
     url:
       data.type === "lotaria-nacional"
@@ -31,10 +32,10 @@ function GoogleMapMarker({ handleClick, selectedMarker, data }: Props) {
   return (
     <MarkerF
       icon={googleMapIcon}
-      onClick={() => handleClick(Number(data.id))}
+      onClick={() => handleClick(index + 1)}
       position={{ lat: data.latitude, lng: data.longitude }}
     >
-      {selectedMarker === Number(data.id) && (
+      {selectedMarker === index + 1 && (
         <InfoWindowF position={{ lat: data.latitude, lng: data.longitude }}>
           <div className="w-[250px] h-[160px] lg:w-[305px] lg:h-[181px] bg-LT_RED-100 p-4 rounded-xl flex flex-col items-start justify-between">
             <button

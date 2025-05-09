@@ -10,8 +10,9 @@ export const GOOGLE_CONFIG = {
     },
 
  mapOptions: {
-    minZoom: 10, 
-    maxZoom: 16,
+    minZoom: 6, 
+    maxZoom: 17,
+    zoom:13,
     styles: [
         {
         featureType: "all",

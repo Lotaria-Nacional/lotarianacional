@@ -12,9 +12,6 @@ import AgencySkeleton from "@/components/agencia/agency-skeleton";
 import { filterAgenciesBySearchParams } from "../utils/agency";
 import GMapMobile from "@/components/google-map/google-map-mobile";
 
-// import LeafletMap from "../components/map";
-// import LeafletMapMobile from "../components/mobile/leaftlet-map-mobile";
-
 const AgenciasPage = () => {
   const { currentPage, setSearch } = usePagination();
   const [searchParams, setSearchParams] = useSearchParams({ agencia: "" });

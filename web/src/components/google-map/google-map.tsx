@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { GOOGLE_CONFIG } from "./google-config";
 import { GoogleMap } from "@react-google-maps/api";
 import { useGoogleMaps } from "@/hooks/usseGoogleMaps";
-import GoogleMapMarkerTest from "./google-map-marker";
+import GoogleMapMarker from "./google-map-marker";
 import GoogleMapMarkerDefault from "./google-map-marker-default";
 
 export default function GMap() {
@@ -38,9 +38,10 @@ export default function GMap() {
           {agencies &&
             agencies.data.length > 0 &&
             agencies.data.map((item, index) => (
-              <GoogleMapMarkerTest
+              <GoogleMapMarker
                 key={index}
                 data={item}
+                index={index}
                 selectedMarker={selectedMarker}
                 handleClick={setSelectedMarker}
               />
