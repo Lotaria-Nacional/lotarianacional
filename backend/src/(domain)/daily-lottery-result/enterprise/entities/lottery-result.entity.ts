@@ -4,13 +4,12 @@ export type LotteryResultProps = {
   id: string;
   hour: string;
   name: string;
-  daily_lottery_result_id: string;
-  emisison?: string | null;
+  created_at: Date;
   sorted_numbers:number[];
-  createdAt: Date;
+  emisison?: string | null;
+  daily_lottery_result_id: string;
 };
  
-
 export class LotteryResult extends EntityBase<LotteryResultProps> {
 
   static create(props: LotteryResultProps, id:string) {
@@ -20,7 +19,7 @@ export class LotteryResult extends EntityBase<LotteryResultProps> {
     return new LotteryResult({
         ...props,
         emisison: props.emisison ?? null,
-        createdAt:props.createdAt ??  currentDate,      
+        created_at:props.created_at ??  currentDate,      
     }, id);
   }
 
@@ -43,5 +42,4 @@ export class LotteryResult extends EntityBase<LotteryResultProps> {
   set daily_lottery_result_id(daily_lottery_result_id:string) {
     this.props.daily_lottery_result_id = daily_lottery_result_id;
   }
-  
 }

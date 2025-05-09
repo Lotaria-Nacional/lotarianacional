@@ -8,17 +8,14 @@ type AgencyProps = {
   longitude: number;
   type: string;
   address: string;
-  createdAt: Date;
+  created_at: Date;
 };
- 
 
 export class Agency extends EntityBase<AgencyProps> {
-
 
   static create(props: AgencyProps,id:string) {    
     return new Agency(props, id);
   }
-
     
   set name(name:string){
     this.props.name = name
@@ -44,8 +41,8 @@ export class Agency extends EntityBase<AgencyProps> {
     this.props.address = address
   }
 
-  set createdAt(createdAt:Date){
-    this.props.createdAt = createdAt
+  set created_at(created_at:Date){
+    this.props.created_at = created_at
   }
 
 }

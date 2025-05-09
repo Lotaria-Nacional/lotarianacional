@@ -5,7 +5,7 @@ export type NewsProps = {
   title: string
   image: string
   description: string
-  createdAt: Date
+  created_at: Date
 }
 
 export class News extends EntityBase<NewsProps>{
@@ -23,7 +23,7 @@ export class News extends EntityBase<NewsProps>{
     set description(description:string){
       this.props.description = description
     }    
-    set createdAt(createdAt:Date){
-      this.props.createdAt = createdAt
+    set created_at(created_at:Date){
+      this.props.created_at = created_at
     }
 }

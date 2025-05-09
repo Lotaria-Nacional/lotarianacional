@@ -2,7 +2,7 @@ import { EntityBase } from "../../../../(core)/entity/entity.base";
 
 export type EmissionProps = {
   id: string;
-  createdAt: Date;
+  created_at: Date;
   url?: string | null;
   description?: string | null;
   lottery_result_id?: string | null;    
@@ -15,7 +15,7 @@ export class Emission extends EntityBase<EmissionProps> {
 
     return new Emission({
         ...props,
-        createdAt: props.createdAt ?? currentDate
+        created_at: props.created_at ?? currentDate
     }, id);
   }
 
@@ -31,8 +31,8 @@ export class Emission extends EntityBase<EmissionProps> {
     this.props.url = url;
   }
 
-  set createdAt (createdAt: Date){
-    this.props.createdAt = createdAt;
+  set created_at (created_at: Date){
+    this.props.created_at = created_at;
   }
 
   set description (description: string | null){
