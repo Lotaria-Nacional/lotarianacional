@@ -41,7 +41,7 @@ app.use("/api", recruitmentRoutes);
 app.use("/api", statisticRoutes);
 app.use("/api", emissionRoutes);
 
-const PORT = 8080;
+const PORT = 3333;
 
 app.listen(PORT, () => {
   console.log("Server Running... -> " + PORT);

@@ -14,6 +14,8 @@ export class CreateNewsUseCase {
   async execute(data: CreateNewsInputDTO) {
     const imageURL = await this.fileUpload.upload(data.image, "lotaria_nacional/news", "image");
     const news = News.create({ ...data, image: imageURL });
+    console.log("use case reached")
     await this.newsRepository.save(news);
+
   }
 }

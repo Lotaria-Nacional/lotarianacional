@@ -17,7 +17,7 @@ export class CreateNewsController {
       const newsData = createNewsSchema.parse(req.body)
 
       await this.createNewsUseCase.execute({ ...newsData, image: fileImage! })
-
+      console.log("controller reached")
       return res.status(201).json({ message: "Criado com sucesso!" })
     } catch (error) {
       if (error instanceof z.ZodError) {

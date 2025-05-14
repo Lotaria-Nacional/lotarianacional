@@ -28,6 +28,7 @@ export class PrismaNewsRespository implements INewsRespository {
         description: news.description,
       },
     });
+    console.log("infra reached")
   }
 
   async getAll(page: number = 1, pageSize: number): Promise<INewsResponse> {
