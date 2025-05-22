@@ -142,9 +142,9 @@ export const FOOTER_NAVIGATION_LINKS = [
     label: "Termos de Privacidade",
     link: "/termos-de-privacidade",
   },
-  {
-    id: 6,
-    label: "Regulamentos do Loto 5/90",
-    link: "/regulamentos-do-loto-5-90",
-  },
+  // {
+  //   id: 6,
+  //   label: "Regulamentos do Loto 5/90",
+  //   link: "/regulamentos-do-loto-5-90",
+  // },
 ] as const
