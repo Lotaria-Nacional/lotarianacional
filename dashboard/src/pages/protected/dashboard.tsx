@@ -1,7 +1,7 @@
 import { isValidArray } from "@/lib/utils";
 import TotalCard from "@/components/total-card";
+import GoogleMap from "@/components/google-map/google-map";
 import TotalCardSkeleton from "@/components/total-card-skeleton";
-import AgencyMap from "@/features/agencies/components/agency-map";
 import { useGetTotalResults } from "@/features/results/hooks/query";
 import { useGetAllAgencies } from "@/features/agencies/hooks/query";
 import TotalCardEmptyState from "@/components/total-card-empty-state";
@@ -45,11 +45,13 @@ const Dashboard = () => {
             )}
           </div>
 
-          <div className="w-full rounded-card h-[250px] lg:h-auto lg:col-span-2 relative">
+          <div className="relative w-full rounded-card h-[250px] lg:h-auto lg:col-span-2">
             <span className="absolute top-2 right-2 text-white rounded-md px-4 py-1 bg-LT-RED-200 z-[999]">
               Agências
             </span>
-            <AgencyMap />
+            <div className="relative w-full h-full">
+              <GoogleMap />
+            </div>
           </div>
         </div>
       </section>

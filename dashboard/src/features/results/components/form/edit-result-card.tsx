@@ -3,43 +3,43 @@ import {
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import Button from "@/components/ui/lottary-button"
-import { FormEvent, useState } from "react"
-import { useUpdateResult } from "../../hooks/mutation"
-import { toast } from "sonner"
-import { getYouTubeEmbedURL } from "../../utils/get-youtube-embed"
+} from "@/components/ui/dialog";
+import { toast } from "sonner";
+import { FormEvent, useState } from "react";
+import { Input } from "@/components/ui/input";
+import Button from "@/components/ui/lottary-button";
+import { useUpdateResult } from "../../hooks/mutation";
+import { getYouTubeEmbedURL } from "../../utils/get-youtube-embed";
 
 type Props = {
   result_info: {
-    id: string
-    videoURL?: string | null
-  }
-}
+    id: string;
+    videoURL: string | null;
+  };
+};
 
 export default function EditResultCard({ result_info }: Props) {
-  const { mutateAsync, isPending } = useUpdateResult()
+  const { mutateAsync, isPending } = useUpdateResult();
 
-  const [isMouseOver, setIsMouseOver] = useState(false)
-  const [url, setUrl] = useState("")
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const [url, setUrl] = useState("");
 
   if (result_info.videoURL) {
-    return null
+    return null;
   }
 
   const handleUpdateResult = async (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       mutateAsync({
         id: result_info.id,
-        videoURL: url,
-      })
-      toast("Atualizado com sucesso!")
+        videoURL: getYouTubeEmbedURL(url),
+      });
+      toast("Atualizado com sucesso!");
     } catch (error) {
-      console.error("Error updating result:", error)
+      console.error("Error updating result:", error);
     }
-  }
+  };
 
   return (
     <div
@@ -64,9 +64,8 @@ export default function EditResultCard({ result_info }: Props) {
                     <label>Link da emissão</label>
                     <Input
                       type="text"
-                      onChange={(e) =>
-                        setUrl(getYouTubeEmbedURL(e.target.value))
-                      }
+                      value={url}
+                      onChange={(e) => setUrl(e.target.value)}
                       placeholder="https://youtube.com/YgvsSfsfibn"
                     />
                   </fieldset>
@@ -84,5 +83,5 @@ export default function EditResultCard({ result_info }: Props) {
         </div>
       )}
     </div>
-  )
+  );
 }

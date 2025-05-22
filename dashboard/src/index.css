@@ -55,7 +55,6 @@
   --animate-fade-in: fade-in 0.3s ease;
   --animate-modal-fade-in: modal-fade-in 0.3s ease-out;
   --animate-up-down: upDown 0.9s linear infinite;
-
   /* ############# KEYFRAMES ############# */
 
   @keyframes fade-in {
@@ -99,7 +98,29 @@ body {
 
 @font-face {
   font-family: "edoSz";
-  src: url("/src/assets/fonts/edosz.ttf") format("truetype");
+  src: url("/fonts/edosz.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Arial";
+  src: url("/fonts/arial.ttf") format("truetype");
+  font-weight: 400 900;
+}
+
+@font-face {
+  font-family: "Arial-Medium";
+  src: url("/fonts/arial-medium.ttf") format("truetype");
+  font-weight: 800;
+}
+
+.arial {
+  font-family: "Arial", sans-serif;
+  font-weight: 400;
+}
+
+.arial-medium {
+  font-family: "Arial-Medium", sans-serif;
+  font-weight: 700;                                                                    
 }
 
 .font-edoSz {
@@ -134,8 +155,33 @@ body {
   background-size: cover;
 }
 
-.bg-result-feed {
-  background-image: url("/results/background/bg-result-feed.png");
+.bg-result-feed-fezada {
+  background-image: url("/results/background-2/FEZADA.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.bg-result-feed-aqueceu {
+  background-image: url("/results/background-2/AQUECEU.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.bg-result-feed-kazola {
+  background-image: url("/results/background-2/KAZOLA.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.bg-result-feed-eskebra {
+  background-image: url("/results/background-2/ESKEBRA.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.bg-results-resume {
+  background-image: url("/results/background-2/RESUMO.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -143,13 +189,6 @@ body {
 
 .bg-result-story {
   background-image: url("/results/background/bg-result-story.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.bg-all-results-feed {
-  background-image: url("/results/background/bg-all-results-feed.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

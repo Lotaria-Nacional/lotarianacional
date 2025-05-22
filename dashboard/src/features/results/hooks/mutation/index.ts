@@ -1,6 +1,6 @@
-import { RESULT_QUERY_KEYS } from "../../constants/keys"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import { createResult, deleteResult, updateResult } from "../../api"
+import { RESULT_QUERY_KEYS } from "../../constants/keys"
 
 export function useCreateResult() {
   const queryClient = useQueryClient()
@@ -9,7 +9,10 @@ export function useCreateResult() {
     mutationFn: createResult,
     onSuccess: () =>
       queryClient.invalidateQueries({
-        queryKey: [RESULT_QUERY_KEYS.GET_ALL, RESULT_QUERY_KEYS.GET_LAST],
+        queryKey: [
+          RESULT_QUERY_KEYS.GET_ALL,
+          RESULT_QUERY_KEYS.GET_LAST,
+        ],
       }),
   })
 }
@@ -19,10 +22,10 @@ export function useUpdateResult() {
 
   return useMutation({
     mutationFn: updateResult,
-    onSuccess: () =>
-      queryClient.invalidateQueries({
-        queryKey: [RESULT_QUERY_KEYS.GET_LAST, RESULT_QUERY_KEYS.GET_ALL],
-      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: [RESULT_QUERY_KEYS.GET_ALL]}),
+      queryClient.invalidateQueries({queryKey: [RESULT_QUERY_KEYS.GET_LAST]})
+    }
   })
 }
 
@@ -32,10 +35,8 @@ export function useDeleteResult() {
   return useMutation({
     mutationFn: deleteResult,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [RESULT_QUERY_KEYS.GET_ALL] }),
-        queryClient.invalidateQueries({
-          queryKey: [RESULT_QUERY_KEYS.GET_LAST],
-        })
-    },
+      queryClient.invalidateQueries({queryKey: [RESULT_QUERY_KEYS.GET_ALL]}),
+      queryClient.invalidateQueries({queryKey: [RESULT_QUERY_KEYS.GET_LAST]})
+    }
   })
 }

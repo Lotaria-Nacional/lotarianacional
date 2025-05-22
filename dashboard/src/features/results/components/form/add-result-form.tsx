@@ -1,39 +1,39 @@
-import { toast } from "sonner"
-import Icon from "@/components/ui/icon"
-import { FormEvent, useState } from "react"
-import { handleFormError } from "@/lib/error"
-import { CreateResultRequest } from "../../api"
-import Button from "@/components/ui/lottary-button"
-import { useCreateResult } from "../../hooks/mutation"
-import AddResultCardInput from "./add-result-card-input"
-import { CreateResult, ResultHour, ResultName } from "../../types"
-import { getYouTubeEmbedURL } from "../../utils/get-youtube-embed"
-import { useIsPublishingAllowed } from "../../hooks/useIsPublishingAllowed"
+import { toast } from "sonner";
+import Icon from "@/components/ui/icon";
+import { FormEvent, useState } from "react";
+import { handleFormError } from "@/lib/error";
+import { CreateResultRequest } from "../../api";
+import Button from "@/components/ui/lottary-button";
+import { useCreateResult } from "../../hooks/mutation";
+import AddResultCardInput from "./add-result-card-input";
+import { CreateResult, ResultHour, ResultName } from "../../types";
+import { getYouTubeEmbedURL } from "../../utils/get-youtube-embed";
+import { useIsPublishingAllowed } from "../../hooks/useIsPublishingAllowed";
 
 type Props = {
-  name: ResultName
-  hour: ResultHour
-}
+  name: ResultName;
+  hour: ResultHour;
+};
 
 export default function AddResultForm({ name, hour }: Props) {
-  const { mutateAsync: createResult, isPending } = useCreateResult()
-  const { isAllowed } = useIsPublishingAllowed(hour)
+  const { mutateAsync: createResult, isPending } = useCreateResult();
+  const { isAllowed } = useIsPublishingAllowed(hour);
 
   const [data, setData] = useState<CreateResult>({
     hour,
     name,
     videoURL: "",
     numbers: [],
-  })
+  });
 
   const handleSaveResult = async (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!isAllowed) {
-      return toast.error("Só é permitido publicar dentro do horário correto!")
+      return toast.error("Só é permitido publicar dentro do horário correto!");
     }
 
-    const [number_1, number_2, number_3, number_4, number_5] = data.numbers
+    const [number_1, number_2, number_3, number_4, number_5] = data.numbers;
 
     try {
       const requestData: CreateResultRequest = {
@@ -45,15 +45,15 @@ export default function AddResultForm({ name, hour }: Props) {
         number_3,
         number_4,
         number_5,
-      }
+      };
 
-      const response = await createResult(requestData)
+      const response = await createResult(requestData);
 
-      toast.success(response.message)
+      toast.success(response.message);
     } catch (error) {
-      handleFormError(error)
+      handleFormError(error);
     }
-  }
+  };
 
   return (
     <form
@@ -83,7 +83,7 @@ export default function AddResultForm({ name, hour }: Props) {
                   setData({
                     ...data,
                     videoURL: getYouTubeEmbedURL(e.target.value),
-                  })
+                  });
                 }}
               />
             </div>
@@ -106,5 +106,5 @@ export default function AddResultForm({ name, hour }: Props) {
         </Button>
       </div>
     </form>
-  )
+  );
 }

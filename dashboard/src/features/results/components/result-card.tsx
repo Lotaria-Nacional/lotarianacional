@@ -1,22 +1,22 @@
-import { ICON } from "@/assets"
-import { useEffect } from "react"
-import { ResultEntity } from "../types"
-import { twMerge } from "tailwind-merge"
+import { ICON } from "@/assets";
+import { useEffect } from "react";
+import { ResultEntity } from "../types";
+import { twMerge } from "tailwind-merge";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import EditResultCard from "./form/edit-result-card"
+} from "@/components/ui/tooltip";
+import EditResultCard from "./form/edit-result-card";
 
 type Props = {
-  className?: string
-  result: ResultEntity
-}
+  className?: string;
+  result: ResultEntity;
+};
 
 export default function ResultCard({ result, className }: Props) {
-  let timeoutId: NodeJS.Timeout | null = null
+  let timeoutId: NodeJS.Timeout | null = null;
 
   const numbers = [
     result.number_1,
@@ -24,13 +24,13 @@ export default function ResultCard({ result, className }: Props) {
     result.number_3,
     result.number_4,
     result.number_5,
-  ]
+  ];
 
   useEffect(() => {
     return () => {
-      if (timeoutId) clearTimeout(timeoutId)
-    }
-  }, [])
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, []);
   return (
     <div
       className={twMerge(
@@ -81,5 +81,5 @@ export default function ResultCard({ result, className }: Props) {
         }}
       />
     </div>
-  )
+  );
 }

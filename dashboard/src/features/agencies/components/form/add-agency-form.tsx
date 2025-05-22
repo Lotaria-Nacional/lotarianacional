@@ -1,9 +1,19 @@
-import { FormEvent, useState } from "react";
-import Button from "@/components/ui/lottary-button";
-import { CreateAgencyRequest } from "../../api";
-import { handleFormError } from "@/lib/error";
+import {
+  DialogTitle,
+  DialogHeader,
+  DialogContent,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { Form } from "@/components/form";
+import { FormEvent, useState } from "react";
+import { handleFormError } from "@/lib/error";
+import { Input } from "@/components/ui/input";
+import { CreateAgencyRequest } from "../../api";
 import { useAddAgency } from "../../hooks/mutation";
+import Button from "@/components/ui/lottary-button";
+import CustomSelect from "@/components/custom-select";
+import { SELECT_OPTIONS } from "../../constants/select-options";
 
 export default function AddAgencyForm() {
   const { mutateAsync, isPending } = useAddAgency();
@@ -32,84 +42,82 @@ export default function AddAgencyForm() {
   };
 
   return (
-    <form onSubmit={handleAddAgency} className="flex flex-col gap-6">
-      <fieldset className="flex lg:flex-row flex-col items-center gap-6">
-        <div className="flex w-full flex-col gap-2">
-          <label htmlFor="">Nome da agência</label>
-          <input
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Adicionar Nova Agência</DialogTitle>
+        <DialogDescription>
+          Preencha os campos abaixo para adicionar uma nova agência.
+        </DialogDescription>
+      </DialogHeader>
+
+      <form onSubmit={handleAddAgency} className="flex w-full flex-col gap-5">
+        <Form.Fieldset>
+          <Form.InputContainer>
+            <label htmlFor="">Nome da agência</label>
+            <Input
+              type="text"
+              placeholder="Kinaxixi"
+              onChange={(e) => setData({ ...data, name: e.target.value })}
+            />
+          </Form.InputContainer>
+
+          <Form.InputContainer>
+            <label htmlFor="">Número de telefone</label>
+            <Input
+              type="text"
+              placeholder="+244 921 921 921"
+              onChange={(e) =>
+                setData({ ...data, phone: parseInt(e.target.value) })
+              }
+            />
+          </Form.InputContainer>
+        </Form.Fieldset>
+
+        <Form.Fieldset>
+          <Form.InputContainer>
+            <label htmlFor="">Tipo de agência</label>
+            <CustomSelect
+              value={data.type}
+              options={SELECT_OPTIONS}
+              onChange={(val) => setData({ ...data, type: val })}
+            />
+          </Form.InputContainer>
+
+          <Form.InputContainer>
+            <label htmlFor="Localização">Localização</label>
+            <Input
+              type="text"
+              placeholder="Cruzeiro do mar, rua do timor"
+              onChange={(e) =>
+                setData({ ...data, location_text: e.target.value })
+              }
+              value={data.location_text}
+            />
+          </Form.InputContainer>
+        </Form.Fieldset>
+
+        <Form.InputContainer>
+          <label htmlFor="">Latitude e longitude</label>
+          <Input
             type="text"
-            placeholder="Kinaxixi"
-            onChange={(e) => setData({ ...data, name: e.target.value })}
-            className="border border-LT-GRAY-200 rounded-[8px] px-4 py-2 outline-none"
+            placeholder="-8.83833 - 13.2344 8°"
+            onChange={(e) => {
+              const [latitude, longitude] = e.target.value.split(",");
+              setData({
+                ...data,
+                latitude: parseFloat(latitude),
+                longitude: parseFloat(longitude),
+                geoLocation: e.target.value,
+              });
+            }}
+            value={data.geoLocation}
           />
-        </div>
+        </Form.InputContainer>
 
-        <div className="flex w-full flex-col gap-2">
-          <label htmlFor="">Número de telefone</label>
-          <input
-            type="text"
-            placeholder="+244 921 921 921"
-            onChange={(e) =>
-              setData({ ...data, phone: parseInt(e.target.value) })
-            }
-            className="border border-LT-GRAY-200 rounded-[8px] px-4 py-2 outline-none"
-          />
-        </div>
-      </fieldset>
-
-      <fieldset className="flex lg:flex-row flex-col items-center gap-6">
-        <div className="flex w-full flex-col gap-2">
-          <label htmlFor="">Tipo de agência</label>
-
-          <select
-            defaultValue={"escolher"}
-            onChange={(e) => setData({ ...data, type: e.target.value })}
-            className="border border-LT-GRAY-200 rounded-[8px] px-4 py-[8px] outline-none"
-          >
-            <option value="escolher" disabled>
-              Escolher
-            </option>
-            <option value="lotaria-nacional">Lotaria nacional</option>
-            <option value="elephant-bet">Elephant Bet</option>
-            <option value="arreiou">Arreiou</option>
-          </select>
-        </div>
-
-        <div className="flex w-full flex-col gap-2">
-          <label htmlFor="">Localização</label>
-          <input
-            type="text"
-            placeholder="Cruzeiro do mar, rua do timor"
-            onChange={(e) =>
-              setData({ ...data, location_text: e.target.value })
-            }
-            value={data.location_text}
-            className="border border-LT-GRAY-200 rounded-[8px] px-4 py-2 outline-none"
-          />
-        </div>
-      </fieldset>
-
-      <div className="flex w-full flex-col gap-2">
-        <label htmlFor="">Latitude e longitude</label>
-        <input
-          type="text"
-          placeholder="-8.83833 - 13.2344 8°"
-          onChange={(e) => {
-            const [latitude, longitude] = e.target.value.split(",");
-            setData({
-              ...data,
-              latitude: parseFloat(latitude),
-              longitude: parseFloat(longitude),
-              geoLocation: e.target.value,
-            });
-          }}
-          value={data.geoLocation}
-          className="border border-LT-GRAY-200 rounded-[8px] px-4 py-2 outline-none"
-        />
-      </div>
-      <Button type="submit" disabled={isPending} className="w-full">
-        {isPending ? "Salvando..." : "Salvar"}
-      </Button>
-    </form>
+        <Button type="submit" disabled={isPending} className="w-full">
+          {isPending ? "Salvando..." : "Salvar"}
+        </Button>
+      </form>
+    </DialogContent>
   );
 }

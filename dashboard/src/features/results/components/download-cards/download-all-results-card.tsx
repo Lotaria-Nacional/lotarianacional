@@ -2,9 +2,9 @@ import { useRef } from "react";
 import { BsDownload } from "react-icons/bs";
 import { DailyResultEntity } from "../../types";
 import Button from "@/components/ui/lottary-button";
-import { formatToNumbers } from "@/utils/date-format";
 import { useDownloadResult } from "../../hooks/useDownloadResult";
-import { getResultNumbers } from "../../utils/get-result-numbers";
+import DownloadResultResumeRow from "./download-result-resume-row";
+import bgResultsResume from "/public/results/background-2/RESUMO.png";
 
 type Props = {
   dailyResult: DailyResultEntity;
@@ -13,6 +13,18 @@ type Props = {
 export default function DownloadAllResultsCard({ dailyResult }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
   const { handleDownload, isDownloading } = useDownloadResult({ ref });
+
+  const date = dailyResult.date
+    .toString()
+    .split("T")[0]
+    .split("-")
+    .reverse()
+    .join("/");
+
+  const fezada = dailyResult.results[0];
+  const aqueceu = dailyResult.results[1];
+  const kazola = dailyResult.results[2];
+  const eskebra = dailyResult.results[3];
 
   return (
     <div className="h-full flex flex-col gap-4 w-download-card-feed shrink-0">
@@ -27,42 +39,30 @@ export default function DownloadAllResultsCard({ dailyResult }: Props) {
 
       <div
         ref={ref}
-        className="relative flex flex-col items-center justify-center w-full h-download-card-feed bg-all-results-feed"
+        className="relative flex flex-col items-center justify-center w-full h-download-card-feed"
       >
-        <div className="absolute top-[145px] pr-5 flex flex-col gap-5">
-          <header className=" flex flex-col items-center justify-center text-white">
-            <span className="text-[11.5px] font-semibold">
-              {formatToNumbers(dailyResult.date)}
-            </span>
-            <span className="text-[8.54px]">NÚMEROS SORTEADOS</span>
-          </header>
+        <img src={bgResultsResume} alt="resumo dos resultados" />
+
+        <div className="absolute text-[14px] top-[138px] left-[128px] arial-medium h-4 w-[200px] text-white">
+          {date}
         </div>
 
-        <section className="absolute top-[180px] h-[50px] p-2 w-1/2 mx-auto flex flex-col gap-[6px]">
-          {dailyResult.results.map((result, resultIndex) => (
-            <div key={resultIndex} className="flex flex-col gap-[1px] w-full">
-              <span className="text-[8px] text-white font-bold uppercase">
-                {result.name}
-              </span>
-
-              <div className="flex items-center gap-[6px] w-full">
-                <span className="text-[10px] text-white">
-                  {result.hour.replace("H", ":")}
-                </span>
-                <div className="flex items-center gap-[4px] justify-center text-white">
-                  {getResultNumbers(result).map((number) => (
-                    <div
-                      key={number}
-                      className="flex items-center justify-center rounded-full text-center bg-white size-[18px] text-[11px] text-LT-RED-50 font-bold"
-                    >
-                      {number}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </section>
+        <DownloadResultResumeRow
+          result={fezada}
+          className="absolute top-[204px] left-[110px]"
+        />
+        <DownloadResultResumeRow
+          result={aqueceu}
+          className="absolute top-[243px] left-[110px]"
+        />
+        <DownloadResultResumeRow
+          result={kazola}
+          className="absolute top-[282px] left-[110px]"
+        />
+        <DownloadResultResumeRow
+          result={eskebra}
+          className="absolute top-[320px] left-[109.8px]"
+        />
       </div>
     </div>
   );

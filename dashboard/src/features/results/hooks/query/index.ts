@@ -1,7 +1,7 @@
-import { DailyResultEntity } from "../../types"
+import { getAllResults, getLastResults, getTotalResults } from "../../api"
 import { useQuery } from "@tanstack/react-query"
 import { RESULT_QUERY_KEYS } from "../../constants/keys"
-import { getAllResults, getLastResults, getTotalResults } from "../../api"
+import { DailyResultEntity } from "../../types"
 
 export function useGetAllResults() {
   return useQuery<DailyResultEntity[]>({
@@ -11,7 +11,7 @@ export function useGetAllResults() {
 }
 
 export function useGetTotalResults() {
-  return useQuery<{ total: number }>({
+  return useQuery<{total:number}>({
     queryKey: [RESULT_QUERY_KEYS.GET_ALL],
     queryFn: getTotalResults,
   })

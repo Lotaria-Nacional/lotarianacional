@@ -1,52 +1,50 @@
-import { toast } from "sonner"
-import Icon from "@/components/ui/icon"
-import { ResultEntity } from "../../types"
-import { handleFormError } from "@/lib/error"
-import { UpdateResultRequest } from "../../api"
-import Button from "@/components/ui/lottary-button"
-import { FormEvent, useEffect, useState } from "react"
-import { useUpdateResult } from "../../hooks/mutation"
-import UpdateResultCardInput from "./update-result-card-input"
+import { toast } from "sonner";
+import Icon from "@/components/ui/icon";
+import { ResultEntity } from "../../types";
+import { handleFormError } from "@/lib/error";
+import { UpdateResultRequest } from "../../api";
+import Button from "@/components/ui/lottary-button";
+import { FormEvent, useEffect, useState } from "react";
+import { useUpdateResult } from "../../hooks/mutation";
+import UpdateResultCardInput from "./update-result-card-input";
 
 type Props = {
-  result: ResultEntity
-}
+  result: ResultEntity;
+};
 
 export default function UpdateResultForm({ result }: Props) {
-  const { mutateAsync, isPending } = useUpdateResult()
-  const [data, setData] = useState<UpdateResultRequest>({
-    ...result,
-    videoURL: result.videoURL as string,
-  })
-  const [canUpdateResult, setCanUpdateResult] = useState(true)
+  const { mutateAsync, isPending } = useUpdateResult();
+  //@ts-ignore
+  const [data, setData] = useState<UpdateResultRequest>(result);
+  const [canUpdateResult, setCanUpdateResult] = useState(true);
 
   useEffect(() => {
-    const now = new Date().getTime()
-    const createdAtTime = new Date(result.createdAt).getTime()
-    const timeDifferenceInSeconds = (now - createdAtTime) / 1000
+    const now = new Date().getTime();
+    const createdAtTime = new Date(result.createdAt).getTime();
+    const timeDifferenceInSeconds = (now - createdAtTime) / 1000;
 
     if (timeDifferenceInSeconds > 900) {
-      setCanUpdateResult(false)
+      setCanUpdateResult(false);
     }
-  }, [result.createdAt])
+  }, [result.createdAt]);
 
   const handleUpdateResult = async (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!canUpdateResult) {
       toast.error(
         "O tempo para editar o resultado expirou. Não é possível salvar alterações."
-      )
-      return
+      );
+      return;
     }
 
     try {
-      const response = await mutateAsync(data)
-      toast.success(response.message)
+      const response = await mutateAsync(data);
+      toast.success(response.message);
     } catch (error) {
-      handleFormError(error)
+      handleFormError(error);
     }
-  }
+  };
 
   return (
     <form
@@ -66,7 +64,7 @@ export default function UpdateResultForm({ result }: Props) {
                 type="text"
                 placeholder="https://youtube.com?watch=6tkebf13f"
                 className="bg-transparent w-full h-full outline-none"
-                value={data.videoURL ?? ""}
+                value={data.videoURL}
                 onChange={(e) => setData({ ...data, videoURL: e.target.value })}
               />
             </div>
@@ -93,5 +91,5 @@ export default function UpdateResultForm({ result }: Props) {
         </Button>
       </div>
     </form>
-  )
+  );
 }
