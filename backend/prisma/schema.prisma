@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"  
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -14,75 +14,76 @@ datasource db {
 }
 
 model Users {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  firstName String
-  lastName String
-  email String @unique
-  password String
-  role String
-  profilePic String @default("")
-  createdAt DateTime
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  firstName  String
+  lastName   String
+  email      String   @unique
+  password   String
+  role       String
+  profilePic String   @default("")
+  createdAt  DateTime
 }
 
 model News {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  image String
-  title String
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  image       String
+  title       String
   description String
-  createdAt DateTime
+  createdAt   DateTime
 }
 
 model DailyResult {
-  id      String    @id @default(auto()) @map("_id") @db.ObjectId
-  date    DateTime @unique
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  date         DateTime @unique
   formatedDate String
-  createdAt DateTime @default(now())
-  results Result[]   
+  createdAt    DateTime @default(now())
+  results      Result[]
 }
+
 model Result {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  startHour  String
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  startHour   String
   number_1    Int
   number_2    Int
   number_3    Int
   number_4    Int
   number_5    Int
   videoURL    String?
-  createdAt   DateTime @default(now())
-  dailyId     String   @db.ObjectId
+  createdAt   DateTime    @default(now())
+  dailyId     String      @db.ObjectId
   DailyResult DailyResult @relation(fields: [dailyId], references: [id])
 }
 
 model Agencies {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  phone Int
-  latitude Float
-  longitude Float
-  type String
-  createdAt DateTime
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  phone         Int
+  latitude      Float
+  longitude     Float
+  type          String
+  createdAt     DateTime
   location_text String
 }
 
 model Banner {
- id String @id @default(auto()) @map("_id") @db.ObjectId
- device String
- image String
- createdAt DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  device    String
+  image     String
+  createdAt DateTime @default(now())
 }
 
 model Statistics {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  file String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  file      String
   createdAt DateTime @default(now())
   statsData Json
 }
 
 model Emission {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  url String?
-  createdAt DateTime @default(now())
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  url          String?
+  createdAt    DateTime @default(now())
   formatedData String?
-  description String?
+  description  String?
 }

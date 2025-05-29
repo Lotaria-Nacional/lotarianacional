@@ -10,8 +10,6 @@ const statisticRepository = new PrismaStatisticRepository()
 const getStatisticUseCase = new GetStatisticUseCase(statisticRepository)
 const getStatisticController = new GetStatisticsController(getStatisticUseCase)
 
-router.get("/statistics", (req: Request, res: Response) => {
-  getStatisticController.handle(req, res)
-})
+router.get("/statistics", (req: Request, res: Response) => {getStatisticController.handle(req, res)})
 
 export default router

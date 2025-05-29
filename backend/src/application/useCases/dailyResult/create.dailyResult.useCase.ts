@@ -3,12 +3,15 @@ import { Result } from "../../../Domain/Entities/Result/Result";
 import { CreateResultInputDTO } from "../result/create.result.useCase";
 import { Emission } from "../../../Domain/Entities/emission/emission.entity";
 import { DailyResult } from "../../../Domain/Entities/dailyResults/dailyResult";
-import { IExcelService } from "../../../Domain/services/xlsx.service.interface";
+import { NumberStatisticService } from "../statistic/createStatistics.useCase";
 import { IEmissionRepository } from "../../../Domain/Entities/emission/emission.repository";
 import { IDailyResultRespository } from "../../../Domain/Entities/dailyResults/dailyResult.repository";
 
 export class CreateDailyResultUseCase {
-  constructor(private dailyResultRepo: IDailyResultRespository, private emissionRepo: IEmissionRepository, private excelService: IExcelService) {}
+  constructor(private dailyResultRepo: IDailyResultRespository,
+    private emissionRepo: IEmissionRepository,
+    private numberStatisticService: NumberStatisticService
+  ) {}
 
   async execute(data: CreateResultInputDTO): Promise<void> {
     const today = new Date();
@@ -29,6 +32,8 @@ export class CreateDailyResultUseCase {
       if (this.hasValidVideoURL(data.videoURL)) {
         await this.saveEmission(data.name, data.videoURL!);
       }
+
+      await this.numberStatisticService.computeAndSaveStats();
     } catch (error) {
       console.error("Erro ao criar o resultado do dia:", error);
       throw error;

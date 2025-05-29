@@ -13,15 +13,12 @@ export class Statistic {
   
   constructor(props: StatisticProps) {
     this.id = props.id
-    this.file = props.file
+    this.file = "empty"
     this.createdAt = props.createdAt ?? new Date()
     this.statsData = props.statsData
   }
 
   static create(data: StatisticProps): Statistic {
-    if (!data.file || typeof data.file !== "string") {
-      throw new Error("O ficheiro excel é obrigatório e deve ser uma string.")
-    }
     return new Statistic(data)
   }
 }

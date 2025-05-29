@@ -11,21 +11,19 @@ import { GetLastDailyResultController } from "../controllers/dailyResultsControl
 import { PrismaEmissionRepository } from "../../repositories/prisma/prisma.emission.repository";
 import { GetAllDailyResultsUseCase } from "../../../application/useCases/dailyResult/getAll.dailyResults.useCase";
 import { GetAllDailyResultsController } from "../controllers/dailyResultsControllers/getAll.dailyResults.controller";
-import { XLSXService } from "../../Services/Excel/xlsxService";
-import { CloudinaryUploadService } from "../../Services/ImageUpload/CloudinaryUploadService";
 import { PrismaStatisticRepository } from "../../repositories/prisma/prisma.statistic.repository";
+import { NumberStatisticService } from "../../../application/useCases/statistic/createStatistics.useCase";
 
 const router = Router();
 //REPOSITORIES
 const prismaDailyResult = new PrismaDailyResultsRespository();
 const emissionRepo = new PrismaEmissionRepository();
-const cloudinaryUploadService = new CloudinaryUploadService()
 const statisticRespository = new PrismaStatisticRepository()
 
-const excellService = new XLSXService(cloudinaryUploadService,statisticRespository,prismaDailyResult)
+const statisticService = new NumberStatisticService(prismaDailyResult,statisticRespository)
 
 //USE CASES
-const createDailyResultsUseCase = new CreateDailyResultUseCase(prismaDailyResult, emissionRepo, excellService );
+const createDailyResultsUseCase = new CreateDailyResultUseCase(prismaDailyResult, emissionRepo, statisticService );
 const getAllDailyResultsUseCase = new GetAllDailyResultsUseCase(prismaDailyResult);
 const getDailyResultsUseCase = new GetDailyResultsUseCase(prismaDailyResult);
 const getLastDailyResultsUseCase = new GetLastDailyResultUseCase(prismaDailyResult);
