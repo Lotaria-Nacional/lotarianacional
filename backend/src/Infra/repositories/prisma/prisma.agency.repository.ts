@@ -1,6 +1,6 @@
 import { prisma } from "../../Database/prisma";
 import { Agency } from "../../../Domain/Entities/Agency/Agency";
-import { IAgenciesResponse, IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository";
+import { IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository";
 
 export class PrismaAgencyRepository implements IAgencyRespository {
   async save(agency: Agency): Promise<void> {
@@ -17,23 +17,15 @@ export class PrismaAgencyRepository implements IAgencyRespository {
     });
   }
 
-  async getAll(page: number = 1, pageSize: number = 1): Promise<IAgenciesResponse> {
-    const skip = (page - 1) * pageSize;
-    const take = pageSize;
-
-    const totalRecords = await prisma.agencies.count();
-    const totalPages = Math.ceil(totalRecords / pageSize);
+  async getAll(): Promise<Agency[]> {
 
     const agencies = await prisma.agencies.findMany({
-      skip,
-      take,
       orderBy: {
         createdAt: "desc",
       },
     });
 
-    return {
-      data: agencies.map((agency) =>
+    return agencies.map((agency) =>
         Agency.create({
           id: agency.id,
           type: agency.type,
@@ -44,10 +36,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
           location_text: agency.location_text,
           createdAt: agency.createdAt,
         })
-      ),
-      totalPages,
-      totalRecords,
-    };
+      )
   }
 
   async getById(id: string): Promise<Agency | null> {

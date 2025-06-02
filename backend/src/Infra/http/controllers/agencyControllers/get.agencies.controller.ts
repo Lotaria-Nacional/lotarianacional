@@ -5,12 +5,8 @@ export class GetAgenciesController {
   constructor(private getAgenciesUseCase: GetAgenciesUseCase) {}
 
   async handle(req: Request, res: Response) {
-    const { page = 1, pageSize = 10 } = req.query;
     try {
-      const agencies = await this.getAgenciesUseCase.execute({
-        page: parseInt(page as string, 10),
-        pageSize: parseInt(pageSize as string, 10),
-      });
+      const agencies = await this.getAgenciesUseCase.execute();
 
       return res.status(200).json(agencies);
     } catch (error: any) {

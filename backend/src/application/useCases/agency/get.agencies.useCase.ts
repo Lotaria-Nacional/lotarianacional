@@ -1,17 +1,12 @@
-import { IAgenciesResponse, IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository";
-
-type GetAgenciesInputDTO = {
-  page: number;
-  pageSize: number;
-};
+import { Agency } from "../../../Domain/Entities/Agency/Agency";
+import { IAgencyRespository } from "../../../Domain/Entities/Agency/agency.respository";
 
 export class GetAgenciesUseCase {
   constructor(private agencyRespository: IAgencyRespository) {}
 
-  async execute(data: GetAgenciesInputDTO): Promise<IAgenciesResponse | []> {
-    const { page, pageSize } = data;
+  async execute(): Promise<Agency[]> {
     try {
-      const result = await this.agencyRespository.getAll(page, pageSize);
+      const result = await this.agencyRespository.getAll();
       return result;
     } catch (error) {
       console.log("GetAgenciesUseCase ~ execute ~ error", error);
