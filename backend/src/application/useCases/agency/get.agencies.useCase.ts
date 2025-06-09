@@ -13,4 +13,4 @@ export class GetAgenciesUseCase {
       throw new Error("Erro ao recuperar agências. Tente novamente mais tarde.");
     } 
   }
-}
+  }
