@@ -3,11 +3,15 @@ import { EmailSender } from '../../../Domain/services/email.service.interface';
 
 export class NodemailerEmailSender implements EmailSender {
   private transporter = nodemailer.createTransport({
-    service: 'Gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
     auth: {
       user: "dev@lotarianacional.co.ao",
       pass: "devmchzxklzjlyoi",
     },
+    logger: true,
+    debug: true,
   });
 
 // EMAIL_USER=dev@lotarianacional.co.ao
