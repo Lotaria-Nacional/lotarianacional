@@ -10,6 +10,7 @@ export type BodyProps = {
   gender: string
   phone: string
   IBAN: string
+  email: string
 }
 
 export type EmailProps = {
@@ -20,6 +21,11 @@ export type EmailProps = {
   attachments: Attachment[]
 }
 
-export interface IEmailService {
-  sendMail(props: EmailProps): Promise<void>
+export interface EmailSender {
+  sendMail(
+    to: string | string[],
+    subject: string,
+    html: string,
+    attachments?: { filename: string; content: Buffer }[]
+  ): Promise<void>;
 }

@@ -15,16 +15,20 @@ import bannerResults from "./Infra/http/routes/banner.routes";
 import emissionRoutes from "./Infra/http/routes/emissions.route";
 import dailyResults from "./Infra/http/routes/dailyResults.routes";
 import statisticRoutes from "./Infra/http/routes/statistics.routes";
-import recruitmentRoutes from "./Infra/http/routes/recruitment.routes";
+import recruitmentRoutes from "./Infra/http/routes/application.routes";
+import { routert } from "./Infra/http/routes/preview";
 
 const app = express();
 
 console.log(process.env.NODE_ENV, " -> ", process.env.DATABASE_URL);
+console.log('USER:', process.env.EMAIL_USER);
+console.log('PASS:', process.env.EMAIL_PASS);
 
-app.set("views", path.join(__dirname, "Infra/http/views"));
+app.set("views", path.join(__dirname, "Infra","http", "views"));
 app.set("view engine", "ejs");
 
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
 app.use(cors({ origin: "*" }));
 app.use(cookieParser());
 app.use(express.json());
@@ -40,6 +44,7 @@ app.use("/api", bannerResults);
 app.use("/api", recruitmentRoutes);
 app.use("/api", statisticRoutes);
 app.use("/api", emissionRoutes);
+app.use("/api", routert);
 
 const PORT = 3333;
 

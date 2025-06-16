@@ -1,40 +1,31 @@
-import {
-  EmailProps,
-  IEmailService,
-} from "../../../Domain/services/email.service.interface"
-import ejs from "ejs"
-import nodemailer from "nodemailer"
-import { resolveTemplatePath } from "../../../utils/email"
+import nodemailer from 'nodemailer';
+import { EmailSender } from '../../../Domain/services/email.service.interface';
 
-export class NodeMailerEmailService implements IEmailService {
-  private transporter
-  constructor() {
-    this.transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "geral.lotarianacional@gmail.com",
-        pass: "hdvbnkskfcyrtvgo",
-      },
-    })
-  }
-  async sendMail(props: EmailProps): Promise<void> {
-    try {
-      const html = await ejs.renderFile(resolveTemplatePath("email.ejs"), {
-        firstName: props.body.firstName,
-        lastName: props.body.lastName,
-        gender: props.body.gender,
-        phone: props.body.phone,
-        IBAN: props.body.IBAN,
-      })
-      await this.transporter.sendMail({
-        to: props.to,
-        from: props.from,
-        subject: props.subject,
-        html,
-        attachments: props.attachments,
-      })
-    } catch (error) {
-      throw error
-    }
+export class NodemailerEmailSender implements EmailSender {
+  private transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  async sendMail(
+    to: string | string[],
+    subject: string,
+    html: string,
+    attachments?: {
+      filename: string;
+      content: Buffer;
+      contentType: string;
+    }[]
+  ): Promise<void> {
+    await this.transporter.sendMail({
+      from: `"Lotaria Nacional" <${process.env.EMAIL_USER}>`,
+      to,
+      subject,
+      html,
+      attachments,
+    });
   }
 }

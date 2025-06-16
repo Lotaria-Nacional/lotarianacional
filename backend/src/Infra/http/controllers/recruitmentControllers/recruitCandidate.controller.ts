@@ -1,73 +1,47 @@
-import {
-  recruitmentSchema,
-  RecruitmentSchemaType,
-} from "../../schemas/recruitment.schema"
-import { z } from "zod"
-import { Request, Response } from "express"
-import { RecruitCandidateUseCase } from "../../../../application/useCases/candidate/recruitCandidate.useCase"
+import fs from 'fs';
+import { Request, Response } from 'express';
+import { SendApplicationUseCase } from '../../../../application/useCases/candidate/sendApplication.useCase';
 
-export type ExpressFileType = { [fieldname: string]: Express.Multer.File[] }
-
-export class RecruitCandidateController {
-  constructor(private recruitCandidateUseCase: RecruitCandidateUseCase) {}
+export class SendApplicationController {
+  constructor(private readonly sendApplicationUseCase: SendApplicationUseCase) {}
 
   async handle(req: Request, res: Response) {
-    const candidateData = recruitmentSchema.parse(req.body)
-    const files = req.files as ExpressFileType
-
     try {
-      const missingFields = this.validateFiles(files)
+      const files = req.files as {
+        BI?: Express.Multer.File[];
+        residenceProof?: Express.Multer.File[];
+      };
 
-      if (missingFields.length > 0) {
-        const message = `Os seguintes campos são obrigatórios: ${missingFields.join(", ")}`
-        return res.status(400).json(message)
-      }
-
-      const candidate = this.createCandidate(candidateData, files)
-      await this.recruitCandidateUseCase.execute(candidate)
+      const fileBI = files.BI?.[0];
       
-      return res
-        .status(200)
-        .json({ message: "A sua candidatura foi enviada com sucesso!" })
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: error.errors[0].message })
+      if (!fileBI) {
+        return res.status(400).json({ message: "O Bilhete de identidade é obrigatório" });
       }
-      return res
-        .status(500)
-        .json({ message: "Erro interno no servidor", err: error })
-    }
-  }
+      
+      await this.sendApplicationUseCase.execute({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phone: req.body.phone,
+        gender: req.body.gender,
+        BI: {
+          buffer: fileBI.buffer,
+          originalname: fileBI.originalname,
+          mimetype: fileBI.mimetype,
+        },
+        residenceProof: files.residenceProof?.[0]
+          ? {
+              buffer: files.residenceProof[0].buffer,
+              originalname: files.residenceProof[0].originalname,
+              mimetype: files.residenceProof[0].mimetype,
+            }
+          : undefined,
+      });
 
-  private validateFiles(files: ExpressFileType) {
-    const requiredFields = ["photo", "BI", "residenceProof", "curriculum"]
-    const missingFields = requiredFields.filter((field) => !files[field])
-    return missingFields
-  }
-  private createCandidate(data: RecruitmentSchemaType, files: ExpressFileType) {
-    const candidate = {
-      ...data,
-      BI: {
-        filename: "Bilhete de Identidade",
-        content: files["BI"][0]!.buffer,
-        contentType: files["BI"][0]!.mimetype,
-      },
-      photo: {
-        filename: "Fotografia Tipo Passe",
-        content: files["photo"][0]!.buffer,
-        contentType: files["photo"][0]!.mimetype,
-      },
-      curriculum: {
-        filename: "Currículum Vitae",
-        content: files["curriculum"][0]!.buffer,
-        contentType: files["curriculum"][0]!.mimetype,
-      },
-      residenceProof: {
-        filename: "Comprovativo de Residência",
-        content: files["residenceProof"][0]!.buffer,
-        contentType: files["residenceProof"][0]!.mimetype,
-      },
+      return res.status(200).json({ message: 'Candidatura enviada com sucesso!' });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Erro ao enviar candidatura' });
     }
-    return candidate
   }
 }
