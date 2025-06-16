@@ -78,7 +78,8 @@ const Footer = () => {
       <section className="w-full bg-LT_GRAY-300">
         <Container className="py-6 justify-center">
           <p className="text-neutral-500">
-            © 2024 Lotaria Nacional. Todos os direitos reservados.
+            © {new Date().getFullYear()} Lotaria Nacional. Todos os direitos
+            reservados.
           </p>
         </Container>
       </section>

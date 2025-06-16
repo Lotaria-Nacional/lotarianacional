@@ -36,8 +36,8 @@ export default function GMap() {
           mapContainerStyle={GoogleMapConfigProps.mapContainerStyle}
         >
           {agencies &&
-            agencies.data.length > 0 &&
-            agencies.data.map((item, index) => (
+            agencies.length > 0 &&
+            agencies.map((item, index) => (
               <GoogleMapMarker
                 key={index}
                 data={item}

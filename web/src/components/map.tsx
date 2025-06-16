@@ -1,9 +1,20 @@
+import {
+  Popup,
+  Marker,
+  TileLayer,
+  MapContainer,
+  useMapEvents,
+} from "react-leaflet";
+import {
+  ArreiouMarket,
+  LotariaMarket,
+  CentralMarket,
+  ElephantBetMarket,
+} from "./agencia/agency-marker";
 import { HiPhone } from "react-icons/hi";
 import { useAgencies } from "@/hooks/api";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Popup, Marker, TileLayer, MapContainer, useMapEvents } from "react-leaflet";
-import { ArreiouMarket, LotariaMarket, ElephantBetMarket, CentralMarket } from "./agencia/agency-marker";
 
 import "leaflet/dist/leaflet.css";
 
@@ -55,8 +66,8 @@ const LeafletMap = () => {
       <ScrollZoomHandler />
       {/* Add a marker */}
       {agencies &&
-        agencies.data.length > 0 &&
-        agencies.data.map((item) => (
+        agencies.length > 0 &&
+        agencies.map((item) => (
           <Marker
             key={item.id}
             icon={

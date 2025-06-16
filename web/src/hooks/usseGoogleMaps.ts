@@ -1,6 +1,6 @@
 import { useState,  useCallback } from "react";
 import { useJsApiLoader } from "@react-google-maps/api";
-import { GOOGLE_CREDENTIALS, GoogleMapConfigProps } from "@/components/google-map/google-config";
+import { GOOGLE_CREDENTIALS} from "@/components/google-map/google-config";
 
 export type UseGoogleMapsReturn = {
     isLoaded:boolean
@@ -18,9 +18,6 @@ export function useGoogleMaps():UseGoogleMapsReturn{
   const { isLoaded } = useJsApiLoader(GOOGLE_CREDENTIALS);
 
   const onLoad = useCallback((map: google.maps.Map) => {
-    const bound = new window.google.maps.LatLngBounds(GoogleMapConfigProps.center);
-    map.fitBounds(bound);
-
     setMap(map);
   }, []);
 

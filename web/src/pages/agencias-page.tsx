@@ -1,57 +1,65 @@
-import Pagination from "@/components/pagination";
-import { useSearchParams } from "react-router-dom";
-import { usePagination } from "@/hooks/usePagination";
 import GMap from "@/components/google-map/google-map";
 import Container from "../components/common/container";
 import EmptyState from "../components/common/empty-state";
 import AgencyCard from "../components/agencia/agency-card";
-import { defaultAgency } from "@/constants/default-agency";
 import { useAgencies } from "../hooks/api/query/useAgencies";
-import AgencyFilter from "../components/agencia/agency-filter";
 import AgencySkeleton from "@/components/agencia/agency-skeleton";
-import { filterAgenciesBySearchParams } from "../utils/agency";
 import GMapMobile from "@/components/google-map/google-map-mobile";
+import { Swiper, SwiperSlide } from "swiper/react";
+import PageTitle from "@/components/page-title";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef } from "react";
+import { Swiper as SwiperType } from "swiper";
 
 const AgenciasPage = () => {
-  const { currentPage, setSearch } = usePagination();
-  const [searchParams, setSearchParams] = useSearchParams({ agencia: "" });
-  const paramsValue = searchParams.get("agencia") || "";
+  const swiperRef = useRef<SwiperType | null>(null);
+  const { agencies, isLoading } = useAgencies();
 
-  const { agencies, isLoading } = useAgencies(currentPage);
+  const handleSwiper = (direction: "left" | "right") => {
+    if (swiperRef.current) {
+      if (direction === "left") {
+        swiperRef.current.slidePrev();
+      } else {
+        swiperRef.current.slideNext();
+      }
+    }
+  };
 
-  const allAgencies = agencies?.data
-    ? [...agencies.data, defaultAgency]
-    : [defaultAgency];
-
-  const filteredAgencies = filterAgenciesBySearchParams(
-    paramsValue,
-    allAgencies
-  );
+  const BUTTON_STYLE =
+    "border border-zinc-300 bg-white size-8 p-2 text-zinc-500 rounded-full cursor-pointer hover:bg-zinc-100 transition-all duration-200 ease-in-out";
 
   return (
     <>
       <Container className="lg:py-[40px] hidden lg:flex flex-col gap-4">
-        <AgencyFilter
-          setFilter={setSearchParams}
-          selectedLetter={paramsValue}
-        />
+        <section className="w-full flex items-center justify-between lg:px-0 px-5">
+          <PageTitle>Agências</PageTitle>
+          <div className="flex items-center bg-zinc-200 rounded-full p-1 gap-4">
+            <ChevronLeft
+              className={BUTTON_STYLE}
+              onClick={() => handleSwiper("left")}
+            />
+            <ChevronRight
+              className={BUTTON_STYLE}
+              onClick={() => handleSwiper("right")}
+            />
+          </div>
+        </section>
+
         {isLoading ? (
           <AgencySkeleton />
-        ) : filteredAgencies &&
-          Array.isArray(filteredAgencies) &&
-          filteredAgencies.length > 0 ? (
-          <>
-            <section className="lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full hidden">
-              {filteredAgencies?.map((agency, i) => (
-                <AgencyCard key={i} agency={agency} />
-              ))}
-            </section>
-            <Pagination
-              setSearch={setSearch}
-              currentPage={currentPage}
-              pages={agencies?.totalPages}
-            />
-          </>
+        ) : agencies && Array.isArray(agencies) && agencies.length > 0 ? (
+          <Swiper
+            spaceBetween={4}
+            className="w-full"
+            slidesPerView={3.5}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+          >
+            {agencies.map((agency, i) => (
+              <SwiperSlide key={i}>
+                <AgencyCard agency={agency} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         ) : (
           <EmptyState message="Não há nenhuma agência ainda." />
         )}
