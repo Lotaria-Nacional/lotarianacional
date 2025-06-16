@@ -4,7 +4,7 @@ import { EmailSender } from '../../../Domain/services/email.service.interface';
 export class NodemailerEmailSender implements EmailSender {
   private transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
-  port: 465,
+  port: 587,
   secure: true,
     auth: {
       // user: "dev@lotarianacional.co.ao",
@@ -12,11 +12,8 @@ export class NodemailerEmailSender implements EmailSender {
       user: "pauloluguenda0@gmail.com",
       pass: "ixhxchukutwjikqt",
     },
-    // tls: {
-    //    rejectUnauthorized: false
-    // },
     tls: {
-      ciphers: "SSLv3",
+      rejectUnauthorized:false
   },
     logger: true,
     debug: true,
