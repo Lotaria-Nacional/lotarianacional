@@ -24,7 +24,7 @@ export class SendApplicationUseCase {
   constructor(private readonly emailSender: EmailSender) {}
 
   async execute(input: SendApplicationInput): Promise<void> {
-    const { BI, email, firstName, gender, lastName, phone, residenceProof } = input;
+    const { BI, email, firstName, gender, lastName, phone } = input;
 
     const templatePath = path.resolve(__dirname, "..", "..","..","Infra", "http", "views", "candidatura-template.ejs");
 

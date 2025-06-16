@@ -27,12 +27,21 @@ export class NodemailerEmailSender implements EmailSender {
       contentType: string;
     }[]
   ): Promise<void> {
-    await this.transporter.sendMail({
-      from: "Lotaria Nacional <dev@lotarianacional.co.ao>",
-      to,
-      subject,
-      html,
-      attachments,
-    });
+
+    try {
+      const info = await this.transporter.sendMail({
+        from: "Lotaria Nacional <dev@lotarianacional.co.ao>",
+        to,
+        subject,
+        html,
+        attachments,
+      });
+  
+      console.log("Email enviado com sucesso:", info.response);
+    } catch (error) {
+      console.error("Erro ao enviar email:", error);
+      throw error; // Opcional: relança o erro para ser tratado mais acima, se necessário
+    }
+
   }
 }
