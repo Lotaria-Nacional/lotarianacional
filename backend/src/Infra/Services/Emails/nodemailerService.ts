@@ -5,10 +5,13 @@ export class NodemailerEmailSender implements EmailSender {
   private transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: "dev@lotarianacional.co.ao",
+      pass: "devmchzxklzjlyoi",
     },
   });
+
+// EMAIL_USER=dev@lotarianacional.co.ao
+// EMAIL_PASS=devmchzxklzjlyoi
 
   async sendMail(
     to: string | string[],
