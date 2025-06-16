@@ -4,7 +4,7 @@ import { NodemailerEmailSender } from "../../Services/Emails/nodemailerService"
 import { SendApplicationUseCase } from "../../../application/useCases/candidate/sendApplication.useCase"
 import { SendApplicationController } from "../controllers/recruitmentControllers/recruitCandidate.controller"
 
-const router = Router()
+const applicationRoutes = Router()
 
 const nodemailerMailService = new NodemailerEmailSender()
 
@@ -16,8 +16,8 @@ const uploadFiles = upload.fields([
   { name: "residenceProof", maxCount: 1 },
 ])
 
-router.post("/candidatura",uploadFiles, (req, res) => {
+applicationRoutes.post("/candidatura",uploadFiles, (req, res) => {
   recruitCandidateController.handle(req, res)
 })
 
-export default router
+export default applicationRoutes

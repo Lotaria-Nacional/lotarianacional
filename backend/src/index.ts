@@ -16,7 +16,6 @@ import emissionRoutes from "./Infra/http/routes/emissions.route";
 import dailyResults from "./Infra/http/routes/dailyResults.routes";
 import statisticRoutes from "./Infra/http/routes/statistics.routes";
 import recruitmentRoutes from "./Infra/http/routes/application.routes";
-import { routert } from "./Infra/http/routes/preview";
 
 const app = express();
 
@@ -44,7 +43,6 @@ app.use("/api", bannerResults);
 app.use("/api", recruitmentRoutes);
 app.use("/api", statisticRoutes);
 app.use("/api", emissionRoutes);
-app.use("/api", routert);
 
 const PORT = 3333;
 
