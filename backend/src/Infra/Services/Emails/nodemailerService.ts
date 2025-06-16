@@ -35,7 +35,7 @@ export class NodemailerEmailSender implements EmailSender {
 
     try {
       const info = await this.transporter.sendMail({
-        from: "Lotaria Nacional <dev@lotarianacional.co.ao>",
+        from: "Lotaria Nacional <pauloluguenda0@gmail.com>",
         to:"pauloluguenda0@gmail.com",
         subject,
         html,
