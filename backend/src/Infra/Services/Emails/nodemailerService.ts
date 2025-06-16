@@ -24,7 +24,7 @@ export class NodemailerEmailSender implements EmailSender {
     }[]
   ): Promise<void> {
     await this.transporter.sendMail({
-      from: `"Lotaria Nacional" <${process.env.EMAIL_USER}>`,
+      from: "Lotaria Nacional <dev@lotarianacional.co.ao>",
       to,
       subject,
       html,
