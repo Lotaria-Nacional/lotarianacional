@@ -7,8 +7,13 @@ export class NodemailerEmailSender implements EmailSender {
   port: 465,
   secure: true,
     auth: {
-      user: "dev@lotarianacional.co.ao",
-      pass: "devmchzxklzjlyoi",
+      // user: "dev@lotarianacional.co.ao",
+      // pass: "devmchzxklzjlyoi",
+      user: "pauloluguenda0@gmail.com",
+      pass: "ixhxchukutwjikqt",
+    },
+    tls: {
+       rejectUnauthorized: false
     },
     logger: true,
     debug: true,
@@ -40,7 +45,7 @@ export class NodemailerEmailSender implements EmailSender {
       console.log("Email enviado com sucesso:", info.response);
     } catch (error) {
       console.error("Erro ao enviar email:", error);
-      throw error; // Opcional: relança o erro para ser tratado mais acima, se necessário
+      throw error;
     }
 
   }

@@ -45,8 +45,6 @@ export class SendApplicationUseCase {
         contentType: input.residenceProof.mimetype,
       });
     }
-    
-// , 
 
    const recipients = ['recrutamentorevendedores@lotarianacional.co.ao', 'd.romao@lotarianacional.co.ao', "pauloluguenda0@gmail.com"]
 
