@@ -12,9 +12,12 @@ export class NodemailerEmailSender implements EmailSender {
       user: "pauloluguenda0@gmail.com",
       pass: "ixhxchukutwjikqt",
     },
+    // tls: {
+    //    rejectUnauthorized: false
+    // },
     tls: {
-       rejectUnauthorized: false
-    },
+      ciphers: "SSLv3",
+  },
     logger: true,
     debug: true,
   });
