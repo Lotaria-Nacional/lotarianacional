@@ -40,7 +40,7 @@ export class SendApplicationController {
       return res.status(200).json({ message: 'Candidatura enviada com sucesso!' });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: 'Erro ao enviar candidatura' });
+      return res.status(500).json({ error: 'Erro ao enviar candidatura', errr:error });
     }
   }
 }

@@ -48,6 +48,5 @@ const PORT = 3333;
 
 app.listen(PORT, () => {
   console.log("Server Running... -> " + PORT);
-  console.log('USER:', process.env.EMAIL_USER);
-console.log('PASS:', process.env.EMAIL_PASS);
+  console.log('SendGrid:', process.env.SENDGRID_API_KEY);
 });
