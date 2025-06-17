@@ -28,6 +28,12 @@ export const NAVIGATION_LINKS = [
     label: "agências",
     link: "agencias",
   },
+
+  {
+    id: 6,
+    label: "recrutamento",
+    link: "recrutamento",
+  },
 ] as const
 
 export const MOBILE_NAVIGATION_LINKS = [
@@ -55,6 +61,12 @@ export const MOBILE_NAVIGATION_LINKS = [
     id: 5,
     label: "Agências",
     link: "/agencias",
+  },
+
+  {
+    id: 6,
+    label: "recrutamento",
+    link: "/recrutamento",
   },
 ] as const
 

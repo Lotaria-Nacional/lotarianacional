@@ -1,7 +1,5 @@
 import Logo from "./logo";
-
 import Container from "./container";
-// import Button from "../ui/button/button";
 import { Link, NavLink } from "react-router-dom";
 import MobileMenu from "../mobile/menu/mobile-menu";
 import { NAVIGATION_LINKS } from "../../constants/links";

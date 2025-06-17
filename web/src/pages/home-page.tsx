@@ -11,6 +11,7 @@ import DailyResults from "../components/resultados/daily-results";
 import ListingNoticias from "../components/noticias/listing-noticias";
 import MobileDailyResults from "../components/mobile/mobile-daily-results";
 import { useScrollToChancesSection } from "@/hooks/useScrollToChancesSection";
+
 const HomePage = () => {
   const { chancesSectionRef } = useScrollToChancesSection();
 

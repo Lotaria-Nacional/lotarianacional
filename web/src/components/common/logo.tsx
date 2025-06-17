@@ -1,4 +1,4 @@
-import { LOGO } from "../../constants/assets"
+import { LOGO } from "../../constants/assets";
 
 const Logo = () => {
   return (
@@ -7,7 +7,7 @@ const Logo = () => {
       alt="logotipo da lotaria nacional"
       className="md:w-[150px] w-[100px] object-contain"
     />
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

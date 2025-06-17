@@ -68,12 +68,10 @@ export interface IUser {
 export interface IRecruitment {
   firstName: string
   lastName: string
-  IBAN: string
+  email: string
   phone: string
   gender: string
-  BI: File | null | undefined
-  photo: File | null | undefined
-  curriculum: File | null | undefined
+  BI: File | null
   residenceProof: File | null | undefined
 }
 

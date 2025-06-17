@@ -1,15 +1,15 @@
+import { useRef } from "react";
+import { Swiper as SwiperType } from "swiper";
+import PageTitle from "@/components/page-title";
+import { Swiper, SwiperSlide } from "swiper/react";
 import GMap from "@/components/google-map/google-map";
 import Container from "../components/common/container";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import EmptyState from "../components/common/empty-state";
 import AgencyCard from "../components/agencia/agency-card";
 import { useAgencies } from "../hooks/api/query/useAgencies";
 import AgencySkeleton from "@/components/agencia/agency-skeleton";
 import GMapMobile from "@/components/google-map/google-map-mobile";
-import { Swiper, SwiperSlide } from "swiper/react";
-import PageTitle from "@/components/page-title";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef } from "react";
-import { Swiper as SwiperType } from "swiper";
 
 const AgenciasPage = () => {
   const swiperRef = useRef<SwiperType | null>(null);

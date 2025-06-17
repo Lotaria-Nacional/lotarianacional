@@ -1,17 +1,24 @@
 type Props = {
-  children: React.ReactNode
-  labelName:string
-} & React.HTMLAttributes<HTMLDivElement>
+  children: React.ReactNode;
+  labelName: string;
+  required?: boolean;
+} & React.HTMLAttributes<HTMLDivElement>;
 
-const InputContainer = ({children,labelName, ...rest}: Props) => {
+const InputContainer = ({
+  required = true,
+  children,
+  labelName,
+  ...rest
+}: Props) => {
   return (
     <div {...rest} className="flex flex-col w-full gap-2">
       <label htmlFor={labelName} className="font-semibold">
-        {labelName}*
+        {labelName}{" "}
+        {required && <span className="text-xs text-red-600">*</span>}
       </label>
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default InputContainer
+export default InputContainer;

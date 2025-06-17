@@ -1,28 +1,24 @@
-import { FormEvent, useState } from "react"
-import { IRecruitment } from "@/interfaces"
+import { useState } from "react"
 import { recruitCandidate } from "@/api/recruitment"
+import { SendApplicationDTO } from "@/schemas/send-application.schema"
 
 export const useRecruitmentSubmit = () => {
   const [isLoading, setIsLoading] = useState(false)
 
-  const submit = async (data: IRecruitment, e: FormEvent) => {
-    e.preventDefault()
+  const submit = async (data: SendApplicationDTO) => {
     setIsLoading(true)
     try {
       let formData = new FormData()
 
       formData.append("firstName", data.firstName)
       formData.append("lastName", data.lastName)
+      formData.append("email", data.email)
       formData.append("phone", data.phone)
-      formData.append("BI", data.BI!)
-      formData.append("photo", data.photo!)
-      formData.append("IBAN", data.IBAN)
+      formData.append("BI", data.BI.item(0)!)
       formData.append("gender", data.gender)
-      formData.append("curriculum", data.curriculum!)
-      formData.append("residenceProof", data.residenceProof!)
+      formData.append("residenceProof", data.residenceProof?.item(0)!)
 
       const response = await recruitCandidate(formData)
-      console.log({ ...data, IBAN: `AO06.${data.IBAN}` })
       return response
     } catch (error) {
       throw error

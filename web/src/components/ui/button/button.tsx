@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes } from "react"
-import { twMerge } from "tailwind-merge"
+import { ButtonHTMLAttributes } from "react";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
-  className?: string
-  variant?: "red" | "default"
-  children: React.ReactNode
-} & ButtonHTMLAttributes<HTMLButtonElement>
+  className?: string;
+  variant?: "red" | "default";
+  children: React.ReactNode;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
   children,
@@ -27,7 +27,7 @@ const Button = ({
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
