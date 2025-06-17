@@ -1,14 +1,14 @@
 import { Router } from "express"
 import { upload } from "../middlewares/multer.middleware"
-import { NodemailerEmailSender } from "../../Services/Emails/nodemailerService"
+import { SendGridEmailSender } from "../../Services/Emails/sendGridService"
 import { SendApplicationUseCase } from "../../../application/useCases/candidate/sendApplication.useCase"
 import { SendApplicationController } from "../controllers/recruitmentControllers/recruitCandidate.controller"
 
 const applicationRoutes = Router()
 
-const nodemailerMailService = new NodemailerEmailSender()
+const sendGridService = new SendGridEmailSender()
 
-const sendApplicationUseCase = new SendApplicationUseCase(nodemailerMailService)
+const sendApplicationUseCase = new SendApplicationUseCase(sendGridService)
 const recruitCandidateController = new SendApplicationController(sendApplicationUseCase)
 
 const uploadFiles = upload.fields([

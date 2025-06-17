@@ -1,5 +1,5 @@
-import ejs from 'ejs';
-import path from 'path';
+// import ejs from 'ejs';
+// import path from 'path';
 import { EmailSender } from '../../../Domain/services/email.service.interface';
 
 type SendApplicationInput = {
@@ -26,10 +26,20 @@ export class SendApplicationUseCase {
   async execute(input: SendApplicationInput): Promise<void> {
     const { BI, email, firstName, gender, lastName, phone } = input;
 
-    const templatePath = path.resolve(__dirname, "..", "..","..","Infra", "http", "views", "candidatura-template.ejs");
+    // const templatePath = path.resolve(__dirname, "..", "..","..","Infra", "http", "views", "candidatura-template.ejs");
+    // const html = await ejs.renderFile(templatePath, { BI, email, firstName, gender, lastName, phone });
 
-    const html = await ejs.renderFile(templatePath, { BI, email, firstName, gender, lastName, phone });
-
+    const html = `
+    <div>
+      <h1> Olá, ${firstName} </h1>
+      <p>Nome: ${firstName}</p>
+      <p>Sobrenome: ${lastName}</p>
+      <p>Email: ${email}</p>
+      <p>Nº Telefone: ${phone}</p>
+      <p>Sexo: ${gender}</p>
+    </div>
+    `
+    
     const attachments = [
       {
         filename: input.BI.originalname,
@@ -37,7 +47,7 @@ export class SendApplicationUseCase {
         contentType: input.BI.mimetype,
       },
     ];
-    
+
     if (input.residenceProof) {
       attachments.push({
         filename: input.residenceProof.originalname,
@@ -46,8 +56,8 @@ export class SendApplicationUseCase {
       });
     }
 
-   const recipients = ['recrutamentorevendedores@lotarianacional.co.ao', 'd.romao@lotarianacional.co.ao', "pauloluguenda0@gmail.com"]
-
+    const recipients = ["p.luguenda@lotarianacional.co.ao"]
+    
     await this.emailSender.sendMail(
       recipients,
       'Nova Candidatura',
