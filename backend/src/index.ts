@@ -20,8 +20,7 @@ import recruitmentRoutes from "./Infra/http/routes/application.routes";
 const app = express();
 
 console.log(process.env.NODE_ENV, " -> ", process.env.DATABASE_URL);
-console.log('USER:', process.env.EMAIL_USER);
-console.log('PASS:', process.env.EMAIL_PASS);
+
 
 app.set("views", path.join(__dirname, "Infra","http", "views"));
 app.set("view engine", "ejs");
