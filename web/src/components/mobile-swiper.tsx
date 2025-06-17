@@ -29,10 +29,10 @@ const MobileSwiper = () => {
       modules={[Autoplay, Pagination]}
       className="h-full md:hidden block"
     >
+      {renderSlide(IMAGES.banner4, "Banner default 4")}
       {renderSlide(IMAGES.banner1, "Banner default 1")}
       {renderSlide(IMAGES.banner2, "Banner default 2")}
       {renderSlide(IMAGES.banner3, "Banner default 3")}
-      {renderSlide(IMAGES.banner4, "Banner default 4")}
     </Swiper>
   );
 };
