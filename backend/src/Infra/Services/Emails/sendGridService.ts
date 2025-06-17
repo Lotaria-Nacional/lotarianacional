@@ -20,12 +20,12 @@ export class SendGridEmailSender implements EmailSender {
     try {
       const msg: sgMail.MailDataRequired = {
         to,
-        from: 'pauloluguenda0@gmail.com', // <- Tem de estar verificado no SendGrid!
+        from: 'recrutamentorevendedores@lotarianacional.co.ao',
         subject,
         html,
         attachments: attachments?.map(att => ({
           filename: att.filename,
-          content: att.content.toString('base64'), // SendGrid exige Base64
+          content: att.content.toString('base64'),
           type: att.contentType,
           disposition: 'attachment',
         })),
