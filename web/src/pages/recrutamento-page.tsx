@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "@/components/ui/button/button";
 import { useRecruitmentSubmit } from "@/hooks/api";
 import { toast } from "react-toastify";
+import { isAxiosError } from "axios";
 
 export const GENDER_ENUM = {
   MALE: "Masculino",
@@ -28,13 +29,14 @@ const RecrutamentoPage = () => {
   });
 
   const onSubmit = async (data: SendApplicationDTO) => {
-    console.log(data);
     try {
       await submit(data);
       toast.success("Candidatura foi enviada com sucesso");
     } catch (error) {
       console.log(error);
-      toast.error("Erro ao submeter a candidatura");
+      if (isAxiosError(error)) {
+        toast.error(error.response?.data || "Erro ao submeter a candidatura");
+      }
     } finally {
       reset();
     }
