@@ -73,7 +73,7 @@ export class SendApplicationUseCase {
     }
 
     const recipients = [
-      // "d.romao@lotarianacional.co.ao",
+      "d.romao@lotarianacional.co.ao",
       "recrutamentorevendedores@lotarianacional.co.ao"
     ];
     
