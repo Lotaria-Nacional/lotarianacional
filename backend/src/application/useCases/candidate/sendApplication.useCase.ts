@@ -1,5 +1,5 @@
 import ejs from 'ejs';
-import path, { dirname } from 'path';
+import path from 'path';
 import { EmailSender } from '../../../Domain/services/email.service.interface';
 
 type SendApplicationInput = {
@@ -26,25 +26,19 @@ export class SendApplicationUseCase {
   async execute(input: SendApplicationInput): Promise<void> {
     const { BI, email, firstName, gender, lastName, phone } = input;
 
-    const templatePath = path.resolve(__dirname, "..", "..", ".." ,"Infra", "http", "views", "candidatura-template.ejs")
-    const html = await ejs.renderFile(templatePath,{ email, firstName, gender, lastName, phone })
-    
-    // const p = `
-    // <div style="backgrund">
-    //   <h1> Nova Candidatura </h1>
-    //   <p>Nome: ${firstName}</p>
-    //   <p>Sobrenome: ${lastName}</p>
-    //   <p>Email: ${email}</p>
-    //   <p>Nº Telefone: ${phone}</p>
-    //   <p>Sexo: ${gender}</p>
-    // </div>
-    // `
+    const biBase64 = BI.buffer.toString('base64');
+    const biSrc = `data:${BI.mimetype};base64,${biBase64}`;
+
+    const templatePath = path.resolve(__dirname, "..", "..", "..", "Infra", "http", "views", "candidatura-template.ejs");
+    const html = await ejs.renderFile(templatePath, {
+      email, firstName, gender, lastName, phone, biSrc
+    });
 
     const attachments = [
       {
-        filename: input.BI.originalname,
-        content: input.BI.buffer,
-        contentType: input.BI.mimetype,
+        filename: BI.originalname,
+        content: BI.buffer,
+        contentType: BI.mimetype,
       },
     ];
 
@@ -56,7 +50,10 @@ export class SendApplicationUseCase {
       });
     }
 
-    const recipients = ["p.luguenda@lotarianacional.co.ao","s.simao@lotarianacional.co.ao","recrutamentorevendedores@lotarianacional.co.ao"]
+    const recipients = [
+      "d.romao@lotarianacional.co.ao",
+      "recrutamentorevendedores@lotarianacional.co.ao"
+    ];
     
     await this.emailSender.sendMail(
       recipients,

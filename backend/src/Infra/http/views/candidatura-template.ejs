@@ -3,50 +3,39 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width" />
   <title>Nova Candidatura</title>
 </head>
 
-<body>
-  <table width="100%" cellpadding="0" cellspacing="0" style="background: #f3f3f3">
-    <tr align="center">
-      <td>
-        <table width="700" cellpadding="0" cellspacing="10" style=" margin: 20px; padding: 20px 50px; border-radius: 6px; background-color: #fff; font-family: sans-serif;">
+<body style="margin: 0; padding: 0; background: #f3f3f3; font-family: Arial, sans-serif;">
+  <div style="width: 100%; background: #f3f3f3; padding: 20px 0;">
+    <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; border-radius: 6px; padding: 20px;">
+      <h1 style="font-size: 22px; color: #333333; text-align: center;">
+        Nova Candidatura Recebida
+      </h1>
 
-          <tr align="center">
-            <td>
-              <h1 style="font-size: 24px; color: #333;">
-                Nova Candidatura Recebida
-              </h1>
-            </td>
-          </tr> 
+      <div style="padding: 10px 0;">
+        <p style="margin: 5px 0; color: #000;">Nome: <%= firstName %>
+        </p>
+        <p style="margin: 5px 0; color: #000;">Sobrenome: <%= lastName %>
+        </p>
+        <p style="margin: 5px 0; color: #000;">Email: <%= email %>
+        </p>
+        <p style="margin: 5px 0; color: #000;">Nº Telefone: <%= phone %>
+        </p>
+        <p style="margin: 5px 0; color: #000;">Gênero: <%= gender %>
+        </p>
+      </div>
 
-          <tr>
-            <td style="padding: 20px">
-              <p>Nome: <%= firstName %> </p>
-              <p>Sobrenome: <%= lastName %> </p>
-              <p>Email:  <%= email %> </p>
-              <p>Nº Telefone:  <%= phone %> </p>
-              <p>Gênero:  <%= gender %> </p>
-            </td>
-          </tr>
+      <div style="text-align: center; padding: 10px 0;">
+        <img src="<%= biSrc %>" alt="Imagem do BI" style="max-width: 100%; border: 1px solid #ccc;" /> 
+      </div>
 
-          <tr>
-            <td>
-              <hr style="width: 100%; height: 1px; background-color: #ff5555" />
-            </td>
-          </tr>
+      <hr style="border: none; height: 1px; background-color: #ff5555; margin: 20px 0;" /> 
 
-          <tr align="center">
-            <td>
-              <p style="color: #777;">&copy; 2025 Lotaria Nacional de Angola</p>
-            </td>
-          </tr>
+      <p style="text-align: center; color: #777; font-size: 12px;">&copy; 2025 Lotaria Nacional de Angola</p> 
+    </div> 
+  </div> 
+</body> 
 
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-
-</html>
+</html> 

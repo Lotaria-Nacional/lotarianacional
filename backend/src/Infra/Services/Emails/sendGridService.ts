@@ -19,8 +19,8 @@ export class SendGridEmailSender implements EmailSender {
   ): Promise<void> {
     try {
       const msg: sgMail.MailDataRequired = {
+        from: "recrutamentorevendedores@lotarianacional.co.ao",
         to,
-        from: 'recrutamentorevendedores@lotarianacional.co.ao',
         subject,
         html,
         attachments: attachments?.map(att => ({
