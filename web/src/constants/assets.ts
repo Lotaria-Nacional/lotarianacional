@@ -9,7 +9,7 @@ export const IMAGES = {
   banner1: "/banner/banner-1.webp",
   banner2: "/banner/banner-2.webp",
   banner3: "/banner/banner-3.webp",
-  banner4: "/banner/banner-4.png",
+  banner4: "/banner/banner-5.png",
   trevoBg: "/banner/bg-trevo.webp",
   cardLoto: "/banner/card-loto.webp",
   videoThumbnail: "/como_jogar/video-thumbnail-como-jogar.webp",
