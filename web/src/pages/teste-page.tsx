@@ -68,13 +68,6 @@ export const TestePage = () => {
               className="absolute inset-0 w-full h-full object-cover"
             />
           </SwiperSlide>
-          <SwiperSlide className="relative w-full h-full select-none">
-            <img
-              alt={"banner - 03"}
-              src={IMAGES.banner3}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </SwiperSlide>
         </Swiper>
 
         <HeroPlayVideo
