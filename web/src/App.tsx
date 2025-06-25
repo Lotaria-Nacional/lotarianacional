@@ -1,12 +1,12 @@
-import { Outlet } from "react-router-dom"
-import Header from "./components/common/header"
-import Footer from "./components/common/footer"
-import { useModal } from "./context/modal-provider"
-import TopHeader from "./components/common/top-header"
-import CardEmission from "./components/emissoes/card-emission"
+import { Outlet } from "react-router-dom";
+import Header from "./shared/components/layout/header";
+import Footer from "./shared/components/layout/footer";
+import { useModal } from "./app/context/modal-provider";
+import TopHeader from "./shared/components/layout/top-header";
+import CardEmission from "./features/emission/components/card-emission";
 
 const App = () => {
-  const { isModalOpen } = useModal()
+  const { isModalOpen } = useModal();
 
   return (
     <main className="w-full min-h-screen flex flex-col">
@@ -19,7 +19,7 @@ const App = () => {
 
       {isModalOpen && <CardEmission />}
     </main>
-  )
-}
+  );
+};
 
-export default App
+export default App;
