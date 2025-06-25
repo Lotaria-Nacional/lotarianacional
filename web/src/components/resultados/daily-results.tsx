@@ -1,25 +1,24 @@
-import Container from "../common/container"
-import ResultadoCard from "./resultado-card"
-import DailyResultSkeleton from "./daily-result-skeleton"
-import { useLastDailyResult } from "@/hooks/api/query/useLastDailyResult"
+import ResultadoCard from "./resultado-card";
+import DailyResultSkeleton from "./daily-result-skeleton";
+import { useLastDailyResult } from "@/hooks/api/query/useLastDailyResult";
 
-import fezada from "/placeholders/fezada.svg"
-import kazola from "/placeholders/kazola.svg"
-import aqueceu from "/placeholders/aqueceu.svg"
-import eskebra from "/placeholders/eskebra.svg"
+import fezada from "/placeholders/fezada.svg";
+import kazola from "/placeholders/kazola.svg";
+import aqueceu from "/placeholders/aqueceu.svg";
+import eskebra from "/placeholders/eskebra.svg";
 
 const DailyResults = () => {
-  const { isLoading, lastDailyResult } = useLastDailyResult()
-  const PLACEHOLDERS = [fezada, aqueceu, kazola, eskebra]
+  const { isLoading, lastDailyResult } = useLastDailyResult();
+  const PLACEHOLDERS = [fezada, aqueceu, kazola, eskebra];
 
-  if (!lastDailyResult || lastDailyResult.results.length === 0) return
+  if (!lastDailyResult || lastDailyResult.results.length === 0) return;
 
-  const TOTAL_RESULTS = 4
-  const results_length = lastDailyResult.results.length
-  const PLACEHOLDERS_TO_SHOW = TOTAL_RESULTS - results_length
+  const TOTAL_RESULTS = 4;
+  const results_length = lastDailyResult.results.length;
+  const PLACEHOLDERS_TO_SHOW = TOTAL_RESULTS - results_length;
 
   return (
-    <Container className="absolute z-[1] hidden lg:flex h-full px-0  justify-end py-4 inset-0 w-full">
+    <div className=" z-[1] hidden lg:flex px-0 justify-end py-4 top-0 elemento">
       {isLoading ? (
         <DailyResultSkeleton />
       ) : (
@@ -56,8 +55,8 @@ const DailyResults = () => {
           </div>
         </div>
       )}
-    </Container>
-  )
-}
+    </div>
+  );
+};
 
-export default DailyResults
+export default DailyResults;

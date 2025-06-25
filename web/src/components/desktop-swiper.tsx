@@ -2,13 +2,8 @@ import { IMAGES } from "../constants/assets";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
-//@ts-ignore
-import "swiper/css";
-//@ts-ignore
-import "swiper/css/autoplay";
-//@ts-ignore
-import "swiper/css/pagination";
 import "./hero-slider.css";
+import "swiper/swiper-bundle.css";
 
 const DesktopSwiper = () => {
   const renderSlide = (image: string, alt: string) => (
@@ -22,11 +17,11 @@ const DesktopSwiper = () => {
   );
   return (
     <Swiper
-      pagination
       loop={true}
-      autoplay={{ delay: 6000 }}
-      className="h-full md:block hidden"
+      pagination={true}
+      autoplay={{ delay: 10000 }}
       modules={[Autoplay, Pagination]}
+      className="h-full md:block hidden"
     >
       {renderSlide(IMAGES.banner4, "Banner default 4")}
       {renderSlide(IMAGES.banner2, "Banner default 2")}

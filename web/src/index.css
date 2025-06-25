@@ -213,3 +213,39 @@ details[open] summary::after {
   background-repeat: no-repeat;
   background-image: url('/banner/card-loto.webp');
 }
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #d9d9d9 !important;
+  font-size: 16px !important;
+  font-weight: bolder;
+}
+
+.swiper-button-prev::after {
+  color: #ffff00 !important;
+  font-size: 16px !important;
+  font-weight: bolder;
+}
+
+.swiper-pagination-bullet {
+  background: #ffff00 !important;
+}
+
+.elemento {
+  margin-right: calc((100% - 1540px) / 2);
+  /* default para telas maiores */
+}
+
+@media (max-width: 1500px) {
+  .elemento {
+    margin-right: calc((100% - 90%) / 2);
+    /* centraliza similar à container */
+  }
+}
+
+@media (max-width: 1024px) {
+  .elemento {
+    margin-right: 1%;
+    /* equivalente a 98% de largura com 1% margem de cada lado */
+  }
+}

@@ -1,20 +1,35 @@
 //@ts-ignore
-import "swiper/css";
-//@ts-ignore
-import "swiper/css/autoplay";
-//@ts-ignore
-import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
 import "./hero-slider.css";
-import MobileSwiper from "./mobile-swiper";
-import DesktopSwiper from "./desktop-swiper";
-// import { useBanner } from "@/hooks/api/query/useBanner"
+import "swiper/swiper-bundle.css";
 
 const HeroSlider = () => {
+  const BANNERS = [
+    "banner/banner-1.webp",
+    "banner/banner-2.webp",
+    "banner/banner-5.png",
+  ];
+
   return (
-    <>
-      <DesktopSwiper />
-      <MobileSwiper />
-    </>
+    <Swiper
+      loop={true}
+      autoplay={{ delay: 10000 }}
+      pagination={{ clickable: true }}
+      modules={[Autoplay, Pagination]}
+      className="h-full absolute w-full"
+    >
+      {BANNERS.map((img, index) => (
+        <SwiperSlide key={index} className="relative w-full h-full">
+          <img
+            src={img}
+            alt={"banner-" + index}
+            className="absolute inset-0 object-cover w-full h-full"
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 

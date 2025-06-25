@@ -14,17 +14,20 @@ import { useScrollToChancesSection } from "@/hooks/useScrollToChancesSection";
 
 const HomePage = () => {
   const { chancesSectionRef } = useScrollToChancesSection();
-
   return (
     <>
       <main className="flex gap-8 lg:gap-20 flex-col">
-        {/* <ExplanationPopUp /> */}
-
         {/** HERO SECTION */}
-        <section className="relative md:h-[calc(100vh-465px)] lg:h-[calc(100vh-165px)] h-[20vh]">
+
+        <section className="w-full flex justify-end relative lg:h-[calc(100vh-160px)] md:h-[40vh] h-[20vh]">
           <HeroSlider />
           <DailyResults />
         </section>
+
+        {/* <Container className="relative flex bg-blue-200 justify-end items-center md:h-[calc(100vh-465px)] lg:h-[calc(100vh-165px)] h-[20vh] pl-[100px]">
+          <HeroSlider />
+          <DailyResults />
+        </Container> */}
 
         {/** MOBILE DAILY SECTION */}
         <MobileDailyResults />
