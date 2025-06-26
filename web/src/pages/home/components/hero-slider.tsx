@@ -7,9 +7,9 @@ import "./hero-slider.styles.css";
 
 const HeroSlider = () => {
   const BANNERS = [
-    "banner/banner-1.webp",
-    "banner/banner-2.webp",
-    "banner/banner-5.png",
+    "banner/banner-05.png",
+    "banner/banner-02.webp",
+    "banner/banner-04.webp",
   ];
 
   return (
