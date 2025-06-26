@@ -3,27 +3,24 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
+import newsRoutes from "./domain/news/presentation/routes/news.routes";
+import authRoutes from "./domain/user/presentation/routes/auth.routes";
+import userRoutes from "./domain/user/presentation/routes/user.routes";
+import agencyRoutes from "./domain/agency/presentation/routes/agency.routes";
+import emissionRouter from "./domain/daily-lottery-result/presentation/routes/emissions.route";
+import resultRoutes from "./domain/daily-lottery-result/presentation/routes/lottery-result.routes";
+import applicationRoutes from "./domain/send-applications/presentation/routes/application.routes";
+import statisticsRouter from "./domain/daily-lottery-result/presentation/routes/statistics.routes";
+import dailyResults from "./domain/daily-lottery-result/presentation/routes/daily-lottery-results.routes";
 
 dotenv.config();
 
-import authRoutes from "./Infra/http/routes/auth.routes";
-import userRoutes from "./Infra/http/routes/user.routes";
-import newsRoutes from "./Infra/http/routes/news.routes";
-import resultRoutes from "./Infra/http/routes/result.routes";
-import agencyRoutes from "./Infra/http/routes/agency.routes";
-import bannerResults from "./Infra/http/routes/banner.routes";
-import emissionRoutes from "./Infra/http/routes/emissions.route";
-import dailyResults from "./Infra/http/routes/dailyResults.routes";
-import statisticRoutes from "./Infra/http/routes/statistics.routes";
-import recruitmentRoutes from "./Infra/http/routes/application.routes";
-
 const app = express();
 
-console.log(process.env.NODE_ENV, " -> ", process.env.DATABASE_URL);
+console.log(process.env.NODE_ENV);
 
-
-app.set("views", path.join(__dirname, "Infra","http", "views"));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "Infra","http", "views"));
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
@@ -38,14 +35,12 @@ app.use("/api", newsRoutes);
 app.use("/api", resultRoutes);
 app.use("/api", agencyRoutes);
 app.use("/api", dailyResults);
-app.use("/api", bannerResults);
-app.use("/api", recruitmentRoutes);
-app.use("/api", statisticRoutes);
-app.use("/api", emissionRoutes);
+app.use("/api", emissionRouter);
+app.use("/api", statisticsRouter);
+app.use("/api", applicationRoutes);
 
 const PORT = 3333;
 
 app.listen(PORT, () => {
   console.log("Server Running... -> " + PORT);
-  console.log('SendGrid:', process.env.SENDGRID_API_KEY);
 });
