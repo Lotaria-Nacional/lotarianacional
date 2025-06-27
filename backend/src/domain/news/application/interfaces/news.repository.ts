@@ -7,9 +7,9 @@ export type INewsResponse = {
 };
 
 export interface INewsRespository {
-  save(news: News): Promise<void>;
+  create(news: News): Promise<void>;
+  save(data: Partial<News>): Promise<News>;
   getAll(page: number, pageSize: number): Promise<INewsResponse>;
-  getById(id: string): Promise<News | null>;
+  getById(id:string): Promise<News | null>;
   delete(id: string): Promise<void>;
-  update(id: string, data: Partial<News>): Promise<News>;
 }

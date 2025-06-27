@@ -1,26 +1,20 @@
-import { IFileUpload } from "@/core/contracts/file-upload.interface";
-import { getCloudinaryPublicId } from "../../../../shared/utils/get-cloudinary-public-id";
+import { NotFoundError } from "@/core/errors/notFound.error";
 import { IUserRepository } from "../interfaces/user.repository";
-
-
-export type UpdateUserInputDTO = {
-  email?: string;
-  password?: string;
-  lastName?: string;
-  role?: string;
-  firstName?: string;
-  profilePic?: string | Buffer;
-};
+import { IFileUpload } from "@/core/contracts/file-upload.interface";
+import { EditUserDTO } from "../../presentation/validations/edit-user.schema";
+import { getCloudinaryPublicId } from "../../../../shared/utils/get-cloudinary-public-id";
 
 export class UpdateUserUseCase {
   constructor(private userRepository: IUserRepository, private fileUploader: IFileUpload) {}
 
-  async execute(id: string, data: UpdateUserInputDTO) {
-    const user = await this.userRepository.getById(id);
+  async execute(data: EditUserDTO) {
+    const user = await this.userRepository.getById(data.id);
+
     if (!user) {
-      throw new Error("Usuário solicitado não existe.");
+      throw new NotFoundError("Usuário solicitado não existe.");
     }
-    let profileImage: string | undefined;
+
+    let profileImage = user.profilePic;
 
     if (data.profilePic) {
       if (user.profilePic && typeof user.profilePic === "string") {
@@ -32,10 +26,10 @@ export class UpdateUserUseCase {
       profileImage = await this.fileUploader.upload(data.profilePic, "lotaria_nacional/users", "image");
     }
 
-    const updatedUser = await this.userRepository.update(id, {
-      ...data,
-      profilePic: profileImage,
-    });
+    user.update({...data, profilePic: profileImage })
+
+    const updatedUser = await this.userRepository.save(user);
+
     return updatedUser;
   }
 }

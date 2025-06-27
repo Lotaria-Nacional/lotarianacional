@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createDailyResultSchema } from "../../validations/daily-lottery-result.schemas";
+import { createDailyResultSchema } from "../../validations/daily-lottery-result-schema/create-daily-lottery-result.schemas";
 import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller";
 import { CreateDailyResultUseCase } from "../../../application/use-cases/daily-lottery-result/create-daily-lottery-result.useCase";
 

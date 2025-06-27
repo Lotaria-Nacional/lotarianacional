@@ -1,6 +1,6 @@
-import { IAgencyRespository } from "@/domain/agency/application/interfaces/agency-respository.interface";
-import { Agency } from "@/domain/agency/enterprise/entities/agency.entity";
 import { Prisma, PrismaClient } from "@prisma/client";
+import { Agency } from "@/domain/agency/enterprise/entities/agency.entity";
+import { IAgencyRespository } from "@/domain/agency/application/interfaces/agency-respository.interface";
 
 export class PrismaAgencyRepository implements IAgencyRespository {
   constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
@@ -20,7 +20,6 @@ export class PrismaAgencyRepository implements IAgencyRespository {
   }
 
   async getAll(): Promise<Agency[]> {
-
     const agencies = await this.prisma.agencies.findMany({
       orderBy: {
         createdAt: "desc",
@@ -56,9 +55,9 @@ export class PrismaAgencyRepository implements IAgencyRespository {
     });
   }
 
-  async save(id: string, data: Partial<Agency>): Promise<Agency> {
+  async save(data: Partial<Agency>): Promise<Agency> {
     const agency = await this.prisma.agencies.update({
-      where: { id },
+      where: { id:data.id },
       data: {
         name: data.name,
         phone: data.phone,

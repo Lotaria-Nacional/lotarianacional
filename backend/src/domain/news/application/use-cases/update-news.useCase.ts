@@ -1,22 +1,19 @@
-import { IFileUpload } from "@/core/contracts/file-upload.interface";
-import { NotFoundError } from "../../../../core/errors/notFound.error";
-import { getCloudinaryPublicId } from "../../../../shared/utils/get-cloudinary-public-id";
 import { News } from "../../enterprise/entities/news";
+import { NotFoundError } from "@/core/errors/notFound.error";
 import { INewsRespository } from "../interfaces/news.repository";
+import { IFileUpload } from "@/core/contracts/file-upload.interface";
+import { EditNewsDTO } from "../../presentation/validations/edit-news.schema";
+import { getCloudinaryPublicId } from "@/shared/utils/get-cloudinary-public-id";
 
-type UpdateNewsInputDTO = {
-  title?: string;
-  image?: string | Buffer;
-  description?: string;
-};
 
 export class UpdateNewsUseCase {
   constructor(private newsRepository: INewsRespository, private fileUpload: IFileUpload) {}
 
-  async execute(id: string, data: UpdateNewsInputDTO): Promise<News> {
-    const news = await this.newsRepository.getById(id);
+  async execute(data: EditNewsDTO): Promise<News> {
+    const news = await this.newsRepository.getById(data.id);
 
     if (!news) throw new NotFoundError("Notícia não encontrada.");
+
     if (data.image) {
       let newImage: string | Buffer;
       if (news.image && typeof news.image === "string") {
@@ -28,12 +25,13 @@ export class UpdateNewsUseCase {
       newImage = await this.fileUpload.upload(data.image!, "lotaria_nacional/news", "image");
 
       news.update({ ...data, image: newImage });
-      await this.newsRepository.update(id, news);
+
+      await this.newsRepository.save(news);
     } else {
       news.update(data);
-      await this.newsRepository.update(id, news);
+      await this.newsRepository.save(news);
     }
-
+    
     return news;
   }
 }

@@ -2,10 +2,10 @@ import { formatDate } from "@/shared/utils/date";
 import { IEmissionRepository } from "../../interfaces/emission.repository";
 import { NumberStatisticService } from "../statistics/create-statistics.useCase";
 import { CreateResultInputDTO } from "../lottery-result/create-lottery-result.useCase";
-import { IDailyLotteryResultRespository } from "../../interfaces/daily-lottery-result.repository";
-import { DailyLotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/daily-lottery-result";
 import { Emission } from "@/domain/daily-lottery-result/enterprise/entities/emission.entity";
 import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
+import { IDailyLotteryResultRespository } from "../../interfaces/daily-lottery-result.repository";
+import { DailyLotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/daily-lottery-result";
 
 export class CreateDailyResultUseCase {
   constructor(private dailyResultRepo: IDailyLotteryResultRespository,

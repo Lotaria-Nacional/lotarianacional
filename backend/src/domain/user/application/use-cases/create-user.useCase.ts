@@ -2,32 +2,27 @@ import { User } from "../../enterprise/entities/user";
 import { IUserRepository } from "../interfaces/user.repository";
 import { IHashService } from "@/core/contracts/hash.interface";
 import { IFileUpload } from "@/core/contracts/file-upload.interface";
-
-export type CreateUserInputDTO = {
-  email: string;
-  lastName: string;
-  password: string;
-  role: string;
-  firstName: string;
-  profilePic?: string | Buffer;
-};
+import { CreateUserDTO } from "../../presentation/validations/create-user.schema";
 
 export class CreateUserUseCase {
   constructor(private userRespository: IUserRepository, private fileUpload: IFileUpload, private hashService: IHashService) {}
 
-  async execute(user: CreateUserInputDTO): Promise<void> {
+  async execute(data: CreateUserDTO): Promise<void> {
     let image: string | undefined;
-    if (user.profilePic) {
-      const fileImage = await this.fileUpload.upload(user.profilePic, "lotaria_nacional/users", "image");
+
+    if (data.profilePic) {
+      const fileImage = await this.fileUpload.upload(data.profilePic, "lotaria_nacional/users", "image");
       image = fileImage;
     }
-    const hashedPassword = await this.hashService.hash(user.password);
+
+    const hashedPassword = await this.hashService.hash(data.password);
 
     const newUser = User.create({
-      ...user,
+      ...data,
       profilePic: image,
       password: hashedPassword,
     });
-    await this.userRespository.save(newUser);
+
+    await this.userRespository.create(newUser);
   }
 }

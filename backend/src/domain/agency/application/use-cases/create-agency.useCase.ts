@@ -1,19 +1,11 @@
 import { Agency } from "../../enterprise/entities/agency.entity";
 import { IAgencyRespository } from "../interfaces/agency-respository.interface";
-
-type CreateAgencyInputDTO = {
-  name: string;
-  phone: number;
-  latitude: number;
-  type: string;
-  longitude: number;
-  location_text: string;
-};
+import { CreateAgencyDTO } from "../../presentation/validations/create-agency.schema";
 
 export class CreateAgencyUseCase {
   constructor(private agencyRepository: IAgencyRespository) {}
 
-  async execute(data: CreateAgencyInputDTO) {
+  async execute(data: CreateAgencyDTO) {
     const agency = Agency.create({
       name: data.name,
       latitude: data.latitude,

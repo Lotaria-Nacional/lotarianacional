@@ -1,25 +1,19 @@
 import { NotFoundError } from "@/core/errors/notFound.error";
 import { Agency } from "../../enterprise/entities/agency.entity";
 import { IAgencyRespository } from "../interfaces/agency-respository.interface";
+import { EditAgencyDTO } from "../../presentation/validations/edit-agency.schema";
 
 
-type UpdateAgencyInputDTO = {
-  name?: string;
-  type?: string;
-  phone?: number;
-  latitude?: number;
-  longitude?: number;
-  location_text?: string;
-};
 
 export class UpdateAgencyUseCase {
   constructor(private agencyRepository: IAgencyRespository) {}
 
-  async execute(id: string, data: UpdateAgencyInputDTO): Promise<Agency> {
-    const existingAgency = await this.agencyRepository.getById(id);
+  async execute(data: EditAgencyDTO): Promise<Agency> {
+    const existingAgency = await this.agencyRepository.getById(data.id);
+
     if (!existingAgency) new NotFoundError("Agência não encontrada.");
 
-    const agency = await this.agencyRepository.save(id, data);
+    const agency = await this.agencyRepository.save(data);
     return agency;
   }
 }

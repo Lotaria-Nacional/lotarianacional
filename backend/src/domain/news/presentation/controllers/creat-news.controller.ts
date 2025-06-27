@@ -1,28 +1,24 @@
-import { z } from "zod"
+import { handleControllerError } from "@/shared/utils/handle-controller-error"
 import { CreateNewsUseCase } from "../../application/use-cases/create-news.useCase"
+import { CreateNewsDTO, createNewsSchema } from "../validations/create-news.schema"
 import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 
-export class CreateNewsController implements IController {
+export class CreateNewsController implements IController<CreateNewsDTO> {
   constructor(private useCase: CreateNewsUseCase) {}
 
-  async handle(req: HttpRequest):Promise<HttpResponse> {
-    const fileImage = req.file?.buffer
+  async handle(req: HttpRequest<CreateNewsDTO>):Promise<HttpResponse> {
+    const file = req.file as Express.Multer.File
+    const fileBuffer = file.buffer
 
-    const createNewsSchema = z.object({
-      image: z.any(),
-      title: z.string().min(1, "O título é obrigatório."),
-      description: z.string().min(1, "A descrição é obrigatória."),
-    })
     try {
-      const newsData = createNewsSchema.parse(req.body)
+      const body = createNewsSchema.parse({...req.body, image:fileBuffer})
 
-      await this.useCase.execute({ ...newsData, image: fileImage! })
-      return {statusCode:201,body:{ message: "Criado com sucesso!" }}
+      await this.useCase.execute({ ...body, image: fileBuffer})
+
+      return { statusCode:201, body: { message: "Notícia adicionada com sucesso" } }
+
     } catch (error) {
-      if (error instanceof z.ZodError) {
-        return { statusCode:400, body:{ message: error.errors[0].message }}
-      }
-      return { statusCode:400,body:{ message: "Erro interno no servidor.", err:error } }
+      return handleControllerError(error)
     }
   }
 }

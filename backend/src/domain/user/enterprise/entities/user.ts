@@ -6,7 +6,7 @@ export type UserProps = {
   password: string
   createdAt?: Date
   firstName: string
-  profilePic?: string | Buffer
+  profilePic?: string
 }
 
 export class User {
@@ -16,7 +16,7 @@ export class User {
   public role: string
   public lastName: string
   public password: string
-  public profilePic?: string | Buffer
+  public profilePic?: string
   public createdAt: Date
 
   private constructor(props: UserProps) {
@@ -31,9 +31,6 @@ export class User {
   }
 
   static create(props: UserProps): User {
-    // if (!props.email || !props.firstName || !props.lastName || !props.role || !props.password) {
-    //   throw new Error("Todos os campos são obrigatórios.")
-    // }
     return new User(props)
   }
 

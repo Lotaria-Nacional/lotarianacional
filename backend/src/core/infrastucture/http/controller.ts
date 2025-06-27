@@ -1,5 +1,5 @@
-export type HttpRequest = {
-    body?:any
+export type HttpRequest<T = any> = {
+    body?:T
     file?:any
     query?:any
     params?:any
@@ -12,6 +12,6 @@ export type HttpResponse = {
     clearCookie?:(name:string,options:Record<any,any>)=>void
     
 }
-export interface IController {
-    handle(request:HttpRequest, response?:HttpResponse):Promise<HttpResponse>
+export interface IController<T = any> {
+    handle(request:HttpRequest<T>, response?:HttpResponse):Promise<HttpResponse>
 }

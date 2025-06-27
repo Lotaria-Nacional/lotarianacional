@@ -1,21 +1,16 @@
 import { News } from "../../enterprise/entities/news";
 import { INewsRespository } from "../interfaces/news.repository";
 import { IFileUpload } from "@/core/contracts/file-upload.interface";
-
-type CreateNewsInputDTO = {
-  title: string;
-  description: string;
-  image: string | Buffer;
-};
+import { CreateNewsDTO } from "../../presentation/validations/create-news.schema";
 
 export class CreateNewsUseCase {
   constructor(private newsRepository: INewsRespository, private fileUpload: IFileUpload) {}
 
-  async execute(data: CreateNewsInputDTO) {
+  async execute(data: CreateNewsDTO) {
     const imageURL = await this.fileUpload.upload(data.image, "lotaria_nacional/news", "image");
+    
     const news = News.create({ ...data, image: imageURL });
-    console.log("use case reached")
-    await this.newsRepository.save(news);
 
+    await this.newsRepository.save(news);
   }
 }
