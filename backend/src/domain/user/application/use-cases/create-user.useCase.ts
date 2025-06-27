@@ -1,7 +1,7 @@
 import { User } from "../../enterprise/entities/user";
 import { IUserRepository } from "../interfaces/user.repository";
-import { IHashService } from "../../../../core/interfaces/hash.interface";
-import { IFileUpload } from "../../../../core/interfaces/file-upload.interface";
+import { IHashService } from "@/core/contracts/hash.interface";
+import { IFileUpload } from "@/core/contracts/file-upload.interface";
 
 export type CreateUserInputDTO = {
   email: string;

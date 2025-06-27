@@ -1,5 +1,5 @@
-import { Emission } from "../../../enterprise/entities/emission.entity";
 import { IEmissionRepository } from "../../interfaces/emission.repository";
+import { Emission } from "@/domain/daily-lottery-result/enterprise/entities/emission.entity";
 
 export class FetchManyEmissionUseCase {
   constructor(private emissionRepository: IEmissionRepository) {}

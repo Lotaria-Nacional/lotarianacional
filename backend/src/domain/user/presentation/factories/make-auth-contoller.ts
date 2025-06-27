@@ -1,7 +1,7 @@
 import { LoginController } from "../controllers/auth/login.controller";
 import { LogoutController } from "../controllers/auth/logout.controller";
-import { IHashService } from "../../../../core/interfaces/hash.interface";
-import { ITokenService } from "../../../../core/interfaces/token.interface";
+import { IHashService } from "@/core/contracts/hash.interface";
+import { ITokenService } from "@/core/contracts/token.interface";
 import { IUserRepository } from "../../application/interfaces/user.repository";
 import { AuthenticateUserUseCase } from "../../application/use-cases/authenticate-user.useCase";
 

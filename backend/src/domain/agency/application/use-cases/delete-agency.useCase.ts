@@ -1,4 +1,4 @@
-import { NotFoundError } from "../../../../core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/notFound.error"
 import { IAgencyRespository } from "../interfaces/agency-respository.interface"
 
 

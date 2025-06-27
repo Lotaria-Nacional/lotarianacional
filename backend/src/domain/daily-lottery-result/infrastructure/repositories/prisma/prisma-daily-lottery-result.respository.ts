@@ -1,14 +1,17 @@
+import { NotFoundError } from "@/core/errors/notFound.error";
+import { IDailyLotteryResultRespository } from "@/domain/daily-lottery-result/application/interfaces/daily-lottery-result.repository";
+import { DailyLotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/daily-lottery-result";
+import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { addDays, startOfWeek } from "date-fns";
-import { prisma } from "../../../../../core/lib/prisma";
-import { NotFoundError } from "../../../../../core/errors/notFound.error";
-import { LotteryResult } from "../../../enterprise/entities/lottery-result";
-import { DailyLotteryResult } from "../../../enterprise/entities/daily-lottery-result";
-import { IDailyLotteryResultRespository } from "../../../application/interfaces/daily-lottery-result.repository";
+
 
 
 export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResultRespository {
+  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
+
   async create(DailyLotteryResult: DailyLotteryResult): Promise<void> {
-    await prisma.dailyResult.create({
+    await this.prisma.dailyResult.create({
       data: {
         date: DailyLotteryResult.date!,
         formatedDate: DailyLotteryResult.formatedDate,
@@ -31,7 +34,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
   }
 
   async save(dailyLotteryResult: DailyLotteryResult): Promise<void> {
-    const exisitingDailyLotteryResult = await prisma.dailyResult.findUnique({
+    const exisitingDailyLotteryResult = await this.prisma.dailyResult.findUnique({
       where: { date: dailyLotteryResult.date },
       include: { results: true },
     });
@@ -39,7 +42,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
 
     const lastResultAdded = dailyLotteryResult.results[dailyLotteryResult.results.length - 1];
 
-    const newResult = await prisma.result.create({
+    const newResult = await this.prisma.result.create({
       data: {
         dailyId:exisitingDailyLotteryResult.id,
         name: lastResultAdded.name,
@@ -56,7 +59,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
 
     exisitingDailyLotteryResult.results.push(newResult);
 
-    await prisma.dailyResult.update({
+    await this.prisma.dailyResult.update({
       where: { id: exisitingDailyLotteryResult.id },
       data: {
         results: {
@@ -67,18 +70,18 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
   }
   
   async delete(id: string): Promise<void> {
-    await prisma.result.deleteMany({
+    await this.prisma.result.deleteMany({
       where: { dailyId: id }, // Filtra pelo ID do DailyLotteryResult
     });
 
     // Exclui o DailyLotteryResult
-    await prisma.dailyResult.delete({
+    await this.prisma.dailyResult.delete({
       where: { id },
     });
   }
 
   async fetchMany(): Promise<DailyLotteryResult[]> {
-    const dailyLotteryResults = await prisma.dailyResult.findMany({
+    const dailyLotteryResults = await this.prisma.dailyResult.findMany({
       orderBy: {
         createdAt: "asc",
       },
@@ -111,7 +114,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
   }
 
   async getLast(): Promise<DailyLotteryResult | null> {
-    const lastDailyLotteryResult = await prisma.dailyResult.findFirst({
+    const lastDailyLotteryResult = await this.prisma.dailyResult.findFirst({
       orderBy: {
         createdAt: "desc",
       },
@@ -161,7 +164,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
       };
     }
 
-    const DailyLotteryResults = await prisma.dailyResult.findMany({
+    const DailyLotteryResults = await this.prisma.dailyResult.findMany({
       where: whereClause,
       include: { results: true },
       orderBy: {
@@ -198,7 +201,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
   }
 
   async getByDate(date: string): Promise<DailyLotteryResult | null> {
-    const data = await prisma.dailyResult.findUnique({
+    const data = await this.prisma.dailyResult.findUnique({
       where: { date: new Date(date) },
       include: { results: true },
     });
@@ -226,7 +229,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
   }
 
   async getById(id: string): Promise<DailyLotteryResult | null> {
-    const dailyLotteryResult = await prisma.dailyResult.findUnique({
+    const dailyLotteryResult = await this.prisma.dailyResult.findUnique({
       where: { id },
       include: { results: true },
     });

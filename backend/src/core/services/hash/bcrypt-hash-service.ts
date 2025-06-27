@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt"
-import { IHashService } from "../../interfaces/hash.interface"
+import { IHashService } from "@/core/contracts/hash.interface"
 
 export class BcryptHashService implements IHashService {
   async compare(password: string, hash: string): Promise<boolean> {

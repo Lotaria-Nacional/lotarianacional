@@ -1,5 +1,5 @@
-import { Statistic } from "../../../enterprise/entities/statistic";
 import { IStatisticRepository } from "../../interfaces/statistic.repository";
+import { Statistic } from "@/domain/daily-lottery-result/enterprise/entities/statistic";
 
 export class FetchManyStatisticsUseCase {
   constructor(private statisticRepository: IStatisticRepository) {}

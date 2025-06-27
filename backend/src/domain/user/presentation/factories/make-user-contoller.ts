@@ -1,9 +1,9 @@
-import { IHashService } from "../../../../core/interfaces/hash.interface";
+import { IHashService } from "@/core/contracts/hash.interface";
+import { IFileUpload } from "@/core/contracts/file-upload.interface";
 import { CreateUserController } from "../controllers/create-user.controller";
 import { DeleteUserController } from "../controllers/delete-user.controller";
 import { UpdateUserController } from "../controllers/update-user.controller";
 import { IUserRepository } from "../../application/interfaces/user.repository";
-import { IFileUpload } from "../../../../core/interfaces/file-upload.interface";
 import { GetUserByIdController } from "../controllers/get-user-by-id.controller";
 import { DeleteUserUseCase } from "../../application/use-cases/delete-user.useCase";
 import { CreateUserUseCase } from "../../application/use-cases/create-user.useCase";

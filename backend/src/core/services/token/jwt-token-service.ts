@@ -1,8 +1,9 @@
 import jwt, { JwtPayload } from "jsonwebtoken"
-import { ITokenService } from "../../interfaces/token.interface"
+import { ITokenService } from "@/core/contracts/token.interface"
+import { env } from "@/main/config/env"
 
 export class JwtTokenService implements ITokenService {
-  private secret = process.env.JWT_SECRET || "default_secret"
+  private secret = env.JWT_SECRET || "default_secret"
 
   generateToken(payload: JwtPayload): string {
     return jwt.sign(payload, this.secret, { expiresIn: "7d" })

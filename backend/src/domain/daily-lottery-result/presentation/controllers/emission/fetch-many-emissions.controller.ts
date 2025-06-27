@@ -1,5 +1,5 @@
 import { FetchManyEmissionUseCase } from "../../../application/use-cases/emission/fetch-many-emissionUseCase";
-import { HttpRequest, HttpResponse, IController } from "../../../../../core/infrastucture/http/controller";
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller";
 
 export class FetchManyEmissionsController implements IController{
   constructor(private useCase: FetchManyEmissionUseCase) {}

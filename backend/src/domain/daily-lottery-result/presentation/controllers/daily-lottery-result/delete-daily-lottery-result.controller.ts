@@ -1,6 +1,6 @@
 import { z } from "zod"
-import { NotFoundError } from "../../../../../core/errors/notFound.error"
-import { HttpRequest, HttpResponse, IController } from "../../../../../core/infrastucture/http/controller"
+import { NotFoundError } from "@/core/errors/notFound.error"
+import { IController, HttpRequest, HttpResponse } from "@/core/infrastucture/http/controller"
 import { DeleteDailyResultUseCase } from "../../../application/use-cases/daily-lottery-result/delete-daily-lottery-result.useCase"
 
 export class DeleteDailyResultsController  implements IController{

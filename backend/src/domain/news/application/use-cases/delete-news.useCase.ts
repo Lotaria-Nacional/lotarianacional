@@ -1,6 +1,6 @@
+import { IFileUpload } from "@/core/contracts/file-upload.interface";
 import { NotFoundError } from "../../../../core/errors/notFound.error";
-import { IFileUpload } from "../../../../core/interfaces/file-upload.interface";
-import { getCloudinaryPublicId } from "../../../../core/utils/get-cloudinary-public-id";
+import { getCloudinaryPublicId } from "../../../../shared/utils/get-cloudinary-public-id";
 import { INewsRespository } from "../interfaces/news.repository";
 
 export class DeleteNewsUseCase {

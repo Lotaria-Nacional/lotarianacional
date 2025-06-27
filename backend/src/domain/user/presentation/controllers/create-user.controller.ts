@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { CreateUserUseCase } from "../../application/use-cases/create-user.useCase"
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller"
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 
 export class CreateUserController implements IController {
   constructor(private useCase: CreateUserUseCase) {}

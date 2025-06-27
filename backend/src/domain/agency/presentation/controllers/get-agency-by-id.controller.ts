@@ -1,6 +1,6 @@
-import { NotFoundError } from "../../../../core/errors/notFound.error";
+import { NotFoundError } from "@/core/errors/notFound.error";
 import { GetAgencyByIdUseCase } from "../../application/use-cases/get-agency-by-id.useCase";
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller";
+import { IController, HttpRequest, HttpResponse } from "@/core/infrastucture/http/controller";
 
 export class GetAgencyByIdController implements IController{
   constructor(private useCase: GetAgencyByIdUseCase) {}

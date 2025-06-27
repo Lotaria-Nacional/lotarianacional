@@ -1,8 +1,8 @@
 import { Router } from "express"
-import { SendApplicationController } from "../controlles/send-application.controller"
+import { upload } from "@/core/middlewares/multer.middleware"
+import { SendGridEmailSender } from "@/core/services/emails/send-grid-service"
 import { SendApplicationUseCase } from "../../use-cases/send-application.useCase"
-import { upload } from "../../../../core/middlewares/multer.middleware"
-import { SendGridEmailSender } from "../../../../core/services/emails/send-grid-service"
+import { SendApplicationController } from "../controlles/send-application.controller"
 
 const applicationRoutes = Router()
 

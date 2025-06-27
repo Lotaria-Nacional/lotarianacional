@@ -1,8 +1,8 @@
-import { Emission } from "../../../enterprise/entities/emission.entity";
-import { NotFoundError } from "../../../../../core/errors/notFound.error";
+import { NotFoundError } from "@/core/errors/notFound.error";
 import { IEmissionRepository } from "../../interfaces/emission.repository";
-import { LotteryResult } from "../../../enterprise/entities/lottery-result";
 import { ILotteryResultRepository } from "../../interfaces/lottery-result.respository";
+import { Emission } from "@/domain/daily-lottery-result/enterprise/entities/emission.entity";
+import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
 
 type UpdateResultInputDTO = {
   id: string;

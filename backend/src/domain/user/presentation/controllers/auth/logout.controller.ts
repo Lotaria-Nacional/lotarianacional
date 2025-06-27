@@ -1,4 +1,4 @@
-import { HttpRequest, HttpResponse, IController } from "../../../../../core/infrastucture/http/controller"
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 
 export class LogoutController implements IController {
   
@@ -10,7 +10,7 @@ export class LogoutController implements IController {
         res.clearCookie("accessToken", {
         httpOnly: true,
         sameSite: "strict",
-        secure: process.env.NODE === "production",
+        secure: process.env.NODE_ENV === "production",
       })
     }
 

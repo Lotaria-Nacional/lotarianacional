@@ -1,5 +1,5 @@
 import { FetchManyNewsUseCase } from "../../application/use-cases/fetch-many-news.useCase";
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller";
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller";
 
 export class FetchManyNewsController implements IController {
   constructor(private useCase: FetchManyNewsUseCase) {}

@@ -7,8 +7,8 @@ import { UpdateAgencyUseCase } from "../../application/use-cases/update-agency.u
 import { DeleteAgencyUseCase } from "../../application/use-cases/delete-agency.useCase";
 import { GetAgencyByIdUseCase } from "../../application/use-cases/get-agency-by-id.useCase";
 import { FetchManyAgenciesController } from "../controllers/fetch-many-agencies.controller";
-import { FetchManyAgenciesUseCase } from "../../application/use-cases/fetch-many-agencies.useCase";
 import { IAgencyRespository } from "../../application/interfaces/agency-respository.interface";
+import { FetchManyAgenciesUseCase } from "../../application/use-cases/fetch-many-agencies.useCase";
 
 export function agencyControllerFactory(repository:IAgencyRespository){
     const createAgency = new CreateAgencyController(new CreateAgencyUseCase(repository))

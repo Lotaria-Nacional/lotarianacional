@@ -1,4 +1,4 @@
-import { NotFoundError } from "../../../../core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/notFound.error"
 import { User } from "../../enterprise/entities/user"
 import { IUserRepository } from "../interfaces/user.repository"
 

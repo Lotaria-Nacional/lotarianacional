@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken"
 import { RequestHandler } from "express"
+import { env } from "@/main/config/env"
 
 const authenticateMiddleware: RequestHandler = (req, res, next) => {
   const accessToken = req.cookies.accessToken as string | undefined
@@ -7,7 +8,7 @@ const authenticateMiddleware: RequestHandler = (req, res, next) => {
   if (!accessToken) {
     throw new Error("Não autorizado.")
   }
-  jwt.verify(accessToken, process.env.JWT_SECRET as string)
+  jwt.verify(accessToken, env.JWT_SECRET as string)
   next()
 }
 

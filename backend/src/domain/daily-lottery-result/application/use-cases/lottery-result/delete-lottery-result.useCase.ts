@@ -1,4 +1,4 @@
-import { NotFoundError } from "../../../../../core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/notFound.error"
 import { ILotteryResultRepository } from "../../interfaces/lottery-result.respository"
 
 export class DeleteLotteryResultUseCase {

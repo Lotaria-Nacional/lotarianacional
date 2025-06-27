@@ -1,5 +1,5 @@
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller";
 import { FetchManyAgenciesUseCase } from "../../application/use-cases/fetch-many-agencies.useCase";
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller";
 
 export class FetchManyAgenciesController implements IController{
   constructor(private useCase: FetchManyAgenciesUseCase) {}

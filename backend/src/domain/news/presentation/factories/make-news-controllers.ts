@@ -1,7 +1,6 @@
 import { CreateNewsController } from "../controllers/creat-news.controller";
 import { UpdateNewsController } from "../controllers/update-news.controller";
 import { DeleteNewsController } from "../controllers/delete-news.controller";
-import { IFileUpload } from "../../../../core/interfaces/file-upload.interface";
 import { INewsRespository } from "../../application/interfaces/news.repository";
 import { GetNewsByIdController } from "../controllers/get-news-by-id.controller";
 import { DeleteNewsUseCase } from "../../application/use-cases/delete-news.useCase";
@@ -10,6 +9,7 @@ import { CreateNewsUseCase } from "../../application/use-cases/create-news.useCa
 import { UpdateNewsUseCase } from "../../application/use-cases/update-news.useCase";
 import { GetNewsByIdUseCase } from "../../application/use-cases/get-news-by-id.useCase";
 import { FetchManyNewsUseCase } from "../../application/use-cases/fetch-many-news.useCase";
+import { IFileUpload } from "@/core/contracts/file-upload.interface";
 
 export function makeNewsController (newsRepository:INewsRespository, fileUpload:IFileUpload){
     const createNews = new CreateNewsController(new CreateNewsUseCase(newsRepository, fileUpload))

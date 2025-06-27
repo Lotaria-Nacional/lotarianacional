@@ -1,5 +1,5 @@
-import { IFileUpload } from "../../../../core/interfaces/file-upload.interface";
-import { getCloudinaryPublicId } from "../../../../core/utils/get-cloudinary-public-id";
+import { IFileUpload } from "@/core/contracts/file-upload.interface";
+import { getCloudinaryPublicId } from "../../../../shared/utils/get-cloudinary-public-id";
 import { IUserRepository } from "../interfaces/user.repository";
 
 

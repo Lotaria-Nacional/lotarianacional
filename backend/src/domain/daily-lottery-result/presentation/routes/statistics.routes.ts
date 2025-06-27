@@ -1,13 +1,11 @@
 import {  Router } from "express"
+import { statisticRespo } from "@/main/container/repositories"
 import { makeStatisticsController } from "../factories/make-statistics.controller"
-import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller"
-import { PrismaStatisticRepository } from "../../infrastructure/repositories/prisma/prisma.statistic.repository"
+import { expressAdapterController } from "@/core/adapters/express-adapter-controller"
 
 const statisticsRouter = Router()
 
-const statisticRepository = new PrismaStatisticRepository()
-
-const { fetchManyStatistics } = makeStatisticsController(statisticRepository)
+const { fetchManyStatistics } = makeStatisticsController(statisticRespo)
 
 statisticsRouter.get("/statistics", expressAdapterController(fetchManyStatistics))
 

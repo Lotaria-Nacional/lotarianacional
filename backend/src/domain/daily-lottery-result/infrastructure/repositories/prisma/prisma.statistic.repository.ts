@@ -1,10 +1,12 @@
-import { prisma } from "../../../../../core/lib/prisma";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { IStatisticRepository } from "../../../application/interfaces/statistic.repository";
 import { Statistic } from "../../../enterprise/entities/statistic";
 
 export class PrismaStatisticRepository implements IStatisticRepository {
+  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
+
   async save(statistic: Statistic): Promise<void> {
-    await prisma.statistics.create({
+    await this.prisma.statistics.create({
       data: {
         file: statistic.file,
         statsData: statistic.statsData,
@@ -14,7 +16,7 @@ export class PrismaStatisticRepository implements IStatisticRepository {
   }
 
   async get(): Promise<Statistic | null> {
-    const statistic = await prisma.statistics.findFirst({
+    const statistic = await this.prisma.statistics.findFirst({
       orderBy: { createdAt: "desc" },
     });
 
@@ -34,7 +36,7 @@ export class PrismaStatisticRepository implements IStatisticRepository {
       throw new Error("ID é obrigatório para deletar a estatística.");
     }
     try {
-      await prisma.statistics.delete({ where: { id } });
+      await this.prisma.statistics.delete({ where: { id } });
     } catch (error) {
       console.error(`Erro ao deletar a estatística com o ID: ${id}: `, error);
       throw error;

@@ -1,14 +1,16 @@
+import { Prisma, PrismaClient } from "@prisma/client";
 import { News } from "../../../enterprise/entities/news";
-import { prisma } from "../../../../../core/lib/prisma";
 import { INewsRespository, INewsResponse } from "../../../application/interfaces/news.repository";
 
 
 export class PrismaNewsRespository implements INewsRespository {
+  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
+
   async delete(id: string): Promise<void> {
-    await prisma.news.delete({ where: { id } });
+    await this.prisma.news.delete({ where: { id } });
   }
   async getById(id: string): Promise<News | null> {
-    const data = await prisma.news.findUnique({ where: { id } });
+    const data = await this.prisma.news.findUnique({ where: { id } });
     if (!data) return null;
 
     return News.create({
@@ -21,7 +23,7 @@ export class PrismaNewsRespository implements INewsRespository {
   }
 
   async save(news: News): Promise<void> {
-    await prisma.news.create({
+    await this.prisma.news.create({
       data: {
         title: news.title,
         createdAt: news.createdAt,
@@ -36,10 +38,10 @@ export class PrismaNewsRespository implements INewsRespository {
     const skip = (page - 1) * pageSize;
     const take = pageSize;
 
-    const totalRecords = await prisma.news.count();
+    const totalRecords = await this.prisma.news.count();
     const totalPages = Math.ceil(totalRecords / pageSize);
 
-    const news = await prisma.news.findMany({
+    const news = await this.prisma.news.findMany({
       skip,
       take,
       orderBy: {
@@ -63,7 +65,7 @@ export class PrismaNewsRespository implements INewsRespository {
   }
 
   async update(id: string, data: Partial<News>): Promise<News> {
-    const result = await prisma.news.update({
+    const result = await this.prisma.news.update({
       where: { id },
       data: {
         title: data.title,

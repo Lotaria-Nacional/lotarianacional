@@ -1,4 +1,4 @@
-import { formatDate } from "../../../../core/utils/date";
+import { formatDate } from "@/shared/utils/date";
 
 type EmissionProps = {
   id?: string;

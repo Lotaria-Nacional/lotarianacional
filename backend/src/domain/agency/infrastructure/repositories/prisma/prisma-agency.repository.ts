@@ -1,11 +1,12 @@
-import { prisma } from "../../../../../core/lib/prisma";
-import { Agency } from "../../../enterprise/entities/agency.entity";
-import { IAgencyRespository } from "../../../application/interfaces/agency-respository.interface";
+import { IAgencyRespository } from "@/domain/agency/application/interfaces/agency-respository.interface";
+import { Agency } from "@/domain/agency/enterprise/entities/agency.entity";
+import { Prisma, PrismaClient } from "@prisma/client";
 
 export class PrismaAgencyRepository implements IAgencyRespository {
+  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
 
   async create(agency: Agency): Promise<void> {
-    await prisma.agencies.create({
+    await this.prisma.agencies.create({
       data: {
         type: agency.type,
         name: agency.name,
@@ -20,7 +21,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
 
   async getAll(): Promise<Agency[]> {
 
-    const agencies = await prisma.agencies.findMany({
+    const agencies = await this.prisma.agencies.findMany({
       orderBy: {
         createdAt: "desc",
       },
@@ -41,7 +42,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
   }
 
   async getById(id: string): Promise<Agency | null> {
-    const agency = await prisma.agencies.findUnique({ where: { id } });
+    const agency = await this.prisma.agencies.findUnique({ where: { id } });
     if (!agency) return null;
     return Agency.create({
       id: agency.id,
@@ -56,7 +57,7 @@ export class PrismaAgencyRepository implements IAgencyRespository {
   }
 
   async save(id: string, data: Partial<Agency>): Promise<Agency> {
-    const agency = await prisma.agencies.update({
+    const agency = await this.prisma.agencies.update({
       where: { id },
       data: {
         name: data.name,
@@ -81,6 +82,6 @@ export class PrismaAgencyRepository implements IAgencyRespository {
   }
 
   async delete(id: string): Promise<void> {
-    await prisma.agencies.delete({ where: { id } });
+    await this.prisma.agencies.delete({ where: { id } });
   }
 }

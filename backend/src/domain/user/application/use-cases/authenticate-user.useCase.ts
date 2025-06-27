@@ -1,9 +1,10 @@
 import { User } from "../../enterprise/entities/user";
 import { IUserRepository } from "../interfaces/user.repository";
-import { NotFoundError } from "../../../../core/errors/notFound.error";
-import { IHashService } from "../../../../core/interfaces/hash.interface";
-import { ITokenService } from "../../../../core/interfaces/token.interface";
-import { InvalidPassword } from "../../../../core/errors/invalid.password.error";
+import { NotFoundError } from "@/core/errors/notFound.error";
+import { IHashService } from "@/core/contracts/hash.interface";
+import { ITokenService } from "@/core/contracts/token.interface";
+import { InvalidPassword } from "@/core/errors/invalid.password.error";
+
 
 export class AuthenticateUserUseCase {
   constructor(

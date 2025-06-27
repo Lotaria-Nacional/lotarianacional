@@ -1,10 +1,12 @@
-import { prisma } from "../../../../../core/lib/prisma"
-import { IUserRepository } from "../../../application/interfaces/user.repository"
+import { Prisma, PrismaClient } from "@prisma/client"
 import { User } from "../../../enterprise/entities/user"
+import { IUserRepository } from "../../../application/interfaces/user.repository"
 
 export class PrismaUserRespository implements IUserRepository {
+  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
+
   async save(user: User): Promise<void> {
-    await prisma.users.create({
+    await this.prisma.users.create({
       data: {
         role: user.role,
         email: user.email,
@@ -18,7 +20,7 @@ export class PrismaUserRespository implements IUserRepository {
   }
 
   async getAll(): Promise<User[]> {
-    const users = await prisma.users.findMany({
+    const users = await this.prisma.users.findMany({
       orderBy: {
         createdAt: "desc",
       },
@@ -38,7 +40,7 @@ export class PrismaUserRespository implements IUserRepository {
   }
 
   async update(id: string, user: User): Promise<User> {
-    const updatedUser = await prisma.users.update({
+    const updatedUser = await this.prisma.users.update({
       where: { id: id },
       data: {
         email: user.email,
@@ -60,7 +62,7 @@ export class PrismaUserRespository implements IUserRepository {
   }
 
   async getById(id: string): Promise<User | null> {
-    const user = await prisma.users.findUnique({ where: { id } })
+    const user = await this.prisma.users.findUnique({ where: { id } })
 
     if (!user) return null
 
@@ -76,11 +78,11 @@ export class PrismaUserRespository implements IUserRepository {
   }
 
   async delete(id: string): Promise<void> {
-    await prisma.users.delete({ where: { id } })
+    await this.prisma.users.delete({ where: { id } })
   }
 
   async getByEmail(email: string): Promise<User | null> {
-    const user = await prisma.users.findUnique({ where: { email } })
+    const user = await this.prisma.users.findUnique({ where: { email } })
     if (!user) return null
     return User.create({
       id: user.id,

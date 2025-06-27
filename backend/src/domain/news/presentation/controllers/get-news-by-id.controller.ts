@@ -1,6 +1,6 @@
-import { NotFoundError } from "../../../../core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/notFound.error"
 import { GetNewsByIdUseCase } from "../../application/use-cases/get-news-by-id.useCase"
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller"
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 
 export class GetNewsByIdController implements IController{
   constructor(private useCase: GetNewsByIdUseCase) {}

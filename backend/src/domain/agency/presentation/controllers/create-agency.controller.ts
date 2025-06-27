@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { CreateAgencyUseCase } from "../../application/use-cases/create-agency.useCase";
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller";
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller";
 
 export class CreateAgencyController implements IController {
-  constructor(private createAgencyUseCase: CreateAgencyUseCase) {}
+  constructor(private useCase: CreateAgencyUseCase) {}
 
   async handle(req: HttpRequest):Promise<HttpResponse> {
 
@@ -18,7 +18,7 @@ export class CreateAgencyController implements IController {
     try {
       const agencyData = createAgencySchema.parse(req.body);
 
-      await this.createAgencyUseCase.execute(agencyData);
+      await this.useCase.execute(agencyData);
 
       return {
         statusCode:201,

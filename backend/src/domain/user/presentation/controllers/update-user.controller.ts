@@ -1,7 +1,7 @@
 import { z } from "zod"
-import { NotFoundError } from "../../../../core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/notFound.error"
 import { UpdateUserUseCase } from "../../application/use-cases/update-user.useCase"
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller"
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 
 export class UpdateUserController implements IController{
   constructor(private uesCase: UpdateUserUseCase) {}

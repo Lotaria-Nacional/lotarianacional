@@ -1,6 +1,6 @@
-import { NotFoundError } from "../../../../core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/notFound.error"
 import { DeleteNewsUseCase } from "../../application/use-cases/delete-news.useCase"
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller"
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 
 export class DeleteNewsController implements IController{
   constructor(private useCase: DeleteNewsUseCase) {}

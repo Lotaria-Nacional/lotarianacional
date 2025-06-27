@@ -1,7 +1,8 @@
-import { Statistic } from "../../../enterprise/entities/statistic";
-import { DailyResultProps } from "../../../enterprise/entities/daily-lottery-result";
 import { IStatisticRepository } from "../../interfaces/statistic.repository";
 import { IDailyLotteryResultRespository } from "../../interfaces/daily-lottery-result.repository";
+import { Statistic } from "@/domain/daily-lottery-result/enterprise/entities/statistic";
+import { DailyResultProps } from "@/domain/daily-lottery-result/enterprise/entities/daily-lottery-result";
+
 
 export class NumberStatisticService {
   constructor(private dailyResultRepository: IDailyLotteryResultRespository, private statisticRepository: IStatisticRepository) {}

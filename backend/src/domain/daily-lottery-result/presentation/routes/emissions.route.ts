@@ -1,12 +1,11 @@
 import { Router } from "express";
+import { emissionRepo } from "@/main/container/repositories";
 import { makeEmissionController } from "../factories/make-emission.controller";
-import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller";
-import { PrismaEmissionRepository } from "../../infrastructure/repositories/prisma/prisma.emission.repository";
+import { expressAdapterController } from "@/core/adapters/express-adapter-controller";
 
 const emissionRouter = Router();
 
-const emissionRepository = new PrismaEmissionRepository();
-const { fetchEmissions } = makeEmissionController(emissionRepository)
+const { fetchEmissions } = makeEmissionController(emissionRepo)
 
 emissionRouter.get("/emissions", expressAdapterController(fetchEmissions));
 

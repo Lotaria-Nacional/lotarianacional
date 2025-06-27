@@ -1,8 +1,8 @@
 import { z } from "zod"
-import { NotFoundError } from "../../../../../core/errors/notFound.error"
-import { InvalidPassword } from "../../../../../core/errors/invalid.password.error"
+import { NotFoundError } from "@/core/errors/notFound.error"
 import { AuthenticateUserUseCase } from "../../../application/use-cases/authenticate-user.useCase"
-import { HttpRequest, HttpResponse, IController } from "../../../../../core/infrastucture/http/controller"
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
+import { InvalidPassword } from "@/core/errors/invalid.password.error"
 
 export class LoginController implements IController{
   constructor(private useCase: AuthenticateUserUseCase) {}

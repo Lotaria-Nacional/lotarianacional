@@ -1,6 +1,6 @@
-import { NotFoundError } from "../../../../core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/notFound.error"
 import { DeleteUserUseCase } from "../../application/use-cases/delete-user.useCase"
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller"
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 
 export class DeleteUserController implements IController {
   constructor(private useCase: DeleteUserUseCase) {}

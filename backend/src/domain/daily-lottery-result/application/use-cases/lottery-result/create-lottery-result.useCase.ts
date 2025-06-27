@@ -1,5 +1,5 @@
-import { LotteryResult } from "../../../enterprise/entities/lottery-result";
 import { ILotteryResultRepository } from "../../interfaces/lottery-result.respository";
+import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
 
 export type CreateResultInputDTO = {
   name: string;

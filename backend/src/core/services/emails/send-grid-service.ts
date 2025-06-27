@@ -1,5 +1,5 @@
 import sgMail from '@sendgrid/mail';
-import { EmailSender } from '../../interfaces/email.interface';
+import { EmailSender } from '@/core/contracts/email.interface';
 
 export class SendGridEmailSender implements EmailSender {
   private readonly API_KEY = process.env.SENDGRID_API_KEY

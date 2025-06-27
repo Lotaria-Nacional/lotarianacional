@@ -1,10 +1,9 @@
 import { Router } from "express"
+import { agencyRepository } from "@/main/container/repositories"
 import { agencyControllerFactory } from "../factories/make-agency-controllers"
-import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller"
-import { PrismaAgencyRepository } from "../../infrastructure/repositories/prisma/prisma-agency.repository"
+import { expressAdapterController } from "@/core/adapters/express-adapter-controller"
 
 const agencyRouter = Router()
-const agencyRepository = new PrismaAgencyRepository()
 
 const { createAgency,deleteAgency,fetchManyAgencies,getAgencyById,updateAgency } = agencyControllerFactory(agencyRepository)
 

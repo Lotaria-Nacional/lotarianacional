@@ -1,4 +1,4 @@
-import { HttpRequest, HttpResponse, IController } from "../../../../../core/infrastucture/http/controller";
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller";
 import { FetchManyDailyLotteryResultsUseCase } from "../../../application/use-cases/daily-lottery-result/fetch-manny-daily-lottery-result.useCase";
 
 export class FetchManyDailyLotteryResultsController implements IController {

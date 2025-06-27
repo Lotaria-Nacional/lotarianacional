@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { CreateNewsUseCase } from "../../application/use-cases/create-news.useCase"
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller"
+import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 
 export class CreateNewsController implements IController {
   constructor(private useCase: CreateNewsUseCase) {}

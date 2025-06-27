@@ -1,6 +1,6 @@
 import { News } from "../../enterprise/entities/news";
 import { INewsRespository } from "../interfaces/news.repository";
-import { IFileUpload } from "../../../../core/interfaces/file-upload.interface";
+import { IFileUpload } from "@/core/contracts/file-upload.interface";
 
 type CreateNewsInputDTO = {
   title: string;

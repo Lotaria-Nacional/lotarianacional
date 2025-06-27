@@ -1,10 +1,12 @@
-import { prisma } from "../../../../../core/lib/prisma";
-import { IEmissionRepository } from "../../../application/interfaces/emission.repository";
-import { Emission } from "../../../enterprise/entities/emission.entity";
+import { PrismaClient, Prisma } from "@prisma/client";
+import { Emission } from "@/domain/daily-lottery-result/enterprise/entities/emission.entity";
+import { IEmissionRepository } from "@/domain/daily-lottery-result/application/interfaces/emission.repository";
 
 export class PrismaEmissionRepository implements IEmissionRepository {
+  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
+
   async getAll(): Promise<Emission[]> {
-    const emissions = await prisma.emission.findMany({
+    const emissions = await this.prisma.emission.findMany({
       orderBy: {
         createdAt: "desc",
       },
@@ -22,7 +24,7 @@ export class PrismaEmissionRepository implements IEmissionRepository {
   async save(emission: Emission): Promise<void> {
     const { url, description, formatedData, createdAt } = emission.toJSON();
     try {
-      await prisma.emission.create({
+      await this.prisma.emission.create({
         data: {
           url,
           description,

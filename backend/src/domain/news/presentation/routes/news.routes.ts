@@ -1,14 +1,12 @@
 import { Router } from "express"
-
-import { upload } from "../../../../core/middlewares/multer.middleware"
+import { upload } from "@/core/middlewares/multer.middleware"
+import { newsRepository } from "@/main/container/repositories"
 import { makeNewsController } from "../factories/make-news-controllers"
-import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller"
-import { PrismaNewsRespository } from "../../infrastructure/repositories/prisma/prisma.news.repository"
-import { CloudinaryUploadService } from "../../../../core/services/file-upload/cloudinary-upload-service"
+import { expressAdapterController } from "@/core/adapters/express-adapter-controller"
+import { CloudinaryUploadService } from "@/core/services/file-upload/cloudinary-upload-service"
 
 const newsRouter = Router()
 
-const newsRepository = new PrismaNewsRespository()
 const cloudinaryService = new CloudinaryUploadService()
 
 const {

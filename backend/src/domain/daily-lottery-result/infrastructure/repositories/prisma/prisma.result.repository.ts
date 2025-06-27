@@ -1,10 +1,12 @@
-import { LotteryResult } from "../../../enterprise/entities/lottery-result";
-import { prisma } from "../../../../../core/lib/prisma";
-import { ILotteryResultRepository, UpdateLotteryResult } from "../../../application/interfaces/lottery-result.respository";
+import { PrismaClient, Prisma } from "@prisma/client";
+import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
+import { ILotteryResultRepository, UpdateLotteryResult } from "@/domain/daily-lottery-result/application/interfaces/lottery-result.respository";
 
-export class PrismaResultRespository implements ILotteryResultRepository {
+export class PrismaLotteryResultRespository implements ILotteryResultRepository {
+  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
+
   async save(result: LotteryResult): Promise<void> {
-    await prisma.result.create({
+    await this.prisma.result.create({
       data: {
         name: result.name,
         videoURL: result.videoURL ?? null,
@@ -19,7 +21,7 @@ export class PrismaResultRespository implements ILotteryResultRepository {
     });
   }
   async getAll(): Promise<LotteryResult[]> {
-    const results = await prisma.result.findMany({
+    const results = await this.prisma.result.findMany({
       orderBy: { createdAt: "desc" },
     });
 
@@ -40,7 +42,7 @@ export class PrismaResultRespository implements ILotteryResultRepository {
   }
 
   async update(data: UpdateLotteryResult): Promise<LotteryResult | null> {
-    const updatedResult = await prisma.result.update({
+    const updatedResult = await this.prisma.result.update({
       where: { id: data.id },
       data: {
         videoURL: data.videoURL ?? null,
@@ -62,7 +64,7 @@ export class PrismaResultRespository implements ILotteryResultRepository {
   }
 
   async getById(id: string): Promise<LotteryResult | null> {
-    const result = await prisma.result.findUnique({ where: { id } });
+    const result = await this.prisma.result.findUnique({ where: { id } });
     if (!result) return null;
     return LotteryResult.create({
       id: result.id,
@@ -79,6 +81,6 @@ export class PrismaResultRespository implements ILotteryResultRepository {
   }
 
   async delete(id: string): Promise<void> {
-    await prisma.result.delete({ where: { id } });
+    await this.prisma.result.delete({ where: { id } });
   }
 }
