@@ -14,4 +14,4 @@ export class Left<L,R> {
     isRight():this is Right<L,R>{
         return false
     }
-}
+  }
