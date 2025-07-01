@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { NotFoundError } from "@/core/errors/notFound.error";
+import { NotFoundError } from "@/core/errors/common/not-found.error";
 import { ResultLimitException } from "../../../exceptions/resultLimitExceeded.exception";
 import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller";
 import { CreateLotteryResultUseCase } from "../../../application/use-cases/lottery-result/create-lottery-result.useCase";

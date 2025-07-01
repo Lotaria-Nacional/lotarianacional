@@ -1,9 +1,9 @@
 import { User } from "../../enterprise/entities/user";
 import { IUserRepository } from "../interfaces/user.repository";
-import { NotFoundError } from "@/core/errors/notFound.error";
+import { NotFoundError } from "@/core/errors/common/not-found.error";
 import { IHashService } from "@/core/contracts/hash.interface";
 import { ITokenService } from "@/core/contracts/token.interface";
-import { InvalidPassword } from "@/core/errors/invalid.password.error";
+import { InvalidPassword } from "@/core/errors/common/invalid-password.error";
 
 
 export class AuthenticateUserUseCase {

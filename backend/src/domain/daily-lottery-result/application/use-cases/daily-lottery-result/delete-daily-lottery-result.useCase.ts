@@ -1,4 +1,4 @@
-import { NotFoundError } from "@/core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/common/not-found.error"
 import { IDailyLotteryResultRespository } from "../../interfaces/daily-lottery-result.repository"
 
 export class DeleteDailyResultUseCase {

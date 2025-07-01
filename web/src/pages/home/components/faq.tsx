@@ -20,7 +20,7 @@ export default function FAQ() {
           chances de ganhar!
         </p>
         <a target="_blank" href={`https://wa.me/${supportNumber}`}>
-          <Button variant="red">
+          <Button>
             Alguma pergunta?
             <SiWhatsapp />
           </Button>

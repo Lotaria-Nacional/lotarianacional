@@ -1,12 +1,13 @@
+import Button from "@/shared/components/ui/button/button";
 import { NewsEntity } from "../@types/news.types";
-import LinkButton from "@/shared/components/ui/button/link-button";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   data: NewsEntity;
 };
 
 export default function OtherNewsRow({ data }: Props) {
-  console.log(data.createdAt);
+  const navigate = useNavigate();
   return (
     <li
       key={data.id}
@@ -31,9 +32,12 @@ export default function OtherNewsRow({ data }: Props) {
             .join("-")}
         </span>
 
-        <LinkButton link={`/noticia/${data.id}`} className="py-1 px-4">
+        <Button
+          intent={"secondary"}
+          onClick={() => navigate(`/noticia/${data.id}`)}
+        >
           Ler mais
-        </LinkButton>
+        </Button>
       </div>
     </li>
   );

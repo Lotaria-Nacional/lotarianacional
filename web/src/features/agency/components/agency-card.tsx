@@ -1,16 +1,5 @@
 import { HiPhone } from "react-icons/hi";
-import { MdLocationPin } from "react-icons/md";
 import { AgencyEntity } from "../@types/agency.type";
-
-// export type TAgency = {
-//   agencyName: string;
-//   locationInText: string;
-//   phoneNumber: string;
-//   geoLocation: {
-//     latitude: number;
-//     longitude: number;
-//   };
-// };
 
 type Props = {
   agency: AgencyEntity;
@@ -27,11 +16,6 @@ export default function AgencyCard({
       </header>
 
       <div className="w-full flex items-center justify-between text-base">
-        <button className="flex text-white items-center gap-2 transition-all duration-300 ease-in-out hover:scale-[1.1] hover:bg-white hover:text-LT_RED-200 px-1 py-1 rounded-lg">
-          <MdLocationPin size={24} />
-          Ver no map
-        </button>
-
         <a
           href={`tel:${phone}`}
           className="flex bg-white text-LT_RED-200 border hover:bg-transparent hover:text-white hover:border-white transition-all duration-300 ease-in-out items-center gap-2 px-2 rounded-lg h-[30px]"

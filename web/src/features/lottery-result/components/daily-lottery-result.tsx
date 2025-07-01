@@ -1,14 +1,13 @@
-import ResultadoCard from "./lottery-result-card";
-import DailyResultSkeleton from "./daily-lottery-result-skeleton";
-import { useLastDailyResult } from "@/features/lottery-result/hooks/useLastDailyResult";
-
 import fezada from "/placeholders/fezada.svg";
 import kazola from "/placeholders/kazola.svg";
 import aqueceu from "/placeholders/aqueceu.svg";
 import eskebra from "/placeholders/eskebra.svg";
+import ResultadoCard from "./lottery-result-card";
+import DailyResultSkeleton from "./daily-lottery-result-skeleton";
+import { useGetLastDailyLotteryResult } from "@/features/lottery-result/hooks/use-get-last-daily-lottery-result";
 
 export default function DailyLotteryResultListing() {
-  const { isLoading, lastDailyResult } = useLastDailyResult();
+  const { data: lastDailyResult, isLoading } = useGetLastDailyLotteryResult();
   const PLACEHOLDERS = [fezada, aqueceu, kazola, eskebra];
 
   if (!lastDailyResult || lastDailyResult.results.length === 0) return;

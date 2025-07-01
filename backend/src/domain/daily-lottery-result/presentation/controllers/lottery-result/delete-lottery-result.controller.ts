@@ -1,4 +1,4 @@
-import { NotFoundError } from "@/core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/common/not-found.error"
 import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 import { DeleteLotteryResultUseCase } from "../../../application/use-cases/lottery-result/delete-lottery-result.useCase"
 

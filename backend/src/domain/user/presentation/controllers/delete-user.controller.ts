@@ -1,4 +1,4 @@
-import { NotFoundError } from "@/core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/common/not-found.error"
 import { DeleteUserUseCase } from "../../application/use-cases/delete-user.useCase"
 import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 

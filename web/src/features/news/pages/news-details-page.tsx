@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useNews } from "@/features/news/hooks/useNews";
+import { useFetchManyNews } from "@/features/news/hooks/use-fetch-many-news";
 import OtherNewsRow from "../components/other-news-row";
 import { isValidArray } from "@/shared/utils/array-validation";
 import { useNewsById } from "@/features/news/hooks/useNewsById";
@@ -12,10 +12,13 @@ import SocialMediaShareButtons from "../components/social-media-share-buttons";
 
 export default function NewsDetailsPage() {
   const { id } = useParams();
-  const { news, isLoading: isLoadingOtherNews } = useNews();
+  const { data: news, isLoading: isLoadingOtherNews } = useFetchManyNews();
+
   const { newsById, isLoading } = useNewsById(id!);
-  if (!newsById && news.data.length > 0)
+
+  if (!newsById && !news?.data)
     return <EmptyState message="Não há notícias ainda." />;
+
   return (
     <Container className="py-12 items-start min-h-screen">
       <section className="grid grid-cols-1 lg:grid-cols-2 h-full gap-8 items-start w-full">
@@ -43,7 +46,7 @@ export default function NewsDetailsPage() {
 
             {isLoadingOtherNews ? (
               <OtherNewsSkeleton />
-            ) : isValidArray(news.data) ? (
+            ) : news && isValidArray(news.data) ? (
               <ul className="flex flex-col gap-8">
                 {news.data.map((data) => (
                   <OtherNewsRow key={data.id} data={data} />

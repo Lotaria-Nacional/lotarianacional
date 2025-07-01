@@ -1,5 +1,5 @@
 import { IFileUpload } from "@/core/contracts/file-upload.interface";
-import { NotFoundError } from "../../../../core/errors/notFound.error";
+import { NotFoundError } from "../../../../core/errors/common/not-found.error";
 import { getCloudinaryPublicId } from "../../../../shared/utils/get-cloudinary-public-id";
 import { INewsRespository } from "../interfaces/news.repository";
 

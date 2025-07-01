@@ -1,29 +1,24 @@
-import { ButtonHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
+import { ButtonHTMLAttributes } from "react";
+import { buttonVariants, ButtonVariants } from "./button.cva";
 
-type Props = {
+type ButtonProps = {
   className?: string;
-  variant?: "red" | "default";
   children: React.ReactNode;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+} & ButtonHTMLAttributes<HTMLButtonElement> &
+  ButtonVariants;
 
 const Button = ({
   children,
+  intent,
+  size,
   className,
-  variant = "default",
   ...rest
-}: Props) => {
+}: ButtonProps) => {
   return (
     <button
       {...rest}
-      className={twMerge(
-        `flex items-center rounded-[8px] gap-[8px] text-[14px] cursor-pointer justify-center h-[40px] px-4 w-fit ${
-          variant === "default"
-            ? "bg-LT_WHITE text-LT_RED-300 border-LT_RED-300 border"
-            : "bg-LT_RED-300 text-white"
-        }`,
-        className
-      )}
+      className={twMerge(buttonVariants({ intent, size }), className)}
     >
       {children}
     </button>

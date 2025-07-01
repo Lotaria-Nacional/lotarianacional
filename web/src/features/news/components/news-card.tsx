@@ -1,6 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import { dateFormat } from "@/shared/utils/date";
 import { NewsEntity } from "../@types/news.types";
-import LinkButton from "@/shared/components/ui/button/link-button";
+import Button from "@/shared/components/ui/button/button";
 
 type Prop = {
   news: NewsEntity;
@@ -9,6 +10,8 @@ type Prop = {
 export default function NewsCard({
   news: { createdAt, title, id, image },
 }: Prop) {
+  const navigate = useNavigate();
+
   return (
     <div className="lg:w-full flex flex-col gap-4">
       <div className="relative w-full h-[240px]">
@@ -22,9 +25,9 @@ export default function NewsCard({
 
       <h1 className="font-semibold text-[20px] line-clamp-2">{title}</h1>
 
-      <LinkButton link={`/noticia/${id}`} className="py-1 px-4">
+      <Button intent={"secondary"} onClick={() => navigate(`/noticia/${id}`)}>
         Ler mais
-      </LinkButton>
+      </Button>
     </div>
   );
 }

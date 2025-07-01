@@ -7,12 +7,13 @@ import {
   AgencyPage,
   GameGuidePage,
   StatisticsPage,
-  ApplicationPage,
+  JobApplicationPage,
   NewsDetailsPage,
-  LotteryResultPage,
+  DailyLotteryResultPage,
   RegulamentationPage,
   ChancesEPremiosPage,
   PoliticsAndPrivacyPage,
+  JobOppeningDetailsPage,
 } from "@/pages";
 import App from "@/App";
 import { createBrowserRouter } from "react-router-dom";
@@ -29,11 +30,15 @@ export const router = createBrowserRouter([
       //Institutional
       { path: "/sobre-nos", element: <AboutPage /> },
       { path: "/agencias", element: <AgencyPage /> },
-      { path: "/recrutamento", element: <ApplicationPage /> },
+      { path: "/recrutamento", element: <JobApplicationPage /> },
+      {
+        path: "/recrutamento/vaga/:id/detalhes",
+        element: <JobOppeningDetailsPage />,
+      },
 
       //Game
       { path: "/como-jogar", element: <GameGuidePage /> },
-      { path: "/resultados", element: <LotteryResultPage /> },
+      { path: "/resultados", element: <DailyLotteryResultPage /> },
       { path: "/estatisticas", element: <StatisticsPage /> },
       { path: "/chances-e-premios/", element: <ChancesEPremiosPage /> },
 

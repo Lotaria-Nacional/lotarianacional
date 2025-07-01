@@ -61,7 +61,6 @@ const HomePage = () => {
           <h1 className="font-bold text-[24px] lg:text-[34px] uppercase">
             últimas notícias
           </h1>
-
           <NewsListing />
         </Container>
         <section className="py-10 bg-LT_GRAY-100/30">

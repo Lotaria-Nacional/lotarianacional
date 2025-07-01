@@ -4,12 +4,12 @@ import kazola from "/placeholders/kazola.svg";
 import eskebra from "/placeholders/eskebra.svg";
 import aqueceu from "/placeholders/aqueceu.svg";
 import Container from "../common/container/container";
-import { useLastDailyResult } from "@/features/lottery-result/hooks/useLastDailyResult";
 import LotteryResultCard from "@/features/lottery-result/components/lottery-result-card";
 import LotteryResultSkeletonMobile from "@/features/lottery-result/components/lottery-result-skeleton-mobile";
+import { useGetLastDailyLotteryResult } from "@/features/lottery-result/hooks/use-get-last-daily-lottery-result";
 
 const MobileDailyResults = () => {
-  const { lastDailyResult, isLoading } = useLastDailyResult();
+  const { data: lastDailyResult, isLoading } = useGetLastDailyLotteryResult();
   const PLACE_HOLDERS_IMGS = [fezada, aqueceu, kazola, eskebra];
 
   if (isLoading) {

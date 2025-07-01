@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { PiMinus, PiPlus } from "react-icons/pi";
 import { PERGUNTAS_FREQUENTES } from "@/app/constants/faq";
+import Button from "@/shared/components/ui/button/button";
 
 export default function QuestionsDropdown() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -64,12 +65,13 @@ export default function QuestionsDropdown() {
         </li>
       ))}
 
-      <button
+      <Button
+        intent={"secondary"}
+        className="mt-[40px]"
         onClick={handleShowMoreQuestions}
-        className="mt-[40px] border border-LT_RED-300 px-3 py-1 text-LT_RED-300 rounded-lg w-fit self-start"
       >
         {showMoreQuestions ? "Ocultar" : " Ver mais"}
-      </button>
+      </Button>
     </div>
   );
 }

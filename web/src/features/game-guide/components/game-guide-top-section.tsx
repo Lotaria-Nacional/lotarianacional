@@ -2,15 +2,13 @@ import { MdClose } from "react-icons/md";
 import { FaPlayCircle } from "react-icons/fa";
 import usePopUp from "@/shared/hooks/usePopUp";
 import Button from "@/shared/components/ui/button/button";
-import PageTitle from "@/shared/components/common/page-title";
 
 export default function GameGuideTopSection() {
   const { handleOpenPopUp, handleClosePopUp, isPopUpOpen } = usePopUp();
-  return (
-    <section className="w-full flex items-center justify-between border-b pb-2 lg:pb-4">
-      <PageTitle>Como jogar o Loto5/90</PageTitle>
 
-      <Button onClick={handleOpenPopUp} variant="red">
+  return (
+    <section className="w-full flex items-center justify-between pb-2 lg:pb-4">
+      <Button onClick={handleOpenPopUp}>
         <FaPlayCircle />
         <span className="hidden lg:block cursor-pointer">Ver o tutorial</span>
       </Button>

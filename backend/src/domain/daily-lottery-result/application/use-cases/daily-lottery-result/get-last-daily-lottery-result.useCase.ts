@@ -1,7 +1,7 @@
 import { LotteryResult } from "../../../enterprise/entities/lottery-result"
 import { DailyLotteryResult } from "../../../enterprise/entities/daily-lottery-result"
 import { IDailyLotteryResultRespository } from "../../interfaces/daily-lottery-result.repository"
-import { NotFoundError } from "@/core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/common/not-found.error"
 
 export class GetLastDailyResultUseCase {
   constructor(private dailyResultRepository: IDailyLotteryResultRespository) {}

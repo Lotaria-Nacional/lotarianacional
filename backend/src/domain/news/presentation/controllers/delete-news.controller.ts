@@ -1,4 +1,4 @@
-import { NotFoundError } from "@/core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/common/not-found.error"
 import { DeleteNewsUseCase } from "../../application/use-cases/delete-news.useCase"
 import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
 

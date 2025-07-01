@@ -5,11 +5,11 @@ import { GoogleMapConfigProps } from "@/lib/google-map";
 import { useGoogleMaps } from "@/shared/hooks/usseGoogleMaps";
 import GoogleMapMarkerDefault from "./google-map-marker-default";
 import { GoogleMap as GOOGLE_MAP } from "@react-google-maps/api";
-import { useAgencies } from "@/features/agency/hooks/useAgencies";
+import { useFetchManyAgencies } from "@/features/agency/hooks/use-fetch-many-agencies";
 
 export default function GoogleMap() {
   const { pathname } = useLocation();
-  const { agencies } = useAgencies();
+  const { data: agencies } = useFetchManyAgencies();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { isLoaded, onLoad, onUnmount, selectedMarker, setSelectedMarker } =

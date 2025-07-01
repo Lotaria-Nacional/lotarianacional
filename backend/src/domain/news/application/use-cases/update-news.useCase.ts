@@ -1,5 +1,5 @@
 import { News } from "../../enterprise/entities/news";
-import { NotFoundError } from "@/core/errors/notFound.error";
+import { NotFoundError } from "@/core/errors/common/not-found.error";
 import { INewsRespository } from "../interfaces/news.repository";
 import { IFileUpload } from "@/core/contracts/file-upload.interface";
 import { EditNewsDTO } from "../../presentation/validations/edit-news.schema";

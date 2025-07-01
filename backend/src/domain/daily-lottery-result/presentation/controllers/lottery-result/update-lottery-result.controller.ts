@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { NotFoundError } from "@/core/errors/notFound.error";
+import { NotFoundError } from "@/core/errors/common/not-found.error";
 import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller";
 import { UpdateLotteryResultUseCase } from "../../../application/use-cases/lottery-result/update-lottery-result.useCase";
 

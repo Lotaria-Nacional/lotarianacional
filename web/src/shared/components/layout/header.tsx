@@ -1,13 +1,13 @@
 import Logo from "../common/logo";
 import { Link, NavLink } from "react-router-dom";
 import MobileMenu from "../mobile/menu/mobile-menu";
-import Container from "../common/container/container";
 import { NAVIGATION_LINKS } from "@/app/router/navigation";
+import { PageBody } from "./page-body";
 
 const Header = () => {
   return (
     <header className="bg-[#b51817] border-b border-b-white w-full sticky text-base z-[500] top-0 flex items-center">
-      <Container className="flex-row py-4 lg:py0 lg:h-[120px] text-white justify-between">
+      <PageBody.Container className="flex-row py-4 lg:py0 lg:h-[120px] text-white justify-between">
         <Link reloadDocument to={"/"}>
           <Logo />
         </Link>
@@ -41,7 +41,7 @@ const Header = () => {
         </div>
 
         <MobileMenu />
-      </Container>
+      </PageBody.Container>
     </header>
   );
 };

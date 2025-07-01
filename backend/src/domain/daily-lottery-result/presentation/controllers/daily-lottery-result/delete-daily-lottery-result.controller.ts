@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { NotFoundError } from "@/core/errors/notFound.error"
+import { NotFoundError } from "@/core/errors/common/not-found.error"
 import { IController, HttpRequest, HttpResponse } from "@/core/infrastucture/http/controller"
 import { DeleteDailyResultUseCase } from "../../../application/use-cases/daily-lottery-result/delete-daily-lottery-result.useCase"
 

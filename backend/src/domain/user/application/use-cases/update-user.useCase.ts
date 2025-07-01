@@ -1,4 +1,4 @@
-import { NotFoundError } from "@/core/errors/notFound.error";
+import { NotFoundError } from "@/core/errors/common/not-found.error";
 import { IUserRepository } from "../interfaces/user.repository";
 import { IFileUpload } from "@/core/contracts/file-upload.interface";
 import { EditUserDTO } from "../../presentation/validations/edit-user.schema";

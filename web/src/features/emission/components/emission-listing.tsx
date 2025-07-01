@@ -2,13 +2,13 @@ import EmissoesSlider from "./emission-slider";
 import { Skeleton } from "@/shared/components/ui/skeleton";
 import { isValidArray } from "@/shared/utils/array-validation";
 import EmptyState from "@/shared/components/common/empty-state";
-import { useEmission } from "@/features/emission/hooks/useEmission";
+import { useFetchManyEmission } from "@/features/emission/hooks/use-fetch-many-emission";
 
 import "swiper/swiper-bundle.css";
 import "./emission-slider-nav.css";
 
 export default function EmissionListing() {
-  const { emissions, isLoading } = useEmission();
+  const { data: emissions, isLoading } = useFetchManyEmission();
   return (
     <>
       {isLoading ? (
@@ -20,7 +20,7 @@ export default function EmissionListing() {
             ))}
           </div>
         </div>
-      ) : isValidArray(emissions) ? (
+      ) : emissions && isValidArray(emissions) ? (
         <EmissoesSlider emissions={emissions} />
       ) : (
         <EmptyState className="h-[150px]" message="Não há emissões ainda." />

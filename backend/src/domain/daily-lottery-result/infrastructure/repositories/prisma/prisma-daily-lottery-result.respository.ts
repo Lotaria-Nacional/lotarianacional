@@ -1,4 +1,4 @@
-import { NotFoundError } from "@/core/errors/notFound.error";
+import { NotFoundError } from "@/core/errors/common/not-found.error";
 import { IDailyLotteryResultRespository } from "@/domain/daily-lottery-result/application/interfaces/daily-lottery-result.repository";
 import { DailyLotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/daily-lottery-result";
 import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
