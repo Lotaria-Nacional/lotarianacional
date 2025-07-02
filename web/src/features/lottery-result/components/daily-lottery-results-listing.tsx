@@ -1,63 +1,58 @@
-import { checkIsToday } from "../utils";
-import { breakpoints } from "@/lib/swiper";
-import { Mousewheel } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper";
-import { formatDate } from "@/shared/utils/date";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect, useRef, useState } from "react";
-import LotteryResultCard from "./lottery-result-card";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import PageTitle from "@/shared/components/common/page-title";
-import { DailyLotteryResultEntity } from "../@types/lottery-result.types";
-import LotteryResultCardPlaceholder from "./lottery-result-card-placeholder";
+import { checkIsToday } from "../utils"
+import { breakpoints } from "@/lib/swiper"
+import { Mousewheel } from "swiper/modules"
+import { Swiper as SwiperType } from "swiper"
+import { formatDate } from "@/shared/utils/date"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { useEffect, useRef, useState } from "react"
+import LotteryResultCard from "./lottery-result-card"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import PageTitle from "@/shared/components/common/page-title"
+import { lotteryButtonStyle } from "../styles/lottery-button.cva"
+import { DailyLotteryResultEntity } from "../@types/lottery-result.types"
+import LotteryResultCardPlaceholder from "./lottery-result-card-placeholder"
 
-import "swiper/swiper-bundle.css";
+import "swiper/swiper-bundle.css"
 
 type Props = {
-  data: DailyLotteryResultEntity[];
-};
+  data: DailyLotteryResultEntity[]
+}
 
 export default function DailyLotteryResultsListing({ data }: Props) {
-  const INITIAL_SLIDE = data.length - 1;
-  const swiperRef = useRef<SwiperType | null>(null);
-  const [canGoBack, setCanGoBack] = useState(false);
-  const [slideCount, setSlideCount] = useState(INITIAL_SLIDE);
+  const INITIAL_SLIDE = data.length - 1
+  const swiperRef = useRef<SwiperType | null>(null)
+  const [canGoBack, setCanGoBack] = useState(false)
+  const [slideCount, setSlideCount] = useState(INITIAL_SLIDE)
 
   const handleSwiper = (direction: "left" | "right") => {
     if (swiperRef.current) {
       if (direction === "left") {
-        swiperRef.current.slidePrev();
-        setCanGoBack(true);
-        setSlideCount((prev) => Math.max(prev - 1, 0));
+        swiperRef.current.slidePrev()
+        setCanGoBack(true)
+        setSlideCount((prev) => Math.max(prev - 1, 0))
       } else {
-        swiperRef.current.slideNext();
-        setSlideCount((prev) => Math.min(prev + 1, data.length - 1));
+        swiperRef.current.slideNext()
+        setSlideCount((prev) => Math.min(prev + 1, data.length - 1))
       }
     }
-  };
+  }
 
   const handleGoBack = () => {
     if (swiperRef.current) {
-      swiperRef.current.slideTo(INITIAL_SLIDE);
-      setSlideCount(INITIAL_SLIDE);
+      swiperRef.current.slideTo(INITIAL_SLIDE)
+      setSlideCount(INITIAL_SLIDE)
     }
-    setCanGoBack(false);
-  };
+    setCanGoBack(false)
+  }
 
   useEffect(() => {
     if (slideCount === INITIAL_SLIDE) {
-      setCanGoBack(false);
+      setCanGoBack(false)
     }
     if (slideCount < INITIAL_SLIDE) {
-      setCanGoBack(true);
+      setCanGoBack(true)
     }
-  }, [slideCount]);
-
-  const BUTTON_STYLE =
-    "border border-zinc-300 bg-white size-8 p-2 text-zinc-500 rounded-full cursor-pointer hover:bg-zinc-100 transition-all duration-200 ease-in-out";
-
-  const GO_BACK_BUTTON_STYLE =
-    "bg-yellow-400 py-1 px-5 text-black rounded-full cursor-pointer hover:bg-yellow-500 transition-all duration-200 ease-in-out";
+  }, [slideCount])
 
   return (
     <section className="w-full  flex flex-col gap-6">
@@ -65,18 +60,21 @@ export default function DailyLotteryResultsListing({ data }: Props) {
         <PageTitle>Resultados</PageTitle>
         <div className="flex items-center gap-2">
           {canGoBack && (
-            <button onClick={handleGoBack} className={GO_BACK_BUTTON_STYLE}>
+            <button
+              onClick={handleGoBack}
+              className={lotteryButtonStyle({ intent: "secondary" })}
+            >
               Últimos
             </button>
           )}
           <div className="flex items-center bg-zinc-200 rounded-full p-1 gap-4">
             <ChevronLeft
-              className={BUTTON_STYLE}
               onClick={() => handleSwiper("left")}
+              className={lotteryButtonStyle({ intent: "primary" })}
             />
             <ChevronRight
-              className={BUTTON_STYLE}
               onClick={() => handleSwiper("right")}
+              className={lotteryButtonStyle({ intent: "primary" })}
             />
           </div>
         </div>
@@ -90,12 +88,12 @@ export default function DailyLotteryResultsListing({ data }: Props) {
         mousewheel={{ enabled: true, forceToAxis: true }}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onActiveIndexChange={(swiper) => {
-          setCanGoBack(swiper.activeIndex < INITIAL_SLIDE);
+          setCanGoBack(swiper.activeIndex < INITIAL_SLIDE)
         }}
       >
         {data.map((dailyRes, dailyResIndex) => {
-          const { isToday, placeholdersCount } = checkIsToday(dailyRes);
-          const totalResults = dailyRes.results.length;
+          const { isToday, placeholdersCount } = checkIsToday(dailyRes)
+          const totalResults = dailyRes.results.length
 
           return (
             <SwiperSlide
@@ -131,9 +129,9 @@ export default function DailyLotteryResultsListing({ data }: Props) {
                 </div>
               </ul>
             </SwiperSlide>
-          );
+          )
         })}
       </Swiper>
     </section>
-  );
+  )
 }

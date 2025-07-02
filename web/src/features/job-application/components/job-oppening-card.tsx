@@ -1,15 +1,20 @@
-import { useNavigate } from "react-router-dom";
-import { JobOppening } from "../@types/job-oppening.types";
-import Button from "@/shared/components/ui/button/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/shared/components/ui/dialog"
+import { useNavigate } from "react-router-dom"
+import JobApplicationForm from "./job-application-form"
+import Button from "@/shared/components/ui/button/button"
+import { JobOppening } from "../@types/job-oppening.types"
 
 type Props = {
-  data: JobOppening;
-};
+  data: JobOppening
+}
 
-export default function JobOppeningCard({
-  data: { department, title, requirements, id },
-}: Props) {
-  const navigate = useNavigate();
+export default function JobOppeningCard({ data }: Props) {
+  const navigate = useNavigate()
+  const { department, title, requirements, id } = data
 
   return (
     <div className="h-[250px] w-full lg:w-[293px] xl:w-full border rounded-[8px] p-4 grid grid-cols-1">
@@ -40,10 +45,17 @@ export default function JobOppeningCard({
           Ver detalhes
         </Button>
 
-        <Button intent={"primary"} className="w-full">
-          Candidatar-se
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button intent={"primary"} className="w-full">
+              Candidatar-se
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <JobApplicationForm />
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
-  );
+  )
 }
