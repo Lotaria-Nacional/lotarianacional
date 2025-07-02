@@ -1,9 +1,9 @@
-import { GameGuideProps } from "../constants/game-guide-content";
+import { GameGuideProps } from "../constants/game-guide-content"
 
 type Props = {
-  data: GameGuideProps;
-  reverse: boolean;
-};
+  data: GameGuideProps
+  reverse: boolean
+}
 
 export default function GameGuideRow({
   data: { id, image, description },
@@ -26,5 +26,5 @@ export default function GameGuideRow({
         <p className="text-[20px] text-justify">{description}</p>
       </div>
     </div>
-  );
+  )
 }

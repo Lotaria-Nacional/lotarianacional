@@ -1,38 +1,38 @@
-import { useState } from "react";
-import { ICONS } from "@/app/constants/assets";
-import { Stats } from "../@types/statistics.types";
-import { useStatistic } from "../hooks/useStatistic";
-import Button from "@/shared/components/ui/button/button";
-import GraphAndTable from "../components/graph-and-table";
-import StatisticSkeleton from "../components/statistic-skeleton";
-import { PageBody } from "@/shared/components/layout/page-body";
-import { PageHeader } from "@/shared/components/layout/page-header";
+import { useState } from "react"
+import { ICONS } from "@/app/constants/assets"
+import { Stats } from "../@types/statistics.types"
+import { useGetStatistics } from "../hooks/use-get-statistics"
+import Button from "@/shared/components/ui/button/button"
+import GraphAndTable from "../components/graph-and-table"
+import StatisticSkeleton from "../components/statistic-skeleton"
+import { PageBody } from "@/shared/components/layout/page-body"
+import { PageHeader } from "@/shared/components/layout/page-header"
 
 const EstatisticasPage = () => {
-  const { isLoading, stats } = useStatistic();
-  const [switchTableAndGraph, setSwitchTableAndGraph] = useState(true);
+  const statstistics = useGetStatistics()
+  const [switchTableAndGraph, setSwitchTableAndGraph] = useState(true)
 
-  if (isLoading) return <StatisticSkeleton />;
+  if (statstistics.isLoading) return <StatisticSkeleton />
 
   const renderNumber = (maxNumber: number, data?: Stats[]) => {
     const numberMap = data
       ? new Map(data.map((obj) => [obj.sortedNumber, obj.sortedTimes]))
-      : new Map();
+      : new Map()
 
     return Array.from({ length: maxNumber }, (_, i) => {
-      const number = i + 1;
+      const number = i + 1
       return {
         sortedNumber: number,
         sortedTimes: numberMap.get(number) || 0,
-      };
-    });
-  };
+      }
+    })
+  }
 
-  const statsDataArr = renderNumber(90, stats?.statsData);
+  const statsDataArr = renderNumber(90, statstistics.data?.statsData)
 
   const toggleGraphAndTable = () => {
-    setSwitchTableAndGraph((prev) => !prev);
-  };
+    setSwitchTableAndGraph((prev) => !prev)
+  }
 
   return (
     <PageBody.Container>
@@ -57,7 +57,7 @@ const EstatisticasPage = () => {
         />
       </div>
     </PageBody.Container>
-  );
-};
+  )
+}
 
-export default EstatisticasPage;
+export default EstatisticasPage

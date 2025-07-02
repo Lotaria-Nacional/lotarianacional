@@ -1,7 +1,7 @@
 import NewsCard from "../components/news-card";
 import NewsSkeleton from "../components/news-skeleton";
 import { useFetchManyNews } from "@/features/news/hooks/use-fetch-many-news";
-import { usePagination } from "@/shared/hooks/usePagination";
+import { usePagination } from "@/shared/hooks/use-pagination";
 import Pagination from "@/shared/components/common/pagination";
 import EmptyState from "@/shared/components/common/empty-state";
 import Container from "@/shared/components/common/container/container";

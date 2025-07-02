@@ -1,11 +1,11 @@
-import GameGuideRow from "../components/game-guide-row";
-import { PageBody } from "@/shared/components/layout/page-body";
-import { PageHeader } from "@/shared/components/layout/page-header";
-import GameGuideTopSection from "../components/game-guide-top-section";
-import GameGuideSwiperMobile from "../components/game-guide-swiper-mobile";
-import { GAME_GUIDE_CONTENT } from "@/features/game-guide/constants/game-guide-content";
+import GameGuideRow from "../components/game-guide-row"
+import { PageBody } from "@/shared/components/layout/page-body"
+import { PageHeader } from "@/shared/components/layout/page-header"
+import GameGuideTopSection from "../components/game-guide-top-section"
+import GameGuideSwiperMobile from "../components/game-guide-swiper-mobile"
+import { GAME_GUIDE_CONTENT } from "@/features/game-guide/constants/game-guide-content"
 
-import "../game-guide-styles.css";
+import "../game-guide-styles.css"
 
 export default function GameGuidePage() {
   return (
@@ -25,5 +25,5 @@ export default function GameGuidePage() {
 
       <GameGuideSwiperMobile data={GAME_GUIDE_CONTENT} />
     </PageBody.Container>
-  );
+  )
 }

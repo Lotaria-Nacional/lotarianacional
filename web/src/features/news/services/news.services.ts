@@ -1,7 +1,6 @@
 import axios from "@/lib/axios"
 import { NewsEntity } from "../@types/news.types"
 
-
 export type INewsResponse = {
   data: NewsEntity[] | []
   totalPages: number

@@ -1,6 +1,6 @@
 type Props = {
-  handleClose: () => void;
-};
+  handleClose: () => void
+}
 
 export default function GameGuideVideo({ handleClose }: Props) {
   return (
@@ -16,5 +16,5 @@ export default function GameGuideVideo({ handleClose }: Props) {
         <source src="/como_jogar/video-como-jogar.mp4" />
       </video>
     </div>
-  );
+  )
 }

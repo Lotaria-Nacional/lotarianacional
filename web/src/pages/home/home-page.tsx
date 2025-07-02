@@ -1,19 +1,19 @@
-import FAQ from "./components/faq";
-import LinkCard from "./components/link-card";
-import HeroSlider from "./components/hero-slider";
-import CountDownCard from "./components/count-down-card";
-import GoogleMap from "@/features/map/components/google-map";
-import { LINK_CARDS_NAVIGATION } from "@/app/router/navigation";
-import NewsListing from "@/features/news/components/news-listing";
-import Container from "@/shared/components/common/container/container";
-import EmissionListing from "@/features/emission/components/emission-listing";
-import MobileDailyResults from "@/shared/components/mobile/mobile-daily-results";
-import PlayGroundTable from "../../features/odds-prize/components/calculator-table";
-import { useScrollToChancesSection } from "@/shared/hooks/useScrollToChancesSection";
-import DailyLotteryResultListing from "@/features/lottery-result/components/daily-lottery-result";
+import FAQ from "./components/faq"
+import LinkCard from "./components/link-card"
+import HeroSlider from "./components/hero-slider"
+import CountDownCard from "./components/count-down-card"
+import GoogleMap from "@/features/map/components/google-map"
+import { LINK_CARDS_NAVIGATION } from "@/app/router/navigation"
+import NewsListing from "@/features/news/components/news-listing"
+import Container from "@/shared/components/common/container/container"
+import EmissionListing from "@/features/emission/components/emission-listing"
+import MobileDailyResults from "@/shared/components/mobile/mobile-daily-results"
+import PlayGroundTable from "../../features/odds-prize/components/calculator-table"
+import { useScrollToChancesSection } from "@/shared/hooks/use-scroll-to-chances-section"
+import DailyLotteryResultListing from "@/features/lottery-result/components/daily-lottery-result"
 
 const HomePage = () => {
-  const { chancesSectionRef } = useScrollToChancesSection();
+  const { chancesSectionRef } = useScrollToChancesSection()
   return (
     <>
       <main className="flex gap-8 lg:gap-20 flex-col">
@@ -69,7 +69,7 @@ const HomePage = () => {
       </main>
       <GoogleMap />
     </>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

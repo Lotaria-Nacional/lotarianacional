@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { twMerge } from "tailwind-merge";
-import { FaPlayCircle } from "react-icons/fa";
-import { useModal } from "@/app/context/modal-provider";
-import { LotteryResultEntity } from "../@types/lottery-result.types";
+import { useState } from "react"
+import { twMerge } from "tailwind-merge"
+import { FaPlayCircle } from "react-icons/fa"
+import { useModal } from "@/app/context/modal-provider"
+import { LotteryResultEntity } from "../@types/lottery-result.types"
 
 export type Props = {
-  result: LotteryResultEntity;
-  className?: string;
-};
+  result: LotteryResultEntity
+  className?: string
+}
 
 export default function LotteryResultCard({ result, className }: Props) {
-  const { openModal } = useModal();
-  const [isOver, setIsOVer] = useState(false);
+  const { openModal } = useModal()
+  const [isOver, setIsOVer] = useState(false)
 
   const sortedNumbers = [
     result.number_1,
@@ -19,10 +19,10 @@ export default function LotteryResultCard({ result, className }: Props) {
     result.number_3,
     result.number_4,
     result.number_5,
-  ];
+  ]
 
-  const handleMouseOver = () => setIsOVer(true);
-  const handleMouseLeave = () => setIsOVer(false);
+  const handleMouseOver = () => setIsOVer(true)
+  const handleMouseLeave = () => setIsOVer(false)
 
   return (
     <div
@@ -58,5 +58,5 @@ export default function LotteryResultCard({ result, className }: Props) {
         <FaPlayCircle fill="#fff" size={38} />
       </div>
     </div>
-  );
+  )
 }

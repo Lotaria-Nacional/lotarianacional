@@ -1,21 +1,21 @@
-import { useRef, useState } from "react";
-import { Swiper as SwiperType } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { GameGuideProps } from "../constants/game-guide-content";
+import { useRef, useState } from "react"
+import { Swiper as SwiperType } from "swiper"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { GameGuideProps } from "../constants/game-guide-content"
 
-import "swiper/swiper-bundle.css";
+import "swiper/swiper-bundle.css"
 
 type Props = {
-  data: GameGuideProps[];
-};
+  data: GameGuideProps[]
+}
 
 export default function GameGuideSwiperMobile({ data }: Props) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const swiperRef = useRef<SwiperType | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const swiperRef = useRef<SwiperType | null>(null)
 
-  const handlePrev = () => swiperRef.current?.slidePrev();
-  const handleNext = () => swiperRef.current?.slideNext();
+  const handlePrev = () => swiperRef.current?.slidePrev()
+  const handleNext = () => swiperRef.current?.slideNext()
 
   return (
     <div className="lg:hidden flex w-full h-full flex-col justify-between gap-4">
@@ -75,5 +75,5 @@ export default function GameGuideSwiperMobile({ data }: Props) {
         </button>
       </div>
     </div>
-  );
+  )
 }
