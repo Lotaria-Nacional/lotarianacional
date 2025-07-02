@@ -31,7 +31,7 @@ export default function GameGuideSwiperMobile({ data }: Props) {
             key={item.id}
             className="relative min-h-[350px] w-full flex flex-col items-center justify-end gap-2"
           >
-            <div className="flex items-center gap-2 edoSZ !text-[32px]">
+            <div className="flex items-center gap-2 edoSZ text-[32px]!">
               <span className="size-[38px] text-yellow-400 flex items-center justify-center rounded-full bg-LT_RED-100">
                 {item.id}
               </span>

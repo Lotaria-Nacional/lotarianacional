@@ -46,8 +46,8 @@ const CountDownCard: React.FC = () => {
 
   return (
     <div className="flex w-full h-full flex-col gap-1 items-center">
-      <div className="radialGradient w-full h-[180px] lg:h-[230px] rounded-3xl flex items-center justify-center">
-        <div className="relative h-[147px] w-full object-contain flex items-center justify-center edoSZ text-5xl font-medium text-yellow-400">
+      <div className="lottery-radial-gradient w-full h-[180px] lg:h-[230px] rounded-3xl flex items-center justify-center">
+        <div className="relative h-[147px] w-full object-contain flex items-center justify-center font-edo-sz text-6xl font-medium text-yellow-400">
           <div>
             <span>{String(time.hours).padStart(2, "0")}</span>
             <span>:</span>

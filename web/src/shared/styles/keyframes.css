@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+    @keyframes select-input-fade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: auto;
+        }
+    }
+}

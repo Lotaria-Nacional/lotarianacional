@@ -30,12 +30,12 @@ export default function LotteryResultCard({ result, className }: Props) {
       onMouseLeave={handleMouseLeave}
       onClick={result.videoURL ? () => openModal(result.videoURL) : () => {}}
       className={twMerge(
-        "relative bg-[url('/banner/card-loto.webp')] w-[180px] h-[115px] bg-center bg-cover bg-no-repeat flex flex-col gap-4 p-2 rounded-2xl text-LT_WHITE uppercase text-sm font-bold cursor-pointer",
+        "relative lottery-result-card-image w-[180px] h-[115px] bg-center bg-cover bg-no-repeat flex flex-col gap-4 p-2 rounded-2xl text-LT_WHITE uppercase text-sm font-bold cursor-pointer",
         className
       )}
     >
       <header className="flex flex-col text-[15px] gap-2">
-        <h1 className="edoSZ !text-sm">{result.name}</h1>
+        <h1 className="font-edo-sz text-sm">{result.name}</h1>
         <span className="text-white font-normal">{result.hour}</span>
       </header>
 
@@ -53,7 +53,7 @@ export default function LotteryResultCard({ result, className }: Props) {
       <div
         className={` ${
           isOver ? "flex" : "hidden"
-        } absolute bg-LT_RED-200 rounded-2xl items-center justify-center z-[20] inset-0 w-full h-full`}
+        } absolute bg-LT_RED-200 rounded-2xl items-center justify-center z-20 inset-0 w-full h-full`}
       >
         <FaPlayCircle fill="#fff" size={38} />
       </div>

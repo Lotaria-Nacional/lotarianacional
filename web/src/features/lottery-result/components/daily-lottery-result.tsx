@@ -17,7 +17,7 @@ export default function DailyLotteryResultListing() {
   const PLACEHOLDERS_TO_SHOW = TOTAL_RESULTS - results_length;
 
   return (
-    <div className=" z-[1] hidden lg:flex px-0 justify-end py-4 top-0 elemento">
+    <div className="z-10 absolute hidden lg:flex px-0 justify-end py-4 top-1/2 -translate-y-1/2 daily-lottery-result-hero">
       {isLoading ? (
         <DailyResultSkeleton />
       ) : (

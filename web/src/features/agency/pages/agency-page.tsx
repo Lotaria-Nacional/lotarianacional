@@ -54,7 +54,11 @@ export default function AgencyPage() {
           <Swiper
             spaceBetween={4}
             className="w-full"
-            slidesPerView={3.5}
+            breakpoints={{
+              1024: {
+                slidesPerView: 3.5,
+              },
+            }}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
           >
             {agencies.map((agency, i) => (

@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+@plugin 'tailwindcss-animate';
+
+@import './variables.css';
+@import './scrollbar.css';
+@import './font-face.css';
+@import './swiper.css';
+@import '@/features/lottery-result/styles/lottery-result.styles.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer utilities {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+@layer components {
+  .lottery-radial-gradient {
+    background: radial-gradient(#bd1717,#951913);
+  }
+}
+

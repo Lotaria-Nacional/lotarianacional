@@ -34,7 +34,7 @@ export default function MobileCalculatorTable({
                 <div key={index} className="w-full h-[35px] flex flex-col">
                   {/**  ######### FIRST ######### */}
                   <div className="border rounded-t-[8px] border-[#D9D9D9] bg-white py-2 h-full px-4 text-center md:w-full min-w-[150px] flex items-center">
-                    <span className="w-full border-none bg-transparent outline-none text-center">
+                    <span className="w-full border-none bg-transparent outline-hidden text-center">
                       {formatPrice(Number(value))}
                     </span>
                   </div>
@@ -44,7 +44,7 @@ export default function MobileCalculatorTable({
                     {bullets.map((_, index) => (
                       <span
                         key={index}
-                        className={`border-none outline-none size-[14px] ${
+                        className={`border-none outline-hidden size-[14px] ${
                           index < item ? "bg-[#EB2224]" : "bg-LT_GRAY-100"
                         } rounded-full`}
                       />
@@ -53,14 +53,14 @@ export default function MobileCalculatorTable({
 
                   {/**  ######### THIRD ######### */}
                   <div className="border border-[#D9D9D9] bg-white h-full py-2 px-4 text-center md:w-full min-w-[150px] flex items-center">
-                    <span className="w-full border-none bg-transparent outline-none text-center">
+                    <span className="w-full border-none bg-transparent outline-hidden text-center">
                       {filterTableContent.multiplier[index]}
                     </span>
                   </div>
 
                   {/**  ######### FOURTH ######### */}
                   <div className="border rounded-b-[8px] border-[#D9D9D9] bg-white h-full py-2 px-4 text-center md:w-full min-w-[150px] flex items-center">
-                    <span className="w-full border-none bg-transparent outline-none text-center">
+                    <span className="w-full border-none bg-transparent outline-hidden text-center">
                       {formatPrice(
                         filterTableContent.multiplier[index] * Number(value)
                       )}
@@ -71,7 +71,7 @@ export default function MobileCalculatorTable({
             ) : (
               <div className="flex flex-col h-[35px] w-full">
                 <div className="border rounded-t-[8px] border-[#D9D9D9] bg-white py-2 h-[35px] px-4 text-center md:w-full min-w-[150px] flex items-center">
-                  <span className="w-full border-none bg-transparent outline-none text-center">
+                  <span className="w-full border-none bg-transparent outline-hidden text-center">
                     {formatPrice(Number(value))}
                   </span>
                 </div>
@@ -81,21 +81,21 @@ export default function MobileCalculatorTable({
                   {bullets.map((_, index) => (
                     <span
                       key={index}
-                      className="border-none outline-none size-[16px] bg-LT_GRAY-100 rounded-full"
+                      className="border-none outline-hidden size-[16px] bg-LT_GRAY-100 rounded-full"
                     />
                   ))}
                 </div>
 
                 {/**  ######### THIRD ######### */}
                 <div className="border border-[#D9D9D9] bg-white h-[35px] py-2 px-4 text-center md:w-full min-w-[150px] flex items-center">
-                  <span className="w-full border-none bg-transparent outline-none text-center">
+                  <span className="w-full border-none bg-transparent outline-hidden text-center">
                     0
                   </span>
                 </div>
 
                 {/**  ######### FOURTH ######### */}
                 <div className="border rounded-b-[8px] border-[#D9D9D9] bg-white h-[35px] py-2 px-4 text-center md:w-full min-w-[150px] flex items-center">
-                  <span className="w-full border-none bg-transparent outline-none text-center">
+                  <span className="w-full border-none bg-transparent outline-hidden text-center">
                     0,00 AKZ
                   </span>
                 </div>

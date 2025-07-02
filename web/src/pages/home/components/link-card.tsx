@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom"
-import { twMerge } from "tailwind-merge"
+import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   item: {
-    id: number
-    link: string
-    icon: string
-    text: string
-  }
-  className?: string
-}
+    id: number;
+    link: string;
+    icon: string;
+    text: string;
+  };
+  className?: string;
+};
 
 const LinkCard = ({ item: { icon, link, text }, className }: Props) => {
   return (
@@ -18,7 +18,7 @@ const LinkCard = ({ item: { icon, link, text }, className }: Props) => {
       reloadDocument
       className="flex w-full h-full flex-col lg:gap-2 items-center"
     >
-      <div className="radialGradient w-full h-[180px] lg:h-[230px] rounded-3xl flex items-center justify-center">
+      <div className="lottery-radial-gradient w-full h-[180px] lg:h-[230px] rounded-3xl flex items-center justify-center">
         <img
           src={icon}
           className={twMerge("w-full object-contain", className)}
@@ -29,7 +29,7 @@ const LinkCard = ({ item: { icon, link, text }, className }: Props) => {
         <h4>{text}</h4>
       </header>
     </Link>
-  )
-}
+  );
+};
 
-export default LinkCard
+export default LinkCard;

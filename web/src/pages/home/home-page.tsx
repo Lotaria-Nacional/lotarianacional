@@ -40,7 +40,7 @@ const HomePage = () => {
         >
           <Container className="flex-col gap-8 items-center justify-center lg:gap-[40px]">
             <header className="flex flex-col w-full gap-[16px] lg:gap-[24px] items-center justify-center min-h-[92px]">
-              <h1 className="font-bold edoSZ-38 !leading-8 text-center text-[24px] lg:text-[34px] uppercase">
+              <h1 className="font-bold font-edo-sz leading-8! text-center text-[24px] lg:text-[34px] uppercase">
                 CHANCES E PRÉMIOS
               </h1>
               <p className="text-center w-full">

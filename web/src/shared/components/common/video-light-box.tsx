@@ -21,7 +21,7 @@ const VideoLightBox = ({ handleClose, videoURL }: Props) => {
   return (
     <div
       onClick={handleClose}
-      className="fixed inset-0 w-full h-full bg-black/80 flex items-center justify-center !z-[99999999]"
+      className="fixed inset-0 w-full h-full bg-black/80 flex items-center justify-center z-99999999!"
     >
       <div
         onClick={(e) => e.stopPropagation()} // Impedir que o Lightbox feche ao clicar no conteúdo

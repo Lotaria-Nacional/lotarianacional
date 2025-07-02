@@ -1,3 +1,4 @@
+import { checkIsToday } from "../utils";
 import { breakpoints } from "@/lib/swiper";
 import { Mousewheel } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
@@ -11,7 +12,6 @@ import { DailyLotteryResultEntity } from "../@types/lottery-result.types";
 import LotteryResultCardPlaceholder from "./lottery-result-card-placeholder";
 
 import "swiper/swiper-bundle.css";
-import { checkIsToday } from "../utils";
 
 type Props = {
   data: DailyLotteryResultEntity[];

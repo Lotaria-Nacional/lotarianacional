@@ -34,7 +34,7 @@ export default function FAQ() {
         className="h-auto w-3 object-contain hidden lg:block"
       />
       {/** LINHA VERTICAL TABLET & MOBILE */}
-      <div className="w-full mt-8 h-[1px] bg-LT_RED-100 block lg:hidden" />
+      <div className="w-full mt-8 h-px bg-LT_RED-100 block lg:hidden" />
       <div className="flex-1 flex flex-col gap-4 w-full">
         <QuestionsDropdown />
       </div>

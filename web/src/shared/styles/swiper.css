@@ -1,0 +1,34 @@
+.swiper-button-next,
+.swiper-button-prev {
+    width: 42px !important;
+    height: 42px !important;
+    cursor: pointer !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    color: #d9d9d9 !important;
+    font-size: 16px !important;
+    font-weight: bolder;
+}
+
+.swiper-pagination-bullet {
+    background: #951913;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    color: #d9d9d9 !important;
+    font-size: 16px !important;
+    font-weight: bolder;
+}
+
+.swiper-button-prev::after {
+    color: #ffff00 !important;
+    font-size: 16px !important;
+    font-weight: bolder;
+}
+
+.swiper-pagination-bullet {
+    background: #ffff00 !important;
+}

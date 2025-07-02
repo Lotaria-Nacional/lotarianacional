@@ -15,7 +15,7 @@ export default function GameGuideTopSection() {
       {isPopUpOpen && (
         <div
           onClick={handleClosePopUp}
-          className="fixed inset-0 w-full h-full bg-black/70 flex items-center justify-center z-[10000]"
+          className="fixed inset-0 w-full h-full bg-black/70 flex items-center justify-center z-10000"
         >
           <div
             onClick={(e) => e.stopPropagation()}
@@ -23,7 +23,7 @@ export default function GameGuideTopSection() {
           >
             <button
               onClick={handleClosePopUp}
-              className="absolute z-[22] flex items-center justify-center -right-4 bg-white size-[40px] rounded-full -top-4"
+              className="absolute z-22 flex items-center justify-center -right-4 bg-white size-[40px] rounded-full -top-4"
             >
               <MdClose />
             </button>

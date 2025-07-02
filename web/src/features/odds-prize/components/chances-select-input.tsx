@@ -40,7 +40,7 @@ const ChancesSelectInput = forwardRef<HTMLDivElement, Props>(
           )}
         </button>
         {isSelectMenuOpen && (
-          <ul className="absolute fade-in-text z-[20] rounded-t-[10px] rounded-b-[10px] -bottom-[170px] flex flex-col bg-white shadow-[0px_0px_3px_1px_#ccc] w-full">
+          <ul className="absolute animate-select-input-fade z-20 rounded-t-[10px] rounded-b-[10px] -bottom-[170px] flex flex-col bg-white shadow-[0px_0px_3px_1px_#ccc] w-full">
             {chances.map((item, index) => (
               <li
                 key={`${index} - ${item}`}

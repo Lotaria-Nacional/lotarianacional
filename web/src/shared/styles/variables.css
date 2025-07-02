@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "./keyframes.css";
+
+@theme {
+    --color-LT_WHITE: #ffff;
+    --color-LT_BLACK: #141414;
+    --color-LT_RED-100: #bd1717;
+    --color-LT_RED-200: #951913;
+    --color-LT_RED-300: #eb2224;
+    --color-LT_GRAY-100: #d7d7d7;
+    --color-LT_GRAY-200: #3c3c3b;
+    --color-LT_GRAY-300: #30302f;
+
+    --font-edo-sz: "EdoSz", sans-serif;
+
+    --animate-select-input-fade: select-input-fade 500ms ease;
+}

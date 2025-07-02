@@ -40,7 +40,7 @@ export default function OddsPrizesCalculator() {
           inputMode="numeric"
           onChange={handleValue}
           placeholder="Digite o valor da aposta"
-          className="w-full lg:w-[340px] bg-white border border-black py-[10px] rounded-[10px] text-[16px] h-full outline-none text-center placeholder:text-center placeholder:text-black"
+          className="w-full lg:w-[340px] bg-white border border-black py-[10px] rounded-[10px] text-[16px] h-full outline-hidden text-center placeholder:text-center placeholder:text-black"
         />
       </div>
 

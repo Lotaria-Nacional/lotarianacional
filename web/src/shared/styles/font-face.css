@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "EdoSz";
+    src: url("/fonts/edosz.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter_18pt-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter_18pt-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter_18pt-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter_18pt-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+}

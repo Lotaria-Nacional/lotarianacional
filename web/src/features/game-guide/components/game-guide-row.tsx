@@ -17,7 +17,7 @@ export default function GameGuideRow({
     >
       <img src={image.desktop} alt="" className="h-full w-[576px]" />
       <div>
-        <h1 className="flex items-center edoSZ !text-[46px] gap-4 text-LT_RED-100">
+        <h1 className="flex items-center font-edo-sz text-[46px] gap-4 text-LT_RED-100">
           <span className="size-[50px] rounded-full bg-LT_RED-100 text-yellow-300 flex items-center justify-center">
             {id}
           </span>

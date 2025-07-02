@@ -23,7 +23,7 @@ const MobileDailyResults = () => {
   const RESULTS_PLACEHOLDER = TOTAL_RESULTS - lastDailyResult.results.length;
 
   return (
-    <Container className="flex-col gap-4 flex lg:hidden !pl-6 px-0 !w-full">
+    <Container className="flex-col gap-4 flex lg:hidden pl-6! px-0 w-full!">
       <header className="flex pr-6 items-center justify-between text-sm font-bold w-full uppercase">
         <h1>resultados diários</h1>
         <span className="px-2 font-normal rounded-md py-1 bg-yellow-500">

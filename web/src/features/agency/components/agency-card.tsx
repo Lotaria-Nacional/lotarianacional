@@ -9,7 +9,7 @@ export default function AgencyCard({
   agency: { name, location_text, phone },
 }: Props) {
   return (
-    <div className="w-full lg:w-[305px] h-[181px] p-5 rounded-xl radialGradient flex flex-col items-start justify-between">
+    <div className="w-full lg:w-[305px] h-[181px] p-5 rounded-xl shrink-0 lottery-radial-gradient flex flex-col items-start justify-between">
       <header className="flex flex-col text-white gap-2 items-start">
         <h1 className="text-xl font-bold">Agência - {name}</h1>
         <span className="text-base">{location_text}</span>

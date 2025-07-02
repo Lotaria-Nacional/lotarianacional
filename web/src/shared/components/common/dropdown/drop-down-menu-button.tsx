@@ -11,7 +11,7 @@ const DropDownMenuButton = () => {
     <div className="relative menu-container">
       <button
         onClick={handleToggleMenu}
-        className="bg-white outline-none size-[32px] text-LT_RED-100 hover:scale-[0.97] transition-scale duration-300 ease rounded-md flex items-center justify-center"
+        className="bg-white outline-hidden size-[32px] text-LT_RED-100 hover:scale-[0.97] transition-scale duration-300 ease rounded-md flex items-center justify-center"
       >
         {isOpen ? <IoClose size={22} /> : <HiMenu size={22} />}
       </button>
