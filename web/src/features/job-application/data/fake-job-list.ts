@@ -1,6 +1,20 @@
 import { JobOppening } from "../@types/job-oppening.types";
 
-export const jobsList:JobOppening[] = [
+export const departments = [
+  "claim",
+  "ok",
+  "community",
+  "industry",
+  "medical",
+  "benefit",
+  "seven",
+  "issue",
+  "red",
+  "set",
+  "sorteio",
+]
+
+export const jobsList0:JobOppening[] = [
   {
     id: 8101,
     title: "important",

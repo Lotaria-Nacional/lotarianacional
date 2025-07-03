@@ -1,7 +1,18 @@
 import { SiFacebook, SiX, SiLinkedin, SiWhatsapp } from "react-icons/si"
 import { ICONS } from "../constants/assets"
 
-export const NAVIGATION_LINKS = [
+type NavigationOptions = {
+  id: number
+  label: string
+  link: string
+  submenu?:{
+    id:number
+    label:string
+    link:string
+  }[]
+}
+
+export const navigationLinks:NavigationOptions[] = [
   {
     id: 1,
     label: "Chances e prémios",
@@ -9,32 +20,43 @@ export const NAVIGATION_LINKS = [
   },
   {
     id: 2,
-    label: "como jogar",
+    label: "Como jogar",
     link: "como-jogar",
   },
   {
     id: 3,
-    label: "resultados",
+    label: "Resultados",
     link: "resultados",
   },
   {
     id: 4,
-    label: "estatísticas",
+    label: "Estatísticas",
     link: "estatisticas",
   },
 
   {
     id: 5,
-    label: "agências",
+    label: "Agências",
     link: "agencias",
   },
-
   {
     id: 6,
-    label: "recrutamento",
+    label: "Recrutamento",
     link: "recrutamento",
+    submenu:[
+      {
+        id:1,
+        label: "Revendedores",
+        link: "recrutamento/revendedores",
+      },
+      {
+        id:2,
+        label: "Quadros",
+        link: "recrutamento/quadros",
+      }
+    ]
   },
-] as const
+]
 
 export const MOBILE_NAVIGATION = [
   {

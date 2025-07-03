@@ -1,7 +1,7 @@
-import { JobApplication } from "../@types/job-oppening.types";
+import { JobOppening } from "../@types/job-oppening.types";
 import { faker } from "@faker-js/faker";
 
-export const jobs:JobApplication[] = [
+export const jobs:JobOppening[] = [
     {
         id:faker.number.int(),
         title:faker.lorem.word(5),

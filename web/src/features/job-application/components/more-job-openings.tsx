@@ -1,4 +1,4 @@
-import { jobsList } from "../data/fake-job-list";
+import { jobsList0 } from "../data/fake-job-list";
 import Button from "@/shared/components/ui/button/button";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -6,12 +6,12 @@ function MoreJobOpenings() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const filteredJobOppenings = jobsList
+  const filteredJobOppenings = jobsList0
     .filter((jobs) => jobs.id !== Number(id))
     .slice(0, 3);
 
   return (
-    <ul className="space-y-3 w-full h-full">
+    <ul className="flex flex-col gap-3 w-full h-full">
       <div className="w-full flex justify-between items-start">
         <h3>Mais vagas</h3>
         <Link

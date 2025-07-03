@@ -19,7 +19,7 @@ const Container = ({
     <div
       {...rest}
       className={twMerge(
-        "flex items-center px-6 lg:w-full w-full mx-auto gap-4 flex-col justify-center h-full pt-8 pb-12 container",
+        "flex items-center px-6 lg:w-full w-full mx-auto gap-8 flex-col justify-center h-full pt-8 pb-12 container",
         className
       )}
     >

@@ -1,9 +1,13 @@
-import Input from "./input";
-import InputFile from "./input-file";
 import Row from "./row";
+import Input from "./wrapper";
+import InputFile from "./input-file";
+import Error from "./error";
+import Wrapper from "./wrapper";
 
 export const Form = {
-    Input,
     Row,
-    InputFile
+    Input,
+    Error,
+    InputFile,
+    Wrapper
 }

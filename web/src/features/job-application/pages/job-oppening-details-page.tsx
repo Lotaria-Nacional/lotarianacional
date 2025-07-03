@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { jobsList } from "../data/fake-job-list";
+import { jobsList0 } from "../data/fake-job-list";
 import MoreJobOpenings from "../components/more-job-openings";
 import { PageBody } from "@/shared/components/layout/page-body";
-import JobApplicationForm from "../components/job-application-form";
+import JobApplicationForm from "../components/skilled-staff-oppening-form";
 
 export default function JobOppeningDetailsPage() {
   const { id } = useParams();
 
-  const jobOppening = jobsList.find((job) => job.id === Number(id));
+  const jobOppening = jobsList0.find((job) => job.id === Number(id));
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,10 +19,10 @@ export default function JobOppeningDetailsPage() {
       <main className="relative grid w-full grid-cols-1 lg:grid-cols-[2fr_1fr] gap-12">
         <section className="w-full flex flex-col gap-4">
           <header className="flex flex-col gap-3">
-            <span className="px-2 text-[12px] bg-[#f5f5f5] w-fit rounded-full">
+            <span className="px-2 capitalize text-[12px] bg-[#f5f5f5] w-fit rounded-full">
               {jobOppening?.department}
             </span>
-            <h1 className="text-[24px]">{jobOppening?.title}</h1>
+            <h1 className="capitalize text-[24px]">{jobOppening?.title}</h1>
           </header>
           <p className="text-justify text-sm">
             A Mota & Tavares Jogos, S.A., entidade oficial responsável pela
