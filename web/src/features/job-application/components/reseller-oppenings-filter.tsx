@@ -4,31 +4,31 @@ import {
   SelectValue,
   SelectTrigger,
   SelectContent,
-} from "@/shared/components/ui/select";
-import { useSearchParams } from "react-router-dom";
-import Button from "@/shared/components/ui/button/button";
-import { jobOppeningLocations } from "../constants/job-oppening-locations";
+} from "@/shared/components/ui/select"
+import { useSearchParams } from "react-router-dom"
+import Button from "@/shared/components/ui/button/button"
+import { jobOppeningLocations } from "../constants/job-oppening-locations"
 
 export default function ResellersFilter() {
-  const [search, setSearch] = useSearchParams();
+  const [search, setSearch] = useSearchParams()
 
-  const searchValue = search.get("area") || "";
+  const searchValue = search.get("localizacao") || ""
 
   const handleApplyFilter = (value: string) => {
     setSearch((prev) => {
-      const params = new URLSearchParams(prev);
-      params.set("area", value);
-      return params;
-    });
-  };
+      const params = new URLSearchParams(prev)
+      params.set("localizacao", value)
+      return params
+    })
+  }
 
   const handleClearFilter = () => {
     setSearch((prev) => {
-      const params = new URLSearchParams(prev);
-      params.delete("area");
-      return params;
-    });
-  };
+      const params = new URLSearchParams(prev)
+      params.delete("localizacao")
+      return params
+    })
+  }
 
   return (
     <div className="flex items-center gap-2">
@@ -50,5 +50,5 @@ export default function ResellersFilter() {
 
       {searchValue && <Button onClick={handleClearFilter}>Limpar</Button>}
     </div>
-  );
+  )
 }

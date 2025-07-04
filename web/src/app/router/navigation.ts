@@ -5,14 +5,14 @@ type NavigationOptions = {
   id: number
   label: string
   link: string
-  submenu?:{
-    id:number
-    label:string
-    link:string
+  submenu?: {
+    id: number
+    label: string
+    link: string
   }[]
 }
 
-export const navigationLinks:NavigationOptions[] = [
+export const navigationLinks: NavigationOptions[] = [
   {
     id: 1,
     label: "Chances e prémios",
@@ -43,72 +43,20 @@ export const navigationLinks:NavigationOptions[] = [
     id: 6,
     label: "Recrutamento",
     link: "recrutamento",
-    submenu:[
+    submenu: [
       {
-        id:1,
-        label: "Revendedores",
-        link: "recrutamento/revendedores",
+        id: 1,
+        label: "Torna-te parceiro",
+        link: "recrutamento/parceiro",
       },
       {
-        id:2,
-        label: "Quadros",
-        link: "recrutamento/quadros",
-      }
-    ]
+        id: 2,
+        label: "Vagas disponíveis",
+        link: "recrutamento/vagas",
+      },
+    ],
   },
 ]
-
-export const MOBILE_NAVIGATION = [
-  {
-    id: 1,
-    label: "Chances e prémios",
-    link: "/chances-e-premios",
-  },
-  {
-    id: 2,
-    label: "como jogar",
-    link: "/como-jogar",
-  },
-  {
-    id: 3,
-    label: "resultados",
-    link: "/resultados",
-  },
-  {
-    id: 4,
-    label: "estatísticas",
-    link: "/estatisticas",
-  },
-  {
-    id: 5,
-    label: "Agências",
-    link: "/agencias",
-  },
-
-  {
-    id: 6,
-    label: "recrutamento",
-    link: "/recrutamento",
-  },
-] as const
-
-export const DROPDOWN_MENU = [
-  {
-    id: 1,
-    label: "Notícias",
-    link: "/noticias",
-  },
-  {
-    id: 2,
-    label: "Agências",
-    link: "/agencias",
-  },
-  {
-    id: 3,
-    label: "Sobre nós",
-    link: "/sobre-nos",
-  },
-] as const
 
 export const LINK_CARDS_NAVIGATION = [
   {
@@ -181,4 +129,22 @@ export const FOOTER_NAVIGATION = [
   //   label: "Regulamentos do Loto 5/90",
   //   link: "/regulamentos-do-loto-5-90",
   // },
+] as const
+
+export const DROPDOWN_MENU = [
+  {
+    id: 1,
+    label: "Notícias",
+    link: "/noticias",
+  },
+  {
+    id: 2,
+    label: "Agências",
+    link: "/agencias",
+  },
+  {
+    id: 3,
+    label: "Sobre nós",
+    link: "/sobre-nos",
+  },
 ] as const

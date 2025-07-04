@@ -5,12 +5,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuContent,
-} from "../ui/navigation-menu";
-import Logo from "../common/logo";
-import { PageBody } from "./page-body";
-import { Link, NavLink } from "react-router-dom";
-import MobileMenu from "../mobile/menu/mobile-menu";
-import { navigationLinks } from "@/app/router/navigation";
+} from "../ui/navigation-menu"
+import Logo from "../common/logo"
+import { PageBody } from "./page-body"
+import { Link, NavLink } from "react-router-dom"
+import MobileMenu from "../mobile/menu/mobile-menu"
+import { navigationLinks } from "@/app/router/navigation"
 
 const Header = () => {
   return (
@@ -19,36 +19,53 @@ const Header = () => {
         <Link reloadDocument to={"/"}>
           <Logo />
         </Link>
-
-        <NavigationMenu viewport={false}>
-          <NavigationMenuList>
-            {navigationLinks.map((nav) =>
-              nav.submenu ? (
-                <NavigationMenuItem key={nav.id}>
-                  <NavigationMenuTrigger>{nav.label}</NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-red-400">
-                    {nav.submenu.map((sub) => (
-                      <NavigationMenuLink asChild key={sub.id}>
-                        <NavLink to={sub.link}>{sub.label}</NavLink>
-                      </NavigationMenuLink>
-                    ))}
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              ) : (
-                <NavigationMenuItem key={nav.id}>
-                  <NavigationMenuLink asChild>
-                    <NavLink to={nav.link}>{nav.label}</NavLink>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              )
-            )}
-          </NavigationMenuList>
-        </NavigationMenu>
+        <div className="hidden lg:block">
+          <NavigationMenu viewport={false}>
+            <NavigationMenuList className="!gap-0">
+              {navigationLinks.map((nav) =>
+                nav.submenu ? (
+                  <NavigationMenuItem key={nav.id}>
+                    <NavigationMenuTrigger className="uppercase !text-[14px] cursor-pointer">
+                      {nav.label}
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      {nav.submenu.map((sub) => (
+                        <NavigationMenuLink
+                          asChild
+                          key={sub.id}
+                          className="uppercase !text-[14px]"
+                        >
+                          <NavLink
+                            className="w-fit text-nowrap shrink-0"
+                            to={sub.link}
+                          >
+                            {sub.label}
+                          </NavLink>
+                        </NavigationMenuLink>
+                      ))}
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                ) : (
+                  <NavigationMenuItem key={nav.id}>
+                    <NavigationMenuLink asChild>
+                      <NavLink
+                        to={nav.link}
+                        className={"uppercase !text-[14px]"}
+                      >
+                        {nav.label}
+                      </NavLink>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                )
+              )}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
 
         <MobileMenu />
       </PageBody.Container>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

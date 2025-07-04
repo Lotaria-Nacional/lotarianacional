@@ -7,6 +7,6 @@ export const getAgencies = async () => {
 }
 
 export const getAgencyById = async (id: string): Promise<AgencyEntity> => {
-  const result = await axios.get(`/agency/${id}`)
+  const result = await axios.get(`/agencies/${id}`)
   return result.data
 }

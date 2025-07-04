@@ -26,7 +26,7 @@
     box-sizing: border-box;
   }
   h1 {
-    @apply text-[24px] lg:text-[34px];
+    @apply text-[18px] md:text-[34px];
   }
   body {
     font-family: "Inter", sans-serif;

@@ -1,11 +1,17 @@
-import { PropsWithChildren } from "react";
+import { cn } from "@/lib/utils"
+import { PropsWithChildren } from "react"
 
-type Props = PropsWithChildren;
+type Props = PropsWithChildren & { className?: string }
 
-export default function Container({ children }: Props) {
+export default function Container({ children, className }: Props) {
   return (
-    <section className="w-full flex border-b pb-3 items-center justify-between lg:px-0">
+    <section
+      className={cn(
+        "w-full flex border-b pb-3 items-center justify-between lg:px-0",
+        className
+      )}
+    >
       {children}
     </section>
-  );
+  )
 }

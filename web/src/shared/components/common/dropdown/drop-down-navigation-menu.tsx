@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom";
-import { DROPDOWN_MENU } from "@/app/router/navigation";
+import { NavLink } from "react-router-dom"
+import { DROPDOWN_MENU } from "@/app/router/navigation"
 
-import "./drop.down.navigation.menu.css";
+import "./drop.down.navigation.menu.css"
 
 const DropDownNavigationMenu = () => {
   return (
@@ -18,7 +18,7 @@ const DropDownNavigationMenu = () => {
         </li>
       ))}
     </ul>
-  );
-};
+  )
+}
 
-export default DropDownNavigationMenu;
+export default DropDownNavigationMenu

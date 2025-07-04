@@ -1,63 +1,62 @@
-import { checkIsToday } from "../utils";
-import { breakpoints } from "@/lib/swiper";
-import { Mousewheel } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper";
-import { formatDate } from "@/shared/utils/date";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect, useRef, useState } from "react";
-import LotteryResultCard from "./lottery-result-card";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import PageTitle from "@/shared/components/common/page-title";
-import { lotteryButtonStyle } from "../styles/lottery-button.cva";
-import { DailyLotteryResultEntity } from "../@types/lottery-result.types";
-import LotteryResultCardPlaceholder from "./lottery-result-card-placeholder";
+import { checkIsToday } from "../utils"
+import { breakpoints } from "@/lib/swiper"
+import { Mousewheel } from "swiper/modules"
+import { Swiper as SwiperType } from "swiper"
+import { formatDate } from "@/shared/utils/date"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { useEffect, useRef, useState } from "react"
+import LotteryResultCard from "./lottery-result-card"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { lotteryButtonStyle } from "../styles/lottery-button.cva"
+import { PageHeader } from "@/shared/components/layout/page-header"
+import { DailyLotteryResultEntity } from "../@types/lottery-result.types"
+import LotteryResultCardPlaceholder from "./lottery-result-card-placeholder"
 
-import "swiper/swiper-bundle.css";
-import { PageHeader } from "@/shared/components/layout/page-header";
+import "swiper/swiper-bundle.css"
 
 type Props = {
-  data: DailyLotteryResultEntity[];
-};
+  data: DailyLotteryResultEntity[]
+}
 
 export default function DailyLotteryResultsListing({ data }: Props) {
-  const INITIAL_SLIDE = data.length - 1;
-  const swiperRef = useRef<SwiperType | null>(null);
-  const [canGoBack, setCanGoBack] = useState(false);
-  const [slideCount, setSlideCount] = useState(INITIAL_SLIDE);
+  const INITIAL_SLIDE = data.length - 1
+  const swiperRef = useRef<SwiperType | null>(null)
+  const [canGoBack, setCanGoBack] = useState(false)
+  const [slideCount, setSlideCount] = useState(INITIAL_SLIDE)
 
   const handleSwiper = (direction: "left" | "right") => {
     if (swiperRef.current) {
       if (direction === "left") {
-        swiperRef.current.slidePrev();
-        setCanGoBack(true);
-        setSlideCount((prev) => Math.max(prev - 1, 0));
+        swiperRef.current.slidePrev()
+        setCanGoBack(true)
+        setSlideCount((prev) => Math.max(prev - 1, 0))
       } else {
-        swiperRef.current.slideNext();
-        setSlideCount((prev) => Math.min(prev + 1, data.length - 1));
+        swiperRef.current.slideNext()
+        setSlideCount((prev) => Math.min(prev + 1, data.length - 1))
       }
     }
-  };
+  }
 
   const handleGoBack = () => {
     if (swiperRef.current) {
-      swiperRef.current.slideTo(INITIAL_SLIDE);
-      setSlideCount(INITIAL_SLIDE);
+      swiperRef.current.slideTo(INITIAL_SLIDE)
+      setSlideCount(INITIAL_SLIDE)
     }
-    setCanGoBack(false);
-  };
+    setCanGoBack(false)
+  }
 
   useEffect(() => {
     if (slideCount === INITIAL_SLIDE) {
-      setCanGoBack(false);
+      setCanGoBack(false)
     }
     if (slideCount < INITIAL_SLIDE) {
-      setCanGoBack(true);
+      setCanGoBack(true)
     }
-  }, [slideCount]);
+  }, [slideCount])
 
   return (
     <section className="w-full flex flex-col gap-6">
-      <PageHeader.Container>
+      <PageHeader.Container className="px-7">
         <PageHeader.Title>Resultados</PageHeader.Title>
         <div className="flex items-center gap-2">
           {canGoBack && (
@@ -89,12 +88,12 @@ export default function DailyLotteryResultsListing({ data }: Props) {
         mousewheel={{ enabled: true, forceToAxis: true }}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onActiveIndexChange={(swiper) => {
-          setCanGoBack(swiper.activeIndex < INITIAL_SLIDE);
+          setCanGoBack(swiper.activeIndex < INITIAL_SLIDE)
         }}
       >
         {data.map((dailyRes, dailyResIndex) => {
-          const { isToday, placeholdersCount } = checkIsToday(dailyRes);
-          const totalResults = dailyRes.results.length;
+          const { isToday, placeholdersCount } = checkIsToday(dailyRes)
+          const totalResults = dailyRes.results.length
 
           return (
             <SwiperSlide
@@ -130,9 +129,9 @@ export default function DailyLotteryResultsListing({ data }: Props) {
                 </div>
               </ul>
             </SwiperSlide>
-          );
+          )
         })}
       </Swiper>
     </section>
-  );
+  )
 }

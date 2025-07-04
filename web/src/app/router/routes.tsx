@@ -16,9 +16,9 @@ import {
   JobOppeningDetailsPage,
   ResellerJobOppeningsPage,
   SkilledStaffJobOppeningsPage,
-} from "@/pages";
-import App from "@/App";
-import { createBrowserRouter } from "react-router-dom";
+} from "@/pages"
+import App from "@/App"
+import { createBrowserRouter } from "react-router-dom"
 
 export const router = createBrowserRouter([
   {
@@ -38,17 +38,17 @@ export const router = createBrowserRouter([
         element: <JobApplicationPage />,
         children: [
           {
-            path: "revendedores",
+            path: "parceiro",
             element: <ResellerJobOppeningsPage />,
           },
           {
-            path: "quadros",
+            path: "vagas",
             element: <SkilledStaffJobOppeningsPage />,
           },
         ],
       },
       {
-        path: "/recrutamento/vaga/:id/detalhes",
+        path: "/recrutamento/vagas/:id/:department",
         element: <JobOppeningDetailsPage />,
       },
 
@@ -68,4 +68,4 @@ export const router = createBrowserRouter([
       { path: "/regulamentos-do-loto-5-90", element: <RegulamentationPage /> },
     ],
   },
-]);
+])

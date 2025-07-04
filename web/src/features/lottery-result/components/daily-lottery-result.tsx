@@ -1,20 +1,20 @@
-import fezada from "/placeholders/fezada.svg";
-import kazola from "/placeholders/kazola.svg";
-import aqueceu from "/placeholders/aqueceu.svg";
-import eskebra from "/placeholders/eskebra.svg";
-import ResultadoCard from "./lottery-result-card";
-import DailyResultSkeleton from "./skeleton/daily-lottery-result-skeleton";
-import { useGetLastDailyLotteryResult } from "@/features/lottery-result/hooks/use-get-last-daily-lottery-result";
+import fezada from "/placeholders/fezada.svg"
+import kazola from "/placeholders/kazola.svg"
+import aqueceu from "/placeholders/aqueceu.svg"
+import eskebra from "/placeholders/eskebra.svg"
+import ResultadoCard from "./lottery-result-card"
+import DailyResultSkeleton from "./skeleton/daily-lottery-result-skeleton"
+import { useGetLastDailyLotteryResult } from "@/features/lottery-result/hooks/use-get-last-daily-lottery-result"
 
 export default function DailyLotteryResultListing() {
-  const { data: lastDailyResult, isLoading } = useGetLastDailyLotteryResult();
-  const PLACEHOLDERS = [fezada, aqueceu, kazola, eskebra];
+  const { data: lastDailyResult, isLoading } = useGetLastDailyLotteryResult()
+  const PLACEHOLDERS = [fezada, aqueceu, kazola, eskebra]
 
-  if (!lastDailyResult || lastDailyResult.results.length === 0) return;
+  if (!lastDailyResult || lastDailyResult.results.length === 0) return
 
-  const TOTAL_RESULTS = 4;
-  const results_length = lastDailyResult.results.length;
-  const PLACEHOLDERS_TO_SHOW = TOTAL_RESULTS - results_length;
+  const TOTAL_RESULTS = 4
+  const results_length = lastDailyResult.results.length
+  const PLACEHOLDERS_TO_SHOW = TOTAL_RESULTS - results_length
 
   return (
     <div className="z-10 absolute hidden lg:flex px-0 justify-end py-4 top-1/2 -translate-y-1/2 daily-lottery-result-hero">
@@ -55,5 +55,5 @@ export default function DailyLotteryResultListing() {
         </div>
       )}
     </div>
-  );
+  )
 }

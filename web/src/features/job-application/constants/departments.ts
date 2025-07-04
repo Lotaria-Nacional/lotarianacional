@@ -1,26 +1,26 @@
 export const departments = [
   {
-    title:"T.I",
-    value:"t.i"
+    title: "T.I",
+    value: "t.i",
   },
   {
-    title:"Sorteio",
-    value:"sorteio"
+    title: "Sorteio",
+    value: "sorteio",
   },
   {
-    title:"Recursos Humanos",
-    value:"rh"
+    title: "Recursos Humanos",
+    value: "rh",
   },
   {
-    title:"Transporte",
-    value:"transporte"
+    title: "Transporte",
+    value: "transporte",
   },
   {
-    title:"Finanças",
-    value:"finances"
+    title: "Finanças",
+    value: "finances",
   },
   {
-    title:"Logística",
-    value:"logistica"
+    title: "Logística",
+    value: "logistica",
   },
 ]

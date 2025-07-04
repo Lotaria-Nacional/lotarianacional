@@ -1,59 +1,220 @@
-import { Form } from "./form";
-import { PulseLoader } from "react-spinners";
-import uploadIcon from "/src/assets/icons/upload.svg";
-import Button from "@/shared/components/ui/button/button";
-import { useSendJobApplication } from "../hooks/use-send-job-application";
-import { cn } from "@/lib/utils";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/shared/components/ui/form"
+import {
+  resellerSchema,
+  ResellerSchemaDTO,
+} from "../validations/reseller.schema"
+import { ReactNode } from "react"
+import { cn } from "@/lib/utils"
+import { toast } from "react-toastify"
+import { useForm } from "react-hook-form"
+import { PulseLoader } from "react-spinners"
+import { Input } from "@/shared/components/ui/input"
+import { zodResolver } from "@hookform/resolvers/zod"
+import Button from "@/shared/components/ui/button/button"
+import { useSendApplicationReseller } from "../hooks/use-send-application-reseller"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/components/ui/select"
+import { jobOppeningLocations } from "../constants/job-oppening-locations"
 
 type Props = {
-  className?: string;
-};
+  className?: string
+}
 
-export default function JobApplicationForm({ className }: Props) {
-  const { isPending } = useSendJobApplication();
+export default function ResellerOppeningForm({ className }: Props) {
+  const { isPending, mutateAsync } = useSendApplicationReseller()
 
-  // return (
-  //   <form
-  //     className={cn(
-  //       "w-full h-full border rounded-lg p-4 gap-4 flex flex-col",
-  //       className
-  //     )}
-  //   >
-  //     <h2 className="text-[14px]">
-  //       Preencha os campos abaixo para candidatar-se
-  //     </h2>
-  //     <hr className="w-full bg-zinc-400" />
+  const form = useForm<ResellerSchemaDTO>({
+    resolver: zodResolver(resellerSchema),
+  })
 
-  //     <Form.Row>
-  //       <Form.Input inputLabel="Nome" placeholder="João" />
-  //       <Form.Input inputLabel="Sobreome" placeholder="Paulo" />
-  //     </Form.Row>
+  const handleOnSubmit = async (data: ResellerSchemaDTO) => {
+    try {
+      const formData = new FormData()
+      formData.append("firstName", data.firstName)
+      formData.append("lastName", data.lastName)
+      formData.append("phone", data.phone)
+      formData.append("email", data.email)
+      formData.append("location", data.location)
+      formData.append("cv", data.curriculum)
 
-  //     <Form.Row>
-  //       <Form.Input
-  //         type="email"
-  //         inputLabel="Email"
-  //         placeholder="joaopaulo@gmail.com"
-  //       />
-  //       <Form.Input
-  //         inputLabel="Nº Telefone"
-  //         placeholder="(+244) 921515253"
-  //         pattern="\d{9}"
-  //       />
-  //     </Form.Row>
+      const response = await mutateAsync(formData)
+      toast.success(response.message)
+    } catch (error) {
+      console.error(error)
+      toast.error("Erro ao submeter a candidatura, tente novamente mais tarde.")
+    }
+  }
 
-  //     <Form.Row>
-  //       <Form.InputFile htmlFor="cv" icon={uploadIcon} />
-  //     </Form.Row>
+  return (
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(handleOnSubmit)}
+        className={cn(
+          "flex flex-col gap-8 border border-zinc-200 p-4 rounded-[8px]",
+          className
+        )}
+      >
+        <h2 className="border-b border-b-zinc-200 pb-3 text-sm font-semibold">
+          Preencha os campos para candidadar-se
+        </h2>
+        <FormWrapper>
+          <FormField
+            control={form.control}
+            name="firstName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nome</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Nome" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-  //     <Button
-  //       type="submit"
-  //       intent={"primary"}
-  //       className="w-full"
-  //       disabled={isPending}
-  //     >
-  //       {isPending ? <PulseLoader size={6} color="#FFF" /> : "Candidatar-se"}
-  //     </Button>
-  //   </form>
-  // );
+          <FormField
+            control={form.control}
+            name="lastName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Sobrenome</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Sobrenome" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </FormWrapper>
+        <FormWrapper>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Email" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nº de Telefone</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="(+244 9414141)" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </FormWrapper>
+
+        <FormField
+          name="location"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Localização</FormLabel>
+              <FormControl>
+                <Select onValueChange={(value) => field.onChange(value)}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Selecionar localização" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {jobOppeningLocations.map((loc) => (
+                      <SelectItem key={loc.value} value={loc.value}>
+                        {loc.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="curriculum"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Currículum Vitae</FormLabel>
+              <FormControl>
+                <div className="flex w-full flex-col gap-2">
+                  <label
+                    htmlFor="curriculum"
+                    className="cursor-pointer flex flex-col items-center justify-center border border-dashed border-LT_RED-300 h-[120px] rounded-[8px]"
+                  >
+                    <img
+                      className="size-10"
+                      alt="upload icone"
+                      src="/src/assets/icons/upload.svg"
+                    />
+                    <p className="text-sm text-zinc-400">
+                      Clique para carregar o documento
+                    </p>
+                  </label>
+                  <Input
+                    type="file"
+                    id="curriculum"
+                    ref={field.ref}
+                    className="hidden"
+                    onBlur={field.onBlur}
+                    disabled={field.disabled}
+                    onChange={(e) => field.onChange(e.target.files?.[0])}
+                  />
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button
+          type="submit"
+          intent={"primary"}
+          className="w-full"
+          disabled={isPending}
+        >
+          {isPending ? <PulseLoader size={6} color="#FFF" /> : "Candidatar-se"}
+        </Button>
+      </form>
+    </Form>
+  )
+}
+
+const FormWrapper = ({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) => {
+  return (
+    <fieldset
+      className={cn("w-full grid grid-cols-1 lg:grid-cols-2 gap-8", className)}
+    >
+      {children}
+    </fieldset>
+  )
 }

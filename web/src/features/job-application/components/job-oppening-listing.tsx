@@ -1,9 +1,9 @@
-import { JobOppening } from "../@types/job-oppening.types";
-import JobOppeningCard from "./job-oppening-card";
+import { JobOppening } from "../@types/job-oppening.types"
+import JobOppeningCard from "./job-oppening-card"
 
 type Props = {
-  data: JobOppening[];
-};
+  data: JobOppening[]
+}
 
 export default function JobOppeningListing({ data }: Props) {
   return (
@@ -12,5 +12,5 @@ export default function JobOppeningListing({ data }: Props) {
         <JobOppeningCard data={job} key={index} />
       ))}
     </section>
-  );
+  )
 }
