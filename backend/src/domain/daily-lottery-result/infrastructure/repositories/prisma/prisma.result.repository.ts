@@ -1,9 +1,9 @@
 import { PrismaClient, Prisma } from "@prisma/client";
-import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
-import { ILotteryResultRepository, UpdateLotteryResult } from "@/domain/daily-lottery-result/application/interfaces/lottery-result.respository";
+import { LotteryResult } from "../../../../../domain/daily-lottery-result/enterprise/entities/lottery-result";
+import { ILotteryResultRepository, UpdateLotteryResult } from "../../../application/interfaces/lottery-result.respository";
 
 export class PrismaLotteryResultRespository implements ILotteryResultRepository {
-  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
+  constructor(private prisma: PrismaClient | Prisma.TransactionClient) {}
 
   async save(result: LotteryResult): Promise<void> {
     await this.prisma.result.create({
@@ -37,7 +37,7 @@ export class PrismaLotteryResultRespository implements ILotteryResultRepository 
         number_3: result.number_3,
         number_4: result.number_4,
         number_5: result.number_5,
-      })
+      }),
     );
   }
 

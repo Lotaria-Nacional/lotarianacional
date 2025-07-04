@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { userRepository } from "@/main/container/repositories";
+import { userRepository } from "../../../../main/container/repositories";
 import { makeUserController } from "../factories/make-user-contoller";
-import { upload } from "@/core/middlewares/multer.middleware";
-import { BcryptHashService } from "@/core/services/hash/bcrypt-hash-service";
-import { expressAdapterController } from "@/core/adapters/express-adapter-controller";
-import { CloudinaryUploadService } from "@/core/services/file-upload/cloudinary-upload-service";
+import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller";
+import { upload } from "../../../../core/middlewares/multer.middleware";
+import { CloudinaryUploadService } from "../../../../core/services/file-upload/cloudinary-upload-service";
+import { BcryptHashService } from "../../../../core/services/hash/bcrypt-hash-service";
 
 const userRouter = Router();
 

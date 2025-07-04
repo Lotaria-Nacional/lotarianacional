@@ -1,20 +1,20 @@
-import { NotFoundError } from "@/core/errors/common/not-found.error"
-import { DeleteUserUseCase } from "../../application/use-cases/delete-user.useCase"
-import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
+import { NotFoundError } from "../../../../core/errors/common/not-found.error";
+import { DeleteUserUseCase } from "../../application/use-cases/delete-user.useCase";
+import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller";
 
 export class DeleteUserController implements IController {
   constructor(private useCase: DeleteUserUseCase) {}
-  
-  async handle(req: HttpRequest):Promise<HttpResponse> {
-    const { id } = req.params
+
+  async handle(req: HttpRequest): Promise<HttpResponse> {
+    const { id } = req.params;
     try {
-      await this.useCase.execute(id)
-      return {statusCode:200,body:{ message: "Usuário removido com sucesso." }}
+      await this.useCase.execute(id);
+      return { statusCode: 200, body: { message: "Usuário removido com sucesso." } };
     } catch (error) {
       if (error instanceof NotFoundError) {
-        return {statusCode:404,body:{ message: error.message }}
+        return { statusCode: 404, body: { message: error.message } };
       }
-      return {statusCode:500,body:{ message: "Erro interno do servidor." }}
+      return { statusCode: 500, body: { message: "Erro interno do servidor." } };
     }
   }
 }

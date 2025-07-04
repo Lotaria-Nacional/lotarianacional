@@ -1,16 +1,17 @@
-import { formatDate } from "@/shared/utils/date";
 import { IEmissionRepository } from "../../interfaces/emission.repository";
 import { NumberStatisticService } from "../statistics/create-statistics.useCase";
 import { CreateResultInputDTO } from "../lottery-result/create-lottery-result.useCase";
-import { Emission } from "@/domain/daily-lottery-result/enterprise/entities/emission.entity";
-import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
+import { Emission } from "../../../../../domain/daily-lottery-result/enterprise/entities/emission.entity";
+import { LotteryResult } from "../../../../../domain/daily-lottery-result/enterprise/entities/lottery-result";
 import { IDailyLotteryResultRespository } from "../../interfaces/daily-lottery-result.repository";
-import { DailyLotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/daily-lottery-result";
+import { DailyLotteryResult } from "../../../../../domain/daily-lottery-result/enterprise/entities/daily-lottery-result";
+import { formatDate } from "../../../../../shared/utils/date";
 
 export class CreateDailyResultUseCase {
-  constructor(private dailyResultRepo: IDailyLotteryResultRespository,
+  constructor(
+    private dailyResultRepo: IDailyLotteryResultRespository,
     private emissionRepo: IEmissionRepository,
-    private numberStatisticService: NumberStatisticService
+    private numberStatisticService: NumberStatisticService,
   ) {}
 
   async execute(data: CreateResultInputDTO): Promise<void> {
@@ -34,7 +35,6 @@ export class CreateDailyResultUseCase {
       }
 
       await this.numberStatisticService.computeAndSaveStats();
-
     } catch (error) {
       console.error("Erro ao criar o resultado do dia:", error);
       throw error;

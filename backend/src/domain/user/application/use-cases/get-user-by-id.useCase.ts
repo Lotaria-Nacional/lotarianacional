@@ -1,17 +1,16 @@
-import { NotFoundError } from "@/core/errors/common/not-found.error"
-import { User } from "../../enterprise/entities/user"
-import { IUserRepository } from "../interfaces/user.repository"
-
+import { NotFoundError } from "../../../../core/errors/common/not-found.error";
+import { User } from "../../enterprise/entities/user";
+import { IUserRepository } from "../interfaces/user.repository";
 
 export class GetUserByIdUseCase {
   constructor(private userRepository: IUserRepository) {}
   async execute(id: string): Promise<User> {
-    const user = await this.userRepository.getById(id)
+    const user = await this.userRepository.getById(id);
 
     if (!user) {
-      throw new NotFoundError("Usúario não encontrado.")
+      throw new NotFoundError("Usúario não encontrado.");
     }
 
-    return User.create(user)
+    return User.create(user);
   }
 }

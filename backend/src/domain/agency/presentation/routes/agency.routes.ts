@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { agencyRepository } from "@/main/container/repositories";
+import { agencyRepository } from "../../../../main/container/repositories";
 import { agencyControllerFactory } from "../factories/make-agency-controllers";
-import { expressAdapterController } from "@/core/adapters/express-adapter-controller";
+import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller";
 
 const agencyRouter = Router();
 

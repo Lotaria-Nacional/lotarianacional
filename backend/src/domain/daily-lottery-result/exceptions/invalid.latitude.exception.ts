@@ -1,4 +1,4 @@
-import { DomainError } from "@/core/errors/domain.error";
+import { DomainError } from "../../../core/errors/domain.error";
 
 export class InvalidLatitudeException extends DomainError {
   constructor() {

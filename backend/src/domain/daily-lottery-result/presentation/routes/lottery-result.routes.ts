@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import { emissionRepo, lotteryResultRepo } from "@/main/container/repositories";
+import { emissionRepo, lotteryResultRepo } from "../../../../main/container/repositories";
 import { makeLotteryResultController } from "../factories/make-lottery-results.controller";
-import { expressAdapterController } from "@/core/adapters/express-adapter-controller";
+import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller";
 
 const lotteryResultRouter = Router();
 

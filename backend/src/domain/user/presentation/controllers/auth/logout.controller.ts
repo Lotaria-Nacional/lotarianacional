@@ -1,4 +1,4 @@
-import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
+import { IController, HttpRequest, HttpResponse } from "../../../../../core/infrastucture/http/controller"
 
 export class LogoutController implements IController {
   

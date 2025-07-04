@@ -1,8 +1,8 @@
 import { User } from "../../enterprise/entities/user";
 import { IUserRepository } from "../interfaces/user.repository";
-import { IHashService } from "@/core/contracts/hash.interface";
-import { IFileUpload } from "@/core/contracts/file-upload.interface";
 import { CreateUserDTO } from "../../presentation/validations/create-user.schema";
+import { IFileUpload } from "../../../../core/contracts/file-upload.interface";
+import { IHashService } from "../../../../core/contracts/hash.interface";
 
 export class CreateUserUseCase {
   constructor(private userRespository: IUserRepository, private fileUpload: IFileUpload, private hashService: IHashService) {}

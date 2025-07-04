@@ -1,5 +1,3 @@
-import { IHashService } from "@/core/contracts/hash.interface";
-import { IFileUpload } from "@/core/contracts/file-upload.interface";
 import { CreateUserController } from "../controllers/create-user.controller";
 import { DeleteUserController } from "../controllers/delete-user.controller";
 import { UpdateUserController } from "../controllers/update-user.controller";
@@ -11,6 +9,8 @@ import { UpdateUserUseCase } from "../../application/use-cases/update-user.useCa
 import { FetchManyUsersController } from "../controllers/fetch-many-users.controllers";
 import { GetUserByIdUseCase } from "../../application/use-cases/get-user-by-id.useCase";
 import { FetchManyUsersUseCase } from "../../application/use-cases/fetch-many-users.useCase";
+import { IFileUpload } from "../../../../core/contracts/file-upload.interface";
+import { IHashService } from "../../../../core/contracts/hash.interface";
 
 export function makeUserController(repository:IUserRepository, fileUpload: IFileUpload, hashService: IHashService){
     const createUser = new CreateUserController(new CreateUserUseCase(repository, fileUpload, hashService))

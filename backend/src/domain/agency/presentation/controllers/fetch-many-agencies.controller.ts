@@ -1,22 +1,22 @@
-import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller";
+import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller";
 import { FetchManyAgenciesUseCase } from "../../application/use-cases/fetch-many-agencies.useCase";
 
-export class FetchManyAgenciesController implements IController{
+export class FetchManyAgenciesController implements IController {
   constructor(private useCase: FetchManyAgenciesUseCase) {}
 
-  async handle(req: HttpRequest):Promise<HttpResponse> {
+  async handle(req: HttpRequest): Promise<HttpResponse> {
     try {
       const agencies = await this.useCase.execute();
 
       return {
-        statusCode:200,
-        body:agencies
-      }
+        statusCode: 200,
+        body: agencies,
+      };
     } catch (error: any) {
       return {
-        statusCode:500,
-        body:{ message: error.message }
-      }
+        statusCode: 500,
+        body: { message: error.message },
+      };
     }
   }
 }

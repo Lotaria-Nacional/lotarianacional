@@ -1,13 +1,15 @@
 import { News } from "../../enterprise/entities/news";
-import { NotFoundError } from "@/core/errors/common/not-found.error";
+import { NotFoundError } from "../../../../core/errors/common/not-found.error";
 import { INewsRespository } from "../interfaces/news.repository";
-import { IFileUpload } from "@/core/contracts/file-upload.interface";
 import { EditNewsDTO } from "../../presentation/validations/edit-news.schema";
-import { getCloudinaryPublicId } from "@/shared/utils/get-cloudinary-public-id";
-
+import { IFileUpload } from "../../../../core/contracts/file-upload.interface";
+import { getCloudinaryPublicId } from "../../../../shared/utils/get-cloudinary-public-id";
 
 export class UpdateNewsUseCase {
-  constructor(private newsRepository: INewsRespository, private fileUpload: IFileUpload) {}
+  constructor(
+    private newsRepository: INewsRespository,
+    private fileUpload: IFileUpload,
+  ) {}
 
   async execute(data: EditNewsDTO): Promise<News> {
     const news = await this.newsRepository.getById(data.id);
@@ -31,7 +33,7 @@ export class UpdateNewsUseCase {
       news.update(data);
       await this.newsRepository.save(news);
     }
-    
+
     return news;
   }
 }

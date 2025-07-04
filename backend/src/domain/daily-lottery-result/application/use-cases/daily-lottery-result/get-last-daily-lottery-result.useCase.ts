@@ -1,18 +1,18 @@
-import { LotteryResult } from "../../../enterprise/entities/lottery-result"
-import { DailyLotteryResult } from "../../../enterprise/entities/daily-lottery-result"
-import { IDailyLotteryResultRespository } from "../../interfaces/daily-lottery-result.repository"
-import { NotFoundError } from "@/core/errors/common/not-found.error"
+import { LotteryResult } from "../../../enterprise/entities/lottery-result";
+import { DailyLotteryResult } from "../../../enterprise/entities/daily-lottery-result";
+import { IDailyLotteryResultRespository } from "../../interfaces/daily-lottery-result.repository";
+import { NotFoundError } from "../../../../../core/errors/common/not-found.error";
 
 export class GetLastDailyResultUseCase {
   constructor(private dailyResultRepository: IDailyLotteryResultRespository) {}
 
   async execute(): Promise<DailyLotteryResult> {
-    const lastDailyResult = await this.dailyResultRepository.getLast()
+    const lastDailyResult = await this.dailyResultRepository.getLast();
     if (!lastDailyResult) {
-      throw new NotFoundError("Não há resultados ainda.")
+      throw new NotFoundError("Não há resultados ainda.");
     }
-    const dailyResult = this.createDailyResult(lastDailyResult)
-    return dailyResult
+    const dailyResult = this.createDailyResult(lastDailyResult);
+    return dailyResult;
   }
 
   private createDailyResult(data: DailyLotteryResult) {
@@ -34,8 +34,8 @@ export class GetLastDailyResultUseCase {
           number_4: result.number_4,
           number_5: result.number_5,
           createdAt: result.createdAt,
-        })
+        }),
       ),
-    })
+    });
   }
 }

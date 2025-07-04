@@ -1,7 +1,7 @@
 import { News } from "../../enterprise/entities/news";
 import { INewsRespository } from "../interfaces/news.repository";
-import { IFileUpload } from "@/core/contracts/file-upload.interface";
 import { CreateNewsDTO } from "../../presentation/validations/create-news.schema";
+import { IFileUpload } from "../../../../core/contracts/file-upload.interface";
 
 export class CreateNewsUseCase {
   constructor(private newsRepository: INewsRespository, private fileUpload: IFileUpload) {}

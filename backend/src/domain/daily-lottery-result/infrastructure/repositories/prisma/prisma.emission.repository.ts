@@ -1,9 +1,9 @@
 import { PrismaClient, Prisma } from "@prisma/client";
-import { Emission } from "@/domain/daily-lottery-result/enterprise/entities/emission.entity";
-import { IEmissionRepository } from "@/domain/daily-lottery-result/application/interfaces/emission.repository";
+import { Emission } from "../../../../../domain/daily-lottery-result/enterprise/entities/emission.entity";
+import { IEmissionRepository } from "../../../application/interfaces/emission.repository";
 
 export class PrismaEmissionRepository implements IEmissionRepository {
-  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
+  constructor(private prisma: PrismaClient | Prisma.TransactionClient) {}
 
   async getAll(): Promise<Emission[]> {
     const emissions = await this.prisma.emission.findMany({
@@ -18,7 +18,7 @@ export class PrismaEmissionRepository implements IEmissionRepository {
         description: emission.description ?? "",
         formatedData: emission.formatedData ?? "",
         createdAt: emission.createdAt ?? new Date(),
-      })
+      }),
     );
   }
   async save(emission: Emission): Promise<void> {

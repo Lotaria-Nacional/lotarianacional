@@ -1,8 +1,8 @@
 import { Router } from "express";
 
 import { makeDailyLotteryResults } from "../factories/make-daily-lottery-results.controller";
-import { expressAdapterController } from "@/core/adapters/express-adapter-controller";
-import { dailyResultRepo, emissionRepo, statisticService } from "@/main/container/repositories";
+import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller";
+import { dailyResultRepo, emissionRepo, statisticService } from "../../../../main/container/repositories";
 
 const dailyLotteryResultRouter = Router();
 

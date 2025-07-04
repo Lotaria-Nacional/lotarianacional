@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { emissionRepo } from "@/main/container/repositories";
+import { emissionRepo } from "../../../../main/container/repositories";
 import { makeEmissionController } from "../factories/make-emission.controller";
-import { expressAdapterController } from "@/core/adapters/express-adapter-controller";
+import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller";
 
 const emissionRouter = Router();
 

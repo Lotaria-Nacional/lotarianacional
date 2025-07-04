@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { upload } from "@/core/middlewares/multer.middleware";
-import { SendGridEmailSender } from "@/core/services/emails/send-grid-service";
 import { SendJobApplicationSkilledStaffUseCase } from "../../use-cases/send-job-application-skilled-staff.use-case";
 import { SendJobApplicationResellerController } from "../controlles/send-job-application-reseller.controller";
 import { SendJobApplicationSkilledStaffController } from "../controlles/send-job-application-skilled-staff.controller";
 import { SendJobApplicationResellerUseCase } from "../../use-cases/send-job-application-reseller.use-case";
+import { SendGridEmailSender } from "../../../../core/services/emails/send-grid-service";
+import { upload } from "../../../../core/middlewares/multer.middleware";
 
 const applicationRoutes = Router();
 

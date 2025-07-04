@@ -1,4 +1,4 @@
-import { HttpRequest, HttpResponse, IController } from "@/core/infrastucture/http/controller"
+import { HttpRequest, HttpResponse, IController } from "../../../../../core/infrastucture/http/controller"
 import { FetchManyStatisticsUseCase } from "../../../application/use-cases/statistics/fetch-many-statistics.useCase"
 
 export class FetchManyStatisticsController implements IController {

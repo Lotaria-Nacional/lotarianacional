@@ -1,5 +1,5 @@
 import { IEmissionRepository } from "../../interfaces/emission.repository";
-import { Emission } from "@/domain/daily-lottery-result/enterprise/entities/emission.entity";
+import { Emission } from "../../../../../domain/daily-lottery-result/enterprise/entities/emission.entity";
 
 export class FetchManyEmissionUseCase {
   constructor(private emissionRepository: IEmissionRepository) {}
@@ -9,7 +9,6 @@ export class FetchManyEmissionUseCase {
       const emissions = await this.emissionRepository.getAll();
 
       return emissions;
-      
     } catch (error) {
       throw error;
     }

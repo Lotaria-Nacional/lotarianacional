@@ -1,4 +1,4 @@
-import { EmailSender } from "@/core/contracts/email.interface";
+import { EmailSender } from "../../../core/contracts/email.interface";
 
 type SendApplicationInput = {
   firstName: string;

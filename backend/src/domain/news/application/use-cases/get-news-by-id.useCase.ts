@@ -1,4 +1,4 @@
-import { NotFoundError } from "@/core/errors/common/not-found.error";
+import { NotFoundError } from "../../../../core/errors/common/not-found.error";
 import { News } from "../../enterprise/entities/news";
 import { INewsRespository } from "../interfaces/news.repository";
 

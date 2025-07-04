@@ -1,11 +1,11 @@
 import { Router } from "express";
 
-import { prisma } from "@/main/config/prisma";
 import { makeAuthController } from "../factories/make-auth-contoller";
-import { JwtTokenService } from "@/core/services/token/jwt-token-service";
-import { BcryptHashService } from "@/core/services/hash/bcrypt-hash-service";
-import { expressAdapterController } from "@/core/adapters/express-adapter-controller";
+import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller";
 import { PrismaUserRespository } from "../../infrastructure/repositories/prisma/prisma.user.repository";
+import { BcryptHashService } from "../../../../core/services/hash/bcrypt-hash-service";
+import { JwtTokenService } from "../../../../core/services/token/jwt-token-service";
+import { prisma } from "../../../../main/config/prisma";
 
 const authRouter = Router();
 

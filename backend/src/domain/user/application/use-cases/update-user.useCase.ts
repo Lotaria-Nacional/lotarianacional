@@ -1,11 +1,14 @@
-import { NotFoundError } from "@/core/errors/common/not-found.error";
+import { NotFoundError } from "../../../../core/errors/common/not-found.error";
 import { IUserRepository } from "../interfaces/user.repository";
-import { IFileUpload } from "@/core/contracts/file-upload.interface";
 import { EditUserDTO } from "../../presentation/validations/edit-user.schema";
 import { getCloudinaryPublicId } from "../../../../shared/utils/get-cloudinary-public-id";
+import { IFileUpload } from "../../../../core/contracts/file-upload.interface";
 
 export class UpdateUserUseCase {
-  constructor(private userRepository: IUserRepository, private fileUploader: IFileUpload) {}
+  constructor(
+    private userRepository: IUserRepository,
+    private fileUploader: IFileUpload,
+  ) {}
 
   async execute(data: EditUserDTO) {
     const user = await this.userRepository.getById(data.id);
@@ -26,7 +29,7 @@ export class UpdateUserUseCase {
       profileImage = await this.fileUploader.upload(data.profilePic, "lotaria_nacional/users", "image");
     }
 
-    user.update({...data, profilePic: profileImage })
+    user.update({ ...data, profilePic: profileImage });
 
     const updatedUser = await this.userRepository.save(user);
 

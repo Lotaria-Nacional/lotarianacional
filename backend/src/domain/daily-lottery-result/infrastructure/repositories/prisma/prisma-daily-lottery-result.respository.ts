@@ -1,14 +1,12 @@
-import { NotFoundError } from "@/core/errors/common/not-found.error";
-import { IDailyLotteryResultRespository } from "@/domain/daily-lottery-result/application/interfaces/daily-lottery-result.repository";
-import { DailyLotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/daily-lottery-result";
-import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
+import { LotteryResult } from "../../../../../domain/daily-lottery-result/enterprise/entities/lottery-result";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { addDays, startOfWeek } from "date-fns";
-
-
+import { NotFoundError } from "../../../../../core/errors/common/not-found.error";
+import { IDailyLotteryResultRespository } from "../../../application/interfaces/daily-lottery-result.repository";
+import { DailyLotteryResult } from "../../../enterprise/entities/daily-lottery-result";
 
 export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResultRespository {
-  constructor(private prisma:PrismaClient | Prisma.TransactionClient){}
+  constructor(private prisma: PrismaClient | Prisma.TransactionClient) {}
 
   async create(DailyLotteryResult: DailyLotteryResult): Promise<void> {
     await this.prisma.dailyResult.create({
@@ -44,7 +42,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
 
     const newResult = await this.prisma.result.create({
       data: {
-        dailyId:exisitingDailyLotteryResult.id,
+        dailyId: exisitingDailyLotteryResult.id,
         name: lastResultAdded.name,
         videoURL: lastResultAdded.videoURL,
         startHour: lastResultAdded.hour,
@@ -68,7 +66,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
       },
     });
   }
-  
+
   async delete(id: string): Promise<void> {
     await this.prisma.result.deleteMany({
       where: { dailyId: id }, // Filtra pelo ID do DailyLotteryResult
@@ -107,9 +105,9 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
             number_4: result.number_4,
             number_5: result.number_5,
             createdAt: result.createdAt,
-          })
+          }),
         ),
-      })
+      }),
     );
   }
 
@@ -140,7 +138,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
           number_4: result.number_4,
           number_5: result.number_5,
           createdAt: result.createdAt,
-        })
+        }),
       ),
     });
   }
@@ -194,9 +192,9 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
             number_4: result.number_4,
             number_5: result.number_5,
             createdAt: result.createdAt,
-          })
+          }),
         ),
-      })
+      }),
     );
   }
 
@@ -223,7 +221,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
           number_4: result.number_4,
           number_5: result.number_5,
           videoURL: result.videoURL,
-        })
+        }),
       ),
     });
   }
@@ -252,7 +250,7 @@ export class PrismaDailyLotteryResultsRespository implements IDailyLotteryResult
           number_4: result.number_4,
           number_5: result.number_5,
           createdAt: result.createdAt,
-        })
+        }),
       ),
     });
   }

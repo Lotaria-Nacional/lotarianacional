@@ -1,5 +1,5 @@
 import { firebase } from "../../../main/config/firebase"
-import { CloudinaryResourceOption, IFileUpload } from "@/core/contracts/file-upload.interface"
+import { CloudinaryResourceOption, IFileUpload } from "../../../core/contracts/file-upload.interface"
 
 export class CloudinaryUploadService implements IFileUpload {
   async upload(file: string, folder: string, type:CloudinaryResourceOption): Promise<string> {

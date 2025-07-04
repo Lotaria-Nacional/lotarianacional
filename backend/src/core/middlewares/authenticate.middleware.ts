@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
 import { RequestHandler } from "express"
-import { env } from "@/main/config/env"
+import { env } from "process"
 
 const authenticateMiddleware: RequestHandler = (req, res, next) => {
   const accessToken = req.cookies.accessToken as string | undefined

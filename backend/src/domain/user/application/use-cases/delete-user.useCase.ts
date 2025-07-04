@@ -1,4 +1,4 @@
-import { IFileUpload } from "@/core/contracts/file-upload.interface";
+import { IFileUpload } from "../../../../core/contracts/file-upload.interface";
 import { NotFoundError } from "../../../../core/errors/common/not-found.error";
 import { getCloudinaryPublicId } from "../../../../shared/utils/get-cloudinary-public-id";
 import { IUserRepository } from "../interfaces/user.repository";

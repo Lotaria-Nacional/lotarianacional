@@ -1,8 +1,8 @@
-import { NotFoundError } from "@/core/errors/common/not-found.error";
+import { NotFoundError } from "../../../../../core/errors/common/not-found.error";
 import { IEmissionRepository } from "../../interfaces/emission.repository";
 import { ILotteryResultRepository } from "../../interfaces/lottery-result.respository";
-import { Emission } from "@/domain/daily-lottery-result/enterprise/entities/emission.entity";
-import { LotteryResult } from "@/domain/daily-lottery-result/enterprise/entities/lottery-result";
+import { Emission } from "../../../../../domain/daily-lottery-result/enterprise/entities/emission.entity";
+import { LotteryResult } from "../../../../../domain/daily-lottery-result/enterprise/entities/lottery-result";
 
 type UpdateResultInputDTO = {
   id: string;
@@ -10,7 +10,10 @@ type UpdateResultInputDTO = {
 };
 
 export class UpdateLotteryResultUseCase {
-  constructor(private resultRepository: ILotteryResultRepository, private emissionRepository: IEmissionRepository) {}
+  constructor(
+    private resultRepository: ILotteryResultRepository,
+    private emissionRepository: IEmissionRepository,
+  ) {}
 
   async execute(data: UpdateResultInputDTO): Promise<LotteryResult> {
     const result = await this.resultRepository.getById(data.id);

@@ -1,4 +1,4 @@
-import { formatDate } from "@/shared/utils/date";
+import { formatDate } from "../../../../shared/utils/date";
 
 type EmissionProps = {
   id?: string;
@@ -21,9 +21,8 @@ export class Emission {
       formatedData: props.formatedData ?? formatDate(currentDate),
     });
   }
-  
+
   toJSON() {
     return this.props;
   }
-
 }
