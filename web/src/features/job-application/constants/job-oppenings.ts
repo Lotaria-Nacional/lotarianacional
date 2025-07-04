@@ -9,7 +9,7 @@ export const skilledStaffOpenings: JobOppening[] = [
     requirements: [
       "Mínimo 3 anos de experiência na área",
       "Entender, interpretar normas ISO",
-      "Tratamento e gestão de NC (Não Conformidade",
+      "Tratamento e gestão de NC (Não Conformidade)",
       "Noções de Controles Internos.",
     ],
     responsabilities: [],
@@ -23,7 +23,7 @@ export const skilledStaffOpenings: JobOppening[] = [
     description: "",
     requirements: [
       "Conhecimento de eletrónica",
-      "Conhecer gestão de invetário/stock",
+      "Conhecer gestão de inventário/stock",
       "Conhecimento de hardware",
       "Domínio do pacote office (word e excel)",
     ],

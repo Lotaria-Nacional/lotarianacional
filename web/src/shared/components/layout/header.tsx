@@ -28,7 +28,7 @@ const Header = () => {
                     <NavigationMenuTrigger className="uppercase !text-[14px] cursor-pointer">
                       {nav.label}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent>
+                    <NavigationMenuContent className="mr-40">
                       {nav.submenu.map((sub) => (
                         <NavigationMenuLink
                           asChild
