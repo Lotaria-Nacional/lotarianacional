@@ -1,8 +1,10 @@
 import { UserEntity } from "@/features/user/types"
 import axios from "@/lib/axios"
 
-
-export type AuthUserEntityResponse = Omit<UserEntity, "firstName"| "lastName"> & {name:string}
+export type AuthUserEntityResponse = Omit<
+  UserEntity,
+  "firstName" | "lastName"
+> & { name: string }
 
 export type LoginResponse = {
   message: string

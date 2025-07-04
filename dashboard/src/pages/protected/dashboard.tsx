@@ -1,19 +1,18 @@
-import { isValidArray } from "@/lib/utils";
-import TotalCard from "@/components/total-card";
-import GoogleMap from "@/components/google-map/google-map";
-import TotalCardSkeleton from "@/components/total-card-skeleton";
-import { useGetTotalResults } from "@/features/results/hooks/query";
-import { useGetAllAgencies } from "@/features/agencies/hooks/query";
-import TotalCardEmptyState from "@/components/total-card-empty-state";
-import DailyResults from "@/features/results/components/daily-results";
-import StatsChartMobile from "@/features/statistics/components/statistics-chart-mobile";
-import StatsChartDesktop from "@/features/statistics/components/statistics-chart-desktop";
+import TotalCard from "@/components/total-card"
+import GoogleMap from "@/components/google-map/google-map"
+import TotalCardSkeleton from "@/components/total-card-skeleton"
+import { useGetTotalResults } from "@/features/results/hooks/query"
+import { useGetAllAgencies } from "@/features/agencies/hooks/query"
+import TotalCardEmptyState from "@/components/total-card-empty-state"
+import DailyResults from "@/features/results/components/daily-results"
+import StatsChartMobile from "@/features/statistics/components/statistics-chart-mobile"
+import StatsChartDesktop from "@/features/statistics/components/statistics-chart-desktop"
 
 const Dashboard = () => {
   const { data: agencies, isLoading: isLoadingAgencies } = useGetAllAgencies({
     page: 1,
-  });
-  const { data: results, isLoading: isLoadingResults } = useGetTotalResults();
+  })
+  const { data: results, isLoading: isLoadingResults } = useGetTotalResults()
 
   return (
     <div className="main h-full flex flex-col lg:grid grid-cols-4 gap-6">
@@ -38,7 +37,7 @@ const Dashboard = () => {
             )}
             {isLoadingAgencies ? (
               <TotalCardSkeleton />
-            ) : agencies && isValidArray(agencies.data) ? (
+            ) : agencies?.data && agencies.data.length > 0 ? (
               <TotalCard name="agências" total={agencies.totalRecords} />
             ) : (
               <TotalCardEmptyState message="Não há agências ainda." />
@@ -56,7 +55,7 @@ const Dashboard = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
