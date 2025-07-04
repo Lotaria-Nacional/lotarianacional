@@ -1,6 +1,6 @@
 import { JobOppening } from "../@types/job-oppening.types"
 
-export const jobsList: JobOppening[] = [
+export const skilledStaffOpenings: JobOppening[] = [
   {
     id: 1,
     department: "sorteio",
@@ -18,7 +18,7 @@ export const jobsList: JobOppening[] = [
 
   {
     id: 2,
-    department: "transporte",
+    department: "comercial",
     title: "motorista",
     description: "",
     requirements: [
@@ -35,7 +35,7 @@ export const jobsList: JobOppening[] = [
 export const resellersOppenings: JobOppening[] = [
   {
     id: 1,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -49,7 +49,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 2,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -63,7 +63,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 3,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -77,7 +77,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 4,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -91,7 +91,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 5,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -105,7 +105,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 6,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -119,7 +119,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 7,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -133,7 +133,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 8,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -147,7 +147,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 9,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -161,7 +161,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 10,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -175,7 +175,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 11,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -189,7 +189,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 12,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -203,7 +203,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 13,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -217,7 +217,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 14,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -231,7 +231,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 15,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -245,7 +245,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 16,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -259,7 +259,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 17,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -273,7 +273,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 18,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -287,7 +287,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 19,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [
@@ -301,7 +301,7 @@ export const resellersOppenings: JobOppening[] = [
   },
   {
     id: 20,
-    department: "parceiro",
+    department: "revendedor",
     title: "Revendedor",
     description: "",
     requirements: [

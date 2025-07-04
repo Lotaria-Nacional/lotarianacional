@@ -1,26 +1,29 @@
-import { useEffect } from "react"
-import { useParams } from "react-router-dom"
-import MoreJobOpenings from "../components/more-job-openings"
-import { PageBody } from "@/shared/components/layout/page-body"
-import ResellerOppeningForm from "../components/reseller-oppening-form"
-import { jobsList, resellersOppenings } from "../constants/job-oppenings"
-import SkilledStaffOppeningForm from "../components/skilled-staff-oppening-form"
+import {
+  resellersOppenings,
+  skilledStaffOpenings,
+} from "../constants/job-oppenings";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import MoreJobOpenings from "../components/more-job-openings";
+import { PageBody } from "@/shared/components/layout/page-body";
+import ResellerOppeningForm from "../components/reseller-oppening-form";
+import SkilledStaffOppeningForm from "../components/skilled-staff-oppening-form";
 
 export default function JobOppeningDetailsPage() {
-  const { id, department } = useParams()
+  const { id, department } = useParams();
 
   const jobOppening =
-    department === "parceiro"
+    department === "revendedor"
       ? resellersOppenings.find((job) => job.id === Number(id))
-      : jobsList.find((job) => job.id === Number(id))
+      : skilledStaffOpenings.find((job) => job.id === Number(id));
 
   if (!jobOppening) {
-    return null
+    return null;
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [id])
+    window.scrollTo(0, 0);
+  }, [id]);
 
   return (
     <PageBody.Container>
@@ -78,8 +81,8 @@ export default function JobOppeningDetailsPage() {
         </section>
 
         <section className="w-full grid grid-cols-1 gap-6 sticky top-[150px]">
-          {department === "parceiro" ? (
-            <ResellerOppeningForm />
+          {department === "parceiro" && jobOppening.location ? (
+            <ResellerOppeningForm location={jobOppening.location} />
           ) : (
             <SkilledStaffOppeningForm
               department={department!}
@@ -90,5 +93,5 @@ export default function JobOppeningDetailsPage() {
         </section>
       </main>
     </PageBody.Container>
-  )
+  );
 }

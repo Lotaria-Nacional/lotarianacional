@@ -5,56 +5,59 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/shared/components/ui/form"
+} from "@/shared/components/ui/form";
 import {
   skilledStaffSchema,
   SkilledStaffSchemaDTO,
-} from "../validations/skilled-staff.schema"
-import { ReactNode } from "react"
-import { cn } from "@/lib/utils"
-import { toast } from "react-toastify"
-import { useForm } from "react-hook-form"
-import { PulseLoader } from "react-spinners"
-import { Input } from "@/shared/components/ui/input"
-import { zodResolver } from "@hookform/resolvers/zod"
-import Button from "@/shared/components/ui/button/button"
-import { useSendApplicationSkilledStaff } from "../hooks/use-send-application-skilled-staff"
+} from "../validations/skilled-staff.schema";
+import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { PulseLoader } from "react-spinners";
+import { Input } from "@/shared/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Button from "@/shared/components/ui/button/button";
+import { useSendApplicationSkilledStaff } from "../hooks/use-send-application-skilled-staff";
+import { SlCloudUpload } from "react-icons/sl";
 
 type Props = {
-  className?: string
-  title: string
-  department: string
-}
+  className?: string;
+  title: string;
+  department: string;
+};
 
 export default function SkilledStaffOppeningForm({
   className,
   title,
   department,
 }: Props) {
-  const { isPending, mutateAsync } = useSendApplicationSkilledStaff()
+  const { isPending, mutateAsync } = useSendApplicationSkilledStaff();
 
   const form = useForm<SkilledStaffSchemaDTO>({
     resolver: zodResolver(skilledStaffSchema),
-  })
+  });
 
   const handleOnSubmit = async (data: SkilledStaffSchemaDTO) => {
     try {
-      const formData = new FormData()
-      formData.append("firstName", data.firstName)
-      formData.append("lastName", data.lastName)
-      formData.append("phone", data.phone)
-      formData.append("email", data.email)
-      formData.append("cv", data.curriculum)
-      formData.append("title", title)
-      formData.append("department", department)
+      const formData = new FormData();
+      formData.append("firstName", data.firstName);
+      formData.append("lastName", data.lastName);
+      formData.append("phone", data.phone);
+      formData.append("email", data.email);
+      formData.append("cv", data.curriculum);
+      formData.append("title", title);
+      formData.append("department", department);
 
-      const response = await mutateAsync(formData)
-      toast.success(response.message)
+      const response = await mutateAsync(formData);
+      toast.success(response.message);
     } catch (error) {
-      console.error(error)
-      toast.error("Erro ao submeter a candidatura, tente novamente mais tarde.")
+      console.error(error);
+      toast.error(
+        "Erro ao submeter a candidatura, tente novamente mais tarde."
+      );
     }
-  }
+  };
 
   return (
     <Form {...form}>
@@ -137,13 +140,9 @@ export default function SkilledStaffOppeningForm({
                 <div className="flex w-full flex-col gap-2">
                   <label
                     htmlFor="curriculum"
-                    className="cursor-pointer flex flex-col items-center justify-center border border-dashed border-LT_RED-300 h-[120px] rounded-[8px]"
+                    className="cursor-pointer gap-2  flex flex-col items-center justify-center border border-dashed border-zinc-300 duration-200 ease-in-out transition-all  hover:border-LT_RED-300 h-[120px] rounded-[8px]"
                   >
-                    <img
-                      className="size-10"
-                      alt="upload icone"
-                      src="/src/assets/icons/upload.svg"
-                    />
+                    <SlCloudUpload size={24} className="text-zinc-400" />
                     <p className="text-sm text-zinc-400">
                       Clique para carregar o documento
                     </p>
@@ -174,7 +173,7 @@ export default function SkilledStaffOppeningForm({
         </Button>
       </form>
     </Form>
-  )
+  );
 }
 
 const FormWrapper = ({ children }: { children: ReactNode }) => {
@@ -182,5 +181,5 @@ const FormWrapper = ({ children }: { children: ReactNode }) => {
     <fieldset className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {children}
     </fieldset>
-  )
-}
+  );
+};

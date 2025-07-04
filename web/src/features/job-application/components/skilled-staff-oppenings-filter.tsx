@@ -8,6 +8,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import Button from "@/shared/components/ui/button/button";
 import { departments } from "../constants/departments";
+import { IoIosClose } from "react-icons/io";
 
 export default function SkilledStaffOppeningsFilter() {
   const [search, setSearch] = useSearchParams();
@@ -46,7 +47,11 @@ export default function SkilledStaffOppeningsFilter() {
           ))}
         </SelectContent>
       </Select>
-      {searchValue && <Button onClick={handleCleanFilter}>Limpar</Button>}
+      {searchValue && (
+        <Button onClick={handleCleanFilter}>
+          <IoIosClose />
+        </Button>
+      )}
     </div>
   );
 }

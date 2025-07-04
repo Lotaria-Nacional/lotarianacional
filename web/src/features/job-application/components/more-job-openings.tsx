@@ -1,23 +1,23 @@
-import { jobsList } from "../constants/job-oppenings"
-import Button from "@/shared/components/ui/button/button"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { skilledStaffOpenings } from "../constants/job-oppenings";
+import Button from "@/shared/components/ui/button/button";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function MoreJobOpenings() {
-  const navigate = useNavigate()
-  const { id, department } = useParams()
+  const navigate = useNavigate();
+  const { id, department } = useParams();
 
-  const filteredJobOppenings = jobsList
-    .filter((jobs) => jobs.department === department && jobs.id !== Number(id))
-    .slice(0, 3)
+  const filteredJobOppenings = skilledStaffOpenings
+    .filter((jobs) => jobs.id !== Number(id))
+    .slice(0, 3);
 
-  const params = department === "parceiro" ? "parceiro" : "vagas"
+  const params = department === "parceiro" ? "parceiro" : "vagas";
 
   return (
     <ul className="flex flex-col gap-3 w-full h-full">
       <div className="w-full flex justify-between items-start">
-        <h3>Mais vagas semelhantes</h3>
+        <h3>Mais vagas</h3>
         <Link
-          to={`/recrutamento/${params}`}
+          to={`/carreira/${params}`}
           className="text-LT_RED-300 text-xs underline"
         >
           Ver todas as vagas
@@ -40,7 +40,7 @@ function MoreJobOpenings() {
               intent={"link"}
               className="text-sm"
               onClick={() =>
-                navigate(`/recrutamento/vagas/${job.id}/${job.department}`)
+                navigate(`/carreira/vagas/${job.id}/${job.department}`)
               }
             >
               Ver detalhes
@@ -53,7 +53,7 @@ function MoreJobOpenings() {
         </div>
       )}
     </ul>
-  )
+  );
 }
 
-export default MoreJobOpenings
+export default MoreJobOpenings;

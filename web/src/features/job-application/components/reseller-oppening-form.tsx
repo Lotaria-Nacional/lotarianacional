@@ -1,61 +1,60 @@
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
+  FormField,
   FormLabel,
   FormMessage,
-} from "@/shared/components/ui/form"
+  FormControl,
+} from "@/shared/components/ui/form";
 import {
   resellerSchema,
   ResellerSchemaDTO,
-} from "../validations/reseller.schema"
-import { ReactNode } from "react"
-import { cn } from "@/lib/utils"
-import { toast } from "react-toastify"
-import { useForm } from "react-hook-form"
-import { PulseLoader } from "react-spinners"
-import { Input } from "@/shared/components/ui/input"
-import { zodResolver } from "@hookform/resolvers/zod"
-import Button from "@/shared/components/ui/button/button"
-import { useSendApplicationReseller } from "../hooks/use-send-application-reseller"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/shared/components/ui/select"
-import { jobOppeningLocations } from "../constants/job-oppening-locations"
+} from "../validations/reseller.schema";
+import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { PulseLoader } from "react-spinners";
+import { SlCloudUpload } from "react-icons/sl";
+import { Input } from "@/shared/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Button from "@/shared/components/ui/button/button";
+import { useSendApplicationReseller } from "../hooks/use-send-application-reseller";
 
 type Props = {
-  className?: string
-}
+  className?: string;
+  location: string;
+};
 
-export default function ResellerOppeningForm({ className }: Props) {
-  const { isPending, mutateAsync } = useSendApplicationReseller()
+export default function ResellerOppeningForm({ location, className }: Props) {
+  const { isPending, mutateAsync } = useSendApplicationReseller();
 
   const form = useForm<ResellerSchemaDTO>({
     resolver: zodResolver(resellerSchema),
-  })
+  });
 
   const handleOnSubmit = async (data: ResellerSchemaDTO) => {
     try {
-      const formData = new FormData()
-      formData.append("firstName", data.firstName)
-      formData.append("lastName", data.lastName)
-      formData.append("phone", data.phone)
-      formData.append("email", data.email)
-      formData.append("location", data.location)
-      formData.append("cv", data.curriculum)
+      const formData = new FormData();
+      formData.append("firstName", data.firstName);
+      formData.append("lastName", data.lastName);
+      formData.append("phone", data.phone);
+      formData.append("email", data.email);
+      formData.append("location", location);
+      formData.append("bi", data.bi);
+      if (data.proofOfAddress) {
+        formData.append("proofOfAddress", data.proofOfAddress);
+      }
 
-      const response = await mutateAsync(formData)
-      toast.success(response.message)
+      const response = await mutateAsync(formData);
+      toast.success(response.message);
     } catch (error) {
-      console.error(error)
-      toast.error("Erro ao submeter a candidatura, tente novamente mais tarde.")
+      console.error(error);
+      toast.error(
+        "Erro ao submeter a candidatura, tente novamente mais tarde."
+      );
     }
-  }
+  };
 
   return (
     <Form {...form}>
@@ -128,67 +127,77 @@ export default function ResellerOppeningForm({ className }: Props) {
           />
         </FormWrapper>
 
-        <FormField
-          name="location"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Localização</FormLabel>
-              <FormControl>
-                <Select onValueChange={(value) => field.onChange(value)}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Selecionar localização" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {jobOppeningLocations.map((loc) => (
-                      <SelectItem key={loc.value} value={loc.value}>
-                        {loc.title}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="curriculum"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Currículum Vitae</FormLabel>
-              <FormControl>
-                <div className="flex w-full flex-col gap-2">
-                  <label
-                    htmlFor="curriculum"
-                    className="cursor-pointer flex flex-col items-center justify-center border border-dashed border-LT_RED-300 h-[120px] rounded-[8px]"
-                  >
-                    <img
-                      className="size-10"
-                      alt="upload icone"
-                      src="/src/assets/icons/upload.svg"
+        <FormWrapper className="grid grid-cols-1 w-full lg:grid-cols-2 place-items-end">
+          <FormField
+            control={form.control}
+            name="bi"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel className="text-center text-sm">
+                  Bilhete de identidade
+                </FormLabel>
+                <FormControl>
+                  <div className="w-full items-center justify-center flex-col gap-2">
+                    <label
+                      htmlFor="bi"
+                      className="cursor-pointer gap-2 w-full p-3 hidden lg:flex flex-col items-center justify-center border border-dashed border-zinc-300 duration-200 transition-all ease-in-out hover:border-LT_RED-300 h-[120px] rounded-[8px]"
+                    >
+                      <SlCloudUpload size={24} className="text-zinc-400" />
+                      <p className="text-xs text-zinc-400 text-center">
+                        Carregar o documento
+                      </p>
+                    </label>
+                    <Input
+                      type="file"
+                      id="bi"
+                      ref={field.ref}
+                      className="block lg:hidden"
+                      onBlur={field.onBlur}
+                      disabled={field.disabled}
+                      onChange={(e) => field.onChange(e.target.files?.[0])}
                     />
-                    <p className="text-sm text-zinc-400">
-                      Clique para carregar o documento
-                    </p>
-                  </label>
-                  <Input
-                    type="file"
-                    id="curriculum"
-                    ref={field.ref}
-                    className="hidden"
-                    onBlur={field.onBlur}
-                    disabled={field.disabled}
-                    onChange={(e) => field.onChange(e.target.files?.[0])}
-                  />
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="proofOfAddress"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel className="text-center text-sm">
+                  Comprovativo de residência
+                </FormLabel>
+                <FormControl>
+                  <div className="w-full items-center justify-center flex-col gap-2">
+                    <label
+                      htmlFor="proofOfAddress"
+                      className="cursor-pointer gap-2 w-full p-3 hidden lg:flex flex-col items-center justify-center border border-dashed border-zinc-300 duration-200 transition-all ease-in-out hover:border-LT_RED-300 h-[120px] rounded-[8px]"
+                    >
+                      <SlCloudUpload size={24} className="text-zinc-400" />
+                      <p className="text-xs text-zinc-400 text-center">
+                        Carregar o documento
+                      </p>
+                    </label>
+                    <Input
+                      type="file"
+                      id="proofOfAddress"
+                      ref={field.ref}
+                      className="block lg:hidden"
+                      onBlur={field.onBlur}
+                      disabled={field.disabled}
+                      onChange={(e) => field.onChange(e.target.files?.[0])}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </FormWrapper>
 
         <Button
           type="submit"
@@ -200,15 +209,15 @@ export default function ResellerOppeningForm({ className }: Props) {
         </Button>
       </form>
     </Form>
-  )
+  );
 }
 
 const FormWrapper = ({
   children,
   className,
 }: {
-  children: ReactNode
-  className?: string
+  children: ReactNode;
+  className?: string;
 }) => {
   return (
     <fieldset
@@ -216,5 +225,5 @@ const FormWrapper = ({
     >
       {children}
     </fieldset>
-  )
-}
+  );
+};

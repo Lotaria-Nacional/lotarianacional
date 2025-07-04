@@ -1,5 +1,5 @@
-import { SiFacebook, SiX, SiLinkedin, SiWhatsapp } from "react-icons/si"
 import { ICONS } from "../constants/assets"
+import { SiFacebook, SiX, SiLinkedin, SiWhatsapp } from "react-icons/si"
 
 type NavigationOptions = {
   id: number
@@ -41,18 +41,18 @@ export const navigationLinks: NavigationOptions[] = [
   },
   {
     id: 6,
-    label: "Recrutamento",
-    link: "recrutamento",
+    label: "Carreira",
+    link: "#",
     submenu: [
       {
         id: 1,
-        label: "Torna-te parceiro",
-        link: "recrutamento/parceiro",
+        label: "Torna-te revendedor",
+        link: "carreira/revendedor",
       },
       {
         id: 2,
         label: "Vagas disponíveis",
-        link: "recrutamento/vagas",
+        link: "carreira/vagas",
       },
     ],
   },
@@ -111,8 +111,8 @@ export const FOOTER_NAVIGATION = [
   },
   {
     id: 3,
-    label: "Recrutamento",
-    link: "/recrutamento",
+    label: "Carreira",
+    link: "/carreira/vagas",
   },
   {
     id: 4,
@@ -124,11 +124,6 @@ export const FOOTER_NAVIGATION = [
     label: "Termos de Privacidade",
     link: "/termos-de-privacidade",
   },
-  // {
-  //   id: 6,
-  //   label: "Regulamentos do Loto 5/90",
-  //   link: "/regulamentos-do-loto-5-90",
-  // },
 ] as const
 
 export const DROPDOWN_MENU = [

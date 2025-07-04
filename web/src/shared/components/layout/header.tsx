@@ -5,12 +5,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuContent,
-} from "../ui/navigation-menu"
-import Logo from "../common/logo"
-import { PageBody } from "./page-body"
-import { Link, NavLink } from "react-router-dom"
-import MobileMenu from "../mobile/menu/mobile-menu"
-import { navigationLinks } from "@/app/router/navigation"
+} from "../ui/navigation-menu";
+import Logo from "../common/logo";
+import { PageBody } from "./page-body";
+import { Link, NavLink } from "react-router-dom";
+import MobileMenu from "../mobile/menu/mobile-menu";
+import { navigationLinks } from "@/app/router/navigation";
 
 const Header = () => {
   return (
@@ -65,7 +65,7 @@ const Header = () => {
         <MobileMenu />
       </PageBody.Container>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

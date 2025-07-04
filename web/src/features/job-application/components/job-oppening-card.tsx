@@ -2,20 +2,20 @@ import {
   Dialog,
   DialogTrigger,
   DialogContent,
-} from "@/shared/components/ui/dialog"
-import { useNavigate } from "react-router-dom"
-import Button from "@/shared/components/ui/button/button"
-import { JobOppening } from "../@types/job-oppening.types"
-import SkilledStaffOppeningForm from "./skilled-staff-oppening-form"
-import ResellerOppeningForm from "./reseller-oppening-form"
+} from "@/shared/components/ui/dialog";
+import { useNavigate } from "react-router-dom";
+import Button from "@/shared/components/ui/button/button";
+import { JobOppening } from "../@types/job-oppening.types";
+import ResellerOppeningForm from "./reseller-oppening-form";
+import SkilledStaffOppeningForm from "./skilled-staff-oppening-form";
 
 type Props = {
-  data: JobOppening
-}
+  data: JobOppening;
+};
 
 export default function JobOppeningCard({ data }: Props) {
-  const navigate = useNavigate()
-  const { department, title, requirements, id, location } = data
+  const navigate = useNavigate();
+  const { department, title, requirements, id, location } = data;
 
   return (
     <div className="h-[250px] w-full lg:w-[293px] xl:w-full gap-4 border rounded-[8px] p-4 grid grid-cols-1">
@@ -46,7 +46,7 @@ export default function JobOppeningCard({ data }: Props) {
           className="w-full"
           onClick={() =>
             navigate({
-              pathname: `/recrutamento/vagas/${id}/${department}`,
+              pathname: `/carreira/vagas/${id}/${department}`,
             })
           }
         >
@@ -59,9 +59,12 @@ export default function JobOppeningCard({ data }: Props) {
               Candidatar-se
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="overflow-scroll h-fit">
             {location ? (
-              <ResellerOppeningForm className="border-0 p-0" />
+              <ResellerOppeningForm
+                location={location}
+                className="border-0 p-0"
+              />
             ) : (
               <SkilledStaffOppeningForm
                 title={title}
@@ -73,5 +76,5 @@ export default function JobOppeningCard({ data }: Props) {
         </Dialog>
       </div>
     </div>
-  )
+  );
 }

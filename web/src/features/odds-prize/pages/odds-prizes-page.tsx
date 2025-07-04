@@ -18,7 +18,6 @@ export default function OddsPrizesPage() {
         </header>
         <CalculatorTable />
       </Container>
-      <p className="text-center font-edo-sz text-4xl">Paulo Luguenda</p>
     </main>
   );
 }
