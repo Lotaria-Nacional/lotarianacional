@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { SendJobApplicationSkilledStaffUseCase } from "../../use-cases/send-job-application-skilled-staff.use-case";
-import { SendJobApplicationResellerController } from "../controlles/send-job-application-reseller.controller";
-import { SendJobApplicationSkilledStaffController } from "../controlles/send-job-application-skilled-staff.controller";
-import { SendJobApplicationResellerUseCase } from "../../use-cases/send-job-application-reseller.use-case";
-import { SendGridEmailSender } from "../../../../core/services/emails/send-grid-service";
 import { upload } from "../../../../core/middlewares/multer.middleware";
+import { SendGridEmailSender } from "../../../../core/services/emails/send-grid-service";
+import { SendJobApplicationResellerUseCase } from "../../use-cases/send-job-application-reseller.use-case";
+import { SendJobApplicationResellerController } from "../controlles/send-job-application-reseller.controller";
+import { SendJobApplicationSkilledStaffUseCase } from "../../use-cases/send-job-application-skilled-staff.use-case";
+import { SendJobApplicationSkilledStaffController } from "../controlles/send-job-application-skilled-staff.controller";
 
 const applicationRoutes = Router();
 
@@ -18,11 +18,16 @@ const sendJobApplicationResellerController = new SendJobApplicationResellerContr
 
 const uploadFile = upload.single("cv");
 
+const uploadFiles = upload.fields([
+  { name:"bi", maxCount:1 },
+  { name:"proofOfAddress", maxCount:1 },
+]);
+
 applicationRoutes.post("/skilled-staff", uploadFile, (req, res) => {
   sendJobApplicationSkilledStaffController.handle(req, res);
 });
 
-applicationRoutes.post("/reseller", uploadFile, (req, res) => {
+applicationRoutes.post("/reseller", uploadFiles, (req, res) => {
   sendJobApplicationResellerController.handle(req, res);
 });
 

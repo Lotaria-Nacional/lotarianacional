@@ -6,7 +6,12 @@ type SendApplicationInput = {
   email: string;
   phone: string;
   location: string;
-  cv: {
+  bi: {
+    buffer: Buffer;
+    originalname: string;
+    mimetype: string;
+  };
+  proofOfAddress?: {
     buffer: Buffer;
     originalname: string;
     mimetype: string;
@@ -17,10 +22,10 @@ export class SendJobApplicationResellerUseCase {
   constructor(private readonly emailSender: EmailSender) {}
 
   async execute(input: SendApplicationInput): Promise<void> {
-    const { cv, email, firstName, lastName, phone, location } = input;
+    const { bi, proofOfAddress, email, firstName, lastName, phone, location } = input;
 
-    const biBase64 = cv.buffer.toString("base64");
-    const biSrc = `data:${cv.mimetype};base64,${biBase64}`;
+    const biBase64 = bi.buffer.toString("base64");
+    // const biSrc = `data:${bi.mimetype};base64,${biBase64}`;
 
     const html = `
         <div style="width: 100%; background: #f3f3f3; padding: 20px 0;">
@@ -47,17 +52,17 @@ export class SendJobApplicationResellerUseCase {
 
     const attachments = [
       {
-        filename: cv.originalname,
-        content: cv.buffer,
-        contentType: cv.mimetype,
+        filename: bi.originalname,
+        content: bi.buffer,
+        contentType: bi.mimetype,
       },
     ];
 
-    if (input.cv) {
+    if (proofOfAddress) {
       attachments.push({
-        filename: input.cv.originalname,
-        content: input.cv.buffer,
-        contentType: input.cv.mimetype,
+        filename: proofOfAddress.originalname,
+        content: proofOfAddress.buffer,
+        contentType: proofOfAddress.mimetype,
       });
     }
 
