@@ -14,9 +14,9 @@ const app = express();
 logger.info(env.NODE_ENV);
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "Infra","http", "views"));
+app.set("views", path.join(__dirname, "Infra", "http", "views"));
 
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.use(cors({ origin: "*" }));
 app.use(cookieParser());

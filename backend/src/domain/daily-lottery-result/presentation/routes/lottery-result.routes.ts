@@ -6,16 +6,11 @@ import { expressAdapterController } from "@/core/adapters/express-adapter-contro
 
 const lotteryResultRouter = Router();
 
-const {
-  createLotteryResult,
-  fetchManyLotteryResult,
-  removeLotteryResult,
-  updateLotteryResult
-} = makeLotteryResultController( lotteryResultRepo, emissionRepo)
+const { createLotteryResult, fetchManyLotteryResult, removeLotteryResult, updateLotteryResult } = makeLotteryResultController(lotteryResultRepo, emissionRepo);
 
-lotteryResultRouter.post("/result", expressAdapterController(createLotteryResult));
-lotteryResultRouter.get("/results", expressAdapterController(fetchManyLotteryResult));
-lotteryResultRouter.put("/result/:id", expressAdapterController(updateLotteryResult));
-lotteryResultRouter.delete("/result/:id", expressAdapterController(removeLotteryResult));
+lotteryResultRouter.post("/", expressAdapterController(createLotteryResult));
+lotteryResultRouter.get("/", expressAdapterController(fetchManyLotteryResult));
+lotteryResultRouter.put("/:id", expressAdapterController(updateLotteryResult));
+lotteryResultRouter.delete("/:id", expressAdapterController(removeLotteryResult));
 
 export default lotteryResultRouter;

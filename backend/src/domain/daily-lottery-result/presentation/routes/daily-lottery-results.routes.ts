@@ -6,16 +6,15 @@ import { dailyResultRepo, emissionRepo, statisticService } from "@/main/containe
 
 const dailyLotteryResultRouter = Router();
 
-const {
-  createDailyLotteryResult,
-  deleteDailyLotteryResults,
-  fetchManyDailyLotteryResults,
-  getLastDailyLotteryResults
-} = makeDailyLotteryResults(dailyResultRepo, emissionRepo,statisticService)
+const { createDailyLotteryResult, deleteDailyLotteryResults, fetchManyDailyLotteryResults, getLastDailyLotteryResults } = makeDailyLotteryResults(
+  dailyResultRepo,
+  emissionRepo,
+  statisticService,
+);
 
-dailyLotteryResultRouter.post("/daily-result", expressAdapterController(createDailyLotteryResult));
-dailyLotteryResultRouter.delete("/daily-result/:id", expressAdapterController(deleteDailyLotteryResults));
-dailyLotteryResultRouter.get("/daily-results", expressAdapterController(fetchManyDailyLotteryResults));
-dailyLotteryResultRouter.get("/last-daily-result", expressAdapterController(getLastDailyLotteryResults));
+dailyLotteryResultRouter.post("/", expressAdapterController(createDailyLotteryResult));
+dailyLotteryResultRouter.delete("/:id", expressAdapterController(deleteDailyLotteryResults));
+dailyLotteryResultRouter.get("/", expressAdapterController(fetchManyDailyLotteryResults));
+dailyLotteryResultRouter.get("/last", expressAdapterController(getLastDailyLotteryResults));
 
 export default dailyLotteryResultRouter;

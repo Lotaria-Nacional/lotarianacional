@@ -5,8 +5,8 @@ import { expressAdapterController } from "@/core/adapters/express-adapter-contro
 
 const emissionRouter = Router();
 
-const { fetchEmissions } = makeEmissionController(emissionRepo)
+const { fetchEmissions } = makeEmissionController(emissionRepo);
 
-emissionRouter.get("/emissions", expressAdapterController(fetchEmissions));
+emissionRouter.get("/", expressAdapterController(fetchEmissions));
 
 export default emissionRouter;

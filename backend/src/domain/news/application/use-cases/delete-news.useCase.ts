@@ -6,20 +6,20 @@ import { INewsRespository } from "../interfaces/news.repository";
 export class DeleteNewsUseCase {
   constructor(
     private newsRespository: INewsRespository,
-    private fileUpload: IFileUpload
+    private fileUpload: IFileUpload,
   ) {}
 
   async execute(id: string) {
-    const existingNews = await this.newsRespository.getById(id)
-    if (!existingNews) throw new NotFoundError("Notícia não encontrada.")
+    const existingNews = await this.newsRespository.getById(id);
+    if (!existingNews) throw new NotFoundError("Notícia não encontrada.");
 
     if (existingNews.image && typeof existingNews.image === "string") {
-      const publicId = getCloudinaryPublicId(existingNews.image)
+      const publicId = getCloudinaryPublicId(existingNews.image);
       if (publicId) {
         await this.fileUpload.delete(publicId, "image");
       }
     }
 
-    await this.newsRespository.delete(id)
+    await this.newsRespository.delete(id);
   }
 }

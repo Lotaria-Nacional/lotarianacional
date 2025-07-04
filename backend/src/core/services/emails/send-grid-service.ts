@@ -1,8 +1,9 @@
-import sgMail from '@sendgrid/mail';
-import { EmailSender } from '@/core/contracts/email.interface';
+import sgMail from "@sendgrid/mail";
+import { EmailSender } from "@/core/contracts/email.interface";
+import { env } from "@/main/config/env";
 
 export class SendGridEmailSender implements EmailSender {
-  private readonly API_KEY = process.env.SENDGRID_API_KEY
+  private readonly API_KEY = env.SENDGRID_API_KEY;
   constructor() {
     sgMail.setApiKey(this.API_KEY!);
   }
@@ -15,7 +16,7 @@ export class SendGridEmailSender implements EmailSender {
       filename: string;
       content: Buffer;
       contentType: string;
-    }[]
+    }[],
   ): Promise<void> {
     try {
       const msg: sgMail.MailDataRequired = {
@@ -23,11 +24,11 @@ export class SendGridEmailSender implements EmailSender {
         to,
         subject,
         html,
-        attachments: attachments?.map(att => ({
+        attachments: attachments?.map((att) => ({
           filename: att.filename,
-          content: att.content.toString('base64'),
+          content: att.content.toString("base64"),
           type: att.contentType,
-          disposition: 'attachment',
+          disposition: "attachment",
         })),
       };
 

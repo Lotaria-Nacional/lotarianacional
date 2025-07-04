@@ -1,26 +1,22 @@
-import { Router } from "express"
-import { userRepository } from "@/main/container/repositories"
-import { makeUserController } from "../factories/make-user-contoller"
-import { upload } from "@/core/middlewares/multer.middleware"
-import { BcryptHashService } from "@/core/services/hash/bcrypt-hash-service"
-import { expressAdapterController } from "@/core/adapters/express-adapter-controller"
-import { CloudinaryUploadService } from "@/core/services/file-upload/cloudinary-upload-service"
+import { Router } from "express";
+import { userRepository } from "@/main/container/repositories";
+import { makeUserController } from "../factories/make-user-contoller";
+import { upload } from "@/core/middlewares/multer.middleware";
+import { BcryptHashService } from "@/core/services/hash/bcrypt-hash-service";
+import { expressAdapterController } from "@/core/adapters/express-adapter-controller";
+import { CloudinaryUploadService } from "@/core/services/file-upload/cloudinary-upload-service";
 
-const userRouter = Router()
+const userRouter = Router();
 
-const cloudinaryService = new CloudinaryUploadService()
-const bcryptHasService = new BcryptHashService()
+const cloudinaryService = new CloudinaryUploadService();
+const bcryptHasService = new BcryptHashService();
 
-const { createUser,fetchManyUsers,getUserById, removeUser,updateUser } = makeUserController(
-    userRepository,
-    cloudinaryService,
-    bcryptHasService
-)
+const { createUser, fetchManyUsers, getUserById, removeUser, updateUser } = makeUserController(userRepository, cloudinaryService, bcryptHasService);
 
-userRouter.post("/user", upload.single("image"), expressAdapterController(createUser))
-userRouter.get("/users", expressAdapterController(fetchManyUsers))
-userRouter.get("/user/:id", expressAdapterController(getUserById))
-userRouter.put("/user/:id",upload.single("image"),expressAdapterController(updateUser))
-userRouter.delete("/user/:id", expressAdapterController(removeUser))
+userRouter.post("/", upload.single("image"), expressAdapterController(createUser));
+userRouter.get("/", expressAdapterController(fetchManyUsers));
+userRouter.get("/:id", expressAdapterController(getUserById));
+userRouter.put("/:id", upload.single("image"), expressAdapterController(updateUser));
+userRouter.delete("/:id", expressAdapterController(removeUser));
 
-export default userRouter
+export default userRouter;
