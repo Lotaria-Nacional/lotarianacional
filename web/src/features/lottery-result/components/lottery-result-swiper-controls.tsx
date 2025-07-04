@@ -27,11 +27,11 @@ export default function LotteryResultSwiperControls() {
         <h1 className="font-bold ">Histórico de resultados</h1>
         <div className="flex items-center bg-zinc-200 rounded-full p-1 gap-4">
           <ChevronLeft
-            // className={BUTTON_STYLE}
+            className={BUTTON_STYLE}
             onClick={() => handleSwiper("left")}
           />
           <ChevronRight
-            // className={BUTTON_STYLE}
+            className={BUTTON_STYLE}
             onClick={() => handleSwiper("right")}
           />
         </div>
