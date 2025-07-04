@@ -20,8 +20,6 @@ export const resellerSchema = z.object({
     .transform(
       (val) => `${val.slice(0, 3)}-${val.slice(3, 6)}-${val.slice(6, 9)}`
     ),
-  location: z
-    .string({ required_error: "Selecione a localização*" })
 })
 
 export type ResellerSchemaDTO = z.infer<typeof resellerSchema>

@@ -18,17 +18,17 @@ export const skilledStaffOpenings: JobOppening[] = [
 
   {
     id: 2,
-    department: "comercial",
-    title: "motorista",
+    department: "t.i",
+    title: "técnico de manutenção",
     description: "",
     requirements: [
-      "Viver no centro da cidade",
-      "Carta de condução válida",
-      "Experiência mínima de 2 anos",
-      "Conhecimento básico de mecânica automotiva",
+      "Conhecimento de eletrónica",
+      "Conhecer gestão de invetário/stock",
+      "Conhecimento de hardware",
+      "Domínio do pacote office (word e excel)",
     ],
     responsabilities: [],
-    createdAt: new Date("2025-05-02"),
+    createdAt: new Date("2025-05-04"),
   },
 ]
 

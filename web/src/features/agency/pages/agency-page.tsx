@@ -30,7 +30,7 @@ export default function AgencyPage() {
 
   return (
     <>
-      <PageBody.Container>
+      <PageBody.Container className="hidden lg:flex">
         <PageHeader.Container>
           <PageHeader.Title>Agências</PageHeader.Title>
 

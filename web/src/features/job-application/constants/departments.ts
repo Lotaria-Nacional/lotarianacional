@@ -24,3 +24,6 @@ export const departments = [
     value: "logistica",
   },
 ]
+
+
+export type Department = "t.i" | "sorteio" | "Recursos Humanos" | "transporte" | "finanças" | "logística" | "revendedor"

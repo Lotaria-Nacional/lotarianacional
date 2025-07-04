@@ -15,7 +15,7 @@ import { ReactNode } from "react";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { PulseLoader } from "react-spinners";
-import { SlCloudUpload } from "react-icons/sl";
+import FileUploadField from "./form/file-upload";
 import { Input } from "@/shared/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "@/shared/components/ui/button/button";
@@ -132,34 +132,11 @@ export default function ResellerOppeningForm({ location, className }: Props) {
             control={form.control}
             name="bi"
             render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel className="text-center text-sm">
-                  Bilhete de identidade
-                </FormLabel>
-                <FormControl>
-                  <div className="w-full items-center justify-center flex-col gap-2">
-                    <label
-                      htmlFor="bi"
-                      className="cursor-pointer gap-2 w-full p-3 hidden lg:flex flex-col items-center justify-center border border-dashed border-zinc-300 duration-200 transition-all ease-in-out hover:border-LT_RED-300 h-[120px] rounded-[8px]"
-                    >
-                      <SlCloudUpload size={24} className="text-zinc-400" />
-                      <p className="text-xs text-zinc-400 text-center">
-                        Carregar o documento
-                      </p>
-                    </label>
-                    <Input
-                      type="file"
-                      id="bi"
-                      ref={field.ref}
-                      className="block lg:hidden"
-                      onBlur={field.onBlur}
-                      disabled={field.disabled}
-                      onChange={(e) => field.onChange(e.target.files?.[0])}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <FileUploadField
+                field={field}
+                name="bi"
+                label="Bilhete de identidade"
+              />
             )}
           />
 
@@ -167,34 +144,11 @@ export default function ResellerOppeningForm({ location, className }: Props) {
             control={form.control}
             name="proofOfAddress"
             render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel className="text-center text-sm">
-                  Comprovativo de residência
-                </FormLabel>
-                <FormControl>
-                  <div className="w-full items-center justify-center flex-col gap-2">
-                    <label
-                      htmlFor="proofOfAddress"
-                      className="cursor-pointer gap-2 w-full p-3 hidden lg:flex flex-col items-center justify-center border border-dashed border-zinc-300 duration-200 transition-all ease-in-out hover:border-LT_RED-300 h-[120px] rounded-[8px]"
-                    >
-                      <SlCloudUpload size={24} className="text-zinc-400" />
-                      <p className="text-xs text-zinc-400 text-center">
-                        Carregar o documento
-                      </p>
-                    </label>
-                    <Input
-                      type="file"
-                      id="proofOfAddress"
-                      ref={field.ref}
-                      className="block lg:hidden"
-                      onBlur={field.onBlur}
-                      disabled={field.disabled}
-                      onChange={(e) => field.onChange(e.target.files?.[0])}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <FileUploadField
+                field={field}
+                name="proofOfAddress"
+                label="Comprovativo de residência"
+              />
             )}
           />
         </FormWrapper>
