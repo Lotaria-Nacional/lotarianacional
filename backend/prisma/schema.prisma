@@ -87,3 +87,14 @@ model Emission {
   formatedData String?
   description  String?
 }
+
+model JobOppening {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  slug             String?  @unique
+  description      String?
+  department       String
+  requirements     String[]
+  responsabilities String[]
+  createdAt        DateTime @default(now())
+}

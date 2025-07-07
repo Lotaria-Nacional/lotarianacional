@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import routes from "./main/routes/index";
 import { env } from "./main/config/env";
 import { logger } from "./main/config/logger";
+import { _ } from "vitest/dist/chunks/reporters.d.BFLkQcL6.js";
 
 dotenv.config();
 

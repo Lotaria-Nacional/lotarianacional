@@ -8,7 +8,6 @@ const agencyRouter = Router();
 const { createAgency, deleteAgency, fetchManyAgencies, getAgencyById, updateAgency } = agencyControllerFactory(agencyRepository);
 
 agencyRouter.post("/agency", expressAdapterController(createAgency));
-
 agencyRouter.get("/", expressAdapterController(fetchManyAgencies));
 agencyRouter.get("/:id", expressAdapterController(getAgencyById));
 agencyRouter.put("/:id", expressAdapterController(updateAgency));

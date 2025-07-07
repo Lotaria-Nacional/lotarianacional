@@ -13,5 +13,5 @@ export type HttpResponse = {
     
 }
 export interface IController<T = any> {
-    handle(request:HttpRequest<T>, response?:HttpResponse):Promise<HttpResponse>
+    handle(request:HttpRequest<T>):Promise<HttpResponse>
 }

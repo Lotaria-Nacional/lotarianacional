@@ -3,6 +3,15 @@ import { HttpResponse } from "../../core/infrastucture/http/controller";
 import { logger } from "../../main/config/logger";
 
 export function handleControllerError(error: unknown): HttpResponse {
+  if (error instanceof ZodError) {
+    return {
+      statusCode: 400,
+      body: {
+        message: error.errors[0].message,
+      },
+    };
+  }
+
   if (error instanceof Error) {
     return {
       statusCode: 500,
@@ -10,19 +19,10 @@ export function handleControllerError(error: unknown): HttpResponse {
     };
   }
 
-  if (error instanceof ZodError) {
-    return {
-      body: {
-        message: error.errors[0].message,
-      },
-      statusCode: 400,
-    };
-  }
-
-  logger.error("Unhandle Error: " + error);
+  logger.error("Unhandled Error: " + JSON.stringify(error));
 
   return {
-    body: { message: "Erro interno no servidor" },
     statusCode: 500,
+    body: { message: "Erro interno no servidor" },
   };
 }
