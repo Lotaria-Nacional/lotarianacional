@@ -1,4 +1,4 @@
-import { PaginationParams } from "@/types/pagination-params"
+import { PaginationParams } from "@/shared/@types/pagination-params"
 import { useQuery } from "@tanstack/react-query"
 import { getAllNews, GetAllNewsResponse, getNewsByIdNews } from "../../api"
 import { NEWS_QUERY_KEY } from "../../constants/keys"

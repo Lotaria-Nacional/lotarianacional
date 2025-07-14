@@ -1,7 +1,7 @@
 import axios from "@/lib/axios"
 import { NewsEntity } from "../types"
-import { PaginationParams } from "@/types/pagination-params"
-import { APIResponseMessage } from "@/types/api-response-message"
+import { PaginationParams } from "@/shared/@types/pagination-params"
+import { APIResponseMessage } from "@/shared/@types/api-response-message"
 
 export type CreateNewsRequest = {
   data: FormData

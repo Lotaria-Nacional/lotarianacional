@@ -1,6 +1,6 @@
 import axios from "@/lib/axios"
 import { AgencyEntity } from "../types"
-import { PaginationParams } from "@/types/pagination-params"
+import { PaginationParams } from "@/shared/@types/pagination-params"
 
 export type CreateAgencyRequest = Omit<AgencyEntity, "id" | "createdAt">
 

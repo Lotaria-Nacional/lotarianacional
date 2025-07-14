@@ -2,8 +2,8 @@ import { IMAGE } from "@/assets";
 import { Link } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import { EyeOffIcon, Eye } from "lucide-react";
-import { useAuth } from "@/context/auth-context";
-import Button from "@/components/ui/lottary-button";
+import { useAuth } from "@/app/context/auth-context";
+import Button from "@/shared/components/ui/lottary-button";
 
 export default function LoginForm() {
   const { login, isLoading } = useAuth();

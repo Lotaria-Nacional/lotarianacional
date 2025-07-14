@@ -20,6 +20,7 @@ import plus from "@/assets/icons/plus.svg"
 import pen from "@/assets/icons/pen.svg"
 import trash from "@/assets/icons/trash.svg"
 import eye from "@/assets/icons/eye.svg"
+import cv from "@/assets/icons/cv-file.svg"
 import youtube from "@/assets/icons/youtube.svg"
 
 import banner1 from "/banners-example/banner-1.webp"
@@ -57,6 +58,7 @@ export const ICON = {
   sedeMarker,
   elephantBetMarker,
   lotariaMarker,
+  cv,
   arreiouMarker,
   news,
   users,

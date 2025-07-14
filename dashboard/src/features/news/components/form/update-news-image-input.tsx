@@ -1,5 +1,5 @@
 import { ChangeEvent, useRef, useState } from "react";
-import Button from "@/components/ui/lottary-button";
+import Button from "@/shared/components/ui/lottary-button";
 import { UpdateNewsStateProps } from "@/pages/protected/news/update-news-page";
 
 export default function UpdateNewsImageInput({

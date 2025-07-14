@@ -1,5 +1,5 @@
 import { isValidArray } from "@/lib/utils";
-import EmptyState from "@/components/empty-state";
+import EmptyState from "@/shared/components/common/empty-state";
 import { useGetLastResults } from "../hooks/query/index";
 import DailyDesultsSkeleton from "./skeletons/daily-results-skeleton";
 import ResultCard from "@/features/results/components/result-card";

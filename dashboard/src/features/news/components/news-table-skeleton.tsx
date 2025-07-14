@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/shared/components/ui/skeleton";
 
 export default function NewsTableSkeleton() {
   return (
@@ -7,5 +7,5 @@ export default function NewsTableSkeleton() {
         <Skeleton key={index} className="py-5 w-full" />
       ))}
     </div>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 import { ChangeEvent, useState } from "react";
-import Button from "@/components/ui/lottary-button";
+import Button from "@/shared/components/ui/lottary-button";
 import { AddNewsStateProps } from "@/pages/protected/news/add-news-page";
 
 export default function AddNewsImageInput({

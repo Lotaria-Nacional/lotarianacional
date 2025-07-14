@@ -3,11 +3,11 @@ import {
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/shared/components/ui/dialog";
 import { toast } from "sonner";
 import { FormEvent, useState } from "react";
-import { Input } from "@/components/ui/input";
-import Button from "@/components/ui/lottary-button";
+import { Input } from "@/shared/components/ui/input";
+import Button from "@/shared/components/ui/lottary-button";
 import { useUpdateResult } from "../../hooks/mutation";
 import { getYouTubeEmbedURL } from "../../utils/get-youtube-embed";
 

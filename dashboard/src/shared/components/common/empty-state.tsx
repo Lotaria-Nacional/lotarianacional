@@ -1,9 +1,9 @@
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
 type EmptyStateProps = {
-  message?: string
-  className?: string
-}
+  message?: string;
+  className?: string;
+};
 
 export default function EmptyState({
   message = "Nenhum resultado disponível.",
@@ -18,5 +18,5 @@ export default function EmptyState({
     >
       {message}
     </div>
-  )
+  );
 }

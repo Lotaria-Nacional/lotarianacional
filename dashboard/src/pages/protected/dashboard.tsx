@@ -1,18 +1,18 @@
-import TotalCard from "@/components/total-card"
-import GoogleMap from "@/components/google-map/google-map"
-import TotalCardSkeleton from "@/components/total-card-skeleton"
-import { useGetTotalResults } from "@/features/results/hooks/query"
-import { useGetAllAgencies } from "@/features/agencies/hooks/query"
-import TotalCardEmptyState from "@/components/total-card-empty-state"
-import DailyResults from "@/features/results/components/daily-results"
-import StatsChartMobile from "@/features/statistics/components/statistics-chart-mobile"
-import StatsChartDesktop from "@/features/statistics/components/statistics-chart-desktop"
+import TotalCard from "@/shared/components/common/total-card";
+import GoogleMap from "@/shared/components/google-map/google-map";
+import TotalCardSkeleton from "@/shared/components/common/total-card-skeleton";
+import { useGetTotalResults } from "@/features/results/hooks/query";
+import { useGetAllAgencies } from "@/features/agencies/hooks/query";
+import TotalCardEmptyState from "@/shared/components/common/total-card-empty-state";
+import DailyResults from "@/features/results/components/daily-results";
+import StatsChartMobile from "@/features/statistics/components/statistics-chart-mobile";
+import StatsChartDesktop from "@/features/statistics/components/statistics-chart-desktop";
 
 const Dashboard = () => {
   const { data: agencies, isLoading: isLoadingAgencies } = useGetAllAgencies({
     page: 1,
-  })
-  const { data: results, isLoading: isLoadingResults } = useGetTotalResults()
+  });
+  const { data: results, isLoading: isLoadingResults } = useGetTotalResults();
 
   return (
     <div className="main h-full flex flex-col lg:grid grid-cols-4 gap-6">
@@ -55,7 +55,7 @@ const Dashboard = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

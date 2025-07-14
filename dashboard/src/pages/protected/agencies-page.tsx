@@ -1,8 +1,8 @@
-import Icon from "@/components/ui/icon";
+import Icon from "@/shared/components/ui/icon";
 import { isValidArray } from "@/lib/utils";
-import EmptyState from "@/components/empty-state";
-import Button from "@/components/ui/lottary-button";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import EmptyState from "@/shared/components/common/empty-state";
+import Button from "@/shared/components/ui/lottary-button";
+import { Dialog, DialogTrigger } from "@/shared/components/ui/dialog";
 import { useGetAllAgencies } from "@/features/agencies/hooks/query";
 import AgencyTable from "@/features/agencies/components/agency-table";
 import AddAgencyForm from "@/features/agencies/components/form/add-agency-form";

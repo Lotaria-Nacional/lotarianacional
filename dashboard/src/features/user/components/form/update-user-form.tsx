@@ -1,55 +1,55 @@
-import Button from "@/components/ui/lottary-button"
-import { ChangeEvent, FormEvent, useState } from "react"
-import { IMAGE } from "@/assets"
-import { useUpdateUser } from "../../hooks/mutation"
-import { handleFormError } from "@/lib/error"
-import { toast } from "sonner"
-import { PartialUserEntity } from "../../types/partial-user"
+import Button from "@/shared/components/ui/lottary-button";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { IMAGE } from "@/assets";
+import { useUpdateUser } from "../../hooks/mutation";
+import { handleFormError } from "@/lib/error";
+import { toast } from "sonner";
+import { PartialUserEntity } from "../../types/partial-user";
 
 type Props = {
-  data: PartialUserEntity
-}
+  data: PartialUserEntity;
+};
 
 export default function UpdateUserForm({ data }: Props) {
-  const { mutateAsync, isPending } = useUpdateUser()
-  const [previewImage, setPreviewImage] = useState<string | null>(null)
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const { mutateAsync, isPending } = useUpdateUser();
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const [updateData, setUpdateData] = useState<PartialUserEntity>({
     firstName: data.firstName,
     lastName: data.lastName,
     email: data.email,
     role: data.role,
-  })
+  });
 
   const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
-      setPreviewImage(URL.createObjectURL(file))
-      setSelectedFile(file)
+      setPreviewImage(URL.createObjectURL(file));
+      setSelectedFile(file);
     }
-  }
+  };
 
   const handleUpdateUser = async (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      const formData = new FormData()
-      formData.append("firstName", updateData.firstName as string)
-      formData.append("lastName", updateData.lastName as string)
-      formData.append("email", updateData.email as string)
-      formData.append("role", updateData.role as string)
+      const formData = new FormData();
+      formData.append("firstName", updateData.firstName as string);
+      formData.append("lastName", updateData.lastName as string);
+      formData.append("email", updateData.email as string);
+      formData.append("role", updateData.role as string);
 
       if (selectedFile) {
-        formData.append("image", selectedFile as File)
+        formData.append("image", selectedFile as File);
       }
 
-      const response = await mutateAsync({ id: data.id!, data: formData })
-      toast.success(response.message)
+      const response = await mutateAsync({ id: data.id!, data: formData });
+      toast.success(response.message);
     } catch (error) {
-      handleFormError(error)
+      handleFormError(error);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleUpdateUser} className="flex flex-col gap-4 w-full">
@@ -131,5 +131,5 @@ export default function UpdateUserForm({ data }: Props) {
         {isPending ? "Salvando..." : "Salvar"}
       </Button>
     </form>
-  )
+  );
 }

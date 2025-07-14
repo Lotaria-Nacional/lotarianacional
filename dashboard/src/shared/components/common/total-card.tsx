@@ -1,14 +1,14 @@
-import { twMerge } from "tailwind-merge"
-import Icon, { IconNameType } from "./ui/icon"
+import { twMerge } from "tailwind-merge";
+import Icon, { IconNameType } from "../ui/icon";
 
 type Props = {
-  total: number
-  className?: string
-  name: "resultados" | "agências"
-}
+  total: number;
+  className?: string;
+  name: "resultados" | "agências";
+};
 
 export default function TotalCard({ name, total, className }: Props) {
-  const icon: IconNameType = name === "resultados" ? "results" : "agency"
+  const icon: IconNameType = name === "resultados" ? "results" : "agency";
   return (
     <div
       className={twMerge(
@@ -26,5 +26,5 @@ export default function TotalCard({ name, total, className }: Props) {
         {total}
       </span>
     </div>
-  )
+  );
 }

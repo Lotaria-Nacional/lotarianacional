@@ -4,9 +4,9 @@ import {
   TableCell,
   TableBody,
   TableHeader,
-} from "@/components/ui/table";
-import Icon from "@/components/ui/icon";
-import Button from "@/components/ui/lottary-button";
+} from "@/shared/components/ui/table";
+import Icon from "@/shared/components/ui/icon";
+import Button from "@/shared/components/ui/lottary-button";
 import { GetAllAgenciesResponse } from "../api";
 import { handleFormError } from "@/lib/error";
 import { toast } from "sonner";
@@ -21,8 +21,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import REMOVE_WARNING_MESSAGE from "@/constants/remove-warning-message";
+} from "@/shared/components/ui/alert-dialog";
+import REMOVE_WARNING_MESSAGE from "@/app/constants/remove-warning-message";
 import {
   Dialog,
   DialogContent,
@@ -30,8 +30,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import UPDATE_WARNING_MESSAGE from "@/constants/update-warning-messge";
+} from "@/shared/components/ui/dialog";
+import UPDATE_WARNING_MESSAGE from "@/app/constants/update-warning-messge";
 import UpdateAgencyForm from "./form/update-agency-form";
 
 type Props = {

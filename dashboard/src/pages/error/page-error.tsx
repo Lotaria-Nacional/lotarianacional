@@ -1,8 +1,8 @@
-import { IMAGE } from "@/assets"
-import Button from "@/components/ui/lottary-button"
+import { IMAGE } from "@/assets";
+import Button from "@/shared/components/ui/lottary-button";
 
 export default function PageError() {
-  const handleTryAgain = () => window.location.reload()
+  const handleTryAgain = () => window.location.reload();
 
   return (
     <main className="main flex bg-LT-RED-100 items-center flex-col gap-[50px] justify-center w-full h-screen">
@@ -18,10 +18,10 @@ export default function PageError() {
           novamente mais tarde ou entre em contato com o suporte se o erro
           persistir.
         </p>
-        <Button className="px-8 bg-white text-black"  onClick={handleTryAgain}>
+        <Button className="px-8 bg-white text-black" onClick={handleTryAgain}>
           Tentar novamente
         </Button>
       </header>
     </main>
-  )
+  );
 }

@@ -5,14 +5,14 @@ import {
   BarChart,
   CartesianGrid,
   ResponsiveContainer,
-} from "recharts"
-import { useMemo } from "react"
-import { useGetStatistics } from "../hooks/query"
-import EmptyState from "@/components/empty-state"
-import StatisticsChartSkeleton from "./statistics-chart-skeleton"
+} from "recharts";
+import { useMemo } from "react";
+import { useGetStatistics } from "../hooks/query";
+import EmptyState from "@/shared/components/common/empty-state";
+import StatisticsChartSkeleton from "./statistics-chart-skeleton";
 
 export default function StatsChartDesktop() {
-  const { data: statistics, isLoading } = useGetStatistics()
+  const { data: statistics, isLoading } = useGetStatistics();
 
   const data = useMemo(
     () =>
@@ -22,7 +22,7 @@ export default function StatsChartDesktop() {
         vezes: item.sortedTimes,
       })),
     [statistics]
-  )
+  );
 
   return (
     <div className="hidden  lg:min-h-[250px] h-full w-full md:block">
@@ -45,5 +45,5 @@ export default function StatsChartDesktop() {
         <EmptyState message="Não há estatísticas ainda." />
       )}
     </div>
-  )
+  );
 }

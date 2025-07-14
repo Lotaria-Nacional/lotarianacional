@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/shared/components/ui/skeleton";
 
 export default function AllResultsSkeleton() {
   return (
@@ -34,5 +34,5 @@ export default function AllResultsSkeleton() {
         <Skeleton className="w-card h-card" />
       </div>
     </div>
-  )
+  );
 }

@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import { isValidArray } from "@/lib/utils";
 import { Swiper as SwiperType } from "swiper";
-import EmptyState from "@/components/empty-state";
+import EmptyState from "@/shared/components/common/empty-state";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Button from "@/components/ui/lottary-button";
+import Button from "@/shared/components/ui/lottary-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ResultCard from "@/features/results/components/result-card";
 import { useGetAllResults } from "@/features/results/hooks/query/index";
@@ -46,6 +46,7 @@ export default function AllResultsPage() {
             </Button>
           </div>
         </div>
+
         {isLoading ? (
           <AllResultsSkeleton />
         ) : data && isValidArray(data) ? (

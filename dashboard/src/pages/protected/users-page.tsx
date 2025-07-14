@@ -5,18 +5,18 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import Icon from "@/components/ui/icon"
-import { isValidArray } from "@/lib/utils"
-import EmptyState from "@/components/empty-state"
-import Button from "@/components/ui/lottary-button"
-import { useGetAllUsers } from "@/features/user/hooks/query"
-import UsersTable from "@/features/user/components/users-table"
-import AddUserForm from "@/features/user/components/form/add-user-form"
-import UsersTableSkeleton from "@/features/user/components/users-table-skeleton"
+} from "@/shared/components/ui/dialog";
+import Icon from "@/shared/components/ui/icon";
+import { isValidArray } from "@/lib/utils";
+import EmptyState from "@/shared/components/common/empty-state";
+import Button from "@/shared/components/ui/lottary-button";
+import { useGetAllUsers } from "@/features/user/hooks/query";
+import UsersTable from "@/features/user/components/users-table";
+import AddUserForm from "@/features/user/components/form/add-user-form";
+import UsersTableSkeleton from "@/features/user/components/users-table-skeleton";
 
 export default function UsersPage() {
-  const { data, isLoading } = useGetAllUsers()
+  const { data, isLoading } = useGetAllUsers();
 
   return (
     <div className="main w-full h-full flex">
@@ -49,5 +49,5 @@ export default function UsersPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

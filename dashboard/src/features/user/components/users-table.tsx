@@ -4,7 +4,7 @@ import {
   TableCell,
   TableBody,
   TableHeader,
-} from "@/components/ui/table"
+} from "@/shared/components/ui/table";
 import {
   Dialog,
   DialogContent,
@@ -12,13 +12,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/shared/components/ui/dialog";
 
-import { IMAGE } from "@/assets"
-import { UserEntity } from "../types"
-import { Eye, Pen, Trash } from "lucide-react"
-import Button from "@/components/ui/lottary-button"
-import UpdateUserForm from "./form/update-user-form"
+import { IMAGE } from "@/assets";
+import { UserEntity } from "../types";
+import { Eye, Pen, Trash } from "lucide-react";
+import Button from "@/shared/components/ui/lottary-button";
+import UpdateUserForm from "./form/update-user-form";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,28 +29,28 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import REMOVE_WARNING_MESSAGE from "@/constants/remove-warning-message"
-import { useRemoveUser } from "../hooks/mutation"
-import { handleFormError } from "@/lib/error"
-import { toast } from "sonner"
-import { PartialUserEntity } from "../types/partial-user"
+} from "@/shared/components/ui/alert-dialog";
+import REMOVE_WARNING_MESSAGE from "@/app/constants/remove-warning-message";
+import { useRemoveUser } from "../hooks/mutation";
+import { handleFormError } from "@/lib/error";
+import { toast } from "sonner";
+import { PartialUserEntity } from "../types/partial-user";
 
 type Props = {
-  data: UserEntity[]
-}
+  data: UserEntity[];
+};
 
 export default function UsersTable({ data }: Props) {
-  const { mutateAsync, isPending } = useRemoveUser()
+  const { mutateAsync, isPending } = useRemoveUser();
 
   const handleRemoveUser = async (id: string) => {
     try {
-      const response = await mutateAsync(id)
-      toast.success(response.message)
+      const response = await mutateAsync(id);
+      toast.success(response.message);
     } catch (error) {
-      handleFormError(error)
+      handleFormError(error);
     }
-  }
+  };
 
   return (
     <Table>
@@ -137,5 +137,5 @@ export default function UsersTable({ data }: Props) {
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }

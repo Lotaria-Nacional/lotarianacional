@@ -1,4 +1,4 @@
-import EmptyState from "@/components/empty-state";
+import EmptyState from "@/shared/components/common/empty-state";
 import { useGetLastResults } from "@/features/results/hooks/query";
 import DownloadResultCard from "@/features/results/components/download-cards/download-result-card";
 import DownloadAllResultsCard from "@/features/results/components/download-cards/download-all-results-card";

@@ -1,12 +1,12 @@
-import { MOBILE_NAVBAR, RoleType } from "@/constants/links"
-import { NavLink } from "react-router-dom"
-import Icon from "../ui/icon"
-import { useAuth } from "@/context/auth-context"
-import Button from "../ui/lottary-button"
-import { LogOut } from "lucide-react"
+import { MOBILE_NAVBAR, RoleType } from "@/app/constants/links";
+import { NavLink } from "react-router-dom";
+import Icon from "../ui/icon";
+import { useAuth } from "@/app/context/auth-context";
+import Button from "../ui/lottary-button";
+import { LogOut } from "lucide-react";
 
 export default function MobileMenu() {
-  const { user, logout } = useAuth()
+  const { user, logout } = useAuth();
 
   return (
     <ul className="absolute z-10 bottom-[80px] animate-fade-in flex flex-col gap-2 right-4 bg-LT-RED-200 rounded-xl w-[240px]">
@@ -37,5 +37,5 @@ export default function MobileMenu() {
         </Button>
       </li>
     </ul>
-  )
+  );
 }

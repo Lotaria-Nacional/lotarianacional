@@ -1,12 +1,12 @@
 import { toast } from "sonner";
-import { Form } from "@/components/form";
+import { Form } from "@/shared/components/form";
 import { AgencyEntity } from "../../types";
 import { FormEvent, useState } from "react";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/shared/components/ui/input";
 import { handleFormError } from "@/lib/error";
 import { UpdateAgencyRequest } from "../../api";
-import Button from "@/components/ui/lottary-button";
-import CustomSelect from "@/components/custom-select";
+import Button from "@/shared/components/ui/lottary-button";
+import CustomSelect from "@/shared/components/common/custom-select";
 import { useUpdateAgency } from "../../hooks/mutation";
 import { SELECT_OPTIONS } from "../../constants/select-options";
 

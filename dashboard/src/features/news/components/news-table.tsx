@@ -4,7 +4,7 @@ import {
   TableCell,
   TableBody,
   TableHeader,
-} from "@/components/ui/table"
+} from "@/shared/components/ui/table";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,35 +15,35 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { toast } from "sonner"
-import { GetAllNewsResponse } from "../api"
-import { handleFormError } from "@/lib/error"
-import { useNavigate } from "react-router-dom"
-import { Eye, Pen, Trash } from "lucide-react"
-import { useDeleteNews } from "../hooks/mutation"
-import Button from "@/components/ui/lottary-button"
-import REMOVE_WARNING_MESSAGE from "@/constants/remove-warning-message"
+} from "@/shared/components/ui/alert-dialog";
+import { toast } from "sonner";
+import { GetAllNewsResponse } from "../api";
+import { handleFormError } from "@/lib/error";
+import { useNavigate } from "react-router-dom";
+import { Eye, Pen, Trash } from "lucide-react";
+import { useDeleteNews } from "../hooks/mutation";
+import Button from "@/shared/components/ui/lottary-button";
+import REMOVE_WARNING_MESSAGE from "@/app/constants/remove-warning-message";
 
 type Props = {
-  data: GetAllNewsResponse
-}
+  data: GetAllNewsResponse;
+};
 
 export default function NewsTable({ data }: Props) {
-  const { mutateAsync, isPending } = useDeleteNews()
-  const navigate = useNavigate()
+  const { mutateAsync, isPending } = useDeleteNews();
+  const navigate = useNavigate();
 
   const navigateToUpdatePage = (id: string) =>
-    navigate(`/noticias/atualizar/${id}`)
+    navigate(`/noticias/atualizar/${id}`);
 
   const handleDeleteNews = async (id: string) => {
     try {
-      const response = await mutateAsync(id)
-      toast.success(response.message)
+      const response = await mutateAsync(id);
+      toast.success(response.message);
     } catch (error) {
-      handleFormError(error)
+      handleFormError(error);
     }
-  }
+  };
   return (
     <Table>
       <TableHeader>
@@ -118,5 +118,5 @@ export default function NewsTable({ data }: Props) {
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }

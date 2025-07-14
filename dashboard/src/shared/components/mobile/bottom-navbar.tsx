@@ -1,18 +1,18 @@
-import { Link, NavLink, useLocation } from "react-router-dom"
-import { MOBILE_NAVBAR, RoleType } from "@/constants/links"
-import MobileMenuButton from "./mobile-menu-button"
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { MOBILE_NAVBAR, RoleType } from "@/app/constants/links";
+import MobileMenuButton from "./mobile-menu-button";
 
-import Icon from "../ui/icon"
-import { useAuth } from "@/context/auth-context"
+import Icon from "../ui/icon";
+import { useAuth } from "@/app/context/auth-context";
 
 export default function BottomNavbar() {
-  const { user } = useAuth()
-  const { pathname } = useLocation()
-  const ADD_RESULTS_PATH = "/resultados/adicionar"
-  const isInAddResultsPage = pathname.includes(ADD_RESULTS_PATH)
+  const { user } = useAuth();
+  const { pathname } = useLocation();
+  const ADD_RESULTS_PATH = "/resultados/adicionar";
+  const isInAddResultsPage = pathname.includes(ADD_RESULTS_PATH);
 
-  const userRole = user!.role as RoleType
-  const canAddResults = ["admin", "studio"].includes(userRole)
+  const userRole = user!.role as RoleType;
+  const canAddResults = ["admin", "studio"].includes(userRole);
 
   return (
     <nav className="lg:hidden flex z-[9999] items-center fixed bottom-0 w-full bg-LT-RED-200 py-4">
@@ -46,5 +46,5 @@ export default function BottomNavbar() {
         </Link>
       )}
     </nav>
-  )
+  );
 }

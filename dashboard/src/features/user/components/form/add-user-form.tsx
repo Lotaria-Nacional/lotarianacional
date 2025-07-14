@@ -1,4 +1,4 @@
-import Button from "@/components/ui/lottary-button";
+import Button from "@/shared/components/ui/lottary-button";
 import { useAddUser } from "../../hooks/mutation";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { AddUserRequest } from "../../api";

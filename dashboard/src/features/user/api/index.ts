@@ -1,6 +1,6 @@
 import axios from "@/lib/axios"
 import { UserEntity } from "../types"
-import { APIResponseMessage } from "@/types/api-response-message"
+import { APIResponseMessage } from "@/shared/@types/api-response-message"
 
 export type AddUserRequest = Omit<
   UserEntity,

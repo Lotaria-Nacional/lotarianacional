@@ -1,11 +1,11 @@
-import { IMAGE } from "@/assets"
-import { useNavigate } from "react-router-dom"
-import Button from "@/components/ui/lottary-button"
+import { IMAGE } from "@/assets";
+import { useNavigate } from "react-router-dom";
+import Button from "@/shared/components/ui/lottary-button";
 
 export default function PageNotFound() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleGoBack = () => navigate("/")
+  const handleGoBack = () => navigate("/");
 
   return (
     <main className="main flex bg-LT-RED-100 items-center flex-col gap-[50px] justify-center w-full h-screen">
@@ -25,5 +25,5 @@ export default function PageNotFound() {
         </Button>
       </header>
     </main>
-  )
+  );
 }

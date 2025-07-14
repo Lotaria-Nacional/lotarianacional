@@ -1,6 +1,6 @@
 import { useState,  useCallback } from "react";
 import { useJsApiLoader } from "@react-google-maps/api";
-import { GOOGLE_CREDENTIALS, GOOGLE_CONFIG } from "@/components/google-map/google-map.config";
+import { GOOGLE_CREDENTIALS, GOOGLE_CONFIG } from "@/shared/components/google-map/google-map.config";
 
 export type UseGoogleMapsReturn = {
     isLoaded:boolean

@@ -1,8 +1,8 @@
-import Button from "@/components/ui/lottary-button"
-import { useAuth } from "@/context/auth-context"
+import Button from "@/shared/components/ui/lottary-button";
+import { useAuth } from "@/app/context/auth-context";
 
 export default function SettingsPage() {
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   return (
     <div className="main w-full h-full">
@@ -62,5 +62,5 @@ export default function SettingsPage() {
         <Button className="w-full mt-4">Salvar alterações</Button>
       </form>
     </div>
-  )
+  );
 }

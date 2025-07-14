@@ -1,4 +1,4 @@
-import { PaginationParams } from "@/types/pagination-params"
+import { PaginationParams } from "@/shared/@types/pagination-params"
 import { useQuery } from "@tanstack/react-query"
 import { AGENCY_QUERY_KEYS } from "../../constants/keys"
 import { getAgencyById, getAllAgencies } from "../../api"

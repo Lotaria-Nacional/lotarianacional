@@ -1,5 +1,5 @@
 import { IMAGE } from "@/assets";
-import { useAuth } from "@/context/auth-context";
+import { useAuth } from "@/app/context/auth-context";
 
 type Props = {};
 

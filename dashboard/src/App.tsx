@@ -1,8 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import Sidebar from "@/components/sidebar";
-import Header from "./components/header";
-import BottomNavbar from "./components/mobile/bottom-navbar";
-import { useAuth } from "./context/auth-context";
+import { useAuth } from "./app/context/auth-context";
+import Sidebar from "./shared/components/common/sidebar";
+import Header from "./shared/components/common/header";
+import BottomNavbar from "./shared/components/mobile/bottom-navbar";
 
 function App() {
   const { token } = useAuth();

@@ -1,9 +1,13 @@
-import Icon from "./ui/icon";
-import { IMAGE } from "../assets";
+import { IMAGE } from "@/assets";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "@/context/auth-context";
-import { BOTTOM_NAV_LINKS_V2, RoleType, UP_NAV_LINKS } from "@/constants/links";
-import Button from "./ui/lottary-button";
+import { useAuth } from "@/app/context/auth-context";
+import {
+  BOTTOM_NAV_LINKS_V2,
+  RoleType,
+  UP_NAV_LINKS,
+} from "@/app/constants/links";
+import Icon from "../ui/icon";
+import Button from "../ui/lottary-button";
 
 export default function Sidebar() {
   const { user, logout } = useAuth();

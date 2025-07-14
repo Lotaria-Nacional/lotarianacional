@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/shared/components/ui/skeleton";
 
 function UpdateNewsPageSkeleton() {
   return (
@@ -9,7 +9,7 @@ function UpdateNewsPageSkeleton() {
         <Skeleton className="h-full w-full" />
       </div>
     </div>
-  )
+  );
 }
 
-export default UpdateNewsPageSkeleton
+export default UpdateNewsPageSkeleton;

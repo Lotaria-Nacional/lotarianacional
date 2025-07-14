@@ -2,11 +2,11 @@ import { toast } from "sonner";
 import { Eye, File } from "lucide-react";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { handleFormError } from "@/lib/error";
-import Tiptap from "@/components/tiptap/tiptap";
-import Button from "@/components/ui/lottary-button";
+import Button from "@/shared/components/ui/lottary-button";
 import { useAddNews } from "@/features/news/hooks/mutation";
 import AddNewsImageInput from "@/features/news/components/form/add-news-image-input";
 import { NewsEntity } from "@/features/news/types";
+import Tiptap from "@/shared/components/tiptap/tiptap";
 
 export type ADddNewsRequestProps = Omit<
   NewsEntity,

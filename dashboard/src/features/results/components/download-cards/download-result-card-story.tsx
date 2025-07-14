@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { ResultEntity } from "../../types";
 import { BsDownload } from "react-icons/bs";
-import Button from "@/components/ui/lottary-button";
-import { formatToNumbers } from "@/utils/date-format";
+import Button from "@/shared/components/ui/lottary-button";
+import { formatToNumbers } from "@/shared/utils/date-format";
 import { getResultNumbers } from "../../utils/get-result-numbers";
 import { useDownloadResult } from "../../hooks/useDownloadResult";
 

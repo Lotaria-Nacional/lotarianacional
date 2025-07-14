@@ -1,5 +1,5 @@
-import Button from "@/components/ui/lottary-button";
-import { TabsContent } from "@/components/ui/tabs";
+import Button from "@/shared/components/ui/lottary-button";
+import { TabsContent } from "@/shared/components/ui/tabs";
 import { Plus } from "lucide-react";
 
 type Props = {

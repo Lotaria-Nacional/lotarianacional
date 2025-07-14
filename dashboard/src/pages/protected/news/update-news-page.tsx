@@ -1,38 +1,44 @@
-import { Dispatch, useState, FormEvent, useEffect, SetStateAction } from "react"
-import { toast } from "sonner"
-import { Eye, File } from "lucide-react"
-import { useParams } from "react-router-dom"
-import { handleFormError } from "@/lib/error"
-import Tiptap from "@/components/tiptap/tiptap"
-import { NewsEntity } from "@/features/news/types"
-import Button from "@/components/ui/lottary-button"
-import { useGetNewsById } from "@/features/news/hooks/query"
-import { useUpdateNews } from "@/features/news/hooks/mutation"
-import UpdateNewsImageInput from "@/features/news/components/form/update-news-image-input"
-import UpdateNewsPageSkeleton from "@/features/news/components/update-news-page-skeleton"
+import {
+  Dispatch,
+  useState,
+  FormEvent,
+  useEffect,
+  SetStateAction,
+} from "react";
+import { toast } from "sonner";
+import { Eye, File } from "lucide-react";
+import { useParams } from "react-router-dom";
+import { handleFormError } from "@/lib/error";
+import Tiptap from "@/shared/components/tiptap/tiptap";
+import { NewsEntity } from "@/features/news/types";
+import Button from "@/shared/components/ui/lottary-button";
+import { useGetNewsById } from "@/features/news/hooks/query";
+import { useUpdateNews } from "@/features/news/hooks/mutation";
+import UpdateNewsImageInput from "@/features/news/components/form/update-news-image-input";
+import UpdateNewsPageSkeleton from "@/features/news/components/update-news-page-skeleton";
 
 export type UpdateNewsRequestProps = { image: string | File } & Omit<
   Partial<NewsEntity>,
   "image"
->
+>;
 
 export type UpdateNewsStateProps = {
-  data: UpdateNewsRequestProps
-  setData: Dispatch<SetStateAction<UpdateNewsRequestProps>>
-}
+  data: UpdateNewsRequestProps;
+  setData: Dispatch<SetStateAction<UpdateNewsRequestProps>>;
+};
 
 export default function UpdateNewsPage() {
-  const { id } = useParams()
+  const { id } = useParams();
 
-  const { mutateAsync, isPending } = useUpdateNews()
-  const { data: news, isLoading } = useGetNewsById(id as string)
+  const { mutateAsync, isPending } = useUpdateNews();
+  const { data: news, isLoading } = useGetNewsById(id as string);
 
   const [data, setData] = useState<UpdateNewsRequestProps>({
     id: "",
     title: "",
     image: "",
     description: "",
-  })
+  });
 
   useEffect(() => {
     if (news) {
@@ -41,28 +47,28 @@ export default function UpdateNewsPage() {
         title: news.title,
         description: news.description,
         image: news.image,
-      })
+      });
     }
-  }, [news])
+  }, [news]);
 
   if (isLoading) {
-    return <UpdateNewsPageSkeleton/>
+    return <UpdateNewsPageSkeleton />;
   }
 
   const handleUpdateNews = async (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const formData = new FormData()
-      formData.append("title", data.title!)
-      formData.append("image", data.image!)
-      formData.append("description", data.description!)
+      const formData = new FormData();
+      formData.append("title", data.title!);
+      formData.append("image", data.image!);
+      formData.append("description", data.description!);
 
-      const response = await mutateAsync({ id: data.id!, data: formData })
-      toast.success(response.message)
+      const response = await mutateAsync({ id: data.id!, data: formData });
+      toast.success(response.message);
     } catch (error) {
-      handleFormError(error)
+      handleFormError(error);
     }
-  }
+  };
 
   return (
     <div className="w-full h-full flex flex-col gap-4 main">
@@ -130,5 +136,5 @@ export default function UpdateNewsPage() {
         </div>
       </form>
     </div>
-  )
+  );
 }

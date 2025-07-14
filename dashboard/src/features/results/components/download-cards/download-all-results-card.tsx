@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { BsDownload } from "react-icons/bs";
 import { DailyResultEntity } from "../../types";
-import Button from "@/components/ui/lottary-button";
+import Button from "@/shared/components/ui/lottary-button";
 import { useDownloadResult } from "../../hooks/useDownloadResult";
 import DownloadResultResumeRow from "./download-result-resume-row";
 import bgResultsResume from "/public/results/background-2/RESUMO.png";

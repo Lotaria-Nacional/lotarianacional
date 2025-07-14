@@ -1,9 +1,9 @@
 import { toast } from "sonner";
-import Icon from "@/components/ui/icon";
+import Icon from "@/shared/components/ui/icon";
 import { ResultEntity } from "../../types";
 import { handleFormError } from "@/lib/error";
 import { UpdateResultRequest } from "../../api";
-import Button from "@/components/ui/lottary-button";
+import Button from "@/shared/components/ui/lottary-button";
 import { FormEvent, useEffect, useState } from "react";
 import { useUpdateResult } from "../../hooks/mutation";
 import UpdateResultCardInput from "./update-result-card-input";

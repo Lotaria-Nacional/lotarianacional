@@ -3,17 +3,18 @@ import {
   DialogHeader,
   DialogContent,
   DialogDescription,
-} from "@/components/ui/dialog";
+} from "@/shared/components/ui/dialog";
 import { toast } from "sonner";
-import { Form } from "@/components/form";
+
 import { FormEvent, useState } from "react";
 import { handleFormError } from "@/lib/error";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/shared/components/ui/input";
 import { CreateAgencyRequest } from "../../api";
 import { useAddAgency } from "../../hooks/mutation";
-import Button from "@/components/ui/lottary-button";
-import CustomSelect from "@/components/custom-select";
+import Button from "@/shared/components/ui/lottary-button";
 import { SELECT_OPTIONS } from "../../constants/select-options";
+import { Form } from "@/shared/components/form";
+import CustomSelect from "@/shared/components/common/custom-select";
 
 export default function AddAgencyForm() {
   const { mutateAsync, isPending } = useAddAgency();
