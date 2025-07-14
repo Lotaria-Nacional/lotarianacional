@@ -1,19 +1,19 @@
 import {
+  addJobOppeningSchema,
+  AddJobOppeningType,
+} from "../validation/add-job-oppening.schema";
+import { Input } from "@/shared/components/ui/input";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Button from "@/shared/components/ui/lottary-button";
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
-import {
-  addJobOppeningSchema,
-  AddJobOppeningType,
-} from "../validation/add-job-oppening.schema";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/shared/components/ui/input";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "@/shared/components/ui/lottary-button";
+import { Textarea } from "@/shared/components/ui/textarea";
 
 export default function AddQualifiedOppeningForm() {
   const form = useForm<AddJobOppeningType>({
