@@ -1,7 +1,8 @@
-import { DeleteJobOppeningUseCase } from "../../application/use-cases/delete-job-oppening.useCase";
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller";
-import { handleControllerError } from "../../../../shared/utils/handle-controller-error";
-import { IdSchema } from "../../../../shared/validations/id-schema";
+import { IController, HttpRequest, HttpResponse } from "../../../../../core/infrastucture/http/controller"
+import { handleControllerError } from "../../../../../shared/utils/handle-controller-error"
+import { IdSchema } from "../../../../../shared/validations/id-schema"
+import { DeleteJobOppeningUseCase } from "../../../application/use-cases/job-oppening/delete-job-oppening.useCase"
+
 
 export class DeleteJobOppeningController implements IController<any> {
     constructor(private useCase:DeleteJobOppeningUseCase){}
@@ -11,11 +12,7 @@ export class DeleteJobOppeningController implements IController<any> {
         try {
             const { id } = IdSchema.parse(request.params)
 
-            const response = await this.useCase.execute(id)
-
-            if(response.isLeft()){
-                throw response.value
-            }
+         await this.useCase.execute(id)
             
             return {
                 statusCode:200,

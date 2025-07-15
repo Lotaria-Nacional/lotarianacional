@@ -1,6 +1,6 @@
-import { JobOppening } from "../../enterprise/entities/job-oppening";
-import { IJobOppeningRepository } from "../interfaces/job-oppening.repository";
-import { CreateJobOppeningDTO } from "../../presentation/validation/create-job-oppening.schema";
+import { JobOppening } from "../../../enterprise/entities/job-oppening";
+import { CreateJobOppeningDTO } from "../../../presentation/validation/create-job-oppening.schema";
+import { IJobOppeningRepository } from "../../interfaces/job-oppening.repository";
 
 export class CreateJobOppeningUseCase {
   constructor(private repository: IJobOppeningRepository) {}

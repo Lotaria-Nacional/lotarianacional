@@ -7,5 +7,5 @@ export interface IJobOppeningRepository {
   delete(id: string): Promise<void>;
   getById(id: string): Promise<JobOppening | null>;
   fetchMany(params?: PaginationParams): Promise<JobOppening[]>;
-  countAll(): Promise<number>;
+  countAll(params?:PaginationParams): Promise<number>;
 }

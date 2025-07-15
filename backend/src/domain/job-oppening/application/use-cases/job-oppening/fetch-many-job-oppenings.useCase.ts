@@ -1,8 +1,6 @@
-import { PaginationParams } from "../../../../core/@types/pagination-params";
-import { Either } from "../../../../core/either/either";
-import { right } from "../../../../core/either/helpers";
-import { JobOppeningProps } from "../../enterprise/entities/job-oppening";
-import { IJobOppeningRepository } from "../interfaces/job-oppening.repository";
+import { PaginationParams } from "../../../../../core/@types/pagination-params";
+import { JobOppeningProps } from "../../../enterprise/entities/job-oppening";
+import { IJobOppeningRepository } from "../../interfaces/job-oppening.repository";
 
 export type FetchManyJobOppeningsResponse = {
   totalPages: number;
@@ -13,11 +11,11 @@ export type FetchManyJobOppeningsResponse = {
 export class FetchManyJobOppeningsUseCase {
   constructor(private repository: IJobOppeningRepository) {}
 
-  async execute({ limit, page = 1 }: PaginationParams): Promise<FetchManyJobOppeningsResponse> {
+  async execute({ limit, page = 1, slug }: PaginationParams): Promise<FetchManyJobOppeningsResponse> {
     const isPaginated = typeof limit === "number" && limit > 0;
 
     if (!isPaginated) {
-      const jobOppenings = await this.repository.fetchMany();
+      const jobOppenings = await this.repository.fetchMany({ slug });
 
       return {
         totalPages: 1,
@@ -32,8 +30,9 @@ export class FetchManyJobOppeningsUseCase {
       await this.repository.fetchMany({
         page: offset,
         limit,
+        slug
       }),
-      await this.repository.countAll(),
+      await this.repository.countAll({ page:offset, limit, slug  }),
     ]);
 
     const totalPages = Math.ceil(totalRecords / limit);

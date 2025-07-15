@@ -3,4 +3,5 @@ import z from "zod";
 export const QuerySchema = z.object({
     page:z.coerce.number().optional(),
     limit:z.coerce.number().optional(),
+    slug:z.coerce.string().optional(),
 })

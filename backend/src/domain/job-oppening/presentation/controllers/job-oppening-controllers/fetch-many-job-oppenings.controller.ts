@@ -1,10 +1,10 @@
-import { HttpRequest, HttpResponse, IController } from "../../../../../core/infrastucture/http/controller";
+import { IController, HttpRequest, HttpResponse } from "../../../../../core/infrastucture/http/controller";
 import { handleControllerError } from "../../../../../shared/utils/handle-controller-error";
 import { QuerySchema } from "../../../../../shared/validations/query-schema";
-import { FetchManyPartnerJobOppeningsUseCase } from "../../../application/use-cases/partner-job-oppening/fetch-many-partner-job-oppenings.useCase";
+import { FetchManyJobOppeningsUseCase } from "../../../application/use-cases/job-oppening/fetch-many-job-oppenings.useCase";
 
-export class FetchManyPartnerJobOppeningsController implements IController<any> {
-  constructor(private useCase: FetchManyPartnerJobOppeningsUseCase) {}
+export class FetchManyJobOppeningsController implements IController<any> {
+  constructor(private useCase: FetchManyJobOppeningsUseCase) {}
   async handle(request: HttpRequest<any>): Promise<HttpResponse> {
     try {
       const { page, limit, slug } = QuerySchema.parse(request.query);

@@ -25,17 +25,26 @@ export class PrismaJobOppeningRepository implements IJobOppeningRepository {
   }
 
   async getById(id: string): Promise<JobOppening | null> {
-    const jobOppening = await prisma.jobOppening.findUnique({
-      where: { id },
-    });
-
-    if (!jobOppening) return null;
-
-    return JobOppeningMapper.toDomain(jobOppening);
+    try {
+      const jobOppening = await prisma.jobOppening.findUnique({
+        where: { 
+          id: id
+         },
+      });
+  
+      if (!jobOppening) return null;
+  
+      return JobOppeningMapper.toDomain(jobOppening);
+      
+    } catch (error) {
+      console.log(error)
+      return null
+    }
   }
 
   async fetchMany(params?: PaginationParams): Promise<JobOppening[]> {
     const jobOppenings = await prisma.jobOppening.findMany({
+      where: params?.slug ? { slug: params.slug } : undefined,
       skip: params?.page,
       take: params?.limit,
       orderBy: {
@@ -46,7 +55,9 @@ export class PrismaJobOppeningRepository implements IJobOppeningRepository {
     return jobOppenings.map((jobs) => JobOppeningMapper.toDomain(jobs));
   }
 
-  async countAll(): Promise<number> {
-    return prisma.jobOppening.count();
+  async countAll(params?:PaginationParams): Promise<number> {
+    return prisma.jobOppening.count({
+      where: params ? { slug:params?.slug } : undefined
+    });
   }
 }

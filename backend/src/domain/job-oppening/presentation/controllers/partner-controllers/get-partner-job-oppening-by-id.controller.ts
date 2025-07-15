@@ -11,11 +11,9 @@ export class GetPartnerJobOppeningByIdController implements IController<any> {
       const { id } = IdSchema.parse(request.params);
       const response = await this.useCase.execute(id);
 
-      if (response.isLeft()) throw response.value;
-
       return {
         statusCode: 200,
-        body: response.value,
+        body: response
       };
     } catch (error) {
       return handleControllerError(error);

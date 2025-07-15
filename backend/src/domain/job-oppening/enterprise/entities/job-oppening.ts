@@ -19,8 +19,8 @@ export class JobOppening extends BaseEntity<JobOppeningProps> {
     return new JobOppening(
       {
         ...props,
-        slug: createSlug(props.title),
-        department: props.department.toUpperCase(),
+        slug: createSlug(props.department),
+        department: props.department,
         createdAt: props.createdAt ?? new Date(),
       },
       id
@@ -32,11 +32,12 @@ export class JobOppening extends BaseEntity<JobOppeningProps> {
     if (props.requirements !== undefined) this._props.requirements = props.requirements;
     if (props.quantity !== undefined) this._props.quantity = props.quantity;
     if (props.description !== undefined) this._props.description = props.description;
-    if (props.department !== undefined) this._props.department = props.department.toUpperCase();
-    if (props.title !== undefined) {
-      this._props.title = props.title;
-      this._props.slug = createSlug(props.title);
+    if (props.title !== undefined) this._props.title = props.title;
+    if (props.department !== undefined) {
+      this._props.department = props.department
+      this._props.slug = createSlug(props.department);
     }
+
   }
 
   get title() {

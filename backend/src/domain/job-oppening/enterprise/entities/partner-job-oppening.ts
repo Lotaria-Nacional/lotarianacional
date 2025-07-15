@@ -20,7 +20,7 @@ export class PartnerJobOppening extends BaseEntity<PartnerJobOppeningProps> {
     return new PartnerJobOppening(
       {
         ...props,
-        slug: createSlug(props.title),
+        slug: createSlug(props.location),
         createdAt: props.createdAt ?? new Date(),
       },
       id
@@ -32,12 +32,12 @@ export class PartnerJobOppening extends BaseEntity<PartnerJobOppeningProps> {
     if (props.requirements !== undefined) this._props.requirements = props.requirements;
     if (props.quantity !== undefined) this._props.quantity = props.quantity;
     if (props.description !== undefined) this._props.description = props.description;
-    if (props.location !== undefined) this._props.location = props.location.toUpperCase();
-    if (props.type !== undefined) this._props.type = props.type.toUpperCase();
-    if (props.title !== undefined) {
-      this._props.title = props.title;
-      this._props.slug = createSlug(props.title);
-    }
+    if (props.type !== undefined) this._props.type = props.type;
+    if (props.title !== undefined) this._props.title = props.title;
+    if (props.location !== undefined) {
+      this._props.location = props.location
+      this._props.slug = createSlug(props.location);
+    };
   }
 
   get title() {

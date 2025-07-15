@@ -11,11 +11,11 @@ export type FetchManyPartnerJobOppeningsResponse = {
 export class FetchManyPartnerJobOppeningsUseCase {
   constructor(private repository: IPartnerJobOppeningRepository) {}
 
-  async execute({ limit, page = 1 }: PaginationParams): Promise<FetchManyPartnerJobOppeningsResponse> {
+  async execute({ limit, page = 1, slug }: PaginationParams): Promise<FetchManyPartnerJobOppeningsResponse> {
     const isPaginated = typeof limit === "number" && limit > 0;
 
     if (!isPaginated) {
-      const partnerJobOppening = await this.repository.fetchMany();
+      const partnerJobOppening = await this.repository.fetchMany({ slug });
 
       return {
         totalPages: 1,
@@ -23,15 +23,16 @@ export class FetchManyPartnerJobOppeningsUseCase {
         data: partnerJobOppening.map((job) => job.toJSON()),
       };
     }
-
+    
     const offset = (page - 1) * limit;
 
     const [partnerJobOppening, totalRecords] = await Promise.all([
       await this.repository.fetchMany({
         page: offset,
         limit,
+        slug
       }),
-      await this.repository.countAll(),
+      await this.repository.countAll({page:offset, limit, slug}),
     ]);
 
     const totalPages = Math.ceil(totalRecords / limit);

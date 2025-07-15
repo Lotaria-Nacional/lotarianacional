@@ -1,8 +1,7 @@
-import { IJobOppeningRepository } from "../interfaces/job-oppening.repository";
-import { UpdateJobOppeningDTO } from "../../presentation/validation/update-job-oppening.schema";
-import { Either } from "../../../../core/either/either";
-import { NotFoundError } from "../../../../core/errors/common/not-found.error";
-import { left, right } from "../../../../core/either/helpers";
+import { right } from "../../../../../core/either/helpers";
+import { NotFoundError } from "../../../../../core/errors/common/not-found.error";
+import { UpdateJobOppeningDTO } from "../../../presentation/validation/update-job-oppening.schema";
+import { IJobOppeningRepository } from "../../interfaces/job-oppening.repository";
 
 export class UpdateJobOppeningUseCase {
   constructor(private repository: IJobOppeningRepository) {}

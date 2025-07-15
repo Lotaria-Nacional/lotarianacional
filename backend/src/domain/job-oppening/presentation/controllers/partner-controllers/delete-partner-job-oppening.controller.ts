@@ -10,11 +10,7 @@ export class DeletePartnerJobOppeningController implements IController<any> {
     try {
       const { id } = IdSchema.parse(request.params);
 
-      const response = await this.useCase.execute(id);
-
-      if (response.isLeft()) {
-        throw response.value;
-      }
+       await this.useCase.execute(id);
 
       return {
         statusCode: 200,

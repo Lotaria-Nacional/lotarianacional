@@ -1,8 +1,8 @@
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller";
-import { handleControllerError } from "../../../../shared/utils/handle-controller-error";
-import { IdSchema } from "../../../../shared/validations/id-schema";
-import { UpdateJobOppeningUseCase } from "../../application/use-cases/update-job-oppening.useCase";
-import { updateJobOppeningSchema, UpdateJobOppeningDTO } from "../validation/update-job-oppening.schema";
+import { IController, HttpRequest, HttpResponse } from "../../../../../core/infrastucture/http/controller";
+import { handleControllerError } from "../../../../../shared/utils/handle-controller-error";
+import { IdSchema } from "../../../../../shared/validations/id-schema";
+import { UpdateJobOppeningUseCase } from "../../../application/use-cases/job-oppening/update-job-oppening.useCase";
+import { UpdateJobOppeningDTO, updateJobOppeningSchema } from "../../validation/update-job-oppening.schema";
 
 export class UpdateJobOppeningController implements IController<UpdateJobOppeningDTO> {
   constructor(private useCase: UpdateJobOppeningUseCase) {}

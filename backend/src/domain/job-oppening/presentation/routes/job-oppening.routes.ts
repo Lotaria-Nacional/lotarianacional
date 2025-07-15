@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller";
-import { PrismaJobOppeningRepository } from "../../infra/repository/prisma-job-oppening.repository";
 import { makeJobOppeningControllers } from "../factories/make-job-oppening-controllers";
+import { PrismaJobOppeningRepository } from "../../infra/repository/prisma-job-oppening.repository";
 
 const jobOppeningRoutes = Router();
 const repository = new PrismaJobOppeningRepository();

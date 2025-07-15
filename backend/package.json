@@ -48,6 +48,7 @@
     "nodemailer": "^6.9.16",
     "pino": "^9.7.0",
     "tsconfig-paths": "^4.2.0",
+    "wrangler": "^4.24.3",
     "xlsx": "^0.18.5",
     "zod": "^3.23.8"
   }

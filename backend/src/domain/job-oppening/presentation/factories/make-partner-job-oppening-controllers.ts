@@ -15,6 +15,7 @@ export function makePartnerJobOppeningControllers(repository: IPartnerJobOppenin
   const update = new UpdatePartnerJobOppeningController(new UpdatePartnerJobOppeningUseCase(repository));
   const remove = new DeletePartnerJobOppeningController(new DeletePartnerJobOppeningUseCase(repository));
   const getById = new GetPartnerJobOppeningByIdController(new GetPartnerJobOppeningByIdUseCase(repository));
+  
   const fetchMany = new FetchManyPartnerJobOppeningsController(new FetchManyPartnerJobOppeningsUseCase(repository));
 
   return {

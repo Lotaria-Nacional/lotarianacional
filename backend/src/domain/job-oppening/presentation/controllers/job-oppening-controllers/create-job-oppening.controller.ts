@@ -1,7 +1,8 @@
-import { HttpRequest, HttpResponse, IController } from "../../../../core/infrastucture/http/controller";
-import { handleControllerError } from "../../../../shared/utils/handle-controller-error";
-import { CreateJobOppeningUseCase } from "../../application/use-cases/create-job-oppening.useCase";
-import { createJobOppeningSchema, CreateJobOppeningDTO } from "../validation/create-job-oppening.schema";
+import { IController, HttpRequest, HttpResponse } from "../../../../../core/infrastucture/http/controller"
+import { handleControllerError } from "../../../../../shared/utils/handle-controller-error"
+import { CreateJobOppeningUseCase } from "../../../application/use-cases/job-oppening/create-job-oppening.useCase"
+import { CreateJobOppeningDTO, createJobOppeningSchema } from "../../validation/create-job-oppening.schema"
+
 
 export class CreateJobOppeningController implements IController<CreateJobOppeningDTO> {
     constructor(private useCase: CreateJobOppeningUseCase) { }
