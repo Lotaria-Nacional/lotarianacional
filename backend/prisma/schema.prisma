@@ -94,6 +94,20 @@ model JobOppening {
   slug             String?  @unique
   description      String?
   department       String
+  quantity         Int      @default(1)
+  requirements     String[]
+  responsabilities String[]
+  createdAt        DateTime @default(now())
+}
+
+model PartnerjobOppening {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  slug             String?  @unique
+  description      String?
+  location         String
+  type             String
+  quantity         Int      @default(1)
   requirements     String[]
   responsabilities String[]
   createdAt        DateTime @default(now())

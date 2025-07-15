@@ -5,23 +5,20 @@ import { UpdateJobOppeningUseCase } from "../../application/use-cases/update-job
 import { updateJobOppeningSchema, UpdateJobOppeningDTO } from "../validation/update-job-oppening.schema";
 
 export class UpdateJobOppeningController implements IController<UpdateJobOppeningDTO> {
-    constructor(private useCase:UpdateJobOppeningUseCase){}
+  constructor(private useCase: UpdateJobOppeningUseCase) {}
 
-    async handle(request: HttpRequest<UpdateJobOppeningDTO>): Promise<HttpResponse> {
-        try {
-            const { id } = IdSchema.parse(request.params) 
-            const body = updateJobOppeningSchema.parse({...request.body, id})
-            
-             const response = await this.useCase.execute(body)
+  async handle(request: HttpRequest<UpdateJobOppeningDTO>): Promise<HttpResponse> {
+    try {
+      const { id } = IdSchema.parse(request.params);
+      const body = updateJobOppeningSchema.parse({ ...request.body, id });
 
-             if(response.isLeft()) throw response.value
-
-            return {
-                statusCode:200,
-                body:{ message:"A vaga foi" }
-            } 
-        } catch (error) {
-            return handleControllerError(error)
-        }
+      await this.useCase.execute(body);
+      return {
+        statusCode: 200,
+        body: { message: "A vaga foi atualizada" },
+      };
+    } catch (error) {
+      return handleControllerError(error);
     }
+  }
 }

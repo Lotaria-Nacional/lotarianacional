@@ -4,22 +4,15 @@ import { Either } from "../../../../core/either/either";
 import { NotFoundError } from "../../../../core/errors/common/not-found.error";
 import { left, right } from "../../../../core/either/helpers";
 
-export type UpdateJobOppeningUseCaseResponse = Either<NotFoundError, {}>
-
 export class UpdateJobOppeningUseCase {
-    constructor(private repository:IJobOppeningRepository){}
-
-    async execute(data:UpdateJobOppeningDTO):Promise<UpdateJobOppeningUseCaseResponse> {
-        const existingJobOppening = await this.repository.getById(data.id)
-
-        if(!existingJobOppening){
-            return left(new NotFoundError("A vaga não foi encontrada"))
-        }
-
-        existingJobOppening.update(data)
-
-        await this.repository.save(existingJobOppening)
-
-        return right({})
+  constructor(private repository: IJobOppeningRepository) {}
+  async execute(data: UpdateJobOppeningDTO) {
+    const existingJobOppening = await this.repository.getById(data.id);
+    if (!existingJobOppening) {
+      throw new NotFoundError("A vaga não foi encontrada");
     }
+    existingJobOppening.update(data);
+    await this.repository.save(existingJobOppening);
+    return right({});
+  }
 }

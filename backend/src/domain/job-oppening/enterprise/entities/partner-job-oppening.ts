@@ -2,11 +2,12 @@ import { Optional } from "@prisma/client/runtime/library";
 import { createSlug } from "../../../../shared/utils/create-slug";
 import { BaseEntity } from "../../../../core/@entity/base-entity";
 
-export type JobOppeningProps = {
+export type PartnerJobOppeningProps = {
   id?: string;
   title: string;
-  department: string;
   quantity: number;
+  type: string;
+  location: string;
   description?: string;
   requirements: string[];
   responsabilities?: string[];
@@ -14,25 +15,25 @@ export type JobOppeningProps = {
   createdAt?: Date;
 };
 
-export class JobOppening extends BaseEntity<JobOppeningProps> {
-  static create(props: JobOppeningProps, id?: string) {
-    return new JobOppening(
+export class PartnerJobOppening extends BaseEntity<PartnerJobOppeningProps> {
+  static create(props: PartnerJobOppeningProps, id?: string) {
+    return new PartnerJobOppening(
       {
         ...props,
         slug: createSlug(props.title),
-        department: props.department.toUpperCase(),
         createdAt: props.createdAt ?? new Date(),
       },
       id
     );
   }
 
-  public update(props: Optional<JobOppeningProps>) {
+  public update(props: Optional<PartnerJobOppeningProps>) {
     if (props.responsabilities !== undefined) this._props.responsabilities = props.responsabilities;
     if (props.requirements !== undefined) this._props.requirements = props.requirements;
     if (props.quantity !== undefined) this._props.quantity = props.quantity;
     if (props.description !== undefined) this._props.description = props.description;
-    if (props.department !== undefined) this._props.department = props.department.toUpperCase();
+    if (props.location !== undefined) this._props.location = props.location.toUpperCase();
+    if (props.type !== undefined) this._props.type = props.type.toUpperCase();
     if (props.title !== undefined) {
       this._props.title = props.title;
       this._props.slug = createSlug(props.title);
@@ -55,12 +56,19 @@ export class JobOppening extends BaseEntity<JobOppeningProps> {
     this._props.quantity = value;
   }
 
-  get department() {
-    return this._props.department;
+  get location() {
+    return this._props.location;
   }
 
-  set department(value: string) {
-    this._props.department = value;
+  set location(value: string) {
+    this._props.location = value;
+  }
+  get type() {
+    return this._props.type;
+  }
+
+  set type(value: string) {
+    this._props.type = value;
   }
 
   get description() {

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { logger } from "./logger";
+import { JobOppeningMapper } from "../../domain/job-oppening/infra/mappers/job-oppening.mapper";
 
 export const prisma = new PrismaClient();
 
