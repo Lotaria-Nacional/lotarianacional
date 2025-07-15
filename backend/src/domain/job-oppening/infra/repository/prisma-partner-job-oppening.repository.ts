@@ -35,9 +35,6 @@ export class PrismaPartnerJobOppeningRepository implements IPartnerJobOppeningRe
   }
 
   async fetchMany(params?: PaginationParams): Promise<PartnerJobOppening[]> {
-    console.log("prisma");
-    console.log(params);
-
     const partnerjobOppenings = await prisma.partnerjobOppening.findMany({
       where: params?.slug ? { slug:params.slug } : undefined,
       skip: params?.page,
@@ -47,9 +44,6 @@ export class PrismaPartnerJobOppeningRepository implements IPartnerJobOppeningRe
       },
     });
     
-    console.log(partnerjobOppenings);
-    
-
     return partnerjobOppenings.map((jobs) => PartnerJobOppeningMapper.toDomain(jobs));
   }
 
