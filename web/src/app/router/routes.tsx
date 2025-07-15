@@ -19,6 +19,7 @@ import {
 } from "@/pages";
 import App from "@/App";
 import { createBrowserRouter } from "react-router-dom";
+import PartnerJobDetailsPage from "@/features/job-application/pages/partner-job-oppening-details-page";
 
 export const router = createBrowserRouter([
   {
@@ -47,8 +48,13 @@ export const router = createBrowserRouter([
           },
         ],
       },
+
       {
-        path: "/carreira/vagas/:id/:department",
+        path: "/carreira/vagas/revendedor/:id",
+        element: <PartnerJobDetailsPage />,
+      },
+      {
+        path: "/carreira/vagas/quadros/:id",
         element: <JobOppeningDetailsPage />,
       },
 

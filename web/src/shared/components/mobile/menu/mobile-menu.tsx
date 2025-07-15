@@ -7,10 +7,10 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "../../ui/dropdown-menu"
-import { navigationLinks } from "@/app/router/navigation"
-import { useNavigate } from "react-router-dom"
-import { MenuIcon } from "lucide-react"
+} from "../../ui/dropdown-menu";
+import { navigationLinks } from "@/app/router/navigation";
+import { useNavigate } from "react-router-dom";
+import { MenuIcon } from "lucide-react";
 
 // const MobileMenu = () => {
 //   const ref = useRef<HTMLDivElement | null>(null);
@@ -55,7 +55,7 @@ import { MenuIcon } from "lucide-react"
 // };
 
 const MobileMenu = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="block lg:hidden">
@@ -64,7 +64,7 @@ const MobileMenu = () => {
       <DropdownMenuContent className="mr-4">
         {navigationLinks.map((nav) =>
           nav.submenu ? (
-            <DropdownMenuSub>
+            <DropdownMenuSub key={nav.id}>
               <DropdownMenuSubTrigger>{nav.label}</DropdownMenuSubTrigger>
               <DropdownMenuPortal>
                 <DropdownMenuSubContent>
@@ -92,7 +92,7 @@ const MobileMenu = () => {
         )}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
 
-export default MobileMenu
+export default MobileMenu;

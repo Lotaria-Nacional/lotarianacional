@@ -1,12 +1,22 @@
-import { Department } from "../constants/departments"
-
 export type JobOppening = {
-  id: number
-  department: Department
+  id: string
+  department: string
   title: string
-  description: string
+  quantity: number
+  description?: string
   requirements: string[]
   responsabilities: string[]
-  location?: string
+  createdAt: Date
+}
+
+export type PartnerJobOppening = {
+  id: string
+  title: string
+  type: string
+  quantity: number
+  description?: string
+  requirements: string[]
+  responsabilities: string[]
+  location: string
   createdAt: Date
 }

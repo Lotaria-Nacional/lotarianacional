@@ -12,6 +12,6 @@ export { default as StatisticsPage } from "../features/statistics/pages/statisti
 export {default as PoliticsAndPrivacyPage } from "@/pages/legal/politics-and-privacy-page";
 export { default as JobApplicationPage } from "../features/job-application/pages/job-application-page"
 export { default as DailyLotteryResultPage } from "../features/lottery-result/pages/lottery-result-page"
-export { default as JobOppeningDetailsPage } from "@/features/job-application/pages/job-oppening-details-page";
-export { default as ResellerJobOppeningsPage } from "@/features/job-application/pages/reseller-job-oppenings-page";
+export { default as JobOppeningDetailsPage } from "@/features/job-application/pages/skilled-staff-job-oppening-details-page";
+export { default as ResellerJobOppeningsPage } from "@/features/job-application/pages/partner-job-oppenings-page";
 export { default as SkilledStaffJobOppeningsPage } from "@/features/job-application/pages/skilled-staff-job-oppenings-page";

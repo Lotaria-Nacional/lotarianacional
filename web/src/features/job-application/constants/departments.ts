@@ -1,7 +1,7 @@
 export const departments = [
   {
     title: "T.I",
-    value: "t.i",
+    value: "ti",
   },
   {
     title: "Sorteio",
