@@ -1,27 +1,27 @@
-import { IMAGE } from "@/assets";
-import { Link } from "react-router-dom";
-import { FormEvent, useState } from "react";
-import { EyeOffIcon, Eye } from "lucide-react";
-import { useAuth } from "@/app/context/auth-context";
-import Button from "@/shared/components/ui/lottary-button";
+import { IMAGE } from "@/assets"
+import { Link } from "react-router-dom"
+import { FormEvent, useState } from "react"
+import { EyeOffIcon, Eye } from "lucide-react"
+import { useAuth } from "@/app/context/auth-context"
+import Button from "@/shared/components/ui/lottary-button"
 
 export default function LoginForm() {
-  const { login, isLoading } = useAuth();
-  const [isPasswordInputVisible, setIsPasswordInputVisible] = useState(false);
+  const { login, isLoading } = useAuth()
+  const [isPasswordInputVisible, setIsPasswordInputVisible] = useState(false)
 
   const hangleTogglePasswordInputVisibility = () => {
-    setIsPasswordInputVisible((prev) => !prev);
-  };
+    setIsPasswordInputVisible((prev) => !prev)
+  }
 
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
-  });
+  })
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    await login(credentials.email, credentials.password);
-  };
+    e.preventDefault()
+    await login(credentials.email, credentials.password)
+  }
 
   return (
     <section className="flex bg-white rounded-card md:p-20 p-8 items-center justify-center flex-col md:gap-10 gap-2 md:size-[550px] h-auto w-full">
@@ -91,5 +91,5 @@ export default function LoginForm() {
         </Button>
       </form>
     </section>
-  );
+  )
 }

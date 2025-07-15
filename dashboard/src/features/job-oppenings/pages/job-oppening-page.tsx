@@ -2,14 +2,15 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-} from "@/shared/components/ui/dialog";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
-import AddQualifiedOppeningForm from "../components/add-job-oppening-form";
-import Button from "@/shared/components/ui/lottary-button";
+} from "@/shared/components/ui/dialog"
+import { NavLink, Outlet, useLocation } from "react-router-dom"
+import AddQualifiedOppeningForm from "../components/add-qualified-oppening-form"
+import Button from "@/shared/components/ui/lottary-button"
+import AddPartnerOppeningForm from "../components/add-partner-oppening-form"
 
 export default function JobOppeningPage() {
-  const location = useLocation();
-  const buttonType = location.pathname.split("/")[2];
+  const location = useLocation()
+  const buttonType = location.pathname.split("/")[2]
 
   return (
     <div className="flex flex-col gap-6 main">
@@ -48,10 +49,17 @@ export default function JobOppeningPage() {
             </DialogContent>
           </Dialog>
         ) : (
-          <button>adicionar par</button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>adicionar</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <AddPartnerOppeningForm />
+            </DialogContent>
+          </Dialog>
         )}
       </section>
       <Outlet />
     </div>
-  );
+  )
 }

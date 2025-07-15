@@ -16,11 +16,10 @@ import {
   ForgotPasswordPage,
   DownloadResultsPage,
   QualifiedOppeningPage,
-  ResellerPage,
-} from "@/pages";
-import App from "../../App";
-import { createBrowserRouter } from "react-router-dom";
-import PartnerPage from "@/features/job-oppenings/pages/partner-page";
+  PartnerPage,
+} from "@/pages"
+import App from "../../App"
+import { createBrowserRouter } from "react-router-dom"
 
 export const router = createBrowserRouter([
   {
@@ -105,4 +104,4 @@ export const router = createBrowserRouter([
     path: "*",
     element: <PageNotFound />,
   },
-]);
+])

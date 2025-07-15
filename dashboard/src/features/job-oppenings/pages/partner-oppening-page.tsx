@@ -3,18 +3,18 @@ import {
   TableBody,
   TableCell,
   TableHead,
-  TableHeader,
   TableRow,
+  TableHeader,
 } from "@/shared/components/ui/table"
-import { useFetchJobOppenings } from "../hooks/use-fetch-many-job-oppenings"
 import { Button } from "@/shared/components/ui/button"
-import { useDeleteJobOppening } from "../hooks/use-delete-job-oppening"
 import { Trash } from "lucide-react"
-import UpdateQualifiendOppening from "../components/update-qualifiend-oppening"
+import { useFetchPartnerJobOppenings } from "../hooks/partner/use-fetch-many-partner-job-oppenings"
+import { useDeletePartnerJobOppening } from "../hooks/partner/use-delete-partner-job-oppening"
+import UpdatePartnerOppening from "../components/update-partner-oppening"
 
-export default function QualifiedOppeningPage() {
-  const data = useFetchJobOppenings()
-  const deleteHook = useDeleteJobOppening()
+export default function PartnerOppeningPage() {
+  const data = useFetchPartnerJobOppenings()
+  const deleteHook = useDeletePartnerJobOppening()
 
   const handleDelete = async (id: string) => await deleteHook.mutateAsync(id)
 
@@ -43,7 +43,8 @@ export default function QualifiedOppeningPage() {
         <TableHeader className="bg-LT-GRAY-200/20">
           <TableRow>
             <TableHead>Função</TableHead>
-            <TableHead>Departamento</TableHead>
+            <TableHead>Localização</TableHead>
+            <TableHead>Tipo</TableHead>
             <TableHead>Quantidade</TableHead>
             <TableHead>Ações</TableHead>
           </TableRow>
@@ -52,10 +53,11 @@ export default function QualifiedOppeningPage() {
           {jobs.map((job) => (
             <TableRow key={job.id}>
               <TableCell>{job.title}</TableCell>
-              <TableCell>{job.department}</TableCell>
+              <TableCell>{job.type}</TableCell>
+              <TableCell>{job.location}</TableCell>
               <TableCell>{job.quantity}</TableCell>
               <TableCell className="flex items-center gap-2">
-                <UpdateQualifiendOppening job={job} />
+                <UpdatePartnerOppening job={job} />
                 <Button
                   size={"icon"}
                   disabled={deleteHook.isPending}

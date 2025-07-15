@@ -26,7 +26,7 @@ export default function Button({
     <button
       {...props}
       className={twMerge(
-        `${btnStyle[variant]} disabled:opacity-70 w-fit hover:opacity-70 duration-200 ease-in transition-all cursor-pointer max-h-[38px] rounded-button text-center p-button flex items-center justify-center gap-2 text-white`,
+        `${btnStyle[variant]} disabled:opacity-70 w-fit hover:opacity-70 duration-200 ease-in transition-all cursor-pointer max-h-[38px] rounded-[4px] text-center p-button flex items-center justify-center gap-2 text-white`,
         className
       )}
     >
