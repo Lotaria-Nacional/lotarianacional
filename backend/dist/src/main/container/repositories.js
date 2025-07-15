@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.statisticService = exports.dailyResultRepo = exports.lotteryResultRepo = exports.statisticRespo = exports.agencyRepository = exports.emissionRepo = exports.userRepository = exports.newsRepository = void 0;
+const prisma_agency_repository_1 = require("../../domain/agency/infrastructure/repositories/prisma/prisma-agency.repository");
+const create_statistics_useCase_1 = require("../../domain/daily-lottery-result/application/use-cases/statistics/create-statistics.useCase");
+const prisma_daily_lottery_result_respository_1 = require("../../domain/daily-lottery-result/infrastructure/repositories/prisma/prisma-daily-lottery-result.respository");
+const prisma_emission_repository_1 = require("../../domain/daily-lottery-result/infrastructure/repositories/prisma/prisma.emission.repository");
+const prisma_result_repository_1 = require("../../domain/daily-lottery-result/infrastructure/repositories/prisma/prisma.result.repository");
+const prisma_statistic_repository_1 = require("../../domain/daily-lottery-result/infrastructure/repositories/prisma/prisma.statistic.repository");
+const prisma_news_repository_1 = require("../../domain/news/infrastructure/repositories/prisma/prisma.news.repository");
+const prisma_user_repository_1 = require("../../domain/user/infrastructure/repositories/prisma/prisma.user.repository");
+const prisma_1 = require("../config/prisma");
+exports.newsRepository = new prisma_news_repository_1.PrismaNewsRespository(prisma_1.prisma);
+exports.userRepository = new prisma_user_repository_1.PrismaUserRespository(prisma_1.prisma);
+exports.emissionRepo = new prisma_emission_repository_1.PrismaEmissionRepository(prisma_1.prisma);
+exports.agencyRepository = new prisma_agency_repository_1.PrismaAgencyRepository(prisma_1.prisma);
+exports.statisticRespo = new prisma_statistic_repository_1.PrismaStatisticRepository(prisma_1.prisma);
+exports.lotteryResultRepo = new prisma_result_repository_1.PrismaLotteryResultRespository(prisma_1.prisma);
+exports.dailyResultRepo = new prisma_daily_lottery_result_respository_1.PrismaDailyLotteryResultsRespository(prisma_1.prisma);
+exports.statisticService = new create_statistics_useCase_1.NumberStatisticService(exports.dailyResultRepo, exports.statisticRespo);
+//# sourceMappingURL=repositories.js.map

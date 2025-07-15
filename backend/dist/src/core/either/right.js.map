@@ -1,0 +1,1 @@
+{"version":3,"file":"right.js","sourceRoot":"","sources":["../../../../src/core/either/right.ts"],"names":[],"mappings":";;;AAEA,MAAa,KAAK;IACE,KAAK,CAAE;IAEvB,YAAY,KAAO;QACf,IAAI,CAAC,KAAK,GAAG,KAAK,CAAA;IACtB,CAAC;IAED,OAAO;QACH,OAAO,IAAI,CAAA;IACf,CAAC;IAED,MAAM;QACF,OAAO,IAAI,CAAA;IACf,CAAC;CACJ;AAdD,sBAcC"}

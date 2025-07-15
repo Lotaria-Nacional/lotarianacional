@@ -1,0 +1,32 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routes = void 0;
+const agency_routes_1 = __importDefault(require("../../domain/agency/presentation/routes/agency.routes"));
+const daily_lottery_results_routes_1 = __importDefault(require("../../domain/daily-lottery-result/presentation/routes/daily-lottery-results.routes"));
+const emissions_route_1 = __importDefault(require("../../domain/daily-lottery-result/presentation/routes/emissions.route"));
+const lottery_result_routes_1 = __importDefault(require("../../domain/daily-lottery-result/presentation/routes/lottery-result.routes"));
+const statistics_routes_1 = __importDefault(require("../../domain/daily-lottery-result/presentation/routes/statistics.routes"));
+const partner_job_oppening_routes_1 = __importDefault(require("../../domain/job-oppening/presentation/routes/partner-job-oppening.routes"));
+const job_oppening_routes_1 = __importDefault(require("../../domain/job-oppening/presentation/routes/job-oppening.routes"));
+const news_routes_1 = __importDefault(require("../../domain/news/presentation/routes/news.routes"));
+const application_routes_1 = __importDefault(require("../../domain/send-applications/presentation/routes/application.routes"));
+const auth_routes_1 = __importDefault(require("../../domain/user/presentation/routes/auth.routes"));
+const user_routes_1 = __importDefault(require("../../domain/user/presentation/routes/user.routes"));
+const express_1 = require("express");
+exports.routes = (0, express_1.Router)();
+exports.routes.use("/news", news_routes_1.default);
+exports.routes.use("/auth", auth_routes_1.default);
+exports.routes.use("/users", user_routes_1.default);
+exports.routes.use("/agencies", agency_routes_1.default);
+exports.routes.use("/emissions", emissions_route_1.default);
+exports.routes.use("/statistics", statistics_routes_1.default);
+exports.routes.use("/lottery-results", lottery_result_routes_1.default);
+exports.routes.use("/daily-lottery-results", daily_lottery_results_routes_1.default);
+exports.routes.use("/candidaturas", application_routes_1.default);
+exports.routes.use("/vagas/revendedor", partner_job_oppening_routes_1.default);
+exports.routes.use("/vagas", job_oppening_routes_1.default);
+exports.default = exports.routes;
+//# sourceMappingURL=index.js.map

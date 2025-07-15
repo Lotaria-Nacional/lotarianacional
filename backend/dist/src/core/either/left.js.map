@@ -1,0 +1,1 @@
+{"version":3,"file":"left.js","sourceRoot":"","sources":["../../../../src/core/either/left.ts"],"names":[],"mappings":";;;AAEA,MAAa,IAAI;IACG,KAAK,CAAE;IAEvB,YAAY,KAAO;QACf,IAAI,CAAC,KAAK,GAAG,KAAK,CAAA;IACtB,CAAC;IAED,MAAM;QACF,OAAO,IAAI,CAAA;IACf,CAAC;IAED,OAAO;QACH,OAAO,KAAK,CAAA;IAChB,CAAC;CACF;AAdH,oBAcG"}

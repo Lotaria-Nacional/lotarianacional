@@ -1,0 +1,1 @@
+{"version":3,"file":"resultLimitExceeded.exception.js","sourceRoot":"","sources":["../../../../../src/domain/daily-lottery-result/exceptions/resultLimitExceeded.exception.ts"],"names":[],"mappings":";;;AAAA,MAAa,oBAAqB,SAAQ,KAAK;IAC7C;QACE,KAAK,CAAC,6CAA6C,CAAC,CAAA;QACpD,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC,WAAW,CAAC,IAAI,CAAA;IACnC,CAAC;CACF;AALD,oDAKC"}
