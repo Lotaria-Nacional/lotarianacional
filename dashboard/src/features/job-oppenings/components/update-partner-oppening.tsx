@@ -1,4 +1,3 @@
-import { Button } from "@/shared/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -6,33 +5,34 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/shared/components/ui/dialog"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Edit2 } from "lucide-react"
-import { Controller, useForm } from "react-hook-form"
-import { PartnerJobOppening } from "../@types"
-import { Input } from "@/shared/components/ui/input"
+} from "@/shared/components/ui/dialog";
 import {
   Select,
-  SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue,
-} from "@/shared/components/ui/select"
-import { departments } from "@/app/constants/departments"
-import { Textarea } from "@/shared/components/ui/textarea"
+  SelectContent,
+  SelectTrigger,
+} from "@/shared/components/ui/select";
 import {
   UpdatePartnerOppeningDTO,
   updatePartnerOppeningSchema,
-} from "../validation/update-partner-oppening.schema"
-import { useUpdatePartnerJobOppening } from "../hooks/partner/use-update-partner-job-oppening"
+} from "../validation/update-partner-oppening.schema";
+import { Edit2 } from "lucide-react";
+import { PartnerJobOppening } from "../@types";
+import { Input } from "@/shared/components/ui/input";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/shared/components/ui/button";
+import { Textarea } from "@/shared/components/ui/textarea";
+import { useUpdatePartnerJobOppening } from "../hooks/partner/use-update-partner-job-oppening";
+import { jobLocations } from "../constants/job-locations";
 
 type Props = {
-  job: PartnerJobOppening
-}
+  job: PartnerJobOppening;
+};
 
 export default function UpdatePartnerOppening({ job }: Props) {
-  const updateHook = useUpdatePartnerJobOppening()
+  const updateHook = useUpdatePartnerJobOppening();
 
   const form = useForm<UpdatePartnerOppeningDTO>({
     resolver: zodResolver(updatePartnerOppeningSchema),
@@ -41,27 +41,27 @@ export default function UpdatePartnerOppening({ job }: Props) {
       location: job.location,
       id: job.id,
       quantity: job.quantity.toString(),
-      requirements: job.requirements.join(", "),
+      requirements: job.requirements.join("; "),
       title: job.title,
     },
-  })
+  });
 
   const onSubmit = async (data: UpdatePartnerOppeningDTO) => {
-    const { requirements, ...rest } = data
+    const { requirements, ...rest } = data;
     const normalizedRequirements: string[] = Array.isArray(requirements)
       ? requirements
       : requirements
-          ?.split(",")
+          ?.split(";")
           .map((item) => item.trim())
-          .filter((item) => item.length > 0) || []
+          .filter((item) => item.length > 0) || [];
 
     const payload = {
       ...rest,
       requirements: normalizedRequirements,
-    }
-    await updateHook.mutateAsync(payload)
-    console.log(payload)
-  }
+    };
+    await updateHook.mutateAsync(payload);
+    console.log(payload);
+  };
 
   return (
     <Dialog>
@@ -81,55 +81,66 @@ export default function UpdatePartnerOppening({ job }: Props) {
         >
           <fieldset className="flex gap-4 w-full">
             <div className="flex flex-col gap-2 w-full">
-              <label>Titulo</label>
-              <Input
-                placeholder="Digite a função"
-                {...form.register("title")}
-                className="w-full border-[#8E8E8E]"
-              />
-            </div>
-
-            <div className="flex flex-col gap-2 w-full">
-              <label htmlFor="">Tipo</label>
+              <label htmlFor="">Tipo de parceiro</label>
               <Controller
                 name="type"
                 control={form.control}
                 render={({ field }) => (
                   <Select
-                    defaultValue={field.value}
+                    value={field.value}
                     onValueChange={(value) => field.onChange(value)}
                   >
                     <SelectTrigger className="w-full border-[#8E8E8E]">
-                      <SelectValue placeholder="Selecione o departamento" />
+                      <SelectValue placeholder="Tipo" />
                       <SelectContent>
-                        {departments.map((item, index) => (
-                          <SelectItem key={index} value={item.value}>
-                            {item.name}
-                          </SelectItem>
-                        ))}
+                        <SelectItem value="Revendedor">Revendedor</SelectItem>
                       </SelectContent>
                     </SelectTrigger>
                   </Select>
                 )}
               />
             </div>
+            <div className="flex flex-col gap-2 w-full">
+              <label>Quantidade</label>
+              <Input
+                type="number"
+                inputMode="numeric"
+                placeholder="Quantidade"
+                {...form.register("quantity")}
+                className="w-full border-[#8E8E8E]"
+              />
+            </div>
           </fieldset>
 
           <div className="flex flex-col gap-2 w-full">
-            <label htmlFor="quantidade">Quantidade</label>
-            <Input
-              type="number"
-              inputMode="numeric"
-              {...form.register("quantity")}
-              placeholder="Escolha a quantidade"
-              className="w-full border-[#8E8E8E]"
+            <label htmlFor="">Localização</label>
+            <Controller
+              name="location"
+              control={form.control}
+              render={({ field }) => (
+                <Select
+                  defaultValue={field.value}
+                  onValueChange={(value) => field.onChange(value)}
+                >
+                  <SelectTrigger className="w-full border-[#8E8E8E]">
+                    <SelectValue placeholder="Localização" />
+                    <SelectContent>
+                      {jobLocations.map((item, index) => (
+                        <SelectItem key={index} value={item.value}>
+                          {item.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </SelectTrigger>
+                </Select>
+              )}
             />
           </div>
 
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="requisitos">Requisitos</label>
             <Textarea
-              placeholder="Requisitos"
+              placeholder="Separe os requisitos por ponto e vírgula (;)"
               {...form.register("requirements")}
               className=" h-4 border-[#8E8E8E]"
             />
@@ -144,5 +155,5 @@ export default function UpdatePartnerOppening({ job }: Props) {
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

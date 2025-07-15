@@ -9,8 +9,8 @@ export function useUpdateJobOppening() {
     mutationKey: ["update-job-oppening"],
     mutationFn: updateJobOppening,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["fetch-job-oppenings"] }),
-        toast.success(data.message)
+      queryClient.invalidateQueries({ queryKey: ["fetch-job-oppenings"] })
+      toast.success(data.message)
     },
     onError: (error: any) => {
       const errorMessage =

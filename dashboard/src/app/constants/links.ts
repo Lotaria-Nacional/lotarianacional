@@ -1,6 +1,6 @@
 import { IconNameType } from "@/shared/components/ui/icon"
 
-export type RoleType = "admin" | "editor" | "studio"
+export type RoleType = "admin" | "editor" | "studio" | "rh"
 
 type NavLinkTypeV2 = {
   id: number
@@ -72,7 +72,7 @@ export const UP_NAV_LINKS: NavLinkTypeV2[] = [
     link: "/carreiras/quadros",
     label: "Carreiras",
     icon: "cv",
-    allowedRoles: ["admin", "editor", "studio"],
+    allowedRoles: ["admin", "rh"],
   },
 ]
 
@@ -138,6 +138,13 @@ export const MOBILE_NAVBAR: NavLinkTypeV2[][] = [
       label: "Configurações",
       icon: "settings",
       allowedRoles: ["admin"],
+    },
+    {
+      id: 5,
+      link: "/carreiras/quadros",
+      label: "Carreiras",
+      icon: "cv",
+      allowedRoles: ["admin", "rh"],
     },
   ],
 ]

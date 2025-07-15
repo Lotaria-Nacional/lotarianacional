@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react"
-import { twMerge } from "tailwind-merge"
+import { PropsWithChildren } from "react";
+import { twMerge } from "tailwind-merge";
 
-type Props = { className?: string } & PropsWithChildren
+type Props = { className?: string } & PropsWithChildren;
 
 export default function Box({ children, className }: Props) {
   return (
@@ -13,5 +13,5 @@ export default function Box({ children, className }: Props) {
     >
       {children}
     </div>
-  )
+  );
 }

@@ -17,7 +17,7 @@ createRoot(document.getElementById("root")!).render(
         <Suspense fallback={<PageFallback />}>
           <RouterProvider router={router} />
         </Suspense>
-        <Toaster className="bg-green-700" />
+        <Toaster />
       </AuthContextProvider>
     </QueryClientProvider>
   </StrictMode>
