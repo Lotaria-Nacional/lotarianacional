@@ -9,6 +9,8 @@ describe("Create Job Oppening", ()=> {
             department:"t.i",
             requirements:[""],
             responsabilities:[""],
+            quantity:0,
+
             description:faker.lorem.text(),
         })
 

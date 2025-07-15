@@ -9,13 +9,12 @@ import { UpdateUserUseCase } from "../../application/use-cases/update-user.useCa
 import { FetchManyUsersController } from "../controllers/fetch-many-users.controllers";
 import { GetUserByIdUseCase } from "../../application/use-cases/get-user-by-id.useCase";
 import { FetchManyUsersUseCase } from "../../application/use-cases/fetch-many-users.useCase";
-import { IFileUpload } from "../../../../core/contracts/file-upload.interface";
 import { IHashService } from "../../../../core/contracts/hash.interface";
 
-export function makeUserController(repository:IUserRepository, fileUpload: IFileUpload, hashService: IHashService){
-    const createUser = new CreateUserController(new CreateUserUseCase(repository, fileUpload, hashService))
-    const updateUser = new UpdateUserController(new UpdateUserUseCase(repository, fileUpload))
-    const removeUser = new DeleteUserController(new DeleteUserUseCase(repository, fileUpload))
+export function makeUserController(repository:IUserRepository, hashService: IHashService){
+    const createUser = new CreateUserController(new CreateUserUseCase(repository, hashService))
+    const updateUser = new UpdateUserController(new UpdateUserUseCase(repository))
+    const removeUser = new DeleteUserController(new DeleteUserUseCase(repository))
     const fetchManyUsers = new FetchManyUsersController(new FetchManyUsersUseCase(repository))
     const getUserById = new GetUserByIdController(new GetUserByIdUseCase(repository))
 

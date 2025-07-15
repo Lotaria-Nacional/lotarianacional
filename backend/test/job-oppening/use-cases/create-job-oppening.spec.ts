@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker"
 import { InMemoryJobOppeningRepository } from "../infra/in-memory-job-oppening.repository"
 import { JobOppening } from "../../../src/domain/job-oppening/enterprise/entities/job-oppening"
 import { CreateJobOppeningDTO } from "../../../src/domain/job-oppening/presentation/validation/create-job-oppening.schema"
-import { CreateJobOppeningUseCase } from "../../../src/domain/job-oppening/application/use-cases/create-job-oppening.useCase"
+import { CreateJobOppeningUseCase } from "../../../src/domain/job-oppening/application/use-cases/job-oppening/create-job-oppening.useCase"
 
 let repository:InMemoryJobOppeningRepository
 let sut:CreateJobOppeningUseCase
@@ -18,6 +18,7 @@ describe("Create Job Oppening Use Case", ()=> {
         const jobOppening:CreateJobOppeningDTO = {
             title:"Apresentadora de sorteio",
             department:"Sorteio",
+            quantity:0,
             requirements:["1'75cm de altura", "boa dicção", "confortável a frente das câmeras"],
             responsabilities:["fazer o sorteio dos resultados"],
             description:faker.lorem.sentences(2)

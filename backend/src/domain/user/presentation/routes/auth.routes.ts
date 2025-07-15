@@ -13,9 +13,8 @@ const userRepository = new PrismaUserRespository(prisma);
 const tokenService = new JwtTokenService();
 const hashService = new BcryptHashService();
 
-const { loginController, logoutController } = makeAuthController(userRepository, hashService, tokenService);
+const { loginController } = makeAuthController(userRepository, hashService, tokenService);
 
 authRouter.post("/login", expressAdapterController(loginController));
-authRouter.post("/logout", expressAdapterController(logoutController));
 
 export default authRouter;

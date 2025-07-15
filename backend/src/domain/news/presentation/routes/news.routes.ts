@@ -2,14 +2,11 @@ import { Router } from "express";
 import { newsRepository } from "../../../../main/container/repositories";
 import { makeNewsController } from "../factories/make-news-controllers";
 import { expressAdapterController } from "../../../../core/adapters/express-adapter-controller";
-import { CloudinaryUploadService } from "../../../../core/services/file-upload/cloudinary-upload-service";
 import { upload } from "../../../../core/middlewares/multer.middleware";
 
 const newsRouter = Router();
 
-const cloudinaryService = new CloudinaryUploadService();
-
-const { createNews, fetchManyNews, getNewsById, removeNews, updateNews } = makeNewsController(newsRepository, cloudinaryService);
+const { createNews, fetchManyNews, getNewsById, removeNews, updateNews } = makeNewsController(newsRepository);
 
 newsRouter.post("/", upload.single("image"), expressAdapterController(createNews));
 newsRouter.get("/", expressAdapterController(fetchManyNews));

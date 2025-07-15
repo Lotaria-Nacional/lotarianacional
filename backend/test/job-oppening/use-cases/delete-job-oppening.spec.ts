@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker"
 import { InMemoryJobOppeningRepository } from "../infra/in-memory-job-oppening.repository"
 import { JobOppening } from "../../../src/domain/job-oppening/enterprise/entities/job-oppening"
-import { DeleteJobOppeningUseCase } from "../../../src/domain/job-oppening/application/use-cases/delete-job-oppening.useCase"
+import { DeleteJobOppeningUseCase } from "../../../src/domain/job-oppening/application/use-cases/job-oppening/delete-job-oppening.useCase"
 
 let repository:InMemoryJobOppeningRepository
 let sut:DeleteJobOppeningUseCase
@@ -17,6 +17,7 @@ describe("Delete Job Oppening Use Case", ()=> {
         const jobOppening = JobOppening.create({
             title:"Apresentadora de sorteio",
             department:"Sorteio",
+            quantity:1,
             requirements:["1'75cm de altura", "boa dicção", "confortável a frente das câmeras"],
             responsabilities:["fazer o sorteio dos resultados"],
             description:faker.lorem.sentences(2)
