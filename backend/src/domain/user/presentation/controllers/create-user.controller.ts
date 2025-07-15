@@ -7,15 +7,11 @@ export class CreateUserController implements IController<CreateUserDTO> {
   constructor(private useCase: CreateUserUseCase) {}
 
   async handle(req: HttpRequest<CreateUserDTO>): Promise<HttpResponse> {
-    const file = req.file as Express.Multer.File;
-    const fileBuffer = file.buffer;
-
     try {
-      const body = createUserSchema.parse({ ...req.body, profilePic: fileBuffer });
+      const body = createUserSchema.parse({ ...req.body });
 
       await this.useCase.execute({
         ...body,
-        profilePic: fileBuffer,
       });
 
       return { statusCode: 201, body: { message: "Usuário criado com sucesso!" } };
