@@ -52,9 +52,8 @@ const Footer = () => {
                 <SocialMediaLinks />
               </div>
               <span>Tel: + 244 923 190 007</span>
-              <span>contacto@lotarianacional.co.ao</span>
+              <span>geral@lotarianacional.co.ao</span>
               <span>Rainha Ginga Nº 79</span>
-              {/* <span>recrutamentorevendedores@lotarianacional.co.ao</span> */}
             </div>
             <div className="flex items-center justify-end w-full gap-4">
               <img
