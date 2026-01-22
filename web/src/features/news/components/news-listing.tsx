@@ -1,7 +1,7 @@
-import NewsCard from "./news-card";
-import { useFetchManyNews } from "@/features/news/hooks/use-fetch-many-news";
-import ListingNewsSkeleton from "./news-listing-skeleton";
-import EmptyState from "@/shared/components/common/empty-state";
+import NewsCard from './news-card';
+import { useFetchManyNews } from '@/features/news/hooks/use-fetch-many-news';
+import ListingNewsSkeleton from './news-listing-skeleton';
+import EmptyState from '@/shared/components/common/empty-state';
 
 export default function NewsListing() {
   const { data: news, isLoading } = useFetchManyNews(1);

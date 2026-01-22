@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import { LOGO } from "@/app/constants/assets";
-import Container from "../common/container/container";
-import SocialMediaLinks from "../common/social-media-links";
-import { FOOTER_NAVIGATION } from "@/app/router/navigation";
+import { Link } from 'react-router-dom';
+import { LOGO } from '@/app/constants/assets';
+import Container from '../common/container/container';
+import SocialMediaLinks from '../common/social-media-links';
+import { FOOTER_NAVIGATION } from '@/app/router/navigation';
 
 const Footer = () => {
   return (
@@ -12,13 +12,10 @@ const Footer = () => {
         <Container className="items-start gap-10 flex flex-wrap lg:grid grid-cols-3 lg:gap-4 place-items-center">
           <div className="flex w-full h-full flex-col justify-between">
             <div className="flex flex-col gap gap-4">
-              <h1 className="text-xl capitalize font-bold">
-                Informações Gerais
-              </h1>
+              <h1 className="text-xl capitalize font-bold">Informações Gerais</h1>
               <p>
-                Prepare-se para sonhar alto! Com a Lotaria Nacional, você tem a
-                chance de transformar seu destino. É fácil participar: escolha
-                seus números, faça sua aposta e espere pelo sorteio!
+                Prepare-se para sonhar alto! Com a Lotaria Nacional, você tem a chance de transformar seu destino. É
+                fácil participar: escolha seus números, faça sua aposta e espere pelo sorteio!
               </p>
             </div>
             <img
@@ -62,11 +59,7 @@ const Footer = () => {
                 className="w-[150px] object-contain lg:hidden block"
               />
               <div className="flex items-center justify-end w-full gap-4">
-                <img
-                  alt=""
-                  src={LOGO.adultOnly}
-                  className="w-[50px] object-cover"
-                />
+                <img alt="" src={LOGO.adultOnly} className="w-[50px] object-cover" />
                 <img src={LOGO.isj} alt="" className="w-[70px] object-cover" />
               </div>
             </div>
@@ -77,8 +70,7 @@ const Footer = () => {
       <section className="w-full bg-LT_GRAY-300">
         <Container className="py-6 justify-center">
           <p className="text-neutral-500">
-            © {new Date().getFullYear()} Lotaria Nacional. Todos os direitos
-            reservados.
+            © {new Date().getFullYear()} Lotaria Nacional. Todos os direitos reservados.
           </p>
         </Container>
       </section>

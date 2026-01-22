@@ -1,23 +1,18 @@
-import DOMPurify from "dompurify";
-import { dateFormat } from "@/shared/utils/date";
-import { NewsEntity } from "../@types/news.types";
+import DOMPurify from 'dompurify';
+import { dateFormat } from '@/shared/utils/date';
+import { NewsEntity } from '../@types/news.types';
 
 type Props = {
   data: NewsEntity;
 };
 
 export default function NewsDetailsContent({ data }: Props) {
-  console.log(data.description);
   const sanitizedHTML = DOMPurify.sanitize(data.description);
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col gap-4">
         <div className="relative w-full h-[200px] md:h-[400px]">
-          <img
-            src={data.image}
-            alt={data.title}
-            className="absolute inset-0 w-full h-full object-cover rounded-xl"
-          />
+          <img src={data.image} alt={data.title} className="absolute inset-0 w-full h-full object-cover rounded-xl" />
         </div>
         <header className="flex flex-col gap-3">
           <span className="text-lg">{dateFormat(data.createdAt)}</span>
@@ -26,10 +21,7 @@ export default function NewsDetailsContent({ data }: Props) {
       </div>
 
       <hr className="my-8" />
-      <div
-        className="text-lg  "
-        dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
-      />
+      <div className="text-lg  " dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />
     </div>
   );
 }

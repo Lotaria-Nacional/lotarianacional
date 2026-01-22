@@ -1,9 +1,9 @@
-import { Navigate, useParams } from "react-router-dom";
-import { PageBody } from "@/shared/components/layout/page-body";
-import ResellerOppeningForm from "../components/partner/partner-oppening-form";
-import MorePartnerJobOpenings from "../components/partner/more-partner-job-openings";
-import { useGetPartnerOppeningJobById } from "../hooks/use-get-partner-oppening-job-by-id";
-import { useEffect } from "react";
+import { Navigate, useParams } from 'react-router-dom';
+import { PageBody } from '@/shared/components/layout/page-body';
+import ResellerOppeningForm from '../components/partner/partner-oppening-form';
+import MorePartnerJobOpenings from '../components/partner/more-partner-job-openings';
+import { useGetPartnerOppeningJobById } from '../hooks/use-get-partner-oppening-job-by-id';
+import { useEffect } from 'react';
 
 export default function PartnerJobDetailsPage() {
   const { id } = useParams();
@@ -14,15 +14,14 @@ export default function PartnerJobDetailsPage() {
   }, [id]);
 
   if (job.isLoading) {
-    return <div>Carregando...</div>;
+    return <div className="flex items-center justify-center w-full h-full">Carregando...</div>;
   }
 
   if (!job.data) {
     return <Navigate to="/carreira/revendedor" replace />;
   }
 
-  const { title, location, responsabilities, requirements, description } =
-    job.data;
+  const { title, location, responsabilities, requirements, description } = job.data;
 
   return (
     <PageBody.Container>
@@ -30,28 +29,20 @@ export default function PartnerJobDetailsPage() {
         <section className="w-full flex flex-col gap-4">
           {/* Header */}
           <header className="flex flex-col gap-3">
-            <span className="px-2 capitalize text-[12px] bg-[#f5f5f5] w-fit rounded-full">
-              Revendedor
-            </span>
+            <span className="px-2 capitalize text-[12px] bg-[#f5f5f5] w-fit rounded-full">Revendedor</span>
             <h1 className="capitalize text-[24px]">{title}</h1>
-            {location && (
-              <h2 className="capitalize text-[16px]">
-                Localização: {location}
-              </h2>
-            )}
+            {location && <h2 className="capitalize text-[16px]">Localização: {location}</h2>}
           </header>
 
           {/* Intro */}
           <p className="text-justify text-sm">
-            A Mota & Tavares Jogos, S.A., entidade oficial responsável pela
-            exploração da Lotaria Nacional em Angola, está à procura de um/a{" "}
-            <span className="capitalize font-semibold">{title}</span> que queira
-            juntar-se à nós na missão de comercializar jogos de lotaria de forma
-            responsável e transparente.
+            A Mota & Tavares Jogos, S.A., entidade oficial responsável pela exploração da Lotaria Nacional em Angola,
+            está à procura de um/a <span className="capitalize font-semibold">{title}</span> que queira juntar-se à nós
+            na missão de comercializar jogos de lotaria de forma responsável e transparente.
           </p>
 
           {/* Descrição */}
-          {typeof description === "string" && description.length > 0 && (
+          {typeof description === 'string' && description.length > 0 && (
             <p className="text-justify text-sm">{description}</p>
           )}
 
@@ -59,9 +50,7 @@ export default function PartnerJobDetailsPage() {
           {Array.isArray(responsabilities) && responsabilities.length > 0 && (
             <>
               <h2 className="text-[16px]">Responsabilidades</h2>
-              <h3 className="text-sm">
-                Entre as suas principais responsabilidades estão:
-              </h3>
+              <h3 className="text-sm">Entre as suas principais responsabilidades estão:</h3>
               <ul className="pl-3 list-disc">
                 {responsabilities.map((item, idx) => (
                   <li className="text-sm" key={idx}>
