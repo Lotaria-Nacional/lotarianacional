@@ -1,18 +1,19 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { MOBILE_NAVBAR, RoleType } from "@/app/constants/links";
-import MobileMenuButton from "./mobile-menu-button";
-
-import Icon from "../ui/icon";
-import { useAuth } from "@/app/context/auth-context";
+import Icon from '../ui/icon';
+import MobileMenuButton from './mobile-menu-button';
+import { useAuth } from '@/app/context/auth-context';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { MOBILE_NAVBAR, RoleType } from '@/app/constants/links';
 
 export default function BottomNavbar() {
   const { user } = useAuth();
   const { pathname } = useLocation();
-  const ADD_RESULTS_PATH = "/resultados/adicionar";
+  const ADD_RESULTS_PATH = '/resultados/adicionar';
   const isInAddResultsPage = pathname.includes(ADD_RESULTS_PATH);
 
+  if (!user) return null;
+
   const userRole = user!.role as RoleType;
-  const canAddResults = ["admin", "studio"].includes(userRole);
+  const canAddResults = ['admin', 'studio'].includes(userRole);
 
   return (
     <nav className="lg:hidden flex z-[9999] items-center fixed bottom-0 w-full bg-LT-RED-200 py-4">
@@ -24,9 +25,7 @@ export default function BottomNavbar() {
               <NavLink
                 to={link.link}
                 className={({ isActive }) =>
-                  `flex flex-col gap-1 items-center w-full h-full ${
-                    isActive ? "text-LT-YELLOW" : "text-white"
-                  }`
+                  `flex flex-col gap-1 items-center w-full h-full ${isActive ? 'text-LT-YELLOW' : 'text-white'}`
                 }
               >
                 <Icon name={link.icon} />

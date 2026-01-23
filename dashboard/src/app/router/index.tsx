@@ -17,27 +17,27 @@ import {
   DownloadResultsPage,
   QualifiedOppeningPage,
   PartnerPage,
-} from "@/pages"
-import App from "../../App"
-import { createBrowserRouter } from "react-router-dom"
+} from '@/pages';
+import App from '../../App';
+import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
   {
-    path: "/auth",
+    path: '/auth',
     children: [
       {
-        path: "login",
+        path: 'login',
         element: <LoginPage />,
         errorElement: <PageError />,
       },
       {
-        path: "recuperar-palavra-passse",
+        path: 'recuperar-palavra-passse',
         element: <ForgotPasswordPage />,
       },
     ],
   },
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
@@ -45,55 +45,55 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/resultados/adicionar",
+        path: '/resultados/adicionar',
         element: <AddResultsPage />,
       },
       {
-        path: "/resultados/baixar",
+        path: '/resultados/baixar',
         element: <DownloadResultsPage />,
       },
       {
-        path: "/resultados/todos",
+        path: '/resultados/todos',
         element: <AllResultsPage />,
       },
       {
-        path: "/banners",
+        path: '/banners',
         element: <BannerPage />,
       },
       {
-        path: "/agencias",
+        path: '/agencias',
         element: <AgenciesPage />,
       },
       {
-        path: "/noticias",
+        path: '/noticias',
         element: <NewsPage />,
       },
       {
-        path: "/noticias/adicionar",
+        path: '/noticias/adicionar',
         element: <AddNewsPage />,
       },
       {
-        path: "/noticias/atualizar/:id",
+        path: '/noticias/atualizar/:id',
         element: <UpdateNewsPage />,
       },
       {
-        path: "/usuarios",
+        path: '/usuarios',
         element: <UsersPage />,
       },
       {
-        path: "/configuracoes",
+        path: '/configuracoes',
         element: <SettingsPage />,
       },
       {
-        path: "/carreiras",
+        path: '/carreiras',
         element: <JobOppeningPage />,
         children: [
           {
-            path: "quadros",
+            path: 'quadros',
             element: <QualifiedOppeningPage />,
           },
           {
-            path: "parceiros",
+            path: 'parceiros',
             element: <PartnerPage />,
           },
         ],
@@ -101,7 +101,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "*",
+    path: '*',
     element: <PageNotFound />,
   },
-])
+]);

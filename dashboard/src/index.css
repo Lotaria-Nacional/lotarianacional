@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
 
@@ -97,41 +97,61 @@ body {
 }
 
 @font-face {
-  font-family: "edoSz";
-  src: url("/fonts/edosz.ttf") format("truetype");
+  font-family: 'edoSz';
+  src: url('/fonts/edosz.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Arial";
-  src: url("/fonts/arial.ttf") format("truetype");
+  font-family: 'Arial';
+  src: url('/fonts/arial.ttf') format('truetype');
   font-weight: 400 900;
 }
 
 @font-face {
-  font-family: "Arial-Medium";
-  src: url("/fonts/arial-medium.ttf") format("truetype");
+  font-family: 'Arial-Medium';
+  src: url('/fonts/arial-medium.ttf') format('truetype');
   font-weight: 800;
 }
 
+@font-face {
+  font-family: 'Gotham-Rounded';
+  src: url('/fonts/gotham-rounded-bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham-Black';
+  src: url('/fonts/gotham-black.ttf') format('truetype');
+  font-weight: 800;
+}
+
+.gotham-black {
+  font-family: 'Gotham-Black', sans-serif;
+  font-weight: 800;
+}
+
+.gotham-rounded {
+  font-family: 'Gotham-Rounded', sans-serif;
+}
+
 .arial {
-  font-family: "Arial", sans-serif;
+  font-family: 'Arial', sans-serif;
   font-weight: 400;
 }
 
 .arial-medium {
-  font-family: "Arial-Medium", sans-serif;
-  font-weight: 700;                                                                    
+  font-family: 'Arial-Medium', sans-serif;
+  font-weight: 700;
 }
 
 .font-edoSz {
-  font-family: "edoSz";
+  font-family: 'edoSz';
   font-size: 42px;
   color: #e6ce2e;
   transform: rotate(-9deg);
 }
 
 .font-edoSz-normal {
-  font-family: "edoSz";
+  font-family: 'edoSz';
   color: #eab308;
 }
 
@@ -149,53 +169,53 @@ body {
 }
 
 .card-background {
-  background-image: url("/results/card.webp");
+  background-image: url('/results/card.webp');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .bg-result-feed-fezada {
-  background-image: url("/results/background-2/FEZADA.png");
+  background-image: url('/results/background-2/FEZADA.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 .bg-result-feed-aqueceu {
-  background-image: url("/results/background-2/AQUECEU.png");
+  background-image: url('/results/background-2/AQUECEU.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 .bg-result-feed-kazola {
-  background-image: url("/results/background-2/KAZOLA.png");
+  background-image: url('/results/background-2/KAZOLA.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 .bg-result-feed-eskebra {
-  background-image: url("/results/background-2/ESKEBRA.png");
+  background-image: url('/results/background-2/ESKEBRA.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .bg-results-resume {
-  background-image: url("/results/background-2/RESUMO.png");
+  background-image: url('/results/background-2/RESUMO.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .bg-result-story {
-  background-image: url("/results/background/bg-result-story.png");
+  background-image: url('/results/background/bg-result-story.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .bg-all-results-story {
-  background-image: url("/results/background/bg-all-results-story.png");
+  background-image: url('/results/background/bg-all-results-story.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
