@@ -7,7 +7,6 @@ import Button from '../ui/lottary-button';
 
 export default function Sidebar() {
   const { user, logout } = useAuth();
-  if (!user) return null;
 
   return (
     <aside className="min-w-[240px] max-w-[240px] hidden lg:block">

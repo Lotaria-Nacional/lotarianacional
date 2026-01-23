@@ -120,13 +120,13 @@ body {
 
 @font-face {
   font-family: 'Gotham-Black';
-  src: url('/fonts/gotham-black.ttf') format('truetype');
+  src: url('/fonts/gotham-ultra.otf') format('opentype');
   font-weight: 800;
 }
 
 .gotham-black {
   font-family: 'Gotham-Black', sans-serif;
-  font-weight: 800;
+  font-weight: bolder;
 }
 
 .gotham-rounded {

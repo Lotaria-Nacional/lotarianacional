@@ -19,7 +19,8 @@ import {
   PartnerPage,
 } from '@/pages';
 import App from '../../App';
-import { createBrowserRouter } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { createBrowserRouter, redirect } from 'react-router-dom';
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,13 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    loader: () => {
+      const token = Cookies.get('accessToken');
+      if (!token) {
+        return redirect('/auth/login');
+      }
+      return null;
+    },
     children: [
       {
         index: true,

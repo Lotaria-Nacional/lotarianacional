@@ -10,8 +10,6 @@ export default function BottomNavbar() {
   const ADD_RESULTS_PATH = '/resultados/adicionar';
   const isInAddResultsPage = pathname.includes(ADD_RESULTS_PATH);
 
-  if (!user) return null;
-
   const userRole = user!.role as RoleType;
   const canAddResults = ['admin', 'studio'].includes(userRole);
 
