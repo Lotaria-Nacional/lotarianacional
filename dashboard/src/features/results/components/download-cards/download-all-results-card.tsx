@@ -39,10 +39,10 @@ export default function DownloadAllResultsCard({ dailyResult }: Props) {
           {date}
         </div>
 
-        <DownloadResultResumeRow result={fezada} className="absolute top-[185px] left-[125px]" />
-        <DownloadResultResumeRow result={aqueceu} className="absolute top-[231px] left-[125px]" />
-        <DownloadResultResumeRow result={kazola} className="absolute top-[274px] left-[125px]" />
-        <DownloadResultResumeRow result={eskebra} className="absolute top-[317px] left-[125px]" />
+        <DownloadResultResumeRow result={fezada} className="absolute top-[184px] left-[124px]" />
+        <DownloadResultResumeRow result={aqueceu} className="absolute top-[229px] left-[124px]" />
+        <DownloadResultResumeRow result={kazola} className="absolute top-[273px] left-[124px]" />
+        <DownloadResultResumeRow result={eskebra} className="absolute top-[316px] left-[124px]" />
       </div>
     </div>
   );

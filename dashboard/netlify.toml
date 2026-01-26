@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"
+  to = "https://ln.mtjogos.co.ao/"
+  status = 301
+  force = true

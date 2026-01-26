@@ -176,32 +176,32 @@ body {
 }
 
 .bg-result-feed-fezada {
-  background-image: url('/results/background-2/FEZADA.png');
+  background-image: url('/results/background-2/fezada.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 .bg-result-feed-aqueceu {
-  background-image: url('/results/background-2/AQUECEU.png');
+  background-image: url('/results/background-2/aqueceu.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 .bg-result-feed-kazola {
-  background-image: url('/results/background-2/KAZOLA.png');
+  background-image: url('/results/background-2/kazola.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 .bg-result-feed-eskebra {
-  background-image: url('/results/background-2/ESKEBRA.png');
+  background-image: url('/results/background-2/eskebra.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .bg-results-resume {
-  background-image: url('/results/background-2/RESUMO.png');
+  background-image: url('/results/background-2/resumo.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

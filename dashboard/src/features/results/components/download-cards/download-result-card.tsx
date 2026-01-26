@@ -50,7 +50,7 @@ const DownloadResultCard = ({ result, name }: Props) => {
           <span className="text-LT-YELLOW gotham-rounded">{hourBasedOnResultName ?? 'Esperando...'}</span>
         </header>
 
-        <div className="absolute left-[43px] gotham-black flex font-extrabold bottom-[104px] w-[240px] items-center justify-between text-[24px] text-LT-RED-50">
+        <div className="absolute left-[44px] gotham-black flex font-extrabold bottom-[112px] w-[240px] items-center justify-between text-[24px] text-LT-RED-50">
           <span className="py-1 relative   w-[200px] flex items-center justify-center text-center">
             {result?.number_1 ?? ''}
           </span>
