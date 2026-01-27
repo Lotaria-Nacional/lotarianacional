@@ -1,11 +1,11 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin 'tailwindcss-animate';
 
-@import "./variables.css";
-@import "./scrollbar.css";
-@import "./font-face.css";
-@import "./swiper.css";
-@import "@/features/lottery-result/styles/lottery-result.styles.css";
+@import './variables.css';
+@import './scrollbar.css';
+@import './font-face.css';
+@import './swiper.css';
+@import '@/features/lottery-result/styles/lottery-result.styles.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -29,7 +29,7 @@
     @apply text-[18px] md:text-[34px];
   }
   body {
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 }
 
@@ -157,4 +157,15 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@font-face {
+  font-family: 'Gotham-Black';
+  src: url('/fonts/gotham-ultra.otf') format('opentype');
+  font-weight: 800;
+}
+
+.gotham-black {
+  font-family: 'Gotham-Black', sans-serif;
+  font-weight: bolder;
 }

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @layer components {
   .lottery-result-card-image {
@@ -7,20 +7,44 @@
     background-repeat: no-repeat;
     background-image: url('/banner/card-loto.webp');
   }
+
+  .fezada-result {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('/results/fezada.png');
+  }
+  .aqueceu-result {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('/results/aqueceu.png');
+  }
+  .kazola-result {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('/results/kazola.png');
+  }
+  .eskebra-result {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('/results/eskebra.png');
+  }
 }
 
 .daily-lottery-result-hero {
   /* default para telas maiores */
   margin-right: calc((100% - 1540px) / 2);
-  
+
   @media (max-width: 1500px) {
-      margin-right: calc((100% - 90%) / 2);
-      /* centraliza similar à container */
+    margin-right: calc((100% - 90%) / 2);
+    /* centraliza similar à container */
   }
- 
+
   @media (max-width: 1024px) {
-      margin-right: 1%;
-      /* equivalente a 98% de largura com 1% margem de cada lado */
+    margin-right: 1%;
+    /* equivalente a 98% de largura com 1% margem de cada lado */
   }
 }
-
