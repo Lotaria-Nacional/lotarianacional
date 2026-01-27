@@ -19,7 +19,7 @@ export function useDownloadResult({ ref }: Props): ReturnProps {
     try {
       const img = await toPng(ref.current, {
         cacheBust: true,
-        pixelRatio: 20,
+        pixelRatio: 8,
       });
       const aTag = document.createElement('a');
       aTag.download = 'resultado.png';
